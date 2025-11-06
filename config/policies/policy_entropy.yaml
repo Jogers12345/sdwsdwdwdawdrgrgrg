@@ -1,0 +1,88 @@
+name: "Entropy Reduction Focus"
+description: "Primarily focused on reducing entropy in the binary data"
+
+# Metrics to calculate
+metrics_to_calculate:
+  - entropy_global
+  - file_ideality_score
+  - lz77_ratio
+  - compression_efficiency
+  - conditional_entropy_order1
+  - relative_entropy
+  - entropy_efficiency
+  - bit_entropy
+
+# Weights for scoring (heavily favor entropy reduction)
+metric_weights:
+  # Entropy metrics (highest priority)
+  entropy_global: -100.0
+  shannon_entropy_windowed_256: -80.0
+  conditional_entropy_order1: -60.0
+  relative_entropy: -50.0
+  entropy_efficiency: 40.0
+
+  # File Ideality (secondary benefit)
+  file_ideality_score: 30.0
+  ideality_efficiency: 20.0
+  predictability_score: 15.0
+
+  # Compression metrics (correlated with entropy)
+  lz77_ratio: 25.0
+  lzma_ratio: 20.0
+  compression_efficiency: 20.0
+  redundancy_score: 15.0
+
+  # Bitwise entropy
+  bit_entropy: -30.0
+  bit_plane_entropy: -20.0
+
+  # Pattern metrics (structure often reduces entropy)
+  pattern_richness: 10.0
+  self_similarity: 15.0
+  structure_regularity: 12.0
+
+  # Autocorrelation (negative correlation indicates less entropy)
+  autocorrelation_avg: -15.0
+
+  # Complexity (complexity often relates to entropy)
+  kolmogorov_complexity_estimate: -20.0
+  lz_complexity: -15.0
+
+  # Statistical metrics
+  chi_square_p_value: 5.0
+  js_divergence_uniform: -10.0
+
+# Optimization targets
+targets:
+  entropy_global: minimize
+  shannon_entropy_windowed_256: minimize
+  conditional_entropy_order1: minimize
+  relative_entropy: minimize
+  bit_entropy: minimize
+  autocorrelation_avg: minimize
+  file_ideality_score: maximize
+  lz77_ratio: minimize
+  compression_efficiency: maximize
+  pattern_richness: maximize
+  kolmogorov_complexity_estimate: minimize
+
+# Budget constraints
+budget:
+  max_operations: 1500
+  max_cost: 12000
+  max_time_seconds: 4800
+
+# Focus on entropy-reducing operations
+allowed_operations:
+  - xor_constant
+  - xor_range
+  - rotate_left
+  - rotate_right
+  - not_bytes
+  - move_to_front
+  - burrows_wheeler
+  - delta_encode
+  - substitution_ops
+  - shuffle_bytes
+  - block_reverse
+operation_limit: 8

@@ -1,0 +1,73 @@
+name: "Beam Search"
+description: "Maintains multiple candidate states in parallel"
+
+# Strategy parameters
+parameters:
+  # Number of states to maintain in beam
+  beam_width: 5
+
+  # Maximum beam width (for dynamic adjustment)
+  max_beam_width: 20
+
+  # Minimum beam width
+  min_beam_width: 2
+
+  # How many operations to consider for each state
+  branch_factor: 3
+
+  # Maximum iterations
+  max_iterations: 1000
+
+  # Maximum operations without improvement
+  max_no_improvement: 50
+
+# Beam management
+beam_management:
+  # How to select states for next beam: "top_n", "diverse", "weighted"
+  selection_method: "top_n"
+
+  # Diversity preservation
+  preserve_diversity: true
+  diversity_threshold: 0.1
+
+  # Score normalization
+  normalize_scores: true
+
+  # Aging factor for older states
+  aging_factor: 0.99
+
+# Dynamic beam adjustment
+dynamic_beam:
+  # Enable dynamic beam width adjustment
+  enabled: true
+
+  # Expand beam if finding many improvements
+  expansion_threshold: 0.8
+
+  # Contract beam if stuck
+  contraction_threshold: 0.2
+
+  # Adjustment rate
+  adjustment_rate: 0.1
+
+# Operation selection
+operation_selection:
+  # Use different operations for diversity
+  diverse_operations: true
+
+  # Minimum operation diversity in beam
+  min_operation_diversity: 0.5
+
+  # Historical performance weighting
+  use_historical_performance: true
+
+# Termination conditions
+termination:
+  # Converge if all beam states have similar scores
+  score_similarity_threshold: 0.01
+
+  # Converge if beam states are very similar
+  state_similarity_threshold: 0.9
+
+  # Maximum time without improvement
+  max_time_no_improvement: 30

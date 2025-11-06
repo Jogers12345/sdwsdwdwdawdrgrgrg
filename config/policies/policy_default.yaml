@@ -1,0 +1,92 @@
+name: "Default Policy"
+description: "Balanced approach focusing on multiple metric improvements"
+
+# Metrics to calculate (use "all" for all metrics or specific list)
+metrics_to_calculate:
+  - file_ideality_score
+  - entropy_global
+  - lz77_ratio
+  - autocorrelation_avg
+  - pattern_richness
+  - structure_regularity
+  - compression_efficiency
+
+# Weights for scoring (-100 to +100)
+metric_weights:
+  # File Ideality metrics (high priority)
+  file_ideality_score: 50.0
+  bits_in_window_256: 20.0
+  ideality_efficiency: 15.0
+  predictability_score: 10.0
+
+  # Entropy metrics (penalize high entropy)
+  entropy_global: -30.0
+  shannon_entropy_windowed_256: -15.0
+  relative_entropy: -10.0
+  conditional_entropy_order1: -20.0
+
+  # Compression metrics (reward compressibility)
+  lz77_ratio: 25.0
+  lzma_ratio: 20.0
+  compression_efficiency: 15.0
+  redundancy_score: 10.0
+  compressibility_index: 15.0
+
+  # Pattern metrics (reward structure)
+  autocorrelation_avg: -8.0
+  periodicity_score: 5.0
+  pattern_richness: 8.0
+  self_similarity: 10.0
+  structure_regularity: 12.0
+
+  # Bitwise metrics
+  bit_entropy: -5.0
+  bit_autocorrelation: -3.0
+  bit_pattern_diversity: 5.0
+
+  # Structure metrics
+  alignment_score: 8.0
+  block_detection_score: 10.0
+  segmentation_score: 6.0
+  pattern_coherence: 7.0
+
+  # Run-length metrics
+  run_efficiency: 8.0
+  compression_potential: 10.0
+  homogeneity_index: 5.0
+
+  # Statistical metrics
+  chi_square_p_value: 3.0
+  std_deviation: -2.0
+  js_divergence_uniform: -5.0
+
+  # Complexity metrics (penalize complexity)
+  kolmogorov_complexity_estimate: -8.0
+  lz_complexity: -6.0
+  algorithmic_complexity: -7.0
+  predictive_complexity: -5.0
+
+# Optimization targets
+targets:
+  file_ideality_score: maximize
+  bits_in_window_256: maximize
+  entropy_global: minimize
+  lz77_ratio: minimize
+  autocorrelation_avg: minimize
+  pattern_richness: maximize
+  structure_regularity: maximize
+  compression_efficiency: maximize
+  bit_entropy: minimize
+  alignment_score: maximize
+  run_efficiency: maximize
+  kolmogorov_complexity_estimate: minimize
+
+# Budget constraints
+budget:
+  max_operations: 1000
+  max_cost: 10000
+  max_time_seconds: 3600
+
+# Operation constraints (optional)
+allowed_operations: null  # null means all operations allowed
+operation_limit: null      # null means no limit on operation types

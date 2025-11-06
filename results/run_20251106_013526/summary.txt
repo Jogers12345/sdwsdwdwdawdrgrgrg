@@ -1,0 +1,20 @@
+Binary Structure Exploration Engine - Run Summary
+==================================================
+Timestamp: 2025-11-06 01:35:26
+Total Operations: 50
+Total Cost: 97.66
+Final Score: 0.00
+
+Final Metrics:
+  file_ideality_score: 0.8625
+  entropy_global: 2.6464
+  lz77_ratio: 1.8000
+
+Top 5 Operations Used:
+  1. rotate_right (16 times)
+  2. xor_constant (11 times)
+  3. rotate_left (10 times)
+  4. not_bytes (9 times)
+  5. swap_nibbles (4 times)
+
+Best State: 0c15e883dee85bb2...

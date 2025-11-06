@@ -1,0 +1,18 @@
+Metric Comparison: Initial → Final
+========================================
+
+COMPRESSION METRICS:
+  lz77_ratio: 0.7056 → 0.7056 (+0.0%)
+
+FILE IDEALITY METRICS:
+  file_ideality_score: 0.9918 → 0.9918 (+0.0%)
+
+ALL METRICS:
+Total metrics calculated: 3
+Initial metrics: 3
+Final metrics: 3
+
+Overall Changes:
+  Improved: 0
+  Degraded: 0
+  Unchanged: 3

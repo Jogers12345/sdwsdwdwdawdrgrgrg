@@ -1,0 +1,69 @@
+name: "Greedy Hill Climbing"
+description: "Simple hill climbing that always accepts improvements"
+
+# Strategy parameters
+parameters:
+  # Restart after this many operations without improvement
+  restart_threshold: 10
+
+  # Probability of random restart when threshold reached
+  random_restart_prob: 0.1
+
+  # How many steps to look ahead (1 for greedy)
+  lookahead_depth: 1
+
+  # Probability of exploring random operations instead of greedy
+  exploration_prob: 0.05
+
+  # Maximum number of iterations before forced convergence
+  max_iterations: 1000
+
+  # Maximum operations without improvement before convergence
+  max_no_improvement: 50
+
+  # Early stopping if score doesn't improve by this amount
+  min_improvement_threshold: 0.01
+
+# Operation selection preferences
+operation_preferences:
+  # Prefer operations that historically work well
+  use_historical_preferences: true
+
+  # Weight recent performance more heavily
+  recency_weight: 0.7
+
+  # Minimum historical data before using preferences
+  min_history_size: 10
+
+# Restart strategy
+restart_strategy:
+  # Types of restart: "random", "best_known", "diverse"
+  type: "random"
+
+  # How much of the operation history to keep on restart
+  history_retention: 0.0
+
+  # Whether to reset operation costs on restart
+  reset_costs: true
+
+# Adaptation settings
+adaptation:
+  # Adjust exploration rate based on performance
+  adaptive_exploration: true
+
+  # Reduce exploration as search progresses
+  exploration_decay: 0.99
+
+  # Minimum exploration rate
+  min_exploration_rate: 0.01
+
+# Logging and monitoring
+logging:
+  # Log detailed operation decisions
+  verbose_logging: false
+
+  # Log performance metrics
+  log_performance: true
+
+  # Performance logging interval
+  log_interval: 10

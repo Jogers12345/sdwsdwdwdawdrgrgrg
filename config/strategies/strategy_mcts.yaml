@@ -1,0 +1,93 @@
+name: "Monte Carlo Tree Search"
+description: "Tree-based search with simulation and backpropagation"
+
+# MCTS parameters
+parameters:
+  # UCT exploration constant
+  exploration_constant: 1.4
+
+  # Number of simulations per move
+  simulation_count: 100
+
+  # Rollout depth for simulations
+  rollout_depth: 10
+
+  # Maximum tree depth
+  max_tree_depth: 50
+
+  # Number of iterations
+  max_iterations: 1000
+
+# Tree management
+tree_management:
+  # Node expansion policy
+  expansion_policy: "uct"  # Options: "uct", "epsilon_greedy", "thompson"
+
+  # Epsilon for epsilon-greedy
+  epsilon: 0.1
+
+  # Maximum children per node
+  max_children: 20
+
+  # Prune low-value nodes
+  prune_tree: true
+
+  # Pruning threshold
+  prune_threshold: 0.01
+
+# Simulation strategy
+simulation:
+  # Simulation policy
+  policy: "random"  # Options: "random", "greedy", "guided"
+
+  # Guided simulation parameters
+  guided_temperature: 1.0
+  guided_exploration: 0.1
+
+  # Early termination in simulations
+  early_termination: true
+
+  # Early termination threshold
+  early_termination_threshold: 0.8
+
+# Backpropagation
+backpropagation:
+  # Value function for backpropagation
+  value_function: "score"  # Options: "score", "improvement", "rank"
+
+  # Discount factor for future rewards
+  discount_factor: 0.9
+
+  # Average vs max backpropagation
+  backpropagation_mode: "average"  # Options: "average", "max", "weighted"
+
+# Selection
+selection:
+  # Final selection policy
+  final_selection: "most_visited"  # Options: "most_visited", "highest_value", "robust"
+
+  # Robust selection parameters
+  robust_visits_threshold: 10
+  robust_value_threshold: 0.1
+
+# Memory management
+memory:
+  # Maximum tree nodes in memory
+  max_tree_nodes: 10000
+
+  # Node cleanup policy
+  cleanup_policy: "least_visited"  # Options: "least_visited", "oldest", "lowest_value"
+
+  # Cleanup interval
+  cleanup_interval: 100
+
+# Parallelization
+parallel:
+  # Enable parallel simulations
+  parallel_simulations: false
+
+  # Number of parallel workers
+  num_workers: 4
+
+  # Thread-safe tree operations
+  thread_safe: true

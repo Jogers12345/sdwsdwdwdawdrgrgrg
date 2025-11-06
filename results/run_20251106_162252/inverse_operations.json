@@ -1,0 +1,333 @@
+{
+  "original_file": "C:/Users/ahmad/OneDrive/Desktop/Ahmads--compyle-terminal-metrics-test/test.bin",
+  "final_state_id": "0c15e883dee85bb2f3540a47ec58f617a2547117f9096417ba5422268029f501",
+  "total_operations": 17,
+  "total_cost": 22.846000000000004,
+  "operations": [
+    {
+      "step_number": 1,
+      "operation_name": "rotate_right",
+      "parameters": {
+        "shift": 1
+      },
+      "cost": 1.2600000000000002,
+      "timestamp": "2025-11-06T16:22:51.913211",
+      "parent_state_id": "0c15e883dee85bb2f3540a47ec58f617a2547117f9096417ba5422268029f501",
+      "resulting_state_id": "014cde4803176b83da091c3c200ec7b3498324302d9798be64ae10cef3b60945",
+      "effectiveness_score": -1.2600000000000002
+    },
+    {
+      "step_number": 2,
+      "operation_name": "not_bytes",
+      "parameters": {},
+      "cost": 0.8400000000000001,
+      "timestamp": "2025-11-06T16:22:51.919213",
+      "parent_state_id": "014cde4803176b83da091c3c200ec7b3498324302d9798be64ae10cef3b60945",
+      "resulting_state_id": "de5a8491e507ff44d1f7a6618631cb3781b90fa4b31c0446e0bc2452f618a780",
+      "effectiveness_score": 0.42000000000000015
+    },
+    {
+      "step_number": 3,
+      "operation_name": "not_bytes",
+      "parameters": {},
+      "cost": 0.8800000000000001,
+      "timestamp": "2025-11-06T16:22:51.926209",
+      "parent_state_id": "de5a8491e507ff44d1f7a6618631cb3781b90fa4b31c0446e0bc2452f618a780",
+      "resulting_state_id": "014cde4803176b83da091c3c200ec7b3498324302d9798be64ae10cef3b60945",
+      "effectiveness_score": -0.040000000000000036
+    },
+    {
+      "step_number": 4,
+      "operation_name": "not_bytes",
+      "parameters": {},
+      "cost": 0.96,
+      "timestamp": "2025-11-06T16:22:51.933207",
+      "parent_state_id": "014cde4803176b83da091c3c200ec7b3498324302d9798be64ae10cef3b60945",
+      "resulting_state_id": "de5a8491e507ff44d1f7a6618631cb3781b90fa4b31c0446e0bc2452f618a780",
+      "effectiveness_score": -0.07999999999999985
+    },
+    {
+      "step_number": 5,
+      "operation_name": "rotate_right",
+      "parameters": {
+        "shift": 4
+      },
+      "cost": 1.3860000000000001,
+      "timestamp": "2025-11-06T16:22:51.939204",
+      "parent_state_id": "de5a8491e507ff44d1f7a6618631cb3781b90fa4b31c0446e0bc2452f618a780",
+      "resulting_state_id": "4a2d29ead1dcbe7990b8c645dfbb9db6b89f707ecf4bcab4a1c0185cb3de82fe",
+      "effectiveness_score": -0.42600000000000016
+    },
+    {
+      "step_number": 6,
+      "operation_name": "rotate_left",
+      "parameters": {
+        "shift": 2
+      },
+      "cost": 1.2600000000000002,
+      "timestamp": "2025-11-06T16:22:51.949198",
+      "parent_state_id": "4a2d29ead1dcbe7990b8c645dfbb9db6b89f707ecf4bcab4a1c0185cb3de82fe",
+      "resulting_state_id": "72d05104f886f4fdd25c3a45c169f5c93ca414ebda568a16a40b607953da3d18",
+      "effectiveness_score": 0.1259999999999999
+    },
+    {
+      "step_number": 7,
+      "operation_name": "swap_nibbles",
+      "parameters": {},
+      "cost": 1.6800000000000002,
+      "timestamp": "2025-11-06T16:22:51.957194",
+      "parent_state_id": "72d05104f886f4fdd25c3a45c169f5c93ca414ebda568a16a40b607953da3d18",
+      "resulting_state_id": "f26c3c316abe3675bc67402221e6703ee755201bde42778fd762fbcfc90b5c85",
+      "effectiveness_score": -0.41999999999999993
+    },
+    {
+      "step_number": 8,
+      "operation_name": "not_bytes",
+      "parameters": {},
+      "cost": 1.04,
+      "timestamp": "2025-11-06T16:22:51.964192",
+      "parent_state_id": "f26c3c316abe3675bc67402221e6703ee755201bde42778fd762fbcfc90b5c85",
+      "resulting_state_id": "e4c7428abc1bf9f4a3efbb82033ddc7b9539fe2033d50d0f3c02b618fa4b141f",
+      "effectiveness_score": 0.6400000000000001
+    },
+    {
+      "step_number": 9,
+      "operation_name": "rotate_left",
+      "parameters": {
+        "shift": 1
+      },
+      "cost": 1.3200000000000003,
+      "timestamp": "2025-11-06T16:22:51.971188",
+      "parent_state_id": "e4c7428abc1bf9f4a3efbb82033ddc7b9539fe2033d50d0f3c02b618fa4b141f",
+      "resulting_state_id": "f0045f599770aef13a958032ae000826d09f3f8ef8d1c5ce04868ab3f2f88d51",
+      "effectiveness_score": -0.28000000000000025
+    },
+    {
+      "step_number": 10,
+      "operation_name": "swap_nibbles",
+      "parameters": {},
+      "cost": 1.8480000000000005,
+      "timestamp": "2025-11-06T16:22:51.978185",
+      "parent_state_id": "f0045f599770aef13a958032ae000826d09f3f8ef8d1c5ce04868ab3f2f88d51",
+      "resulting_state_id": "fac208429ff4582211bd145254751783db681259c7a6e46c6d34034604a8ba42",
+      "effectiveness_score": -0.5280000000000002
+    },
+    {
+      "step_number": 11,
+      "operation_name": "rotate_right",
+      "parameters": {
+        "shift": 7
+      },
+      "cost": 1.512,
+      "timestamp": "2025-11-06T16:22:51.985182",
+      "parent_state_id": "fac208429ff4582211bd145254751783db681259c7a6e46c6d34034604a8ba42",
+      "resulting_state_id": "014cde4803176b83da091c3c200ec7b3498324302d9798be64ae10cef3b60945",
+      "effectiveness_score": 0.3360000000000005
+    },
+    {
+      "step_number": 12,
+      "operation_name": "rotate_left",
+      "parameters": {
+        "shift": 5
+      },
+      "cost": 1.44,
+      "timestamp": "2025-11-06T16:22:51.995177",
+      "parent_state_id": "014cde4803176b83da091c3c200ec7b3498324302d9798be64ae10cef3b60945",
+      "resulting_state_id": "5c8d9c5ba311b1aae387c9f96af7d8e845f222b78a4ea81b2b3dd366c2ebbc25",
+      "effectiveness_score": 0.07200000000000006
+    },
+    {
+      "step_number": 13,
+      "operation_name": "rotate_left",
+      "parameters": {
+        "shift": 5
+      },
+      "cost": 1.5600000000000003,
+      "timestamp": "2025-11-06T16:22:52.006170",
+      "parent_state_id": "5c8d9c5ba311b1aae387c9f96af7d8e845f222b78a4ea81b2b3dd366c2ebbc25",
+      "resulting_state_id": "e4c7428abc1bf9f4a3efbb82033ddc7b9539fe2033d50d0f3c02b618fa4b141f",
+      "effectiveness_score": -0.12000000000000033
+    },
+    {
+      "step_number": 14,
+      "operation_name": "rotate_left",
+      "parameters": {
+        "shift": 6
+      },
+      "cost": 1.6799999999999997,
+      "timestamp": "2025-11-06T16:22:52.013168",
+      "parent_state_id": "e4c7428abc1bf9f4a3efbb82033ddc7b9539fe2033d50d0f3c02b618fa4b141f",
+      "resulting_state_id": "014cde4803176b83da091c3c200ec7b3498324302d9798be64ae10cef3b60945",
+      "effectiveness_score": -0.11999999999999944
+    },
+    {
+      "step_number": 15,
+      "operation_name": "rotate_right",
+      "parameters": {
+        "shift": 7
+      },
+      "cost": 1.5600000000000003,
+      "timestamp": "2025-11-06T16:22:52.022163",
+      "parent_state_id": "014cde4803176b83da091c3c200ec7b3498324302d9798be64ae10cef3b60945",
+      "resulting_state_id": "0c15e883dee85bb2f3540a47ec58f617a2547117f9096417ba5422268029f501",
+      "effectiveness_score": 0.11999999999999944
+    },
+    {
+      "step_number": 16,
+      "operation_name": "not_bytes",
+      "parameters": {},
+      "cost": 1.1199999999999999,
+      "timestamp": "2025-11-06T16:22:52.033158",
+      "parent_state_id": "0c15e883dee85bb2f3540a47ec58f617a2547117f9096417ba5422268029f501",
+      "resulting_state_id": "dc47cc65318c2cc1760b3cb7958a950634c0b66b99c87e91d6ff0ae0b9f563bc",
+      "effectiveness_score": 0.4400000000000004
+    },
+    {
+      "step_number": 17,
+      "operation_name": "not_bytes",
+      "parameters": {},
+      "cost": 1.5,
+      "timestamp": "2025-11-06T16:22:52.044153",
+      "parent_state_id": "dc47cc65318c2cc1760b3cb7958a950634c0b66b99c87e91d6ff0ae0b9f563bc",
+      "resulting_state_id": "0c15e883dee85bb2f3540a47ec58f617a2547117f9096417ba5422268029f501",
+      "effectiveness_score": -0.3800000000000001
+    }
+  ],
+  "inverse_operations": [
+    {
+      "step": 17,
+      "operation": "inverse_not_bytes",
+      "params": {}
+    },
+    {
+      "step": 16,
+      "operation": "inverse_not_bytes",
+      "params": {}
+    },
+    {
+      "step": 15,
+      "operation": "rotate_left",
+      "params": {
+        "shift": 7
+      }
+    },
+    {
+      "step": 14,
+      "operation": "rotate_right",
+      "params": {
+        "shift": 6
+      }
+    },
+    {
+      "step": 13,
+      "operation": "rotate_right",
+      "params": {
+        "shift": 5
+      }
+    },
+    {
+      "step": 12,
+      "operation": "rotate_right",
+      "params": {
+        "shift": 5
+      }
+    },
+    {
+      "step": 11,
+      "operation": "rotate_left",
+      "params": {
+        "shift": 7
+      }
+    },
+    {
+      "step": 10,
+      "operation": "inverse_swap_nibbles",
+      "params": {}
+    },
+    {
+      "step": 9,
+      "operation": "rotate_right",
+      "params": {
+        "shift": 1
+      }
+    },
+    {
+      "step": 8,
+      "operation": "inverse_not_bytes",
+      "params": {}
+    },
+    {
+      "step": 7,
+      "operation": "inverse_swap_nibbles",
+      "params": {}
+    },
+    {
+      "step": 6,
+      "operation": "rotate_right",
+      "params": {
+        "shift": 2
+      }
+    },
+    {
+      "step": 5,
+      "operation": "rotate_left",
+      "params": {
+        "shift": 4
+      }
+    },
+    {
+      "step": 4,
+      "operation": "inverse_not_bytes",
+      "params": {}
+    },
+    {
+      "step": 3,
+      "operation": "inverse_not_bytes",
+      "params": {}
+    },
+    {
+      "step": 2,
+      "operation": "inverse_not_bytes",
+      "params": {}
+    },
+    {
+      "step": 1,
+      "operation": "rotate_left",
+      "params": {
+        "shift": 1
+      }
+    }
+  ],
+  "operation_statistics": {
+    "rotate_right": {
+      "count": 7,
+      "total_cost": 12.364500000000001,
+      "average_cost": 1.766357142857143,
+      "average_effectiveness": -0.05807142857142868
+    },
+    "not_bytes": {
+      "count": 15,
+      "total_cost": 24.34,
+      "average_cost": 1.6226666666666667,
+      "average_effectiveness": 0.6877666666666667
+    },
+    "rotate_left": {
+      "count": 11,
+      "total_cost": 23.565,
+      "average_cost": 2.1422727272727276,
+      "average_effectiveness": -0.2686363636363637
+    },
+    "swap_nibbles": {
+      "count": 13,
+      "total_cost": 41.160000000000004,
+      "average_cost": 3.1661538461538465,
+      "average_effectiveness": -1.2181153846153847
+    },
+    "xor_constant": {
+      "count": 4,
+      "total_cost": 3.7720000000000002,
+      "average_cost": 0.9430000000000001,
+      "average_effectiveness": 1.065125
+    }
+  }
+}

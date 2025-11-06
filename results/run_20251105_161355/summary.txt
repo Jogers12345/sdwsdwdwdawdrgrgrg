@@ -1,0 +1,15 @@
+Binary Structure Exploration Engine - Run Summary
+==================================================
+Timestamp: 2025-11-05 16:13:55
+Total Operations: 1
+Total Cost: 0.00
+Final Score: 0.00
+
+Final Metrics:
+  file_ideality_score: 0.8625
+  entropy_global: 2.6464
+  lz77_ratio: 1.8000
+
+Top 5 Operations Used:
+
+Best State: 0c15e883dee85bb2...

@@ -1,0 +1,9 @@
+Operation Usage Statistics
+==============================
+
+Total Operations Applied: 0
+Unique Operations Used: 0
+Total Cost: 0.00
+
+Breakdown by Operation:
+  No operations recorded

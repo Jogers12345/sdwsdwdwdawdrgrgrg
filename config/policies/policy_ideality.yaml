@@ -1,0 +1,105 @@
+name: "File Ideality Focus"
+description: "Maximize File Ideality above all other metrics"
+
+# Metrics to calculate
+metrics_to_calculate:
+  - file_ideality_score
+  - bits_in_window_8
+  - bits_in_window_16
+  - bits_in_window_32
+  - bits_in_window_64
+  - bits_in_window_128
+  - bits_in_window_256
+  - bits_in_window_512
+  - bits_in_window_1024
+  - bits_in_window_2048
+  - average_ideal_window_size
+  - ideality_efficiency
+  - predictability_score
+  - entropy_global
+  - lz77_ratio
+  - autocorrelation_avg
+
+# Weights for scoring (overwhelming focus on File Ideality)
+metric_weights:
+  # File Ideality metrics (absolute priority)
+  file_ideality_score: 200.0
+  bits_in_window_256: 100.0
+  bits_in_window_512: 80.0
+  bits_in_window_1024: 60.0
+  bits_in_window_2048: 40.0
+  bits_in_window_128: 30.0
+  bits_in_window_64: 20.0
+  bits_in_window_32: 15.0
+  bits_in_window_16: 10.0
+  bits_in_window_8: 5.0
+  average_ideal_window_size: 50.0
+  ideality_efficiency: 30.0
+  predictability_score: 25.0
+
+  # Entropy metrics (secondary - File Ideality often reduces entropy)
+  entropy_global: -20.0
+  shannon_entropy_windowed_256: -15.0
+  conditional_entropy_order1: -10.0
+  relative_entropy: -8.0
+
+  # Compression metrics (File Ideality often improves compressibility)
+  lz77_ratio: 15.0
+  lzma_ratio: 12.0
+  compression_efficiency: 10.0
+  compressibility_index: 8.0
+
+  # Pattern metrics (structure supports ideality)
+  pattern_richness: 5.0
+  self_similarity: 8.0
+  structure_regularity: 6.0
+  autocorrelation_avg: -3.0
+
+  # Bitwise metrics
+  bit_entropy: -5.0
+  bit_pattern_diversity: 3.0
+
+  # Other metrics (minimal impact)
+  alignment_score: 2.0
+  run_efficiency: 3.0
+  kolmogorov_complexity_estimate: -4.0
+
+# Optimization targets
+targets:
+  file_ideality_score: maximize
+  bits_in_window_256: maximize
+  bits_in_window_512: maximize
+  bits_in_window_1024: maximize
+  bits_in_window_2048: maximize
+  average_ideal_window_size: maximize
+  ideality_efficiency: maximize
+  predictability_score: maximize
+  entropy_global: minimize
+  lz77_ratio: minimize
+  autocorrelation_avg: minimize
+  pattern_richness: maximize
+  structure_regularity: maximize
+
+# Budget constraints (higher limits for File Ideality optimization)
+budget:
+  max_operations: 2000
+  max_cost: 15000
+  max_time_seconds: 7200
+
+# Focus on operations that improve predictability and structure
+allowed_operations:
+  - xor_constant
+  - xor_range
+  - rotate_left
+  - rotate_right
+  - move_to_front
+  - burrows_wheeler
+  - bitplane_extract
+  - shuffle_bytes
+  - block_reverse
+  - delta_encode
+  - substitution_ops
+  - transform_ops
+  - pattern_replacement
+  - byte_swap
+operation_limit: 12

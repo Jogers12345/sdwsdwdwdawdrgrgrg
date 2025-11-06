@@ -1,0 +1,80 @@
+name: "Custom Policy Template"
+description: "User-editable template for custom analysis policies"
+
+# Metrics to calculate (uncomment and modify as needed)
+metrics_to_calculate:
+  # Core File Ideality metrics
+  - file_ideality_score
+  - bits_in_window_256
+  - average_ideal_window_size
+  - ideality_efficiency
+
+  # Entropy metrics
+  - entropy_global
+  - shannon_entropy_windowed_256
+  - conditional_entropy_order1
+
+  # Compression metrics
+  - lz77_ratio
+  - compression_efficiency
+
+  # Pattern metrics
+  - autocorrelation_avg
+  - pattern_richness
+  - structure_regularity
+
+  # Add or remove metrics as needed
+
+# Weights for scoring (-100 to +100)
+# Adjust these values to prioritize different aspects of the analysis
+metric_weights:
+  # File Ideality - increase to focus more on structure
+  file_ideality_score: 50.0
+  bits_in_window_256: 20.0
+  ideality_efficiency: 15.0
+
+  # Entropy - negative values penalize high entropy
+  entropy_global: -10.0
+  shannon_entropy_windowed_256: -8.0
+
+  # Compression - positive values reward better compression
+  lz77_ratio: 15.0
+  compression_efficiency: 10.0
+
+  # Patterns - adjust based on whether you want more or less structure
+  autocorrelation_avg: -5.0
+  pattern_richness: 8.0
+  structure_regularity: 10.0
+
+  # Add custom weights for other metrics as needed
+
+# Optimization targets (maximize or minimize)
+targets:
+  file_ideality_score: maximize
+  entropy_global: minimize
+  lz77_ratio: minimize
+  pattern_richness: maximize
+  structure_regularity: maximize
+  # Add or modify targets as needed
+
+# Budget constraints
+budget:
+  max_operations: 1000    # Maximum number of operations to apply
+  max_cost: 10000         # Maximum total cost budget
+  max_time_seconds: 3600  # Maximum analysis time in seconds
+
+# Operation constraints (optional)
+# Uncomment and modify to restrict operations
+# allowed_operations:
+#   - xor_constant
+#   - rotate_left
+#   - move_to_front
+#   - burrows_wheeler
+
+# operation_limit: 6  # Limit number of different operation types to use
+
+# Additional custom settings can be added here
+# custom_settings:
+#   preference: "structure"
+#   aggressiveness: 0.7
+#   exploration_rate: 0.1

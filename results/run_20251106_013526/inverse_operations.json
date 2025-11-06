@@ -1,0 +1,40 @@
+{
+  "original_file": "C:/Users/ahmad/OneDrive/Desktop/Ahmads--compyle-terminal-metrics-test/test.bin",
+  "final_state_id": "0c15e883dee85bb2f3540a47ec58f617a2547117f9096417ba5422268029f501",
+  "total_operations": 0,
+  "total_cost": 0,
+  "operations": [],
+  "inverse_operations": [],
+  "operation_statistics": {
+    "xor_constant": {
+      "count": 11,
+      "total_cost": 15.517000000000001,
+      "average_cost": 1.4106363636363637,
+      "average_effectiveness": 0.20140909090909112
+    },
+    "rotate_right": {
+      "count": 16,
+      "total_cost": 42.21,
+      "average_cost": 2.638125,
+      "average_effectiveness": -0.8589375000000001
+    },
+    "not_bytes": {
+      "count": 9,
+      "total_cost": 11.573,
+      "average_cost": 1.2858888888888889,
+      "average_effectiveness": 1.0747222222222224
+    },
+    "rotate_left": {
+      "count": 10,
+      "total_cost": 20.634,
+      "average_cost": 2.0634,
+      "average_effectiveness": -0.04520000000000006
+    },
+    "swap_nibbles": {
+      "count": 4,
+      "total_cost": 7.7280000000000015,
+      "average_cost": 1.9320000000000004,
+      "average_effectiveness": -0.17137500000000028
+    }
+  }
+}

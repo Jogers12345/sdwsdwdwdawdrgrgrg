@@ -1,0 +1,89 @@
+name: "Custom Cost Model Template"
+description: "User-editable template for custom operation costs"
+
+# Base costs for each operation
+# Adjust these values to make operations more or less expensive
+base_costs:
+  # Bitwise operations (generally low cost)
+  xor_constant: 1.0
+  xor_range: 2.0
+  not_bytes: 1.0
+  rotate_left: 1.5
+  rotate_right: 1.5
+  swap_nibbles: 2.0
+
+  # Reordering operations
+  reverse_bytes: 2.0
+  shuffle_bytes: 4.0
+  byte_swap: 3.0
+  move_to_front: 4.0
+
+  # Transform operations (can be more expensive)
+  burrows_wheeler: 6.0
+  bitplane_extract: 5.0
+  walsh_hadamard: 5.5
+
+  # Custom operations
+  base64_encode: 4.0
+  dna_encoding: 6.0
+  data_embedding: 7.0
+
+  # Add or modify operation costs as needed
+  # operation_name: cost_value
+
+# Cost modifiers
+cost_modifiers:
+  # Frequency penalty - increase cost for repeated operations
+  frequency_penalty:
+    enabled: true
+    rate: 0.1      # 10% increase per use
+    max_multiplier: 5.0
+
+  # Diminishing returns - increase cost if operation isn't helping
+  diminishing_return:
+    enabled: true
+    rate: 0.05     # 5% increase if not effective
+    effectiveness_window: 10
+
+  # Novelty bonus - discount for rarely used operations
+  novelty_bonus:
+    enabled: true
+    rate: -0.2     # 20% discount for operations used < 5 times
+    usage_threshold: 5
+
+  # Early stage bonus - cheaper costs at the beginning
+  early_stage_bonus:
+    enabled: true
+    discount_rate: 0.5
+    threshold_iterations: 100
+
+# Dynamic cost adjustment
+dynamic_adjustment:
+  enabled: true
+  learning_rate: 0.1
+  performance_window: 50
+  min_cost: 0.1
+  max_cost: 50.0
+
+# Category-based adjustments
+category_adjustments:
+  bitwise: 1.0      # No adjustment
+  reordering: 1.0
+  delta: 1.0
+  substitution: 1.0
+  transform: 1.2     # 20% more expensive
+  custom: 1.1        # 10% more expensive
+
+# Custom settings
+custom_settings:
+  # Aggressive mode - lower costs for more exploration
+  aggressive_mode: false
+
+  # Conservative mode - higher costs for careful exploration
+  conservative_mode: false
+
+  # Focus on specific operation types
+  focus_operations: []
+
+  # Penalize specific operation types
+  penalize_operations: []
