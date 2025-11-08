@@ -135,7 +135,8 @@ class OperationPerformanceTester:
             operations_per_second=iterations / total_time if total_time > 0 else 0.0,
             threads_used=1,
             success_rate=success_rate,
-            error_count=errors
+            error_count=errors,
+            execution_times=execution_times
         )
 
     def test_parallel_operation_performance(self, operation, test_data: bytes,
