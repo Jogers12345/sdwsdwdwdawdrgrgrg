@@ -1316,11 +1316,123 @@ class TransformOperations:
             raise RuntimeError("Arithmetic encoding is not reversible")
         return binary_data, inverse, {'operation': 'arithmetic_encode', 'bytes_affected': 0, 'reversible': False}
 
-    def lz77_encode(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
-        """LZ77 encoding."""
+    def lz77_encode(self, binary_data: bytes, window_size: int = 32768, buffer_size: int = 258, min_match_length: int = 3) -> Tuple[bytes, Callable, Dict]:
+        """LZ77 encoding with sliding window and look-ahead buffer."""
+        if len(binary_data) == 0:
+            def inverse_empty():
+                return b''
+            return b'', inverse_empty, {'operation': 'lz77_encode', 'bytes_affected': 0, 'reversible': True}
+
+        original_length = len(binary_data)
+        encoded_data = bytearray()
+
+        # Position in input data
+        pos = 0
+        total_matches = 0
+        total_literals = 0
+
+        while pos < len(binary_data):
+            # Find best match in sliding window
+            best_offset = 0
+            best_length = 0
+
+            # Determine search range
+            search_start = max(0, pos - window_size)
+            search_end = pos
+            buffer_end = min(len(binary_data), pos + buffer_size)
+
+            if search_start < search_end:
+                # Look for longest match
+                for offset in range(1, search_end - search_start + 1):
+                    match_start = search_end - offset
+                    match_length = 0
+
+                    # Count matching bytes
+                    while (match_length < buffer_end - pos and
+                           match_length < min(offset, 255) and  # Prevent overlap issues
+                           binary_data[match_start + match_length] == binary_data[pos + match_length]):
+                        match_length += 1
+
+                    # Update best match
+                    if match_length > best_length and match_length >= min_match_length:
+                        best_offset = offset
+                        best_length = match_length
+
+            if best_length >= min_match_length:
+                # Encode as reference: [1][offset][length]
+                encoded_data.append(0x80)  # Reference flag (high bit set)
+                encoded_data.append(best_offset & 0xFF)
+                encoded_data.append(best_length & 0xFF)
+                total_matches += 1
+                pos += best_length
+            else:
+                # Encode as literal: [0][byte_value]
+                if pos < len(binary_data):
+                    encoded_data.append(0x00)  # Literal flag
+                    encoded_data.append(binary_data[pos])
+                    total_literals += 1
+                    pos += 1
+
+        result = bytes(encoded_data)
+
         def inverse():
-            raise RuntimeError("LZ77 encoding is not reversible")
-        return binary_data, inverse, {'operation': 'lz77_encode', 'bytes_affected': 0, 'reversible': False}
+            decoded_data = bytearray()
+            i = 0
+
+            while i < len(result):
+                flag = result[i]
+
+                if (flag & 0x80) == 0x80:
+                    # Reference: [1][offset][length]
+                    if i + 2 >= len(result):
+                        raise ValueError("Invalid LZ77 data: incomplete reference")
+                    offset = result[i + 1]
+                    length = result[i + 2]
+
+                    if offset == 0 or length == 0:
+                        i += 3
+                        continue
+
+                    # Copy from previously decoded data
+                    start_pos = len(decoded_data) - offset
+                    if start_pos < 0:
+                        raise ValueError("Invalid LZ77 data: offset exceeds decoded data")
+
+                    for j in range(length):
+                        if start_pos + j < len(decoded_data):
+                            decoded_data.append(decoded_data[start_pos + j])
+                        else:
+                            # Handle overlapping references
+                            decoded_data.append(decoded_data[start_pos + j - offset])
+
+                    i += 3
+                else:
+                    # Literal: [0][byte_value]
+                    if i + 1 >= len(result):
+                        raise ValueError("Invalid LZ77 data: incomplete literal")
+                    decoded_data.append(result[i + 1])
+                    i += 2
+
+            return bytes(decoded_data)
+
+        # Calculate compression ratio
+        compression_ratio = original_length / len(result) if len(result) > 0 else 1.0
+
+        metadata = {
+            'operation': 'lz77_encode',
+            'bytes_affected': original_length,
+            'reversible': True,
+            'compression_ratio': compression_ratio,
+            'total_matches': total_matches,
+            'total_literals': total_literals,
+            'window_size': window_size,
+            'buffer_size': buffer_size,
+            'min_match_length': min_match_length,
+            'original_size': original_length,
+            'compressed_size': len(result)
+        }
+
+        return result, inverse, metadata
 
     def distance_coding(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
         """Distance coding."""
