@@ -90,8 +90,8 @@ class TransformOperations:
                 'category': 'transform',
                 'description': 'Fast Fourier transform',
                 'required_params': [],
-                'optional_params': {},
-                'reversible': False
+                'optional_params': {'window_function': 'none', 'padding': 'optimal'},
+                'reversible': True
             },
             'walsh_hadamard': {
                 'category': 'transform',
