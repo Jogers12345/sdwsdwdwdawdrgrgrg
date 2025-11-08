@@ -842,7 +842,7 @@ class TestOperationIntegration:
         data_sizes = [0, 1, 10, 100, 1000, 10000]
 
         for size in data_sizes:
-            test_data = TestDataGenerator.generate_random_data(size=size, seed=size)
+            test_data = TestDataGenerator.generate_random_data_static(size=size, seed=size)
             result = simple_op(test_data)
             reversed_result = simple_op(result)  # Operation is its own inverse
 
