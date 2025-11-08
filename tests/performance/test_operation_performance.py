@@ -714,7 +714,7 @@ class TestDataGenerators:
     def create_large_data(size_mb: int = 10) -> bytes:
         """Create large test data"""
         size_bytes = size_mb * 1024 * 1024
-        return TestDataGenerator.generate_random_data(size_bytes, seed=12345)
+        return TestDataGenerator.generate_random_data_static(size_bytes, seed=12345)
 
     @staticmethod
     def create_unicode_data() -> bytes:
