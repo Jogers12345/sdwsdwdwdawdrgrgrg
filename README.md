@@ -156,6 +156,38 @@ print(f"Score: {result.score:.3f}")
 print(f"Transformed data: {result.data}")
 ```
 
+### 🤖 AI-Enhanced API
+
+```python
+from bsee_ai.learners.homogeneity_learner import HomogeneityLearner
+from bsee_ai.predictors.operation_predictor import OperationPredictor
+from bsee_ai.utils.simple_scorer import SimpleHomogeneityScorer
+
+# Initialize AI components
+learner = HomogeneityLearner()
+predictor = OperationPredictor(learner)
+scorer = SimpleHomogeneityScorer()
+
+# Analyze binary data
+binary_data = b"your_binary_data_here"
+current_score = scorer.calculate_score(binary_data)
+
+# Get AI recommendations
+recommendations = predictor.predict_next_operation(binary_data, current_score)
+
+print("AI Recommendations:")
+for i, rec in enumerate(recommendations):
+    print(f"{i+1}. {rec.operation} (confidence: {rec.confidence:.2f})")
+    print(f"   Expected improvement: {rec.expected_improvement:.4f}")
+    print(f"   Reasoning: {rec.reasoning}")
+
+# Apply AI-recommended operation and let it learn
+best_rec = recommendations[0]
+# ... apply operation ...
+new_score = scorer.calculate_score(new_data)
+learner.learn_from_result(binary_data, best_rec.operation, best_rec.parameters, current_score, new_score)
+```
+
 ### REST API
 
 ```bash
