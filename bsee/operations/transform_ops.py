@@ -405,12 +405,129 @@ class TransformOperations:
 
         return new_data, inverse, metadata
 
-    # Placeholder implementations for other transform operations
-    def dct_transform(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
-        """Discrete cosine transform."""
+    def dct_transform(self, binary_data: bytes, padding: str = 'auto', normalization: str = 'ortho') -> Tuple[bytes, Callable, Dict]:
+        """Discrete cosine transform with scipy implementation and numpy fallback."""
+        import numpy as np
+
+        if len(binary_data) == 0:
+            def inverse_empty():
+                return b''
+            return b'', inverse_empty, {'operation': 'dct_transform', 'bytes_affected': 0, 'reversible': True}
+
+        original_length = len(binary_data)
+
+        # Convert binary data to float array
+        data = np.frombuffer(binary_data, dtype=np.uint8).astype(np.float64)
+
+        # Handle padding
+        if padding == 'power_of_2' or (padding == 'auto' and len(data) & (len(data) - 1) != 0):
+            # Pad to power of 2
+            n = len(data)
+            padded_length = 1 << (n - 1).bit_length()
+            data = np.pad(data, (0, padded_length - n), 'constant')
+            padding_info = {'original_length': n, 'padded_length': padded_length, 'padding_type': 'zero'}
+        else:
+            padding_info = {'original_length': original_length, 'padded_length': original_length, 'padding_type': 'none'}
+
+        # Apply DCT with scipy or numpy fallback
+        try:
+            from scipy.fft import dct, idct
+            # Use scipy implementation
+            if normalization == 'ortho':
+                transformed = dct(data, type=2, norm='ortho')
+            elif normalization == 'forward':
+                transformed = dct(data, type=2, norm='forward')
+            else:  # backward
+                transformed = dct(data, type=2, norm='backward')
+            scipy_available = True
+        except ImportError:
+            # Fallback to numpy implementation
+            scipy_available = False
+            transformed = self._numpy_dct_fallback(data)
+
+        # Convert complex/float results back to bytes
+        # Use magnitude and phase encoding for reversibility
+        magnitude = np.abs(transformed)
+        phase = np.angle(transformed)
+
+        # Normalize and pack
+        max_mag = np.max(magnitude) if np.max(magnitude) > 0 else 1.0
+        normalized_mag = (magnitude / max_mag * 255).astype(np.uint8)
+        normalized_phase = ((phase + np.pi) / (2 * np.pi) * 255).astype(np.uint8)
+
+        # Interleave magnitude and phase
+        packed = np.empty(2 * len(normalized_mag), dtype=np.uint8)
+        packed[0::2] = normalized_mag
+        packed[1::2] = normalized_phase
+
+        result_bytes = packed.tobytes()
+
         def inverse():
-            raise RuntimeError("DCT transform is not reversible")
-        return binary_data, inverse, {'operation': 'dct_transform', 'bytes_affected': 0, 'reversible': False}
+            # Unpack magnitude and phase
+            packed_array = np.frombuffer(result_bytes, dtype=np.uint8)
+            magnitude_restored = packed_array[0::2].astype(np.float64)
+            phase_restored = (packed_array[1::2].astype(np.float64) / 255.0 * 2 * np.pi) - np.pi
+
+            # Restore complex numbers
+            max_mag = np.max(magnitude_restored) if np.max(magnitude_restored) > 0 else 1.0
+            magnitude_restored = magnitude_restored / 255.0 * max_mag
+            transformed_restored = magnitude_restored * np.exp(1j * phase_restored)
+
+            # Apply inverse DCT
+            if scipy_available:
+                if normalization == 'ortho':
+                    data_restored = idct(transformed_restored, type=2, norm='ortho')
+                elif normalization == 'forward':
+                    data_restored = idct(transformed_restored, type=2, norm='forward')
+                else:  # backward
+                    data_restored = idct(transformed_restored, type=2, norm='backward')
+            else:
+                data_restored = self._numpy_idct_fallback(transformed_restored)
+
+            # Round and convert back to uint8
+            data_restored = np.round(data_restored).clip(0, 255).astype(np.uint8)
+
+            # Remove padding if added
+            if padding_info['padded_length'] > padding_info['original_length']:
+                data_restored = data_restored[:padding_info['original_length']]
+
+            return data_restored.tobytes()
+
+        metadata = {
+            'operation': 'dct_transform',
+            'bytes_affected': original_length,
+            'reversible': True,
+            'padding': padding_info,
+            'normalization': normalization,
+            'scipy_available': scipy_available,
+            'max_magnitude': float(max_mag)
+        }
+
+        return result_bytes, inverse, metadata
+
+    def _numpy_dct_fallback(self, data):
+        """Fallback DCT implementation using numpy."""
+        import numpy as np
+        n = len(data)
+        # Create DCT matrix
+        k = np.arange(n).reshape((n, 1))
+        dct_matrix = np.cos(np.pi * k * (2 * np.arange(n) + 1) / (2 * n))
+        if n > 1:
+            dct_matrix[0, :] = dct_matrix[0, :] / np.sqrt(2)
+        dct_matrix = dct_matrix * np.sqrt(2 / n)
+        return dct_matrix @ data
+
+    def _numpy_idct_fallback(self, transformed):
+        """Fallback inverse DCT implementation using numpy."""
+        import numpy as np
+        n = len(transformed)
+        # Create IDCT matrix (transpose of DCT matrix)
+        k = np.arange(n).reshape((n, 1))
+        dct_matrix = np.cos(np.pi * k * (2 * np.arange(n) + 1) / (2 * n))
+        if n > 1:
+            dct_matrix[0, :] = dct_matrix[0, :] / np.sqrt(2)
+        dct_matrix = dct_matrix * np.sqrt(2 / n)
+        return dct_matrix.T @ transformed
 
     def dwt_transform(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
         """Discrete wavelet transform."""
