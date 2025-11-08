@@ -596,7 +596,7 @@ class TestCompressionOperation:
             assert gzip.decompress(compressed) == data  # Should decompress correctly
 
             # Test with random data (less compressible)
-            random_data = TestDataGenerator.generate_random_data(1000)
+            random_data = TestDataGenerator.generate_random_data(size=1000)
             compressed_random = compress_data(random_data, "gzip")
 
             # Random data might not compress much, but should still round-trip
