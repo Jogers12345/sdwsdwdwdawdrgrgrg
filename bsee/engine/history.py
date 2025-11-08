@@ -16,6 +16,36 @@ from typing import Callable, Dict, List, Optional, Any, Tuple
 
 
 @dataclass
+class OperationSnapshot:
+    """Enhanced snapshot of operation state for advanced replay."""
+    operation_name: str
+    operation_params: Dict[str, Any]
+    before_data: bytes
+    after_data: bytes
+    before_hex: str
+    after_hex: str
+    metrics_before: Dict[str, float]
+    metrics_after: Dict[str, float]
+    timing_info: Dict[str, float]
+    byte_changes: List[Tuple[int, int, int]]  # (index, old_value, new_value)
+    metadata: Dict[str, Any]
+    timestamp: float
+
+
+@dataclass
+class AnalysisSession:
+    """Complete analysis session with all operations."""
+    session_id: str
+    start_time: float
+    end_time: float
+    initial_data: bytes
+    final_data: bytes
+    operations: List[OperationSnapshot]
+    session_metadata: Dict[str, Any]
+    total_execution_time: float
+
+
+@dataclass
 class OperationEntry:
     """Represents a single operation in the history."""
     step_number: int                 # Sequential step number
@@ -27,6 +57,7 @@ class OperationEntry:
     parent_state_id: str            # State before operation
     resulting_state_id: str         # State after operation
     effectiveness_score: float      # Score improvement achieved
+    snapshot: Optional[OperationSnapshot] = None  # Enhanced replay data
 
     def to_dict(self) -> Dict:
         """Convert to dictionary for JSON serialization."""
