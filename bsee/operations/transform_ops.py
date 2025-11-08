@@ -104,8 +104,8 @@ class TransformOperations:
                 'category': 'transform',
                 'description': 'Huffman encoding',
                 'required_params': [],
-                'optional_params': {},
-                'reversible': False
+                'optional_params': {'canonical': True},
+                'reversible': True
             },
             'run_length_encode': {
                 'category': 'transform',
