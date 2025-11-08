@@ -119,7 +119,7 @@ class TransformOperations:
                 'description': 'Arithmetic encoding',
                 'required_params': [],
                 'optional_params': {},
-                'reversible': False
+                'reversible': True
             },
             'lz77_encode': {
                 'category': 'transform',
