@@ -88,7 +88,7 @@ def test_terminal_visualization():
 
         # Test progress bar
         for i in range(101):
-            viz_panel.show_progress_bar(i, 100, "Test Progress", width=20)
+            viz_panel.show_progress_bar(i, 100, "Test Progress", bar_width=20)
         print()  # New line after progress bar
 
         print("✓ Terminal visualization panel working correctly")
