@@ -494,7 +494,7 @@ class HistoryManager:
                     'after_hex': op.after_hex,
                     'metrics_before': op.metrics_before,
                     'metrics_after': op.metrics_after,
-                    'timing': op.timing,
+                    'timing': op.timing_info,
                     'byte_changes': op.byte_changes,
                     'metadata': op.metadata,
                     'timestamp': op.timestamp
