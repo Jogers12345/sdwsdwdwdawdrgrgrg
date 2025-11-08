@@ -895,7 +895,7 @@ def test_parallel_operation_performance(mock_operations, performance_tester):
     """Test parallel operation performance"""
     operation = mock_operations["xor"]  # Simple operation
 
-    test_data = TestDataGenerator.generate_random_data(4096, seed=123)
+    test_data = TestDataGenerator.generate_random_data_static(4096, seed=123)
 
     # Test with different thread counts
     thread_counts = [1, 2, 4, 8]
