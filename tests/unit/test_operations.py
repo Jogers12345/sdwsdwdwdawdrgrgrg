@@ -945,7 +945,7 @@ class TestOperationBoundaryConditions:
         assert isinstance(result, bytes)
 
         # Verify reversibility
-        reverse_result = bytes(b - 1 for b in result)
+        reverse_result = bytes((b - 1) % 256 for b in result)
         assert reverse_result == special_data
 
     @pytest.mark.unit
