@@ -1087,7 +1087,7 @@ def test_comprehensive_benchmark_suite():
 
     # Test each operation type
     for op_name, operation in operations.items():
-        test_data = TestDataGenerator.generate_random_data(4096, seed=hash(op_name))
+        test_data = TestDataGenerator.generate_random_data_static(4096, seed=hash(op_name))
         result = tester.test_operation_performance(
             operation, test_data, iterations=5
         )
