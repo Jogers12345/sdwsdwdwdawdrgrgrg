@@ -366,7 +366,7 @@ class TestBeamSearchStrategy:
                     for i in range(beam_width):  # Each state generates beam_width candidates
                         new_score = state["score"] + random.uniform(-0.1, 0.1)
                         new_candidates.append({
-                            "data": state["data"] + f"_{i}",
+                            "data": state["data"] + f"_{i}".encode(),
                             "score": new_score
                         })
 
