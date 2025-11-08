@@ -937,7 +937,7 @@ class TestOperationBoundaryConditions:
         )
 
         def byte_operation(data: bytes) -> bytes:
-            return bytes(b + 1 for b in data)
+            return bytes((b + 1) % 256 for b in data)
 
         result = byte_operation(special_data)
 
