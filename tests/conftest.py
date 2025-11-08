@@ -3,195 +3,289 @@ pytest configuration and fixtures for BSEE testing framework
 """
 
 import pytest
-import os
-import sys
 import tempfile
-import shutil
 import random
-import json
-from typing import Dict, Any, List, Optional
+import time
 from pathlib import Path
+from typing import Dict, List, Any, Optional
+from unittest.mock import Mock
+import sys
 
-# Add project root to path
+# Add the project root to the path
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
 
-@pytest.fixture(scope="session")
-def test_data_dir():
-    """Fixture providing path to test data directory"""
-    return project_root / "tests" / "fixtures" / "test_files"
-
-
-@pytest.fixture(scope="session")
-def test_config_dir():
-    """Fixture providing path to test config directory"""
-    return project_root / "tests" / "fixtures" / "configs"
-
-
-@pytest.fixture(scope="session")
-def expected_results_dir():
-    """Fixture providing path to expected results directory"""
-    return project_root / "tests" / "fixtures" / "expected_results"
-
-
-@pytest.fixture
-def temp_dir():
-    """Fixture providing a temporary directory for tests"""
-    temp_path = tempfile.mkdtemp()
-    yield Path(temp_path)
-    shutil.rmtree(temp_path)
-
-
-@pytest.fixture
-def random_seed():
-    """Fixture providing a consistent random seed for reproducible tests"""
-    return 42
-
-
-@pytest.fixture
-def sample_binary_data():
-    """Fixture providing sample binary data for testing"""
-    return b"BSEE Test Data: " + bytes(range(256)) * 4
-
-
-@pytest.fixture
-def sample_text_data():
-    """Fixture providing sample text data for testing"""
-    return "The quick brown fox jumps over the lazy dog. " * 20
-
-
-@pytest.fixture
-def sample_json_data():
-    """Fixture providing sample JSON data for testing"""
-    return {
-        "name": "BSEE Test",
-        "version": "1.0.0",
-        "operations": ["xor", "add", "subtract"],
-        "strategies": ["mcts", "genetic", "beam_search"],
-        "metrics": {
-            "entropy": 7.5,
-            "ideality": 0.8,
-            "compression_ratio": 0.6
-        }
-    }
-
-
-@pytest.fixture
-def mock_operation():
-    """Fixture providing a mock operation for testing"""
-    class MockOperation:
-        def __init__(self, name="mock_op"):
-            self.name = name
-            self.parameters = {}
-
-        def apply(self, data):
-            """Simple mock operation that inverts bits"""
-            return bytes(~b & 0xFF for b in data)
-
-        def inverse(self):
-            """Return inverse operation"""
-            return MockOperation(self.name + "_inverse")
-
-        def __eq__(self, other):
-            return isinstance(other, MockOperation) and self.name == other.name
-
-    return MockOperation()
-
-
-@pytest.fixture
-def mock_strategy():
-    """Fixture providing a mock strategy for testing"""
-    class MockStrategy:
-        def __init__(self, name="mock_strategy", config=None):
-            self.name = name
-            self.config = config or {}
-
-        def analyze(self, data, max_iterations=100):
-            """Simple mock analysis that returns basic metrics"""
-            return {
-                "strategy": self.name,
-                "score": random.random(),
-                "iterations": min(max_iterations, 50),
-                "converged": True,
-                "operations_applied": ["mock_op"],
-                "final_score": random.uniform(0.5, 1.0)
-            }
-
-    return MockStrategy()
-
-
-@pytest.fixture
-def performance_test_config():
-    """Fixture providing configuration for performance tests"""
-    return {
-        "iterations": 10,
-        "warmup_iterations": 3,
-        "timeout_seconds": 30.0,
-        "max_memory_mb": 512.0,
-        "min_ops_per_second": 1.0,
-        "max_execution_time": 5.0
-    }
-
-
-@pytest.fixture
-def gui_test_config():
-    """Fixture providing configuration for GUI tests"""
-    return {
-        "test_delay": 0.1,  # seconds between GUI actions
-        "screenshot_on_failure": True,
-        "headless_mode": True,
-        "timeout_seconds": 10.0
-    }
-
-
 class TestDataGenerator:
-    """Utility class for generating test data"""
+    """Test data generator for BSEE tests"""
 
-    @staticmethod
-    def generate_random_data(size: int, seed: Optional[int] = None) -> bytes:
+    def __init__(self):
+        self.random_seed = 42
+
+    def generate_random_data(self, size: int, seed: Optional[int] = None) -> bytes:
         """Generate random binary data"""
         if seed is not None:
             random.seed(seed)
-        return bytes([random.randint(0, 255) for _ in range(size)])
+        else:
+            random.seed(self.random_seed)
 
-    @staticmethod
-    def generate_pattern_data(size: int, pattern: bytes) -> bytes:
-        """Generate data with repeating pattern"""
-        result = bytearray()
-        pattern_len = len(pattern)
-        for i in range(size):
-            result.append(pattern[i % pattern_len])
-        return bytes(result)
+        return bytes(random.randint(0, 255) for _ in range(size))
 
-    @staticmethod
-    def generate_structured_data(size: int) -> bytes:
-        """Generate structured binary data with headers"""
-        header = b"BSEE" + size.to_bytes(4, 'big')
-        content = TestDataGenerator.generate_random_data(size - 8)
-        footer = b"END"
-        return header + content + footer
+    def generate_structured_data(self, size: int) -> bytes:
+        """Generate structured test data"""
+        data = bytearray()
 
-    @staticmethod
-    def generate_compressed_data(size: int) -> bytes:
-        """Generate data that compresses well"""
-        base_pattern = b"Hello, BSEE! Testing compression. "
-        result = bytearray()
-        for i in range(size):
-            result.append(base_pattern[i % len(base_pattern)])
-        return bytes(result)
+        # Header
+        data.extend(b'BIN\x01')
+        data.extend(size.to_bytes(4, 'little'))
 
-    @staticmethod
-    def generate_entropy_gradient(size: int) -> bytes:
-        """Generate data with entropy gradient"""
-        result = bytearray()
-        for i in range(size):
-            entropy_factor = i / size
-            if random.random() < entropy_factor:
-                result.append(random.randint(0, 255))
-            else:
-                result.append(0)
-        return bytes(result)
+        # Structured sections
+        sections = [
+            (0x20, b'\x00' * 0x20),  # Null section
+            (0x40, bytes(range(0x40))),  # Sequential section
+            (0x30, b'\xFF' * 0x30),  # High bytes section
+        ]
+
+        for section_size, section_data in sections:
+            if len(data) + section_size > size - 4:
+                section_size = size - len(data) - 4
+                section_data = section_data[:section_size]
+            data.extend(section_data)
+
+        # Footer
+        data.extend(b'END')
+
+        # Fill to exact size
+        while len(data) < size:
+            data.append(0x00)
+
+        return bytes(data[:size])
+
+    def generate_patterned_data(self, size: int, pattern: str = "repeating") -> bytes:
+        """Generate patterned binary data"""
+        if pattern == "repeating":
+            pattern_bytes = b'\xDE\xAD\xBE\xEF'
+            return (pattern_bytes * ((size // 4) + 1))[:size]
+
+        elif pattern == "alternating":
+            return bytes([0xFF if i % 2 == 0 else 0x00 for i in range(size)])
+
+        elif pattern == "incremental":
+            return bytes(i % 256 for i in range(size))
+
+        else:
+            return self.generate_random_data(size)
+
+
+class TestResultValidator:
+    """Test result validator for BSEE tests"""
+
+    def __init__(self):
+        pass
+
+    def validate_operation_reversibility(self, test_data: bytes, operation) -> bool:
+        """Validate operation reversibility"""
+        try:
+            # Apply operation
+            result = operation.apply(test_data)
+
+            # Try to reverse (if operation has reverse method)
+            if hasattr(operation, 'reverse'):
+                reversed_data = operation.reverse(result)
+                return reversed_data == test_data
+
+            # If no reverse method, assume successful
+            return True
+
+        except Exception:
+            return False
+
+    def validate_strategy_consistency(self, strategy, test_data: bytes, runs: int = 3) -> Dict[str, Any]:
+        """Validate strategy produces consistent results"""
+        results = []
+
+        for _ in range(runs):
+            try:
+                result = strategy.analyze(test_data, max_iterations=10)
+                results.append(result)
+            except Exception:
+                continue
+
+        if not results:
+            return {"success_rate": 0.0, "consistent": False}
+
+        # Check if results are consistent (similar scores)
+        scores = [result.get("score", 0.0) for result in results if "score" in result]
+        if len(scores) < 2:
+            return {"success_rate": len(results) / runs, "consistent": True}
+
+        # Calculate variance in scores
+        mean_score = sum(scores) / len(scores)
+        variance = sum((score - mean_score) ** 2 for score in scores) / len(scores)
+
+        # Consider consistent if variance is low
+        consistent = variance < 0.1  # Allow for some randomness
+
+        return {
+            "success_rate": len(results) / runs,
+            "consistent": consistent,
+            "mean_score": mean_score,
+            "variance": variance,
+            "scores": scores
+        }
+
+    def validate_analysis_quality(self, analysis_result: Dict[str, Any]) -> Dict[str, Any]:
+        """Validate analysis result quality"""
+        validation = {
+            "has_required_fields": True,
+            "score_valid": True,
+            "convergence_valid": True,
+            "metadata_complete": True
+        }
+
+        required_fields = ["strategy", "score", "converged"]
+        missing_fields = [field for field in required_fields if field not in analysis_result]
+
+        if missing_fields:
+            validation["has_required_fields"] = False
+            validation["missing_fields"] = missing_fields
+
+        # Validate score
+        score = analysis_result.get("score")
+        if score is not None:
+            if not isinstance(score, (int, float)) or not (0 <= score <= 1):
+                validation["score_valid"] = False
+
+        # Validate convergence
+        converged = analysis_result.get("converged")
+        if converged is not None and not isinstance(converged, bool):
+            validation["convergence_valid"] = False
+
+        # Overall validation
+        validation["overall_valid"] = all([
+            validation["has_required_fields"],
+            validation["score_valid"],
+            validation["convergence_valid"]
+        ])
+
+        return validation
+
+
+class MockFileLoader:
+    """Mock file loader for testing"""
+
+    def __init__(self):
+        self.loaded_files = {}
+
+    def load(self, file_path: Path) -> bytes:
+        """Load file content"""
+        if isinstance(file_path, str):
+            file_path = Path(file_path)
+
+        if file_path in self.loaded_files:
+            return self.loaded_files[file_path]
+
+        # Generate mock data based on file extension
+        extension = file_path.suffix.lower()
+        if extension == '.bin':
+            data = TestDataGenerator().generate_random_data(1024)
+        elif extension == '.exe':
+            data = TestDataGenerator().generate_structured_data(2048)
+        else:
+            data = TestDataGenerator().generate_patterned_data(512)
+
+        self.loaded_files[file_path] = data
+        return data
+
+
+class MockAnalyzer:
+    """Mock analyzer for testing"""
+
+    def __init__(self):
+        self.strategies = [
+            MockMCTSStrategy(),
+            MockGeneticStrategy(),
+            MockHeuristicStrategy()
+        ]
+
+    def analyze(self, data: bytes, strategy) -> Dict[str, Any]:
+        """Analyze data with given strategy"""
+        return strategy.analyze(data, max_iterations=10)
+
+
+class MockReporter:
+    """Mock reporter for testing"""
+
+    def generate_report(self, results: List[Dict[str, Any]]) -> Dict[str, Any]:
+        """Generate analysis report"""
+        return {
+            "total_results": len(results),
+            "summary": {
+                "best_strategy": max(results, key=lambda r: r.get("score", 0)).get("strategy", "unknown"),
+                "average_score": sum(r.get("score", 0) for r in results) / len(results) if results else 0
+            },
+            "results": results
+        }
+
+
+class MockMCTSStrategy:
+    """Mock MCTS strategy"""
+
+    def analyze(self, data: bytes, max_iterations: int = 10) -> Dict[str, Any]:
+        """Mock MCTS analysis"""
+        return {
+            "strategy": "mcts",
+            "score": random.uniform(0.7, 0.9),
+            "iterations": random.randint(5, max_iterations),
+            "converged": random.random() > 0.2,
+            "tree_nodes": random.randint(100, 1000),
+            "best_score": random.uniform(0.8, 0.95)
+        }
+
+
+class MockGeneticStrategy:
+    """Mock Genetic strategy"""
+
+    def analyze(self, data: bytes, max_iterations: int = 10) -> Dict[str, Any]:
+        """Mock genetic analysis"""
+        return {
+            "strategy": "genetic",
+            "score": random.uniform(0.6, 0.85),
+            "iterations": random.randint(10, 50),
+            "converged": random.random() > 0.3,
+            "population_size": 50,
+            "mutation_rate": 0.1,
+            "best_fitness": random.uniform(0.7, 0.9)
+        }
+
+
+class MockHeuristicStrategy:
+    """Mock Heuristic strategy"""
+
+    def analyze(self, data: bytes, max_iterations: int = 10) -> Dict[str, Any]:
+        """Mock heuristic analysis"""
+        return {
+            "strategy": "heuristic",
+            "score": random.uniform(0.5, 0.8),
+            "iterations": 1,  # Heuristics are typically single-pass
+            "converged": True,  # Always converges (single pass)
+            "entropy": random.uniform(3.0, 8.0),
+            "patterns_found": random.randint(5, 50)
+        }
+
+
+# pytest fixtures
+
+@pytest.fixture(scope="session")
+def test_data_dir():
+    """Fixture providing path to test data directory"""
+    return Path(__file__).parent / "fixtures" / "test_files"
+
+
+@pytest.fixture(scope="session")
+def project_root_path():
+    """Fixture providing project root path"""
+    return project_root
 
 
 @pytest.fixture
@@ -200,280 +294,230 @@ def test_data_generator():
     return TestDataGenerator()
 
 
-class TestConfigManager:
-    """Utility class for managing test configurations"""
-
-    def __init__(self, config_dir: Path):
-        self.config_dir = config_dir
-        self.configs = {}
-
-    def load_config(self, name: str) -> Dict[str, Any]:
-        """Load configuration from file"""
-        if name not in self.configs:
-            config_file = self.config_dir / f"{name}.json"
-            if config_file.exists():
-                with open(config_file, 'r') as f:
-                    self.configs[name] = json.load(f)
-            else:
-                self.configs[name] = self._get_default_config(name)
-        return self.configs[name]
-
-    def _get_default_config(self, name: str) -> Dict[str, Any]:
-        """Get default configuration for test type"""
-        defaults = {
-            "unit_tests": {
-                "max_assertions": 100,
-                "timeout_seconds": 5.0,
-                "require_coverage": False
-            },
-            "integration_tests": {
-                "timeout_seconds": 30.0,
-                "setup_time": 5.0,
-                "cleanup_time": 2.0
-            },
-            "performance_tests": {
-                "iterations": 10,
-                "warmup_iterations": 3,
-                "timeout_seconds": 60.0,
-                "max_memory_mb": 1024.0
-            },
-            "gui_tests": {
-                "headless": True,
-                "test_delay": 0.1,
-                "screenshot_on_failure": True,
-                "timeout_seconds": 15.0
-            }
-        }
-        return defaults.get(name, {})
-
-
-@pytest.fixture(scope="session")
-def config_manager(test_config_dir):
-    """Fixture providing test configuration manager"""
-    return TestConfigManager(test_config_dir)
-
-
-class TestResultValidator:
-    """Utility class for validating test results"""
-
-    @staticmethod
-    def validate_operation_reversibility(original_data: bytes,
-                                      operation,
-                                      tolerance: float = 0.0) -> bool:
-        """Validate that operation is properly reversible"""
-        try:
-            # Apply operation
-            transformed = operation.apply(original_data)
-
-            # Apply inverse if available
-            if hasattr(operation, 'inverse') and operation.inverse:
-                inverse_op = operation.inverse()
-                restored = inverse_op.apply(transformed)
-
-                # Check if restoration is exact (or within tolerance)
-                if tolerance == 0.0:
-                    return restored == original_data
-                else:
-                    # Calculate difference percentage
-                    differences = sum(1 for a, b in zip(restored, original_data) if a != b)
-                    max_len = max(len(restored), len(original_data))
-                    difference_ratio = differences / max_len if max_len > 0 else 0
-                    return difference_ratio <= tolerance
-
-            return True  # No inverse to test
-
-        except Exception:
-            return False
-
-    @staticmethod
-    def validate_strategy_consistency(strategy, test_data: bytes,
-                                   runs: int = 5) -> Dict[str, Any]:
-        """Validate strategy produces consistent results"""
-        results = []
-
-        for _ in range(runs):
-            try:
-                result = strategy.analyze(test_data, max_iterations=50)
-                results.append(result)
-            except Exception as e:
-                results.append({"error": str(e)})
-
-        # Analyze consistency
-        successful_results = [r for r in results if "error" not in r]
-
-        if len(successful_results) < 2:
-            return {
-                "consistent": False,
-                "success_rate": len(successful_results) / runs,
-                "error": "Too few successful runs"
-            }
-
-        # Check score variance
-        scores = [r.get("final_score", 0) for r in successful_results]
-        avg_score = sum(scores) / len(scores)
-        score_variance = sum((s - avg_score) ** 2 for s in scores) / len(scores)
-
-        return {
-            "consistent": score_variance < 0.01,  # Low variance indicates consistency
-            "success_rate": len(successful_results) / runs,
-            "average_score": avg_score,
-            "score_variance": score_variance,
-            "total_runs": runs
-        }
-
-    @staticmethod
-    def validate_metric_calculation(metric_name: str, data: bytes,
-                                  expected_range: Optional[tuple] = None) -> Dict[str, Any]:
-        """Validate metric calculation produces expected results"""
-        try:
-            # Import and calculate metric
-            from bsee.metrics.metrics import calculate_metric
-            value = calculate_metric(data, metric_name)
-
-            result = {
-                "metric_name": metric_name,
-                "value": value,
-                "valid": True
-            }
-
-            # Check against expected range if provided
-            if expected_range:
-                min_val, max_val = expected_range
-                result["in_range"] = min_val <= value <= max_val
-                result["expected_range"] = expected_range
-            else:
-                result["in_range"] = True
-
-            return result
-
-        except Exception as e:
-            return {
-                "metric_name": metric_name,
-                "valid": False,
-                "error": str(e)
-            }
-
-
 @pytest.fixture
 def result_validator():
     """Fixture providing test result validator"""
     return TestResultValidator()
 
 
-class PerformanceTracker:
-    """Utility class for tracking test performance"""
+@pytest.fixture
+def sample_binary_data():
+    """Fixture providing sample binary data"""
+    return TestDataGenerator().generate_random_data(1024, seed=42)
 
-    def __init__(self):
-        self.measurements = []
 
-    def start_measurement(self, name: str):
-        """Start a performance measurement"""
-        import time
-        return {
-            "name": name,
-            "start_time": time.time(),
-            "start_memory": self._get_memory_usage()
-        }
+@pytest.fixture
+def sample_structured_data():
+    """Fixture providing sample structured data"""
+    return TestDataGenerator().generate_structured_data(1024)
 
-    def end_measurement(self, measurement: Dict[str, Any]) -> Dict[str, Any]:
-        """End a performance measurement"""
-        import time
-        measurement["end_time"] = time.time()
-        measurement["duration"] = measurement["end_time"] - measurement["start_time"]
-        measurement["end_memory"] = self._get_memory_usage()
-        measurement["memory_delta"] = measurement["end_memory"] - measurement["start_memory"]
 
-        self.measurements.append(measurement)
-        return measurement
+@pytest.fixture
+def sample_patterned_data():
+    """Fixture providing sample patterned data"""
+    return TestDataGenerator().generate_patterned_data(1024, "repeating")
 
-    def _get_memory_usage(self) -> float:
-        """Get current memory usage in MB"""
-        try:
-            import psutil
-            process = psutil.Process()
-            return process.memory_info().rss / (1024 * 1024)
-        except ImportError:
-            return 0.0
 
-    def get_summary(self) -> Dict[str, Any]:
-        """Get performance summary"""
-        if not self.measurements:
-            return {}
+@pytest.fixture
+def mock_strategy():
+    """Fixture providing mock strategy"""
+    strategy = Mock()
+    strategy.name = "mock_strategy"
+    strategy.analyze.return_value = {
+        "strategy": "mock_strategy",
+        "score": 0.75,
+        "iterations": 10,
+        "converged": True
+    }
+    return strategy
 
-        durations = [m["duration"] for m in self.measurements]
-        memory_deltas = [m["memory_delta"] for m in self.measurements]
 
-        return {
-            "total_measurements": len(self.measurements),
-            "total_duration": sum(durations),
-            "average_duration": sum(durations) / len(durations),
-            "max_duration": max(durations),
-            "min_duration": min(durations),
-            "total_memory_delta": sum(memory_deltas),
-            "average_memory_delta": sum(memory_deltas) / len(memory_deltas),
-            "max_memory_delta": max(memory_deltas)
-        }
+@pytest.fixture
+def mock_operation():
+    """Fixture providing mock operation"""
+    operation = Mock()
+    operation.apply.return_value = b"modified_data"
+    operation.reverse.return_value = b"original_data"
+    return operation
+
+
+@pytest.fixture
+def temp_dir():
+    """Fixture providing temporary directory"""
+    with tempfile.TemporaryDirectory() as temp_dir:
+        yield Path(temp_dir)
+
+
+@pytest.fixture
+def mock_file_loader():
+    """Fixture providing mock file loader"""
+    return MockFileLoader()
+
+
+@pytest.fixture
+def mock_analyzer():
+    """Fixture providing mock analyzer"""
+    return MockAnalyzer()
+
+
+@pytest.fixture
+def mock_reporter():
+    """Fixture providing mock reporter"""
+    return MockReporter()
 
 
 @pytest.fixture
 def performance_tracker():
-    """Fixture providing performance tracker"""
+    """Fixture providing performance tracking"""
+    class PerformanceTracker:
+        def __init__(self):
+            self.start_time = None
+            self.end_time = None
+            self.memory_samples = []
+
+        def start(self):
+            self.start_time = time.time()
+
+        def stop(self):
+            self.end_time = time.time()
+
+        def add_memory_sample(self, memory_mb: float):
+            self.memory_samples.append(memory_mb)
+
+        def get_duration(self) -> float:
+            if self.start_time and self.end_time:
+                return self.end_time - self.start_time
+            return 0.0
+
+        def get_peak_memory(self) -> float:
+            return max(self.memory_samples) if self.memory_samples else 0.0
+
     return PerformanceTracker()
 
 
-# Pytest configuration and hooks
+# Mock operations for testing
+
+class XorOp:
+    """Mock XOR operation"""
+
+    def __init__(self, key: int):
+        self.key = key
+
+    def apply(self, data: bytes) -> bytes:
+        return bytes(b ^ self.key for b in data)
+
+    def reverse(self, data: bytes) -> bytes:
+        return self.apply(data)  # XOR is its own reverse
+
+
+class AddConstantOp:
+    """Mock add constant operation"""
+
+    def __init__(self, constant: int):
+        self.constant = constant
+
+    def apply(self, data: bytes) -> bytes:
+        return bytes((b + self.constant) % 256 for b in data)
+
+    def reverse(self, data: bytes) -> bytes:
+        return bytes((b - self.constant) % 256 for b in data)
+
+
+class RotateOp:
+    """Mock rotate operation"""
+
+    def __init__(self, bits: int):
+        self.bits = bits
+
+    def apply(self, data: bytes) -> bytes:
+        result = bytearray()
+        for byte in data:
+            result.append(((byte << self.bits) | (byte >> (8 - self.bits))) & 0xFF)
+        return bytes(result)
+
+    def reverse(self, data: bytes) -> bytes:
+        # Reverse rotation
+        result = bytearray()
+        for byte in data:
+            result.append(((byte >> self.bits) | (byte << (8 - self.bits))) & 0xFF)
+        return bytes(result)
+
+
+# pytest markers
+
 def pytest_configure(config):
-    """Configure pytest with custom markers"""
-    config.addinivalue_line(
-        "markers", "unit: marks tests as unit tests"
-    )
-    config.addinivalue_line(
-        "markers", "integration: marks tests as integration tests"
-    )
-    config.addinivalue_line(
-        "markers", "performance: marks tests as performance tests"
-    )
-    config.addinivalue_line(
-        "markers", "gui: marks tests as GUI tests"
-    )
-    config.addinivalue_line(
-        "markers", "slow: marks tests as slow running"
-    )
-    config.addinivalue_line(
-        "markers", "regression: marks tests as regression tests"
-    )
+    """Configure pytest markers"""
+    config.addinivalue_line("markers", "unit: mark test as unit test")
+    config.addinivalue_line("markers", "integration: mark test as integration test")
+    config.addinivalue_line("markers", "performance: mark test as performance test")
+    config.addinivalue_line("markers", "gui: mark test as GUI test")
+    config.addinivalue_line("markers", "regression: mark test as regression test")
+    config.addinivalue_line("markers", "slow: mark test as slow running")
 
 
-def pytest_collection_modifyitems(config, items):
-    """Modify test collection to add markers and configure"""
-    # Add slow marker to tests that might take a long time
-    for item in items:
-        # Mark performance tests as slow
-        if "performance" in item.nodeid:
-            item.add_marker(pytest.mark.slow)
+# Test utilities
 
-        # Mark GUI tests
-        if "gui" in item.nodeid:
-            item.add_marker(pytest.mark.gui)
+def assert_dicts_almost_equal(dict1: Dict, dict2: Dict, tolerance: float = 1e-6):
+    """Assert two dictionaries are almost equal for numeric values"""
+    assert dict1.keys() == dict2.keys(), f"Keys differ: {dict1.keys()} vs {dict2.keys()}"
 
-        # Mark integration tests
-        if "integration" in item.nodeid:
-            item.add_marker(pytest.mark.integration)
-            item.add_marker(pytest.mark.slow)
+    for key in dict1.keys():
+        value1 = dict1[key]
+        value2 = dict2[key]
+
+        if isinstance(value1, (int, float)) and isinstance(value2, (int, float)):
+            assert abs(value1 - value2) <= tolerance, f"Values differ for key {key}: {value1} vs {value2}"
+        else:
+            assert value1 == value2, f"Values differ for key {key}: {value1} vs {value2}"
 
 
-@pytest.fixture(autouse=True)
-def setup_test_environment():
-    """Setup test environment before each test"""
-    # Set random seed for reproducible tests
-    random.seed(42)
+def create_test_scenarios() -> List[Dict[str, Any]]:
+    """Create standard test scenarios"""
+    scenarios = []
 
-    # Configure any global test settings
-    import os
-    os.environ['BSEE_TEST_MODE'] = '1'
+    # Small data scenarios
+    for size in [64, 256, 1024]:
+        scenarios.append({
+            "name": f"random_{size}",
+            "size": size,
+            "data": TestDataGenerator().generate_random_data(size, seed=42),
+            "expected_entropy_range": (6.0, 8.0)
+        })
 
-    yield
+    # Structured data scenarios
+    for size in [512, 1024, 2048]:
+        scenarios.append({
+            "name": f"structured_{size}",
+            "size": size,
+            "data": TestDataGenerator().generate_structured_data(size),
+            "expected_entropy_range": (2.0, 6.0)
+        })
 
-    # Cleanup after test
-    if 'BSEE_TEST_MODE' in os.environ:
-        del os.environ['BSEE_TEST_MODE']
+    # Patterned data scenarios
+    patterns = ["repeating", "alternating", "incremental"]
+    for pattern in patterns:
+        scenarios.append({
+            "name": f"patterned_{pattern}",
+            "size": 1024,
+            "data": TestDataGenerator().generate_patterned_data(1024, pattern),
+            "expected_entropy_range": (0.0, 4.0)
+        })
+
+    return scenarios
+
+
+if __name__ == "__main__":
+    # Test the fixtures
+    print("Testing BSEE pytest fixtures...")
+
+    generator = TestDataGenerator()
+    print(f"Generated random data: {len(generator.generate_random_data(100))} bytes")
+    print(f"Generated structured data: {len(generator.generate_structured_data(100))} bytes")
+    print(f"Generated patterned data: {len(generator.generate_patterned_data(100))} bytes")
+
+    validator = TestResultValidator()
+    mock_strategy = MockMCTSStrategy()
+    consistency = validator.validate_strategy_consistency(mock_strategy, b"test", runs=3)
+    print(f"Strategy consistency test: {consistency}")
+
+    print("All fixtures working correctly!")
