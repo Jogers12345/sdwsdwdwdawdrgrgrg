@@ -53,6 +53,11 @@ class OperationPerformanceTester:
             def apply(self, data: bytes) -> bytes:
                 # Simulate work based on data size and complexity
                 work_units = len(data) * self.work_complexity
+
+                # Raise error for empty data
+                if len(data) == 0:
+                    raise ValueError("Cannot process empty data")
+
                 # Simulate processing with sleep
                 import time
                 time.sleep(work_units / 100000)  # Scale to reasonable time
