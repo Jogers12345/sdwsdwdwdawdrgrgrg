@@ -247,7 +247,7 @@ class OperationPerformanceTester:
         results = {}
 
         for size in data_sizes:
-            test_data = TestDataGenerator.generate_random_data(size, seed=size)
+            test_data = TestDataGenerator.generate_random_data_static(size, seed=size)
             result = self.test_operation_performance(
                 operation, test_data, iterations=iterations
             )
@@ -274,7 +274,7 @@ class OperationPerformanceTester:
         results = []
 
         for size in data_sizes:
-            test_data = TestDataGenerator.generate_random_data(size, seed=size)
+            test_data = TestDataGenerator.generate_random_data_static(size, seed=size)
 
             # Monitor memory before test
             baseline_memory = self._get_memory_usage()
