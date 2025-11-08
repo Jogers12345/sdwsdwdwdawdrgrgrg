@@ -991,6 +991,11 @@ class TransformOperations:
             root = heap[0]
             self._extract_huffman_codes(root, '', codes)
 
+        # Ensure all symbols have codes (handle edge case of single symbol)
+        for byte_val in frequency:
+            if byte_val not in codes:
+                codes[byte_val] = [0]  # Single bit code for single symbol
+
         # Convert codes to bit strings for efficient encoding
         if canonical:
             codes = self._make_canonical_codes(codes)
