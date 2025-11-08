@@ -144,13 +144,13 @@ class TestCompleteAnalysisPipeline:
     def test_pipeline_error_recovery(self, temp_dir):
         """Test error handling in complete workflows"""
         class FailingOperation:
-            def __init__(self, fail_on_call: int = 1):
+            def __init__(self, always_fail: bool = False):
                 self.call_count = 0
-                self.fail_on_call = fail_on_call
+                self.always_fail = always_fail
 
             def apply(self, data: bytes) -> bytes:
                 self.call_count += 1
-                if self.call_count == self.fail_on_call:
+                if self.always_fail or self.call_count == 1:
                     raise RuntimeError(f"Simulated failure on call {self.call_count}")
                 return data
 
