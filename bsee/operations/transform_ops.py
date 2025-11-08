@@ -125,8 +125,8 @@ class TransformOperations:
                 'category': 'transform',
                 'description': 'LZ77 encoding',
                 'required_params': [],
-                'optional_params': {},
-                'reversible': False
+                'optional_params': {'window_size': 32768, 'buffer_size': 258, 'min_match_length': 3},
+                'reversible': True
             },
             'move_to_front': {
                 'category': 'transform',
