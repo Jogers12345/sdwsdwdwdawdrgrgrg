@@ -407,7 +407,17 @@ class TransformOperations:
 
     def dct_transform(self, binary_data: bytes, padding: str = 'auto', normalization: str = 'ortho') -> Tuple[bytes, Callable, Dict]:
         """Discrete cosine transform with scipy implementation and numpy fallback."""
-        import numpy as np
+        try:
+            import numpy as np
+        except ImportError:
+            def inverse_no_numpy():
+                raise RuntimeError("numpy is required for DCT transform")
+            return binary_data, inverse_no_numpy, {
+                'operation': 'dct_transform',
+                'bytes_affected': len(binary_data),
+                'reversible': False,
+                'error': 'numpy not available'
+            }
 
         if len(binary_data) == 0:
             def inverse_empty():
