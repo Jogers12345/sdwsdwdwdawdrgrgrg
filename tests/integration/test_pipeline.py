@@ -157,8 +157,8 @@ class TestCompleteAnalysisPipeline:
         class ResilientPipeline:
             def __init__(self):
                 self.operations = [
+                    FailingOperation(fail_on_call=1),  # Fails on first call
                     FailingOperation(fail_on_call=2),  # Fails on second call
-                    FailingOperation(fail_on_call=3),  # Fails on third call
                 ]
 
             def process_with_retry(self, data: bytes, max_retries: int = 3) -> Dict[str, Any]:
