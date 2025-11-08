@@ -37,6 +37,17 @@ class TestDataGenerator:
         if seed is not None:
             random.seed(seed)
         else:
+            random.seed(42)  # Default seed
+
+        return bytes(random.randint(0, 255) for _ in range(size))
+
+    @staticmethod
+    def generate_pattern_data_static(size: int, pattern: bytes) -> bytes:
+        """Generate pattern-based test data"""
+        if isinstance(pattern, bytes):
+            return (pattern * ((size // len(pattern)) + 1))[:size]
+        else:
+            return TestDataGenerator.generate_random_data_static(size)
             random.seed(self.random_seed)
 
         return bytes(random.randint(0, 255) for _ in range(size))
