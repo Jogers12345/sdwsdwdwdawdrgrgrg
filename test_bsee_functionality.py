@@ -98,6 +98,9 @@ class BSEETester:
             # Get operation function
             operation = ops_reg.get_operation(op_name)
 
+            # Get default parameters for operations that need them
+            default_params = self._get_default_parameters(op_name, metadata)
+
             # Test with various samples
             working_samples = 0
             total_samples = 0
@@ -107,7 +110,7 @@ class BSEETester:
                     continue
 
                 total_samples += 1
-                sample_result = self._test_operation_sample(operation, sample_data, metadata)
+                sample_result = self._test_operation_sample(operation, sample_data, metadata, default_params)
                 result['test_results'][sample_name] = sample_result
 
                 if sample_result['status'] == 'success':
@@ -126,6 +129,8 @@ class BSEETester:
             print(f"  Status: {result['status']} ({working_samples}/{total_samples} samples)")
             if result['reversible']:
                 print(f"  Reversible: ✓")
+            if default_params:
+                print(f"  Used params: {default_params}")
 
         except Exception as e:
             result['status'] = 'error'
@@ -133,6 +138,62 @@ class BSEETester:
             print(f"  Error: {e}")
 
         return result
+
+    def _get_default_parameters(self, op_name: str, metadata: Dict) -> Dict[str, Any]:
+        """Get default parameters for operations that require them."""
+        required_params = metadata.get('required_params', [])
+        if not required_params:
+            return {}
+
+        # Default parameters based on operation name and required parameters
+        defaults = {}
+
+        # Bitwise operations
+        if 'constant' in required_params:
+            defaults['constant'] = 0x55  # Binary 01010101
+        elif 'bit_position' in required_params:
+            defaults['bit_position'] = 1
+        elif 'mask' in required_params:
+            defaults['mask'] = 0xF0  # High nibble mask
+        elif 'bit1' in required_params and 'bit2' in required_params:
+            defaults['bit1'] = 0
+            defaults['bit2'] = 7
+        elif 'shift' in required_params:
+            defaults['shift'] = 1
+        elif 'offset' in required_params and 'length' in required_params and 'constant' in required_params:
+            defaults['offset'] = 0
+            defaults['length'] = 8
+            defaults['constant'] = 0xAA
+
+        # Reordering operations
+        elif 'block_size' in required_params:
+            defaults['block_size'] = 4
+        elif 'key' in required_params:
+            defaults['key'] = b'\x01\x02\x03\x04'
+        elif 'seed' in required_params:
+            defaults['seed'] = 42
+
+        # Substitution operations
+        elif 'key' in required_params:
+            defaults['key'] = 5
+        elif 'sbox' in required_params:
+            defaults['sbox'] = list(range(256))  # Identity S-box
+        elif 'table' in required_params:
+            defaults['table'] = list(range(256))  # Identity table
+
+        # Custom operations
+        elif 'pattern' in required_params:
+            defaults['pattern'] = b'PATTERN'
+        elif 'data' in required_params:
+            defaults['data'] = b'HIDDEN'
+
+        # Transform operations
+        elif 'plane' in required_params:
+            defaults['plane'] = 0
+        elif 'data' in required_params:
+            defaults['data'] = b'\xFF' * 8
+
+        return defaults
 
     def _test_operation_sample(self, operation, sample_data: bytes, metadata: Dict) -> Dict[str, Any]:
         """Test operation with a single sample."""
