@@ -1,0 +1,78 @@
+{
+  "operation_name": "dct_transform",
+  "operation_params": {},
+  "before_data": "b'nmpgo'",
+  "after_data": "b'transformed'",
+  "before_hex": "6e6d70676f",
+  "after_hex": "7472616e73666f726d6564",
+  "metrics_before": {
+    "entropy": 0.625,
+    "size": 5
+  },
+  "metrics_after": {
+    "entropy": 1.25,
+    "size": 11
+  },
+  "timing_info": {
+    "execution_time": 0.001
+  },
+  "byte_changes": [
+    [
+      0,
+      110,
+      116
+    ],
+    [
+      1,
+      109,
+      114
+    ],
+    [
+      2,
+      112,
+      97
+    ],
+    [
+      3,
+      103,
+      110
+    ],
+    [
+      4,
+      111,
+      115
+    ],
+    [
+      5,
+      -1,
+      102
+    ],
+    [
+      6,
+      -1,
+      111
+    ],
+    [
+      7,
+      -1,
+      114
+    ],
+    [
+      8,
+      -1,
+      109
+    ],
+    [
+      9,
+      -1,
+      101
+    ],
+    [
+      10,
+      -1,
+      100
+    ]
+  ],
+  "metadata": {},
+  "timestamp": 1762636791.7905858
+}
