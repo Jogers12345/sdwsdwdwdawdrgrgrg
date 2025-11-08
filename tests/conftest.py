@@ -31,6 +31,16 @@ class TestDataGenerator:
 
         return bytes(random.randint(0, 255) for _ in range(size))
 
+    @staticmethod
+    def generate_random_data_static(size: int, seed: Optional[int] = None) -> bytes:
+        """Generate random binary data"""
+        if seed is not None:
+            random.seed(seed)
+        else:
+            random.seed(self.random_seed)
+
+        return bytes(random.randint(0, 255) for _ in range(size))
+
     def generate_structured_data(self, size: int) -> bytes:
         """Generate structured test data"""
         data = bytearray()
