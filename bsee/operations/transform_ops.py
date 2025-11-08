@@ -1480,12 +1480,12 @@ class TransformOperations:
 
         metadata = {
             'operation': 'arithmetic_encode',
-            'bytes_affected': original_length,
+            'bytes_affected': total_bytes,
             'reversible': True,
             'compression_ratio': compression_ratio,
             'unique_symbols': len(frequency),
             'precision_bits': 50,
-            'original_size': original_length,
+            'original_size': total_bytes,
             'compressed_size': len(result)
         }
 
