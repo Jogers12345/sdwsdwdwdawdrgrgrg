@@ -1311,10 +1311,159 @@ class TransformOperations:
         return result, inverse, metadata
 
     def arithmetic_encode(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
-        """Arithmetic encoding."""
+        """Arithmetic coding with fixed-point arithmetic."""
+        from decimal import Decimal, getcontext
+        from collections import defaultdict
+
+        if len(binary_data) == 0:
+            def inverse_empty():
+                return b''
+            return b'', inverse_empty, {'operation': 'arithmetic_encode', 'bytes_affected': 0, 'reversible': True}
+
+        # Set precision for decimal calculations
+        getcontext().prec = 50
+
+        # Calculate frequency of each byte
+        frequency = defaultdict(int)
+        for byte_val in binary_data:
+            frequency[byte_val] += 1
+
+        total_bytes = len(binary_data)
+
+        # Calculate cumulative probabilities
+        cumulative_prob = {}
+        cumulative_sum = 0
+        sorted_bytes = sorted(frequency.keys())
+
+        for byte_val in sorted_bytes:
+            prob_start = cumulative_sum / total_bytes
+            cumulative_sum += frequency[byte_val]
+            prob_end = cumulative_sum / total_bytes
+            cumulative_prob[byte_val] = (Decimal(prob_start), Decimal(prob_end))
+
+        # Encode data using arithmetic coding
+        low = Decimal(0)
+        high = Decimal(1)
+
+        for byte_val in binary_data:
+            prob_start, prob_end = cumulative_prob[byte_val]
+            range_val = high - low
+            high = low + range_val * prob_end
+            low = low + range_val * prob_start
+
+            # Rescale if range becomes too small
+            while high - low < Decimal('1e-10'):
+                low *= Decimal('1e10')
+                high *= Decimal('1e10')
+
+        # Choose final value in range
+        final_value = (low + high) / 2
+
+        # Store frequency table and final value
+        freq_data = []
+        for byte_val in sorted_bytes:
+            freq_data.append((byte_val, frequency[byte_val]))
+
+        # Pack result
+        import struct
+        result_data = bytearray()
+
+        # Store number of unique symbols
+        result_data.extend(len(freq_data).to_bytes(2, 'big'))
+
+        # Store frequency table
+        for byte_val, freq in freq_data:
+            result_data.append(byte_val)
+            result_data.extend(freq.to_bytes(4, 'big'))
+
+        # Store original length
+        result_data.extend(total_bytes.to_bytes(4, 'big'))
+
+        # Store encoded value (as string representation for simplicity)
+        value_str = str(final_value)
+        result_data.extend(len(value_str).to_bytes(2, 'big'))
+        result_data.extend(value_str.encode('ascii'))
+
+        result = bytes(result_data)
+
         def inverse():
-            raise RuntimeError("Arithmetic encoding is not reversible")
-        return binary_data, inverse, {'operation': 'arithmetic_encode', 'bytes_affected': 0, 'reversible': False}
+            # Unpack data
+            offset = 0
+            num_symbols = int.from_bytes(result[offset:offset+2], 'big')
+            offset += 2
+
+            # Reconstruct frequency table
+            frequency = {}
+            for _ in range(num_symbols):
+                byte_val = result[offset]
+                offset += 1
+                freq = int.from_bytes(result[offset:offset+4], 'big')
+                offset += 4
+                frequency[byte_val] = freq
+
+            # Get original length
+            original_length = int.from_bytes(result[offset:offset+4], 'big')
+            offset += 4
+
+            # Get encoded value
+            value_len = int.from_bytes(result[offset:offset+2], 'big')
+            offset += 2
+            final_value = Decimal(result[offset:offset+value_len].decode('ascii'))
+
+            # Reconstruct cumulative probabilities
+            total_bytes = sum(frequency.values())
+            cumulative_prob = {}
+            cumulative_sum = 0
+            sorted_bytes = sorted(frequency.keys())
+
+            for byte_val in sorted_bytes:
+                prob_start = cumulative_sum / total_bytes
+                cumulative_sum += frequency[byte_val]
+                prob_end = cumulative_sum / total_bytes
+                cumulative_prob[byte_val] = (Decimal(prob_start), Decimal(prob_end))
+
+            # Decode using arithmetic coding
+            decoded_data = bytearray()
+            low = Decimal(0)
+            high = Decimal(1)
+
+            for _ in range(original_length):
+                # Find which symbol contains the current value
+                range_val = high - low
+                value_scaled = (final_value - low) / range_val if range_val > 0 else Decimal(0)
+
+                for byte_val in sorted_bytes:
+                    prob_start, prob_end = cumulative_prob[byte_val]
+                    if prob_start <= value_scaled < prob_end:
+                        decoded_data.append(byte_val)
+                        # Update range
+                        high = low + range_val * prob_end
+                        low = low + range_val * prob_start
+                        break
+
+                # Rescale if needed
+                while high - low < Decimal('1e-10'):
+                    low *= Decimal('1e10')
+                    high *= Decimal('1e10')
+                    final_value *= Decimal('1e10')
+
+            return bytes(decoded_data)
+
+        # Calculate compression ratio
+        compression_ratio = original_length / len(result) if len(result) > 0 else 1.0
+
+        metadata = {
+            'operation': 'arithmetic_encode',
+            'bytes_affected': original_length,
+            'reversible': True,
+            'compression_ratio': compression_ratio,
+            'unique_symbols': len(frequency),
+            'precision_bits': 50,
+            'original_size': original_length,
+            'compressed_size': len(result)
+        }
+
+        return result, inverse, metadata
 
     def lz77_encode(self, binary_data: bytes, window_size: int = 32768, buffer_size: int = 258, min_match_length: int = 3) -> Tuple[bytes, Callable, Dict]:
         """LZ77 encoding with sliding window and look-ahead buffer."""
