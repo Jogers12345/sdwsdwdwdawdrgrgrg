@@ -238,7 +238,8 @@ class OperationPerformanceTester:
             operations_per_second=total_iterations / (end_time - start_time) if end_time > start_time else 0.0,
             threads_used=thread_count,
             success_rate=success_rate,
-            error_count=total_errors
+            error_count=total_errors,
+            execution_times=all_execution_times
         )
 
     def test_operation_scalability(self, operation, data_sizes: List[int],
