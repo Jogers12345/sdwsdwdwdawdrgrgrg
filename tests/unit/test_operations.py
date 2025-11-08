@@ -422,10 +422,10 @@ class TestRotateOperation:
             1: b"\xA6",  # 10100110
             2: b"\x4D",  # 01001101
             3: b"\x9A",  # 10011010
-            4: b"\x37",  # 00110111
-            5: b"\x6E",  # 01101110
-            6: b"\xDC",  # 11011100
-            7: b"\xB9",  # 10111001
+            4: b"\x35",  # 00110101
+            5: b"\x6A",  # 01101010
+            6: b"\xD4",  # 11010100
+            7: b"\xA9",  # 10101001
         }
 
         for bits, expected in expected_rotations.items():
