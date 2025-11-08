@@ -1,0 +1,78 @@
+BSEE Functionality Test Report
+============================================================
+Generated at: 2025-11-08 20:45:57
+
+OPERATIONS SUMMARY
+------------------------------
+Total Operations: 101
+Working: 48
+Failed: 53
+Success Rate: 47.5%
+
+WORKING OPERATIONS BY CATEGORY
+----------------------------------------
+
+BITWISE (7 operations):
+  - deinterleave_bits ✓
+  - extract_high_nibble ✓
+  - extract_low_nibble ✓
+  - interleave_bits ✓
+  - not_bytes ✓
+  - reverse_bits ✓
+  - swap_nibbles ✓
+
+CUSTOM (5 operations):
+  - base64_encode ✓
+  - data_extraction ✓
+  - dna_decoding ✓
+  - dna_encoding ✓
+  - steganography_extract ✓
+
+DELTA (8 operations):
+  - adaptive_delta ✓
+  - cumulative_delta ✓
+  - delta_decode ✓
+  - delta_encode ✓
+  - differential_encode ✓
+  - predictive_delta ✓
+  - run_length_delta ✓
+  - zigzag_delta ✓
+
+REORDERING (7 operations):
+  - bit_interleave ✓
+  - bitonic_sort ✓
+  - frequency_sort ✓
+  - perfect_shuffle ✓
+  - radix_sort ✓
+  - reverse_bytes ✓
+  - unshuffle ✓
+
+SUBSTITUTION (6 operations):
+  - bit_substitution ✓
+  - dynamic_substitution ✓
+  - frequency_substitution ✓
+  - huffman_substitution ✓
+  - nibble_substitution ✓
+  - sbox_substitution ✓
+
+TRANSFORM (15 operations):
+  - adaptive_huffman ✓
+  - arithmetic_encode ✓
+  - burrows_wheeler ✓
+  - dct_transform ✓
+  - distance_coding ✓
+  - dwt_transform ✓
+  - elias_delta ✓
+  - elias_gamma ✓
+  - fft_transform ✓
+  - fibonacci_coding ✓
+  - huffman_encode ✓
+  - lz77_encode ✓
+  - move_to_front ✓
+  - phase_in_coding ✓
+  - run_length_encode ✓
+
+
+ERRORS
+------------------------------
+• Metrics registry: No module named 'numpy'
