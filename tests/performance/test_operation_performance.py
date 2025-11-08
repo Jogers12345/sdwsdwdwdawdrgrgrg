@@ -806,7 +806,7 @@ def test_data_sizes():
 def test_operation_basic_performance(mock_operations, performance_tester):
     """Test basic operation performance"""
     operation = mock_operations["xor"]
-    test_data = TestDataGenerator.generate_random_data(2048, seed=42)
+    test_data = TestDataGenerator.generate_random_data_static(2048, seed=42)
 
     result = performance_tester.test_operation_performance(
         operation, test_data, iterations=5
