@@ -1208,11 +1208,107 @@ class TransformOperations:
 
         return tree_structure
 
-    def run_length_encode(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
-        """Run-length encoding."""
+    def run_length_encode(self, binary_data: bytes, min_run_length: int = 3, max_run_length: int = 255, mode: str = 'byte') -> Tuple[bytes, Callable, Dict]:
+        """Configurable run-length encoding with byte-level runs."""
+        if len(binary_data) == 0:
+            def inverse_empty():
+                return b''
+            return b'', inverse_empty, {'operation': 'run_length_encode', 'bytes_affected': 0, 'reversible': True}
+
+        original_length = len(binary_data)
+        encoded_data = bytearray()
+
+        i = 0
+        total_runs = 0
+        literal_bytes = 0
+
+        while i < len(binary_data):
+            # Find run length
+            current_byte = binary_data[i]
+            run_length = 1
+
+            # Count consecutive identical bytes
+            while (i + run_length < len(binary_data) and
+                   binary_data[i + run_length] == current_byte and
+                   run_length < max_run_length):
+                run_length += 1
+
+            if run_length >= min_run_length:
+                # Encode as run: [0xFF][run_length][byte_value]
+                encoded_data.append(0xFF)  # Run marker
+                encoded_data.append(run_length)
+                encoded_data.append(current_byte)
+                total_runs += 1
+            else:
+                # Add as literal bytes
+                if run_length > 0:
+                    # Check if we need an escape sequence for too many literals
+                    if run_length > 255:
+                        # Split into chunks
+                        for chunk_start in range(0, run_length, 255):
+                            chunk_size = min(255, run_length - chunk_start)
+                            encoded_data.append(0xFE)  # Literal marker
+                            encoded_data.append(chunk_size)
+                            encoded_data.extend(binary_data[i + chunk_start:i + chunk_start + chunk_size])
+                            literal_bytes += chunk_size
+                    else:
+                        encoded_data.append(0xFE)  # Literal marker
+                        encoded_data.append(run_length)
+                        encoded_data.extend(binary_data[i:i + run_length])
+                        literal_bytes += run_length
+
+            i += run_length
+
+        result = bytes(encoded_data)
+
         def inverse():
-            raise RuntimeError("Run-length encoding is not reversible")
-        return binary_data, inverse, {'operation': 'run_length_encode', 'bytes_affected': 0, 'reversible': False}
+            decoded_data = bytearray()
+            i = 0
+
+            while i < len(result):
+                marker = result[i]
+
+                if marker == 0xFF:
+                    # Run: [0xFF][run_length][byte_value]
+                    if i + 2 >= len(result):
+                        raise ValueError("Invalid RLE data: incomplete run sequence")
+                    run_length = result[i + 1]
+                    byte_value = result[i + 2]
+                    decoded_data.extend([byte_value] * run_length)
+                    i += 3
+                elif marker == 0xFE:
+                    # Literal: [0xFE][length][literal_bytes...]
+                    if i + 1 >= len(result):
+                        raise ValueError("Invalid RLE data: incomplete literal sequence")
+                    literal_length = result[i + 1]
+                    if i + 2 + literal_length > len(result):
+                        raise ValueError("Invalid RLE data: incomplete literal data")
+                    decoded_data.extend(result[i + 2:i + 2 + literal_length])
+                    i += 2 + literal_length
+                else:
+                    # Invalid marker
+                    raise ValueError(f"Invalid RLE marker: 0x{marker:02X}")
+
+            return bytes(decoded_data)
+
+        # Calculate compression ratio
+        compression_ratio = original_length / len(result) if len(result) > 0 else 1.0
+
+        metadata = {
+            'operation': 'run_length_encode',
+            'bytes_affected': original_length,
+            'reversible': True,
+            'compression_ratio': compression_ratio,
+            'total_runs': total_runs,
+            'literal_bytes': literal_bytes,
+            'min_run_length': min_run_length,
+            'max_run_length': max_run_length,
+            'mode': mode,
+            'original_size': original_length,
+            'compressed_size': len(result)
+        }
+
+        return result, inverse, metadata
 
     def arithmetic_encode(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
         """Arithmetic encoding."""
