@@ -48,9 +48,6 @@ class TestDataGenerator:
             return (pattern * ((size // len(pattern)) + 1))[:size]
         else:
             return TestDataGenerator.generate_random_data_static(size)
-            random.seed(self.random_seed)
-
-        return bytes(random.randint(0, 255) for _ in range(size))
 
     def generate_structured_data(self, size: int) -> bytes:
         """Generate structured test data"""
