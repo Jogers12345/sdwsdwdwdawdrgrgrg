@@ -581,7 +581,7 @@ class TestDataGenerator:
             filename='pe_header_medium.bin',
             expected_patterns=['pe_header', 'dos_stub', 'coff_header'],
             expected_entropy_range=(2.0, 5.0),
-            expected_structure_hints['pe_executable', 'windows_format'],
+            expected_structure_hints=['pe_executable', 'windows_format'],
             analysis_difficulty='medium',
             strategy_rankings={
                 'Heuristic Analysis': 1,
