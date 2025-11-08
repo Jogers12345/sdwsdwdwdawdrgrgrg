@@ -1476,7 +1476,7 @@ class TransformOperations:
             return bytes(decoded_data)
 
         # Calculate compression ratio
-        compression_ratio = original_length / len(result) if len(result) > 0 else 1.0
+        compression_ratio = total_bytes / len(result) if len(result) > 0 else 1.0
 
         metadata = {
             'operation': 'arithmetic_encode',
