@@ -1418,33 +1418,6 @@ class TransformOperations:
 
         result = bytes(encoded_data)
 
-        # Store frequency table and final value
-        freq_data = []
-        for byte_val in sorted_bytes:
-            freq_data.append((byte_val, frequency[byte_val]))
-
-        # Pack result
-        import struct
-        result_data = bytearray()
-
-        # Store number of unique symbols
-        result_data.extend(len(freq_data).to_bytes(2, 'big'))
-
-        # Store frequency table
-        for byte_val, freq in freq_data:
-            result_data.append(byte_val)
-            result_data.extend(freq.to_bytes(4, 'big'))
-
-        # Store original length
-        result_data.extend(total_bytes.to_bytes(4, 'big'))
-
-        # Store encoded value (as string representation for simplicity)
-        value_str = str(final_value)
-        result_data.extend(len(value_str).to_bytes(2, 'big'))
-        result_data.extend(value_str.encode('ascii'))
-
-        result = bytes(result_data)
-
         def inverse():
             # Unpack data
             offset = 0
