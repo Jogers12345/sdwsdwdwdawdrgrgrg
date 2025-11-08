@@ -1,0 +1,141 @@
+# BSEE Production Configuration
+# Optimized for production deployment
+
+# Engine Configuration
+engine:
+  max_iterations: 5000
+  timeout_seconds: 600
+  parallel_processing: true
+  max_workers: 8
+  memory_limit_mb: 8192
+  temp_directory: "/var/tmp/bsee"
+  log_format: "json"
+
+# Strategy Configuration
+strategies:
+  default: "mcts"
+  mcts:
+    exploration_weight: 1.414
+    max_iterations: 5000
+    simulation_depth: 15
+    rollout_strategy: "epsilon_greedy"
+    ucb_constant: 1.414
+  genetic:
+    population_size: 200
+    mutation_rate: 0.15
+    crossover_rate: 0.8
+    elitism_rate: 0.1
+    max_generations: 500
+    selection_strategy: "tournament"
+    crossover_strategy: "uniform"
+  beam:
+    beam_width: 20
+    max_depth: 100
+    pruning_strategy: "diversity"
+    diversity_weight: 0.2
+
+# Cache Configuration
+cache:
+  enabled: true
+  backend: "redis"
+  ttl_seconds: 7200
+  max_size_mb: 2048
+  redis_url: "${REDIS_URL:-redis://localhost:6379}"
+  redis_db: 0
+  redis_password: "${REDIS_PASSWORD:-}"
+
+# Database Configuration
+database:
+  enabled: true
+  backend: "postgresql"
+  host: "${DB_HOST:-localhost}"
+  port: 5432
+  database: "${DB_NAME:-bsee}"
+  username: "${DB_USER:-bsee}"
+  password: "${DB_PASSWORD:-password}"
+  ssl_mode: "require"
+  pool_size: 20
+  max_overflow: 30
+
+# Monitoring Configuration
+monitoring:
+  enabled: true
+  metrics_port: 8080
+  log_level: "INFO"
+  metrics_retention_hours: 168  # 7 days
+  alert_thresholds:
+    high_memory_usage: "80%"
+    low_throughput: "100_ops/sec"
+    high_error_rate: "5%"
+    slow_operations: "5_sec"
+  prometheus_enabled: true
+  prometheus_port: 9090
+  dashboard_enabled: true
+  dashboard_port: 3000
+
+# API Configuration
+api:
+  enabled: true
+  host: "0.0.0.0"
+  port: 8000
+  workers: 4
+  reload: false
+  log_level: "INFO"
+  rate_limit: "1000/hour"
+  max_file_size: "500MB"
+  timeout_seconds: 600
+  cors_origins:
+    - "https://bsee.example.com"
+    - "https://api.bsee.example.com"
+  api_key_required: true
+  allowed_hosts:
+    - "bsee.example.com"
+    - "api.bsee.example.com"
+    - "*.bsee.example.com"
+
+# Security Configuration
+security:
+  api_key: "${BSEE_API_KEY:-your_secure_api_key_here}"
+  jwt_secret_key: "${JWT_SECRET_KEY:-your_jwt_secret_key_here}"
+  jwt_algorithm: "HS256"
+  jwt_expiration_hours: 24
+  bcrypt_rounds: 12
+  max_login_attempts: 5
+  lockout_duration_minutes: 30
+
+# Performance Tuning
+performance:
+  enable_gpu_acceleration: false
+  numba_jit_compilation: true
+  memory_pool_size_mb: 1024
+  operation_cache_size: 1000
+  result_compression: true
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  format: "json"
+  file_path: "/var/log/bsee/bsee.log"
+  max_file_size_mb: 100
+  backup_count: 10
+  console_output: false
+  structured_logging: true
+
+# Backup and Recovery
+backup:
+  enabled: true
+  interval_hours: 24
+  retention_days: 30
+  backup_path: "/var/backups/bsee"
+  compression: true
+  encryption: true
+
+# Feature Flags
+features:
+  enable_neural_strategies: true
+  enable_advanced_transforms: true
+  enable_batch_processing: true
+  enable_real_time_monitoring: true
+  enable_api_authentication: true
+  enable_rate_limiting: true
+  enable_result_caching: true
