@@ -728,7 +728,7 @@ class TestDataGenerators:
         """Create structured binary data"""
         # Create data with headers, footers, and patterns
         header = b"BSEE" + (1024).to_bytes(4, 'big')
-        content = TestDataGenerator.generate_random_data(8192, seed=54321)
+        content = TestDataGenerator.generate_random_data_static(8192, seed=54321)
         footer = b"END" + (1024).to_bytes(4, 'big')
         return header + content + footer
 
