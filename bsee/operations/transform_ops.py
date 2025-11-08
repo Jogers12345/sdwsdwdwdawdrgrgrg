@@ -1326,7 +1326,9 @@ class TransformOperations:
             return b'', inverse_empty, {'operation': 'arithmetic_encode', 'bytes_affected': 0, 'reversible': True}
 
         # Set precision for decimal calculations
-        getcontext().prec = 50
+        getcontext().prec = 30  # Reduced precision to avoid overflow
+        getcontext().Emax = 1000  # Increase max exponent
+        getcontext().Emin = -1000  # Decrease min exponent
 
         # Calculate frequency of each byte
         frequency = defaultdict(int)
