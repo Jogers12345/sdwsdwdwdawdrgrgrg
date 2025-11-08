@@ -343,8 +343,8 @@ class HomogeneityScorer:
         byte_counts = Counter(segment)
         expected_count = len(segment) / 256
         byte_variance = sum((count - expected_count) ** 2 for count in byte_counts.values()) / 256
-        max_variance = (len(segment) / 256) * (255 - len(segment) / 256) ** 2 +
-                      (255 * (len(segment) / 256 - 1) ** 2)
+        max_variance = ((len(segment) / 256) * (255 - len(segment) / 256) ** 2 +
+                        (255 * (len(segment) / 256 - 1) ** 2))
         byte_uniformity = 1.0 - (byte_variance / max_variance if max_variance > 0 else 0.0)
 
         # Combine indicators
