@@ -218,8 +218,8 @@ class TerminalVisualizationPanel:
         else:
             percentage = (current / total) * 100
 
-        filled = int(width * percentage / 100)
-        bar = "█" * filled + "░" * (width - filled)
+        filled = int(bar_width * percentage / 100)
+        bar = "█" * filled + "░" * (bar_width - filled)
 
         print(f"\r{label}: [{bar}] {percentage:5.1f}% ({current}/{total})", end="", flush=True)
 
