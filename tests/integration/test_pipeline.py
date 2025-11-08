@@ -263,7 +263,7 @@ class TestCompleteAnalysisPipeline:
                         results[strategy] = {
                             "score": 0.8,
                             "iterations": max_iter,
-                            "config_used": self.config["strategies"][mcts]
+                            "config_used": self.config["strategies"]["mcts"]
                         }
                     elif strategy == "genetic":
                         pop_size = self.config["strategies"]["genetic"]["population_size"]
