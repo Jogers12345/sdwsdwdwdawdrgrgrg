@@ -108,8 +108,14 @@ class TestDataGenerator:
     def _save_metadata(self):
         """Save test data metadata"""
         try:
+            def metadata_to_dict(metadata):
+                """Convert metadata to JSON-serializable dict"""
+                data = asdict(metadata)
+                data['data_type'] = metadata.data_type.value
+                return data
+
             data = {
-                filename: asdict(metadata)
+                filename: metadata_to_dict(metadata)
                 for filename, metadata in self.metadata.items()
             }
             with open(self.metadata_file, 'w') as f:
