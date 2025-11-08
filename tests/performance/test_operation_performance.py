@@ -58,9 +58,10 @@ class OperationPerformanceTester:
                 if len(data) == 0:
                     raise ValueError("Cannot process empty data")
 
-                # Simulate processing with sleep
+                # Simulate processing with sleep (reduced timeout)
                 import time
-                time.sleep(work_units / 100000)  # Scale to reasonable time
+                sleep_time = min(work_units / 1000000, 0.01)  # Cap at 10ms max
+                time.sleep(sleep_time)
                 # Simple transformation to ensure work is done
                 return data[::-1] + data[:len(data)//2]
 
