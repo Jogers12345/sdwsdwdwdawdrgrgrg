@@ -913,7 +913,7 @@ class TestOperationBoundaryConditions:
     def test_maximum_size_data(self):
         """Test operations handle large data correctly"""
         # Create 1MB of test data
-        large_data = TestDataGenerator.generate_random_data(1024 * 1024, seed=999)
+        large_data = TestDataGenerator.generate_random_data(size=1024 * 1024, seed=999)
 
         def simple_operation(data: bytes) -> bytes:
             # Simple operation that should work on any size
