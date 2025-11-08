@@ -1,4 +1,158 @@
 {
   "random_small.bin": {
     "filename": "random_small.bin",
-    "data_type": 
+    "data_type": "random",
+    "size": 1024,
+    "seed": 42,
+    "description": "Small random data for unit tests",
+    "created_at": "2025-11-08T21:48:17.980623",
+    "checksum": "1ba43bf584f5492eee63d3e590e65f1e1cdaf93dd988686d958f053713b7782f",
+    "properties": {
+      "seed": 42,
+      "description": "Small random data for unit tests"
+    }
+  },
+  "structured_small.bin": {
+    "filename": "structured_small.bin",
+    "data_type": "structured",
+    "size": 722,
+    "seed": null,
+    "description": "Small structured data",
+    "created_at": "2025-11-08T21:48:17.981273",
+    "checksum": "9aa78ec9580ee3e8f2adf4a4d4ffe17a070e76d9feec877719862be2f3676326",
+    "properties": {
+      "structure_type": "custom",
+      "description": "Small structured data"
+    }
+  },
+  "patterned_small.bin": {
+    "filename": "patterned_small.bin",
+    "data_type": "patterned",
+    "size": 1024,
+    "seed": null,
+    "description": "Small patterned data",
+    "created_at": "2025-11-08T21:48:17.981733",
+    "checksum": "326e228882b798cecdd5fb44fddc9a7f843014a517611a71bcc6b3c838cf9e7f",
+    "properties": {
+      "pattern": "repeating",
+      "description": "Small patterned data"
+    }
+  },
+  "pe_header_medium.bin": {
+    "filename": "pe_header_medium.bin",
+    "data_type": "structured",
+    "size": 65536,
+    "seed": null,
+    "description": "PE header structure",
+    "created_at": "2025-11-08T21:48:17.983125",
+    "checksum": "5aa4cd1914ca9331da2b5416945f651905b96301abd3b318ede43ea8b3ca5b09",
+    "properties": {
+      "structure_type": "pe_header",
+      "description": "PE header structure"
+    }
+  },
+  "elf_header_medium.bin": {
+    "filename": "elf_header_medium.bin",
+    "data_type": "structured",
+    "size": 65536,
+    "seed": null,
+    "description": "ELF header structure",
+    "created_at": "2025-11-08T21:48:17.984685",
+    "checksum": "665cb8dffae2c562354c1a6a5ac69409ea9fad2472b14bb17a0167ea7d23ac64",
+    "properties": {
+      "structure_type": "elf_header",
+      "description": "ELF header structure"
+    }
+  },
+  "archive_medium.bin": {
+    "filename": "archive_medium.bin",
+    "data_type": "structured",
+    "size": 65536,
+    "seed": null,
+    "description": "Archive structure",
+    "created_at": "2025-11-08T21:48:17.986191",
+    "checksum": "0bb7e1fce43bdc5bbd201f155ac5a5a3346aad942414b046fea1b03d9134dc56",
+    "properties": {
+      "structure_type": "archive",
+      "description": "Archive structure"
+    }
+  },
+  "compressed_medium.bin": {
+    "filename": "compressed_medium.bin",
+    "data_type": "compressed",
+    "size": 10092,
+    "seed": null,
+    "description": "Compressed data",
+    "created_at": "2025-11-08T21:48:18.029228",
+    "checksum": "60dcabf41a3e5217d79c8f2353eaaea7ff772a8abf5ae3dc3925455b17b27d82",
+    "properties": {
+      "uncompressed_size": 1048576,
+      "description": "Compressed data"
+    }
+  },
+  "random_large.bin": {
+    "filename": "random_large.bin",
+    "data_type": "random",
+    "size": 1048576,
+    "seed": 123,
+    "description": "Large random data for performance tests",
+    "created_at": "2025-11-08T21:48:18.852754",
+    "checksum": "d48807e86e945e4f032b8943d40628eb7f3a97879a5d88335cdde3e5d0bf3ac7",
+    "properties": {
+      "seed": 123,
+      "description": "Large random data for performance tests"
+    }
+  },
+  "structured_large.bin": {
+    "filename": "structured_large.bin",
+    "data_type": "structured",
+    "size": 716822,
+    "seed": null,
+    "description": "Large structured data",
+    "created_at": "2025-11-08T21:48:18.923474",
+    "checksum": "8f7a4f5145dd7271e085edd01884cf680609463bd3b0c258216931e1f67f3f6c",
+    "properties": {
+      "structure_type": "custom",
+      "description": "Large structured data"
+    }
+  },
+  "patterned_large.bin": {
+    "filename": "patterned_large.bin",
+    "data_type": "patterned",
+    "size": 1048576,
+    "seed": null,
+    "description": "Large patterned data",
+    "created_at": "2025-11-08T21:48:19.036173",
+    "checksum": "fbbab289f7f94b25736c58be46a994c441fd02552cc6022352e3d86d2fab7c83",
+    "properties": {
+      "pattern": "incremental",
+      "description": "Large patterned data"
+    }
+  },
+  "truncated_malformed.bin": {
+    "filename": "truncated_malformed.bin",
+    "data_type": "malformed",
+    "size": 1024,
+    "seed": null,
+    "description": "Truncated structure",
+    "created_at": "2025-11-08T21:48:19.037822",
+    "checksum": "9f8316618063fa319978a029db4ff2af739b130198e2d265716eccffd0804189",
+    "properties": {
+      "malformation_type": "truncated",
+      "description": "Truncated structure"
+    }
+  },
+  "invalid_magic.bin": {
+    "filename": "invalid_magic.bin",
+    "data_type": "malformed",
+    "size": 722,
+    "seed": null,
+    "description": "Invalid magic bytes",
+    "created_at": "2025-11-08T21:48:19.038543",
+    "checksum": "619d7bc6f6802205d1b686f65490c9815f5549242a87a649a7ac3b7020d6f427",
+    "properties": {
+      "malformation_type": "invalid_magic",
+      "description": "Invalid magic bytes"
+    }
+  }
+}
