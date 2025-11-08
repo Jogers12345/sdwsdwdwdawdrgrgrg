@@ -934,11 +934,279 @@ class TransformOperations:
         # If remaining is 1, it's optimal
         return n == 1
 
-    def huffman_encode(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
-        """Huffman encoding."""
+    def huffman_encode(self, binary_data: bytes, canonical: bool = True) -> Tuple[bytes, Callable, Dict]:
+        """Real Huffman encoding with frequency analysis and optimal bit packing."""
+        import heapq
+        from collections import defaultdict
+
+        if len(binary_data) == 0:
+            def inverse_empty():
+                return b''
+            return b'', inverse_empty, {'operation': 'huffman_encode', 'bytes_affected': 0, 'reversible': True}
+
+        # Calculate byte frequencies
+        frequency = defaultdict(int)
+        for byte_val in binary_data:
+            frequency[byte_val] += 1
+
+        if len(frequency) == 1:
+            # Special case: all bytes are the same
+            single_byte = next(iter(frequency.keys()))
+            result = bytes([0, single_byte])  # Special marker + byte value
+
+            def inverse_single():
+                return binary_data
+
+            return result, inverse_single, {
+                'operation': 'huffman_encode',
+                'bytes_affected': len(binary_data),
+                'reversible': True,
+                'compression_ratio': 1.0,
+                'unique_symbols': 1,
+                'tree_size': 2
+            }
+
+        # Build Huffman tree
+        heap = []
+        for byte_val, freq in frequency.items():
+            heap.append((freq, byte_val, []))  # (frequency, symbol, code)
+
+        heapq.heapify(heap)
+
+        # Build tree using Huffman algorithm
+        while len(heap) > 1:
+            freq1, symbol1, code1 = heapq.heappop(heap)
+            freq2, symbol2, code2 = heapq.heappop(heap)
+
+            # Merge nodes
+            new_freq = freq1 + freq2
+            new_symbol = None  # Internal node
+            new_code = []  # Will be assigned codes later
+
+            heapq.heappush(heap, (new_freq, new_symbol, (freq1, symbol1, code1, freq2, symbol2, code2)))
+
+        # Extract codes from tree
+        codes = {}
+        if heap:
+            root = heap[0]
+            self._extract_huffman_codes(root, '', codes)
+
+        # Convert codes to bit strings for efficient encoding
+        if canonical:
+            codes = self._make_canonical_codes(codes)
+
+        # Encode data using bit packing
+        encoded_bits = []
+        bit_buffer = 0
+        bit_count = 0
+
+        for byte_val in binary_data:
+            code = codes[byte_val]
+            for bit in code:
+                bit_buffer = (bit_buffer << 1) | bit
+                bit_count += 1
+                if bit_count == 8:
+                    encoded_bits.append(bit_buffer)
+                    bit_buffer = 0
+                    bit_count = 0
+
+        # Flush remaining bits
+        if bit_count > 0:
+            bit_buffer <<= (8 - bit_count)
+            encoded_bits.append(bit_buffer)
+
+        # Store tree structure for decoding
+        tree_structure = self._serialize_huffman_tree(codes, frequency)
+
+        # Create result: tree info + encoded data
+        tree_bytes = self._pack_tree_data(tree_structure)
+        encoded_data = bytes(encoded_bits)
+
+        result = tree_bytes + encoded_data
+
         def inverse():
-            raise RuntimeError("Huffman encoding is not reversible")
-        return binary_data, inverse, {'operation': 'huffman_encode', 'bytes_affected': 0, 'reversible': False}
+            # Extract tree structure
+            tree_info_length = int.from_bytes(result[:4], 'big')
+            tree_packed = result[4:4+tree_info_length]
+            encoded_data = result[4+tree_info_length:]
+
+            # Reconstruct tree and codes
+            tree_structure = self._unpack_tree_data(tree_packed)
+            codes = self._deserialize_huffman_tree(tree_structure)
+
+            # Decode data
+            decoded_bytes = []
+            current_code = ""
+
+            for byte_val in encoded_data:
+                for bit_pos in range(8):
+                    bit = (byte_val >> (7 - bit_pos)) & 1
+                    current_code += str(bit)
+
+                    # Check if this is a valid code
+                    if current_code in codes.values():
+                        # Find the byte value for this code
+                        for byte_val, code in codes.items():
+                            if code == current_code:
+                                decoded_bytes.append(byte_val)
+                                current_code = ""
+                                break
+
+            return bytes(decoded_bytes)
+
+        # Calculate compression ratio
+        original_bits = len(binary_data) * 8
+        compressed_bits = len(result) * 8
+        compression_ratio = original_bits / compressed_bits if compressed_bits > 0 else 1.0
+
+        metadata = {
+            'operation': 'huffman_encode',
+            'bytes_affected': len(binary_data),
+            'reversible': True,
+            'compression_ratio': compression_ratio,
+            'unique_symbols': len(frequency),
+            'tree_size': len(tree_bytes),
+            'encoded_size': len(encoded_data),
+            'canonical': canonical,
+            'codes': {str(byte_val): code for byte_val, code in codes.items()}
+        }
+
+        return result, inverse, metadata
+
+    def _extract_huffman_codes(self, node, prefix, codes):
+        """Extract Huffman codes from tree structure."""
+        freq, symbol, data = node
+
+        if symbol is not None:
+            # Leaf node
+            code = [int(bit) for bit in prefix] if prefix else [0]
+            codes[symbol] = code
+        else:
+            # Internal node
+            freq1, symbol1, code1, freq2, symbol2, code2 = data
+            self._extract_huffman_codes((freq1, symbol1, code1), prefix + '0', codes)
+            self._extract_huffman_codes((freq2, symbol2, code2), prefix + '1', codes)
+
+    def _make_canonical_codes(self, codes):
+        """Convert Huffman codes to canonical form."""
+        # Sort symbols by code length, then by symbol value
+        sorted_symbols = sorted(codes.items(), key=lambda x: (len(x[1]), x[0]))
+
+        canonical_codes = {}
+        current_code = 0
+        current_length = 0
+
+        for symbol, code in sorted_symbols:
+            code_length = len(code)
+            if code_length != current_length:
+                current_code <<= (code_length - current_length)
+                current_length = code_length
+
+            canonical_codes[symbol] = [(current_code >> i) & 1 for i in range(code_length - 1, -1, -1)]
+            current_code += 1
+
+        return canonical_codes
+
+    def _serialize_huffman_tree(self, codes, frequency):
+        """Serialize Huffman tree structure for storage."""
+        # Store as symbol-frequency-code_length tuples
+        tree_data = []
+        for symbol, code in sorted(codes.items()):
+            tree_data.append({
+                'symbol': symbol,
+                'frequency': frequency.get(symbol, 0),
+                'code_length': len(code),
+                'code': code
+            })
+        return tree_data
+
+    def _deserialize_huffman_tree(self, tree_structure):
+        """Deserialize Huffman tree structure."""
+        codes = {}
+        for item in tree_structure:
+            codes[item['symbol']] = item['code']
+        return codes
+
+    def _pack_tree_data(self, tree_structure):
+        """Pack tree data into bytes."""
+        import struct
+        packed = bytearray()
+
+        # Store number of symbols (2 bytes)
+        packed.extend(len(tree_structure).to_bytes(2, 'big'))
+
+        # Store tree length for later extraction (4 bytes, placeholder)
+        packed.extend((0).to_bytes(4, 'big'))
+        tree_start = len(packed)
+
+        # Store each symbol entry
+        for item in tree_structure:
+            # Symbol (1 byte)
+            packed.append(item['symbol'])
+            # Frequency (4 bytes)
+            packed.extend(item['frequency'].to_bytes(4, 'big'))
+            # Code length (1 byte)
+            packed.append(item['code_length'])
+            # Code bytes (variable length, store as bytes)
+            code_bits = 0
+            for i, bit in enumerate(item['code']):
+                code_bits = (code_bits << 1) | bit
+            # Pack code bits (ceil(code_length/8) bytes)
+            code_bytes = (item['code_length'] + 7) // 8
+            packed.extend(code_bits.to_bytes(code_bytes, 'big'))
+
+        # Update tree length
+        tree_length = len(packed) - tree_start
+        packed[2:6] = tree_length.to_bytes(4, 'big')
+
+        # Store total packed tree length at the beginning
+        total_length = len(packed)
+        result = total_length.to_bytes(4, 'big') + bytes(packed)
+
+        return result
+
+    def _unpack_tree_data(self, packed_data):
+        """Unpack tree data from bytes."""
+        import struct
+        tree_structure = []
+        offset = 0
+
+        # Number of symbols
+        num_symbols = int.from_bytes(packed_data[offset:offset+2], 'big')
+        offset += 2
+
+        # Tree length (skip)
+        offset += 4
+
+        for _ in range(num_symbols):
+            # Symbol
+            symbol = packed_data[offset]
+            offset += 1
+
+            # Frequency
+            frequency = int.from_bytes(packed_data[offset:offset+4], 'big')
+            offset += 4
+
+            # Code length
+            code_length = packed_data[offset]
+            offset += 1
+
+            # Code bits
+            code_bytes = (code_length + 7) // 8
+            code_bits = int.from_bytes(packed_data[offset:offset+code_bytes], 'big')
+            offset += code_bytes
+
+            # Extract code bits
+            code = [(code_bits >> i) & 1 for i in range(code_length - 1, -1, -1)]
+
+            tree_structure.append({
+                'symbol': symbol,
+                'frequency': frequency,
+                'code_length': code_length,
+                'code': code
+            })
+
+        return tree_structure
 
     def run_length_encode(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
         """Run-length encoding."""
