@@ -54,6 +54,11 @@ bsee/
 │   ├── scoring/           # Scoring and evaluation
 │   ├── results/           # Result formatting and export
 │   └── monitoring/        # Performance monitoring
+├── bsee_ai/                # 🤖 AI/ML System for Homogeneity Optimization
+│   ├── learners/          # AI learning algorithms
+│   ├── predictors/        # Operation prediction models
+│   ├── models/            # Performance tracking models
+│   └── utils/             # AI utilities (scoring, analysis)
 ├── tests/                 # Comprehensive test suite
 ├── config/               # Configuration files
 ├── gui/                  # Graphical interface
