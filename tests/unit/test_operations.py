@@ -55,8 +55,8 @@ class TestXorOperation:
         test_cases = [
             b"test data",
             b"\x00\x01\x02\x03\xFF\xFE\xFD",
-            TestDataGenerator.generate_random_data(size=1000, seed=42),
-            TestDataGenerator.generate_pattern_data(500, b"ABCD")
+            TestDataGenerator.generate_random_data_static(size=1000, seed=42),
+            TestDataGenerator.generate_pattern_data_static(500, b"ABCD")
         ]
 
         for test_data in test_cases:
