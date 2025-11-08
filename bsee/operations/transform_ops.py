@@ -1125,8 +1125,38 @@ class TransformOperations:
 
         return result, inverse, metadata
 
+    def _extract_huffman_codes_from_id(self, node_id, prefix, codes):
+        """Extract Huffman codes from tree structure using node IDs."""
+        if not hasattr(self, '_huffman_tree_nodes'):
+            return
+
+        node = self._huffman_tree_nodes.get(node_id)
+        if not node:
+            # This might be a leaf node (byte symbol)
+            if node_id < 256:  # It's a byte value
+                code = [int(bit) for bit in prefix] if prefix else [0]
+                codes[node_id] = code
+            return
+
+        left = node['left']
+        right = node['right']
+
+        # Process left child (0 branch)
+        if left[1] is not None:  # Leaf node
+            code = [int(bit) for bit in (prefix + '0')] if prefix + '0' else [0]
+            codes[left[1]] = code
+        else:  # Internal node
+            self._extract_huffman_codes_from_id(left[2], prefix + '0', codes)
+
+        # Process right child (1 branch)
+        if right[1] is not None:  # Leaf node
+            code = [int(bit) for bit in (prefix + '1')] if prefix + '1' else [0]
+            codes[right[1]] = code
+        else:  # Internal node
+            self._extract_huffman_codes_from_id(right[2], prefix + '1', codes)
+
     def _extract_huffman_codes(self, node, prefix, codes):
-        """Extract Huffman codes from tree structure."""
+        """Extract Huffman codes from tree structure (legacy method)."""
         freq, symbol, data = node
 
         if symbol is not None:
