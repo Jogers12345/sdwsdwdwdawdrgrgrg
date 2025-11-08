@@ -531,6 +531,21 @@ def create_test_scenarios() -> List[Dict[str, Any]]:
     return scenarios
 
 
+def performance_test_config():
+    """Default configuration for performance tests"""
+    return {
+        "iterations": 10,
+        "timeout": 30.0,
+        "memory_limit_mb": 256,
+        "parallel_workers": 4,
+        "test_data_sizes": [1024, 4096, 16384],
+        "operations_to_test": ["xor", "add_constant", "rotate", "substitute"],
+        "enable_detailed_timing": True,
+        "enable_memory_profiling": True,
+        "enable_parallel_testing": True
+    }
+
+
 if __name__ == "__main__":
     # Test the fixtures
     print("Testing BSEE pytest fixtures...")
