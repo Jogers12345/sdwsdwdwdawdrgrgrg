@@ -223,7 +223,52 @@ curl -X POST "http://localhost:8000/analyze" \
 - **Arithmetic Coding** - Entropy encoding
 - **Elias Gamma/Delta Coding** - Universal coding
 
-## 🧠 Neural Network Strategies
+## 🤖 AI System Architecture
+
+### Intelligent Learning Components
+
+#### **HomogeneityLearner**
+- **Purpose**: Core learning system that tracks operation effectiveness
+- **Features**:
+  - Learns from every operation applied across all sessions
+  - Tracks performance by data type (repetitive, random, mixed, patterned)
+  - Saves and loads learning models for persistent improvement
+  - Provides operation effectiveness statistics
+
+#### **OperationPredictor**
+- **Purpose**: Predicts optimal operations for specific binary data
+- **Features**:
+  - Real-time operation recommendations with confidence scores
+  - Explains reasoning behind each recommendation
+  - Generates alternative operation suggestions
+  - Adapts based on data characteristics analysis
+
+#### **SimpleHomogeneityScorer**
+- **Purpose**: Calculates binary homogeneity metrics without external dependencies
+- **Features**:
+  - Overall homogeneity score (0.0 to 1.0)
+  - Data type classification (repetitive, random, mixed, patterned)
+  - Detailed analysis (entropy, patterns, repetitions, uniformity)
+  - Lightweight and fast for real-time use
+
+### How the AI System Works
+
+1. **Data Analysis**: System analyzes binary data to determine its characteristics
+2. **Learning Recall**: AI retrieves historical performance for similar data types
+3. **Operation Prediction**: AI recommends operations with confidence scores
+4. **Application & Learning**: System applies operations and learns from results
+5. **Model Update**: Performance tracking updates the learning model
+6. **Continuous Improvement**: Each operation makes future recommendations better
+
+### AI GUI Integration
+
+The AI system is fully integrated with the GUI, providing:
+- **Real-time AI Recommendations**: See AI-suggested operations during processing
+- **Learning Progress Display**: Monitor AI learning statistics and success rates
+- **Homogeneity Metrics**: Track homogeneity improvement in real-time
+- **Operation Effectiveness**: Visual feedback on which operations work best
+
+### 🧠 Neural Network Strategies
 
 ### Monte Carlo Tree Search (MCTS)
 - **Best for**: Complex optimization problems
