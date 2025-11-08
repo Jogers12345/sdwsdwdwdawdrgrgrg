@@ -33,6 +33,7 @@ class OperationPerformanceResult:
     threads_used: int
     success_rate: float
     error_count: int
+    execution_times: List[float] = None
 
 
 class OperationPerformanceTester:
