@@ -1,0 +1,105 @@
+BSEE Functionality Test Report
+============================================================
+Generated at: 2025-11-08 20:58:16
+
+OPERATIONS SUMMARY
+------------------------------
+Total Operations: 101
+Working: 75
+Failed: 26
+Success Rate: 74.3%
+
+WORKING OPERATIONS BY CATEGORY
+----------------------------------------
+
+BITWISE (19 operations):
+  - and_constant ✓
+  - clear_bit ✓
+  - deinterleave_bits ✓
+  - extract_high_nibble ✓
+  - extract_low_nibble ✓
+  - interleave_bits ✓
+  - mask_bits ✓
+  - not_bytes ✓
+  - or_constant ✓
+  - reverse_bits ✓
+  - rotate_left ✓
+  - rotate_right ✓
+  - set_bit ✓
+  - shift_left ✓
+  - shift_right ✓
+  - swap_bits ✓
+  - swap_nibbles ✓
+  - toggle_bit ✓
+  - xor_constant ✓
+
+CUSTOM (5 operations):
+  - base64_encode ✓
+  - data_extraction ✓
+  - dna_decoding ✓
+  - dna_encoding ✓
+  - steganography_extract ✓
+
+DELTA (9 operations):
+  - adaptive_delta ✓
+  - block_delta ✓
+  - cumulative_delta ✓
+  - delta_decode ✓
+  - delta_encode ✓
+  - differential_encode ✓
+  - predictive_delta ✓
+  - run_length_delta ✓
+  - zigzag_delta ✓
+
+REORDERING (12 operations):
+  - bit_interleave ✓
+  - bitonic_sort ✓
+  - block_reverse ✓
+  - deinterleave_blocks ✓
+  - frequency_sort ✓
+  - interleave_blocks ✓
+  - perfect_shuffle ✓
+  - radix_sort ✓
+  - reverse_bytes ✓
+  - rotate_bytes ✓
+  - shuffle_bytes ✓
+  - unshuffle ✓
+
+SUBSTITUTION (14 operations):
+  - additive_key ✓
+  - bit_substitution ✓
+  - caesar_cipher ✓
+  - custom_sbox ✓
+  - dynamic_substitution ✓
+  - frequency_substitution ✓
+  - huffman_substitution ✓
+  - lookup_table ✓
+  - multiplicative_key ✓
+  - nibble_substitution ✓
+  - rotating_key ✓
+  - sbox_substitution ✓
+  - vigenere_cipher ✓
+  - xor_key ✓
+
+TRANSFORM (16 operations):
+  - adaptive_huffman ✓
+  - arithmetic_encode ✓
+  - bitplane_extract ✓
+  - burrows_wheeler ✓
+  - dct_transform ✓
+  - distance_coding ✓
+  - dwt_transform ✓
+  - elias_delta ✓
+  - elias_gamma ✓
+  - fft_transform ✓
+  - fibonacci_coding ✓
+  - huffman_encode ✓
+  - lz77_encode ✓
+  - move_to_front ✓
+  - phase_in_coding ✓
+  - run_length_encode ✓
+
+
+ERRORS
+------------------------------
+• Metrics registry: No module named 'numpy'
