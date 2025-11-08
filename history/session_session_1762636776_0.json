@@ -1,0 +1,230 @@
+{
+  "session": {
+    "session_id": "session_1762636776_0",
+    "start_time": 1762636776.881123,
+    "end_time": 1762636776.8829238,
+    "initial_data": "b'Test data for advanced visualization'",
+    "final_data": "b'transformed'",
+    "operations": [
+      {
+        "operation_name": "xor_constant",
+        "operation_params": {
+          "constant": 85
+        },
+        "before_data": "b'Hello'",
+        "after_data": "b'Olmfo'",
+        "before_hex": "48656c6c6f",
+        "after_hex": "4f6c6d666f",
+        "metrics_before": {
+          "entropy": 0.5,
+          "size": 5
+        },
+        "metrics_after": {
+          "entropy": 0.625,
+          "size": 5
+        },
+        "timing_info": {
+          "execution_time": 0.001
+        },
+        "byte_changes": [
+          [
+            0,
+            72,
+            79
+          ],
+          [
+            1,
+            101,
+            108
+          ],
+          [
+            2,
+            108,
+            109
+          ],
+          [
+            3,
+            108,
+            102
+          ]
+        ],
+        "metadata": {},
+        "timestamp": 1762636776.881154
+      },
+      {
+        "operation_name": "add_constant",
+        "operation_params": {
+          "constant": 1
+        },
+        "before_data": "b'Olmfo'",
+        "after_data": "b'Pmnfp'",
+        "before_hex": "4f6c6d666f",
+        "after_hex": "506d6e6670",
+        "metrics_before": {
+          "entropy": 0.625,
+          "size": 5
+        },
+        "metrics_after": {
+          "entropy": 0.625,
+          "size": 5
+        },
+        "timing_info": {
+          "execution_time": 0.001
+        },
+        "byte_changes": [
+          [
+            0,
+            79,
+            80
+          ],
+          [
+            1,
+            108,
+            109
+          ],
+          [
+            2,
+            109,
+            110
+          ],
+          [
+            4,
+            111,
+            112
+          ]
+        ],
+        "metadata": {},
+        "timestamp": 1762636776.8816257
+      },
+      {
+        "operation_name": "rotate_left",
+        "operation_params": {
+          "shift": 1
+        },
+        "before_data": "b'Pmnfp'",
+        "after_data": "b'nmpgo'",
+        "before_hex": "506d6e6670",
+        "after_hex": "6e6d70676f",
+        "metrics_before": {
+          "entropy": 0.625,
+          "size": 5
+        },
+        "metrics_after": {
+          "entropy": 0.625,
+          "size": 5
+        },
+        "timing_info": {
+          "execution_time": 0.001
+        },
+        "byte_changes": [
+          [
+            0,
+            80,
+            110
+          ],
+          [
+            2,
+            110,
+            112
+          ],
+          [
+            3,
+            102,
+            103
+          ],
+          [
+            4,
+            112,
+            111
+          ]
+        ],
+        "metadata": {},
+        "timestamp": 1762636776.881996
+      },
+      {
+        "operation_name": "dct_transform",
+        "operation_params": {},
+        "before_data": "b'nmpgo'",
+        "after_data": "b'transformed'",
+        "before_hex": "6e6d70676f",
+        "after_hex": "7472616e73666f726d6564",
+        "metrics_before": {
+          "entropy": 0.625,
+          "size": 5
+        },
+        "metrics_after": {
+          "entropy": 1.25,
+          "size": 11
+        },
+        "timing_info": {
+          "execution_time": 0.001
+        },
+        "byte_changes": [
+          [
+            0,
+            110,
+            116
+          ],
+          [
+            1,
+            109,
+            114
+          ],
+          [
+            2,
+            112,
+            97
+          ],
+          [
+            3,
+            103,
+            110
+          ],
+          [
+            4,
+            111,
+            115
+          ],
+          [
+            5,
+            -1,
+            102
+          ],
+          [
+            6,
+            -1,
+            111
+          ],
+          [
+            7,
+            -1,
+            114
+          ],
+          [
+            8,
+            -1,
+            109
+          ],
+          [
+            9,
+            -1,
+            101
+          ],
+          [
+            10,
+            -1,
+            100
+          ]
+        ],
+        "metadata": {},
+        "timestamp": 1762636776.8824327
+      }
+    ],
+    "session_metadata": {
+      "phase": "2",
+      "test": "completed"
+    },
+    "total_execution_time": 0.004
+  },
+  "export_timestamp": "2025-11-08T21:19:36.883092"
+}
