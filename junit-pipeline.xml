@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="4" skipped="0" tests="11" time="0.279" timestamp="2025-11-08T21:46:24.346631+00:00" hostname="2860332c531168"><testcase classname="tests.integration.test_pipeline.TestCompleteAnalysisPipeline" name="test_load_file_through_full_pipeline" time="0.003" /><testcase classname="tests.integration.test_pipeline.TestCompleteAnalysisPipeline" name="test_pipeline_with_all_strategies" time="0.001" /><testcase classname="tests.integration.test_pipeline.TestCompleteAnalysisPipeline" name="test_pipeline_error_recovery" time="0.001"><failure message="assert 0 &gt;= 1">tests/integration/test_pipeline.py:208: in test_pipeline_error_recovery
+    assert result["failed_operations"] &gt;= 1  # Some operations should fail
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   assert 0 &gt;= 1</failure></testcase><testcase classname="tests.integration.test_pipeline.TestCompleteAnalysisPipeline" name="test_pipeline_configuration_integration" time="0.001"><failure message="NameError: name 'mcts' is not defined">tests/integration/test_pipeline.py:296: in test_pipeline_configuration_integration
+    result = pipeline.run_with_config(b"config test data")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/integration/test_pipeline.py:266: in run_with_config
+    "config_used": self.config["strategies"][mcts]
+                                             ^^^^
+E   NameError: name 'mcts' is not defined</failure></testcase><testcase classname="tests.integration.test_pipeline.TestStrategyIntegration" name="test_strategies_integration" time="0.001" /><testcase classname="tests.integration.test_pipeline.TestStrategyIntegration" name="test_strategy_parameter_integration" time="0.001" /><testcase classname="tests.integration.test_pipeline.TestOperationIntegration" name="test_operation_chaining" time="0.001"><failure message="AssertionError: assert b'\xfb\x00\xe...4\xe9\xff\x04' == b'operation_chain_test'&#10;  &#10;  At index 0 diff: b'\xfb' != b'o'&#10;  &#10;  Full diff:&#10;  - (b'operation_chain_test')&#10;  + (b'\xfb\x00\xe9\x02\xf5\x04\xfd\xfb\xfe+\xef\xf8\xf5\xfd\xfe+\x04\xe9\xff\x04')">tests/integration/test_pipeline.py:564: in test_operation_chaining
+    assert reverse_result == original_data
+E   AssertionError: assert b'\xfb\x00\xe...4\xe9\xff\x04' == b'operation_chain_test'
+E     
+E     At index 0 diff: b'\xfb' != b'o'
+E     
+E     Full diff:
+E     - (b'operation_chain_test')
+E     + (b'\xfb\x00\xe9\x02\xf5\x04\xfd\xfb\xfe+\xef\xf8\xf5\xfd\xfe+\x04\xe9\xff\x04')</failure></testcase><testcase classname="tests.integration.test_pipeline.TestOperationIntegration" name="test_operation_parameter_integration" time="0.001" /><testcase classname="tests.integration.test_pipeline.TestGUIWorkflowIntegration" name="test_gui_file_loading_workflow" time="0.003"><failure message="NameError: name 'random' is not defined. Did you forget to import 'random'">tests/integration/test_pipeline.py:733: in test_gui_file_loading_workflow
+    analysis_result = main_panel.run_analysis()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/integration/test_pipeline.py:700: in run_analysis
+    "score": 0.7 + random.random() * 0.2,
+                   ^^^^^^
+E   NameError: name 'random' is not defined. Did you forget to import 'random'</failure></testcase><testcase classname="tests.integration.test_pipeline.TestGUIWorkflowIntegration" name="test_gui_transformation_viewer_workflow" time="0.016" /><testcase classname="tests.integration.test_pipeline.TestGUIWorkflowIntegration" name="test_gui_export_workflow" time="0.002" /></testsuite></testsuites>
