@@ -74,13 +74,42 @@ class OperationEntry:
 
 
 class HistoryManager:
-    """Manages operation history and ensures complete reversibility."""
+    """Enhanced history manager for replay and advanced visualization."""
 
-    def __init__(self):
-        """Initialize history manager."""
+    def __init__(self, max_history_size: int = 1000, auto_save: bool = True):
+        """
+        Initialize enhanced history manager.
+
+        Args:
+            max_history_size: Maximum number of operations to keep in memory
+            auto_save: Whether to automatically save history to disk
+        """
+        self.max_history_size = max_history_size
+        self.auto_save = auto_save
+
+        # Current session
+        self.current_session: Optional[AnalysisSession] = None
+        self.session_start_time: Optional[float] = None
+
+        # Original entries for backward compatibility
         self.entries: List[OperationEntry] = []
         self.state_index: Dict[str, int] = {}  # state_id -> step_number
         self.operation_counts: Dict[str, int] = {}  # operation_name -> count
+
+        # Enhanced operation snapshots
+        self.operation_snapshots: List[OperationSnapshot] = []
+
+        # Session history storage
+        self.session_history: List[AnalysisSession] = []
+        self.storage_directory = Path("history")
+        self.storage_directory.mkdir(exist_ok=True)
+
+        # Threading lock for thread safety
+        self._lock = threading.Lock()
+
+        # Callbacks for events
+        self.on_operation_added: Optional[callable] = None
+        self.on_session_completed: Optional[callable] = None
 
     def add_entry(self, entry: OperationEntry) -> None:
         """Add a new operation entry to the history."""
