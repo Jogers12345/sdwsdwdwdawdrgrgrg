@@ -1,0 +1,256 @@
+# Performance Optimized Preset
+# Maximum speed and efficiency focused configuration
+
+name: "Performance Optimized"
+description: "High-performance configuration optimized for speed and resource efficiency"
+version: "1.0"
+author: "BSEE Team"
+
+# Strategy Configuration
+strategy:
+  type: "hybrid"
+  primary: "heuristic"
+  secondary: "greedy"
+  fallback: "beam"
+
+  # Fast strategy parameters
+  heuristic:
+    max_iterations: 100
+    early_stopping: true
+    convergence_threshold: 0.0001
+    optimization_level: "speed"
+
+  greedy:
+    lookahead: 1
+    pruning_threshold: 0.8
+    cache_results: true
+
+  beam:
+    beam_width: 5
+    max_depth: 50
+    pruning_aggressive: true
+
+# Fast Cost Model
+cost_model:
+  type: "adaptive"
+  parameters:
+    # Simplified cost calculation for speed
+    base_costs:
+      xor: 1
+      add: 1
+      sub: 1
+      rotate: 2
+      reverse: 1
+      substitute: 3
+      compress: 5
+      decompress: 5
+
+    # Fast adaptation
+    learning_rate: 0.2
+    adaptation_factor: 0.3
+    min_cost: 0.1
+    max_cost: 10.0
+
+    # Performance optimization
+    cache_costs: true
+    precompute_common: true
+    simplify_calculations: true
+
+# Performance-First Policy
+policy:
+  type: "adaptive"
+  mode: "aggressive"
+  adaptation_rate: 0.2
+  performance_window: 20
+  fast_mode: true
+
+  # Quick objectives
+  objectives:
+    - type: "score_improvement"
+      weight: 0.6
+      direction: "maximize"
+      priority: 1
+    - type: "time_efficiency"
+      weight: 0.3
+      direction: "maximize"
+      priority: 2
+    - type: "cost_efficiency"
+      weight: 0.1
+      direction: "maximize"
+      priority: 3
+
+  # Relaxed constraints for speed
+  constraints:
+    max_cost_per_operation: 50.0
+    max_time_per_operation: 2.0
+    min_improvement_threshold: 0.0005
+    max_consecutive_failures: 5
+  constraint_mode: "soft"
+
+# Essential Metrics Only
+metrics:
+  primary:
+    - "file_ideality_score"
+    - "entropy_global"
+  secondary: []  # Disabled for speed
+
+  optimization_direction:
+    file_ideality_score: "max"
+    entropy_global: "min"
+
+# Fast Operations Only
+operations:
+  allowed:
+    - "xor"
+    - "add_constant"
+    - "sub_constant"
+    - "rotate"
+    # Disabled expensive operations for speed:
+    # - "substitute"
+    # - "compress"
+    # - "decompress"
+    # - "transpose"
+    # - "bit_swap"
+
+  # Simplified parameters
+  parameter_ranges:
+    xor:
+      key: [85, 170]  # Limited to most effective values
+    add_constant:
+      constant: [1, 16, 32, 64, 128]  # Limited set
+    sub_constant:
+      constant: [1, 16, 32, 64, 128]  # Limited set
+    rotate:
+      bits: [1, 2, 4]  # Most effective rotations
+
+# Performance Limits
+limits:
+  max_operations: 1000  # Reduced for speed
+  max_cost: 10000      # Reduced for speed
+  max_time: 120        # 2 minutes max
+  max_memory_mb: 256   # Reduced memory usage
+  min_improvement: 0.001  # Higher threshold for faster completion
+  convergence_threshold: 0.0001
+  stagnation_limit: 100   # Quick stagnation detection
+
+# Performance Settings
+performance_settings:
+  # Caching
+  enable_caching: true
+  cache_size: 1000
+  cache_ttl: 300  # 5 minutes
+
+  # Parallel processing
+  parallel_processing: true
+  max_workers: 4
+  chunk_size: 64
+
+  # Memory optimization
+  memory_pool_size: 64
+  garbage_collection_interval: 50
+  memory_efficient_mode: true
+
+  # Early stopping
+  aggressive_early_stopping: true
+  stagnation_detection: true
+  diminishing_returns_threshold: 0.1
+
+# Fast Output Configuration
+output:
+  save_models: false        # Disabled for speed
+  save_training_data: false # Disabled for speed
+  save_performance_metrics: true
+  generate_visualizations: false  # Disabled for speed
+  export_detailed_reports: false  # Disabled for speed
+
+  output_directory: "results/performance/"
+  log_level: "WARNING"       # Reduced logging
+
+# Minimal Logging
+logging:
+  level: "WARNING"
+  file_logging: false
+  console_logging: true
+  log_performance_metrics: false  # Disabled for speed
+  log_detailed_stats: false
+
+# Windows Optimization
+platform:
+  windows_optimized: true
+  gpu_acceleration: false
+  memory_optimization: true
+  parallel_processing: true
+  num_threads: 4
+  priority_class: "HIGH"  # Windows process priority
+
+  # Windows-specific optimizations
+  use_windows_api: true
+  memory_mapping: true
+  file_buffering: true
+  async_io: true
+
+# Fast Validation
+validation:
+  cross_validation: false  # Disabled for speed
+  test_split: 0.0          # No test split
+  quick_validation: true
+  validation_samples: 10   # Minimal validation
+
+  benchmarking:
+    enabled: false  # Disabled for speed
+
+# Lightweight Error Handling
+error_handling:
+  fast_error_detection: true
+  minimal_error_logging: true
+  auto_recovery: true
+  max_recovery_attempts: 1  # Quick recovery
+
+# Minimal Dependencies
+dependencies:
+  required:
+    - "numpy>=1.21.0"
+    - "scipy>=1.7.0"
+    - "psutil>=5.8.0"
+    - "click>=8.0.0"
+    - "tqdm>=4.62.0"
+    - "pyyaml>=5.4.0"
+
+  # Optional dependencies not included for speed
+  optional: []
+
+# Compatibility
+compatibility:
+  python_version: ">=3.8"
+  platforms: ["windows"]  # Windows-optimized
+  architecture: ["x86_64"]
+
+# Performance Benchmarks
+benchmarks:
+  target_files_per_second: 10
+  target_operations_per_second: 1000
+  max_memory_usage_mb: 256
+  target_cpu_usage_percent: 80
+
+# Resource Monitoring
+resource_monitoring:
+  enabled: true
+  monitoring_interval: 5  # seconds
+  alert_thresholds:
+    memory_usage_mb: 200
+    cpu_usage_percent: 90
+    operations_per_second: 50
+
+# Version Information
+version_info:
+  preset_version: "1.0.0"
+  bsee_version: "2.0.0"
+  last_updated: "2024-01-01"
+  changelog: |
+    - Performance-optimized preset implementation
+    - Fast strategy selection
+    - Simplified cost model
+    - Minimal logging and output
+    - Windows-specific optimizations
+    - Aggressive early stopping
+    - Reduced memory footprint
