@@ -546,6 +546,23 @@ def performance_test_config():
     }
 
 
+@pytest.fixture
+def sample_json_data():
+    """Fixture providing sample JSON data for testing"""
+    return {
+        "test_field": "test_value",
+        "nested_data": {
+            "key1": "value1",
+            "key2": 42,
+            "array": [1, 2, 3, 4, 5]
+        },
+        "metadata": {
+            "timestamp": "2024-01-01T00:00:00Z",
+            "version": "1.0"
+        }
+    }
+
+
 if __name__ == "__main__":
     # Test the fixtures
     print("Testing BSEE pytest fixtures...")
