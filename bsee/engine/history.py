@@ -557,6 +557,50 @@ class HistoryManager:
         except Exception as e:
             print(f"Error saving session: {e}")
 
+    def analyze_session(self, session_id: str = None) -> Dict[str, Any]:
+        """
+        Analyze a session and return comprehensive statistics.
+
+        Args:
+            session_id: Optional session ID (uses current session if not provided)
+
+        Returns:
+            Session analysis data
+        """
+        with self._lock:
+            if session_id:
+                session = self.get_session_by_id(session_id)
+            else:
+                session = self.current_session
+
+            if not session:
+                return {}
+
+            # Calculate statistics
+            total_operations = len(session.operations)
+            total_byte_changes = 0
+            data_size_change = len(session.final_data) - len(session.initial_data)
+
+            for op in session.operations:
+                total_byte_changes += len(op.byte_changes)
+
+            return {
+                'total_operations': total_operations,
+                'total_byte_changes': total_byte_changes,
+                'data_size_change': data_size_change,
+                'total_execution_time': session.total_execution_time,
+                'session_duration': session.end_time - session.start_time if session.end_time > 0 else 0,
+                'operations_by_type': self._count_operations_by_type(session.operations),
+                'average_operation_time': session.total_execution_time / total_operations if total_operations > 0 else 0
+            }
+
+    def _count_operations_by_type(self, operations: List[OperationSnapshot]) -> Dict[str, int]:
+        """Count operations by type."""
+        counts = {}
+        for op in operations:
+            counts[op.operation_name] = counts.get(op.operation_name, 0) + 1
+        return counts
+
     def set_callbacks(self, on_operation_added: callable = None,
                      on_session_completed: callable = None):
         """Set callback functions for events."""
