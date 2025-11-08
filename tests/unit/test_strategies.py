@@ -752,11 +752,12 @@ class TestStrategyIntegration:
         # Configure mock strategies
         for i, strategy in enumerate(strategies):
             strategy.name = f"strategy_{i}"
-            strategy.analyze.return_value = {
+            result_data = {
                 "strategy": strategy.name,
                 "final_score": 0.7 + i * 0.1,
                 "converged": True
             }
+            strategy.analyze = Mock(return_value=result_data)
 
         # Test consistency
         for strategy in strategies:
