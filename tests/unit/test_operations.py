@@ -27,8 +27,8 @@ class TestXorOperation:
         result = xor_operation(data, key)
 
         # Verify result
-        expected = bytes(ord('H') ^ 0x42, ord('e') ^ 0x42, ord('l') ^ 0x42,
-                         ord('l') ^ 0x42, ord('o') ^ 0x42)
+        expected = bytes([ord('H') ^ 0x42, ord('e') ^ 0x42, ord('l') ^ 0x42,
+                         ord('l') ^ 0x42, ord('o') ^ 0x42])
         assert result == expected
 
     @pytest.mark.unit
