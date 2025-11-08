@@ -375,12 +375,36 @@ pytest tests/performance/ -v
 
 # Neural network tests
 pytest tests/neural/ -v
+
+# AI System tests (NEW)
+python test_ai_integration.py
+```
+
+### AI System Testing
+```bash
+# Test AI learning and prediction system
+python test_ai_integration.py
+
+# Test AI-enhanced GUI pipeline
+python test_ai_gui_pipeline.py
+
+# Test basic structure without dependencies
+python test_basic_structure.py
 ```
 
 ### Test Coverage
 ```bash
 pytest --cov=bsee tests/
 ```
+
+### What AI Tests Verify
+- ✅ **Learning System**: AI learns from operation results
+- ✅ **Operation Prediction**: AI provides intelligent recommendations
+- ✅ **Homogeneity Scoring**: Accurate measurement of binary uniformity
+- ✅ **Data Classification**: Correct identification of data patterns
+- ✅ **Continuous Improvement**: System gets better with each operation
+- ✅ **GUI Integration**: AI results display correctly in interface
+- ✅ **Performance Tracking**: Learning statistics and metrics collection
 
 ## 🚀 Deployment
 
