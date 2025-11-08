@@ -83,8 +83,8 @@ class TransformOperations:
                 'category': 'transform',
                 'description': 'Discrete wavelet transform',
                 'required_params': [],
-                'optional_params': {},
-                'reversible': False
+                'optional_params': {'wavelet': 'haar', 'mode': 'symmetric', 'levels': 1},
+                'reversible': True
             },
             'fft_transform': {
                 'category': 'transform',
