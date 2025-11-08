@@ -1118,9 +1118,10 @@ class TransformOperations:
             codes[symbol] = code
         else:
             # Internal node
-            freq1, symbol1, code1, freq2, symbol2, code2 = data
-            self._extract_huffman_codes((freq1, symbol1, code1), prefix + '0', codes)
-            self._extract_huffman_codes((freq2, symbol2, code2), prefix + '1', codes)
+            if isinstance(data, tuple) and len(data) >= 6:
+                freq1, symbol1, code1, freq2, symbol2, code2 = data[:6]
+                self._extract_huffman_codes((freq1, symbol1, code1), prefix + '0', codes)
+                self._extract_huffman_codes((freq2, symbol2, code2), prefix + '1', codes)
 
     def _make_canonical_codes(self, codes):
         """Convert Huffman codes to canonical form."""
