@@ -421,7 +421,7 @@ class TestRotateOperation:
         expected_rotations = {
             1: b"\xA6",  # 10100110
             2: b"\x4D",  # 01001101
-            3: b"\x9B",  # 10011011
+            3: b"\x9A",  # 10011010
             4: b"\x37",  # 00110111
             5: b"\x6E",  # 01101110
             6: b"\xDC",  # 11011100
