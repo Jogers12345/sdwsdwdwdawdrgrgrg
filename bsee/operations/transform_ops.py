@@ -999,21 +999,33 @@ class TransformOperations:
         # Build Huffman tree
         heap = []
         for byte_val, freq in frequency.items():
-            heap.append((freq, byte_val, []))  # (frequency, symbol, code)
+            # Store as (frequency, symbol, id) to avoid comparison issues with None
+            heap.append((freq, byte_val, id(byte_val)))  # Add unique id for comparison
 
         heapq.heapify(heap)
 
         # Build tree using Huffman algorithm
+        next_id = 256  # Start internal node IDs after byte values
         while len(heap) > 1:
-            freq1, symbol1, code1 = heapq.heappop(heap)
-            freq2, symbol2, code2 = heapq.heappop(heap)
+            freq1, symbol1, id1 = heapq.heappop(heap)
+            freq2, symbol2, id2 = heapq.heappop(heap)
 
             # Merge nodes
             new_freq = freq1 + freq2
             new_symbol = None  # Internal node
-            new_code = []  # Will be assigned codes later
+            new_id = next_id
+            next_id += 1
 
-            heapq.heappush(heap, (new_freq, new_symbol, (freq1, symbol1, code1, freq2, symbol2, code2)))
+            # Store tree structure separately for code extraction
+            if not hasattr(self, '_huffman_tree_nodes'):
+                self._huffman_tree_nodes = {}
+
+            self._huffman_tree_nodes[new_id] = {
+                'left': (freq1, symbol1, id1),
+                'right': (freq2, symbol2, id2)
+            }
+
+            heapq.heappush(heap, (new_freq, new_symbol, new_id))
 
         # Extract codes from tree
         codes = {}
