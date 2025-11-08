@@ -417,10 +417,11 @@ class TestDataGenerator:
             # Start with valid data and corrupt random bytes
             data = bytearray(self.generate_structured_data(size, "custom"))
             # Corrupt about 10% of bytes
-            corruption_count = int(size * 0.1)
+            corruption_count = min(int(size * 0.1), len(data))
             for _ in range(corruption_count):
-                pos = random.randint(0, size - 1)
-                data[pos] = random.randint(0, 255)
+                if len(data) > 0:
+                    pos = random.randint(0, len(data) - 1)
+                    data[pos] = random.randint(0, 255)
             return bytes(data)
 
         elif malformation_type == "overflow":
