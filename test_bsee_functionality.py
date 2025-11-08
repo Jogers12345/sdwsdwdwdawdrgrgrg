@@ -195,7 +195,7 @@ class BSEETester:
 
         return defaults
 
-    def _test_operation_sample(self, operation, sample_data: bytes, metadata: Dict) -> Dict[str, Any]:
+    def _test_operation_sample(self, operation, sample_data: bytes, metadata: Dict, default_params: Dict = None) -> Dict[str, Any]:
         """Test operation with a single sample."""
         result = {
             'status': 'unknown',
@@ -209,16 +209,13 @@ class BSEETester:
         try:
             start_time = time.time()
 
-            # Handle operations that require parameters
-            required_params = metadata.get('required_params', [])
-            if required_params:
-                # Skip operations that require parameters for now
-                result['status'] = 'skipped'
-                result['error'] = f"Requires parameters: {required_params}"
-                return result
-
-            # Execute operation
-            transformed_data, inverse_func, op_metadata = operation(sample_data)
+            # Execute operation with parameters if provided
+            if default_params:
+                # Call operation with parameters
+                transformed_data, inverse_func, op_metadata = operation(sample_data, **default_params)
+            else:
+                # Call operation without parameters
+                transformed_data, inverse_func, op_metadata = operation(sample_data)
 
             execution_time = time.time() - start_time
 
