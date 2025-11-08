@@ -1,122 +1,19 @@
 {
-  "start_time": 1762638377.6027403,
-  "end_time": 1762638388.1582353,
-  "total_duration": 10.555495023727417,
+  "start_time": 1762638470.025118,
+  "end_time": null,
+  "total_duration": null,
   "test_suites": {
-    "Unit Tests": {
-      "name": "Unit Tests",
-      "status": "failed",
-      "start_time": 1762638377.602803,
-      "tests": {
-        "strategies": {
-          "success": false,
-          "returncode": 1,
-          "stdout": "============================= test session starts ==============================\nplatform linux -- Python 3.12.12, pytest-8.4.2, pluggy-1.6.0 -- /app/.venv/bin/python\ncachedir: .pytest_cache\nrootdir: /workspace/cmhqqjany02gxo6iowqscvbid/sdwsdwdwdawdrgrgrg\nplugins: anyio-4.11.0\ncollecting ... collected 30 items\n\ntests/unit/test_strategies.py::TestMCTSStrategy::test_mcts_tree_node_creation PASSED [  3%]\ntests/unit/test_strategies.py::TestMCTSStrategy::test_mcts_uct_calculation PASSED [  6%]\ntests/unit/test_strategies.py::TestMCTSStrategy::test_mcts_selection_phase PASSED [ 10%]\ntests/unit/test_strategies.py::TestMCTSStrategy::test_mcts_simulation_and_backpropagation PASSED [ 13%]\ntests/unit/test_strategies.py::TestMCTSStrategy::test_mcts_tree_growth PASSED [ 16%]\ntests/unit/test_strategies.py::TestMCTSStrategy::test_mcts_config_parameter_influence FAILED [ 20%]\ntests/unit/test_strategies.py::TestGeneticStrategy::test_genetic_population_initialization PASSED [ 23%]\ntests/unit/test_strategies.py::TestGeneticStrategy::test_genetic_crossover_operation PASSED [ 26%]\ntests/unit/test_strategies.py::TestGeneticStrategy::test_genetic_mutation_operations PASSED [ 30%]\ntests/unit/test_strategies.py::TestGeneticStrategy::test_genetic_selection_mechanisms PASSED [ 33%]\ntests/unit/test_strategies.py::TestGeneticStrategy::test_genetic_evolution_improves_fitness PASSED [ 36%]\ntests/unit/test_strategies.py::TestGeneticStrategy::test_genetic_population_diversity_maintenance PASSED [ 40%]\ntests/unit/test_strategies.py::TestBeamSearchStrategy::test_beam_state_maintenance PASSED [ 43%]\ntests/unit/test_strategies.py::TestBeamSearchStrategy::test_beam_candidate_expansion_and_pruning PASSED [ 46%]\ntests/unit/test_strategies.py::TestBeamSearchStrategy::test_beam_k_best_selection_logic PASSED [ 50%]\ntests/unit/test_strategies.py::TestBeamSearchStrategy::test_beam_width_parameter_effects FAILED [ 53%]\ntests/unit/test_strategies.py::TestBeamSearchStrategy::test_beam_contains_best_candidates PASSED [ 56%]\ntests/unit/test_strategies.py::TestSimulatedAnnealingStrategy::test_simulated_annealing_temperature_schedule PASSED [ 60%]\ntests/unit/test_strategies.py::TestSimulatedAnnealingStrategy::test_simulated_annealing_acceptance_probability PASSED [ 63%]\ntests/unit/test_strategies.py::TestSimulatedAnnealingStrategy::test_simulated_annealing_move_generation PASSED [ 66%]\ntests/unit/test_strategies.py::TestSimulatedAnnealingStrategy::test_simulated_annealing_cooling_rate_effects PASSED [ 70%]\ntests/unit/test_strategies.py::TestSimulatedAnnealingStrategy::test_simulated_annealing_convergence_behavior PASSED [ 73%]\ntests/unit/test_strategies.py::TestHeuristicStrategy::test_heuristic_evaluation_functions FAILED [ 76%]\ntests/unit/test_strategies.py::TestHeuristicStrategy::test_heuristic_weighted_scoring_logic PASSED [ 80%]\ntests/unit/test_strategies.py::TestHeuristicStrategy::test_heuristic_operation_ranking PASSED [ 83%]\ntests/unit/test_strategies.py::TestHeuristicStrategy::test_heuristic_parameter_influence PASSED [ 86%]\ntests/unit/test_strategies.py::TestHeuristicStrategy::test_heuristic_deterministic_behavior FAILED [ 90%]\ntests/unit/test_strategies.py::TestStrategyIntegration::test_strategy_consistency_validation FAILED [ 93%]\ntests/unit/test_strategies.py::TestStrategyIntegration::test_strategy_performance_comparison PASSED [ 96%]\ntests/unit/test_strategies.py::TestStrategyIntegration::test_strategy_convergence_validation PASSED [100%]\n\n=================================== FAILURES ===================================\n____________ TestMCTSStrategy.test_mcts_config_parameter_influence _____________\ntests/unit/test_strategies.py:123: in test_mcts_config_parameter_influence\n    strategy.analyze.return_value = {\n    ^^^^^^^^^^^^^^^^\n/usr/local/lib/python3.12/unittest/mock.py:660: in __getattr__\n    raise AttributeError(\"Mock object has no attribute %r\" % name)\nE   AttributeError: Mock object has no attribute 'analyze'\n___________ TestBeamSearchStrategy.test_beam_width_parameter_effects ___________\ntests/unit/test_strategies.py:386: in test_beam_width_parameter_effects\n    result_small = beam_search(test_data, beam_width=2, max_iterations=5)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ntests/unit/test_strategies.py:368: in beam_search\n    \"data\": state[\"data\"] + f\"_{i}\",\n            ^^^^^^^^^^^^^^^^^^^^^^^\nE   TypeError: can't concat str to bytes\n__________ TestHeuristicStrategy.test_heuristic_evaluation_functions ___________\ntests/unit/test_strategies.py:623: in test_heuristic_evaluation_functions\n    entropy_score = entropy_heuristic(test_data)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ntests/unit/test_strategies.py:605: in entropy_heuristic\n    entropy -= probability * (probability.bit_length() - 1)\n                              ^^^^^^^^^^^^^^^^^^^^^^\nE   AttributeError: 'float' object has no attribute 'bit_length'\n_________ TestHeuristicStrategy.test_heuristic_deterministic_behavior __________\ntests/unit/test_strategies.py:735: in test_heuristic_deterministic_behavior\n    assert different_result != results[0]\nE   assert 98.80555555555556 != 98.80555555555556\n_________ TestStrategyIntegration.test_strategy_consistency_validation _________\ntests/unit/test_strategies.py:753: in test_strategy_consistency_validation\n    strategy.analyze.return_value = {\n    ^^^^^^^^^^^^^^^^\n/usr/local/lib/python3.12/unittest/mock.py:660: in __getattr__\n    raise AttributeError(\"Mock object has no attribute %r\" % name)\nE   AttributeError: Mock object has no attribute 'analyze'\n- generated xml file: /workspace/cmhqqjany02gxo6iowqscvbid/sdwsdwdwdawdrgrgrg/junit-strategies.xml -\n=========================== short test summary info ============================\nFAILED tests/unit/test_strategies.py::TestMCTSStrategy::test_mcts_config_parameter_influence\nFAILED tests/unit/test_strategies.py::TestBeamSearchStrategy::test_beam_width_parameter_effects\nFAILED tests/unit/test_strategies.py::TestHeuristicStrategy::test_heuristic_evaluation_functions\nFAILED tests/unit/test_strategies.py::TestHeuristicStrategy::test_heuristic_deterministic_behavior\nFAILED tests/unit/test_strategies.py::TestStrategyIntegration::test_strategy_consistency_validation\n========================= 5 failed, 25 passed in 0.39s =========================\n",
-          "stderr": "",
-          "duration": 1.712259292602539
-        },
-        "operations": {
-          "success": false,
-          "returncode": 1,
-          "stdout": "============================= test session starts ==============================\nplatform linux -- Python 3.12.12, pytest-8.4.2, pluggy-1.6.0 -- /app/.venv/bin/python\ncachedir: .pytest_cache\nrootdir: /workspace/cmhqqjany02gxo6iowqscvbid/sdwsdwdwdawdrgrgrg\nplugins: anyio-4.11.0\ncollecting ... collected 35 items\n\ntests/unit/test_operations.py::TestXorOperation::test_xor_basic_functionality FAILED [  2%]\ntests/unit/test_operations.py::TestXorOperation::test_xor_reversibility PASSED [  5%]\ntests/unit/test_operations.py::TestXorOperation::test_xor_parameter_validation PASSED [  8%]\ntests/unit/test_operations.py::TestXorOperation::test_xor_edge_cases PASSED [ 11%]\ntests/unit/test_operations.py::TestXorOperation::test_xor_various_data_patterns PASSED [ 14%]\ntests/unit/test_operations.py::TestAddConstantOperation::test_add_constant_basic_functionality PASSED [ 17%]\ntests/unit/test_operations.py::TestAddConstantOperation::test_add_constant_reversibility PASSED [ 20%]\ntests/unit/test_operations.py::TestAddConstantOperation::test_add_constant_parameter_validation PASSED [ 22%]\ntests/unit/test_operations.py::TestAddConstantOperation::test_add_constant_overflow_handling PASSED [ 25%]\ntests/unit/test_operations.py::TestAddConstantOperation::test_add_constant_various_constants PASSED [ 28%]\ntests/unit/test_operations.py::TestRotateOperation::test_rotate_left_basic_functionality PASSED [ 31%]\ntests/unit/test_operations.py::TestRotateOperation::test_rotate_left_reversibility PASSED [ 34%]\ntests/unit/test_operations.py::TestRotateOperation::test_rotate_parameter_validation PASSED [ 37%]\ntests/unit/test_operations.py::TestRotateOperation::test_rotate_edge_cases PASSED [ 40%]\ntests/unit/test_operations.py::TestRotateOperation::test_rotate_all_bit_values FAILED [ 42%]\ntests/unit/test_operations.py::TestSubstituteOperation::test_substitute_basic_functionality PASSED [ 45%]\ntests/unit/test_operations.py::TestSubstituteOperation::test_substitute_reversibility PASSED [ 48%]\ntests/unit/test_operations.py::TestSubstituteOperation::test_substitute_parameter_validation PASSED [ 51%]\ntests/unit/test_operations.py::TestSubstituteOperation::test_substitute_edge_cases PASSED [ 54%]\ntests/unit/test_operations.py::TestSubstituteOperation::test_substitute_collision_handling PASSED [ 57%]\ntests/unit/test_operations.py::TestCompressionOperation::test_compression_basic_functionality PASSED [ 60%]\ntests/unit/test_operations.py::TestCompressionOperation::test_compression_reversibility PASSED [ 62%]\ntests/unit/test_operations.py::TestCompressionOperation::test_compression_parameter_validation PASSED [ 65%]\ntests/unit/test_operations.py::TestCompressionOperation::test_compression_edge_cases PASSED [ 68%]\ntests/unit/test_operations.py::TestOperationMetadata::test_operation_name_and_description PASSED [ 71%]\ntests/unit/test_operations.py::TestOperationMetadata::test_operation_parameter_metadata PASSED [ 74%]\ntests/unit/test_operations.py::TestOperationMetadata::test_operation_reversibility_metadata PASSED [ 77%]\ntests/unit/test_operations.py::TestOperationIntegration::test_multiple_operation_sequence PASSED [ 80%]\ntests/unit/test_operations.py::TestOperationIntegration::test_operation_with_various_data_sizes PASSED [ 82%]\ntests/unit/test_operations.py::TestOperationIntegration::test_operation_performance_consistency PASSED [ 85%]\ntests/unit/test_operations.py::TestOperationIntegration::test_operation_error_handling PASSED [ 88%]\ntests/unit/test_operations.py::TestOperationBoundaryConditions::test_empty_data_handling PASSED [ 91%]\ntests/unit/test_operations.py::TestOperationBoundaryConditions::test_maximum_size_data PASSED [ 94%]\ntests/unit/test_operations.py::TestOperationBoundaryConditions::test_unicode_and_special_characters FAILED [ 97%]\ntests/unit/test_operations.py::TestOperationBoundaryConditions::test_extreme_parameter_values PASSED [100%]\n\n=================================== FAILURES ===================================\n________________ TestXorOperation.test_xor_basic_functionality _________________\ntests/unit/test_operations.py:30: in test_xor_basic_functionality\n    expected = bytes(ord('H') ^ 0x42, ord('e') ^ 0x42, ord('l') ^ 0x42,\nE   TypeError: bytes() takes at most 3 arguments (5 given)\n________________ TestRotateOperation.test_rotate_all_bit_values ________________\ntests/unit/test_operations.py:433: in test_rotate_all_bit_values\n    assert result == expected, f\"Rotate left by {bits} bits failed\"\nE   AssertionError: Rotate left by 3 bits failed\nE   assert b'\\x9a' == b'\\x9b'\nE     \nE     At index 0 diff: b'\\x9a' != b'\\x9b'\nE     \nE     Full diff:\nE     - b'\\x9b'\nE     ?      ^\nE     + b'\\x9a'\nE     ?      ^\n_____ TestOperationBoundaryConditions.test_unicode_and_special_characters ______\ntests/unit/test_operations.py:942: in test_unicode_and_special_characters\n    result = byte_operation(special_data)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ntests/unit/test_operations.py:940: in byte_operation\n    return bytes(b + 1 for b in data)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\nE   ValueError: bytes must be in range(0, 256)\n- generated xml file: /workspace/cmhqqjany02gxo6iowqscvbid/sdwsdwdwdawdrgrgrg/junit-operations.xml -\n=========================== short test summary info ============================\nFAILED tests/unit/test_operations.py::TestXorOperation::test_xor_basic_functionality\nFAILED tests/unit/test_operations.py::TestRotateOperation::test_rotate_all_bit_values\nFAILED tests/unit/test_operations.py::TestOperationBoundaryConditions::test_unicode_and_special_characters\n========================= 3 failed, 32 passed in 1.23s =========================\n",
-          "stderr": "",
-          "duration": 2.480458974838257
-        },
-        "gui_components": {
-          "success": true,
-          "returncode": 0,
-          "stdout": "============================= test session starts ==============================\nplatform linux -- Python 3.12.12, pytest-8.4.2, pluggy-1.6.0 -- /app/.venv/bin/python\ncachedir: .pytest_cache\nrootdir: /workspace/cmhqqjany02gxo6iowqscvbid/sdwsdwdwdawdrgrgrg\nplugins: anyio-4.11.0\ncollecting ... collected 9 items\n\ntests/unit/test_gui.py::TestGUIComponents::test_main_window_initialization SKIPPED [ 11%]\ntests/unit/test_gui.py::TestGUIComponents::test_file_selector_component SKIPPED [ 22%]\ntests/unit/test_gui.py::TestGUIComponents::test_strategy_panel_component SKIPPED [ 33%]\ntests/unit/test_gui.py::TestGUIWorkflows::test_complete_analysis_workflow PASSED [ 44%]\ntests/unit/test_gui.py::TestGUIWorkflows::test_error_handling_workflow PASSED [ 55%]\ntests/unit/test_gui.py::TestGUIWorkflows::test_user_interaction_sequences PASSED [ 66%]\ntests/unit/test_gui.py::TestGUIErrorHandling::test_component_not_found_handling PASSED [ 77%]\ntests/unit/test_gui.py::TestGUIErrorHandling::test_invalid_event_handling PASSED [ 88%]\ntests/unit/test_gui.py::TestGUIErrorHandling::test_invalid_property_handling PASSED [100%]\n\n- generated xml file: /workspace/cmhqqjany02gxo6iowqscvbid/sdwsdwdwdawdrgrgrg/junit-gui.xml -\n========================= 6 passed, 3 skipped in 0.13s =========================\n",
-          "stderr": "",
-          "duration": 1.3868956565856934
-        }
-      },
-      "overall_success": false,
-      "end_time": 1762638383.1826432,
-      "duration": 5.579840183258057
-    },
-    "Integration Tests": {
-      "name": "Integration Tests",
-      "status": "failed",
-      "start_time": 1762638383.1827118,
-      "tests": {
-        "pipeline": {
-          "success": false,
-          "returncode": 1,
-          "stdout": "============================= test session starts ==============================\nplatform linux -- Python 3.12.12, pytest-8.4.2, pluggy-1.6.0 -- /app/.venv/bin/python\ncachedir: .pytest_cache\nrootdir: /workspace/cmhqqjany02gxo6iowqscvbid/sdwsdwdwdawdrgrgrg\nplugins: anyio-4.11.0\ncollecting ... collected 11 items\n\ntests/integration/test_pipeline.py::TestCompleteAnalysisPipeline::test_load_file_through_full_pipeline PASSED [  9%]\ntests/integration/test_pipeline.py::TestCompleteAnalysisPipeline::test_pipeline_with_all_strategies PASSED [ 18%]\ntests/integration/test_pipeline.py::TestCompleteAnalysisPipeline::test_pipeline_error_recovery FAILED [ 27%]\ntests/integration/test_pipeline.py::TestCompleteAnalysisPipeline::test_pipeline_configuration_integration FAILED [ 36%]\ntests/integration/test_pipeline.py::TestStrategyIntegration::test_strategies_integration PASSED [ 45%]\ntests/integration/test_pipeline.py::TestStrategyIntegration::test_strategy_parameter_integration PASSED [ 54%]\ntests/integration/test_pipeline.py::TestOperationIntegration::test_operation_chaining FAILED [ 63%]\ntests/integration/test_pipeline.py::TestOperationIntegration::test_operation_parameter_integration PASSED [ 72%]\ntests/integration/test_pipeline.py::TestGUIWorkflowIntegration::test_gui_file_loading_workflow FAILED [ 81%]\ntests/integration/test_pipeline.py::TestGUIWorkflowIntegration::test_gui_transformation_viewer_workflow PASSED [ 90%]\ntests/integration/test_pipeline.py::TestGUIWorkflowIntegration::test_gui_export_workflow PASSED [100%]\n\n=================================== FAILURES ===================================\n__________ TestCompleteAnalysisPipeline.test_pipeline_error_recovery ___________\ntests/integration/test_pipeline.py:208: in test_pipeline_error_recovery\n    assert result[\"failed_operations\"] >= 1  # Some operations should fail\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE   assert 0 >= 1\n_____ TestCompleteAnalysisPipeline.test_pipeline_configuration_integration _____\ntests/integration/test_pipeline.py:296: in test_pipeline_configuration_integration\n    result = pipeline.run_with_config(b\"config test data\")\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ntests/integration/test_pipeline.py:266: in run_with_config\n    \"config_used\": self.config[\"strategies\"][mcts]\n                                             ^^^^\nE   NameError: name 'mcts' is not defined\n_______________ TestOperationIntegration.test_operation_chaining _______________\ntests/integration/test_pipeline.py:564: in test_operation_chaining\n    assert reverse_result == original_data\nE   AssertionError: assert b'\\xfb\\x00\\xe...4\\xe9\\xff\\x04' == b'operation_chain_test'\nE     \nE     At index 0 diff: b'\\xfb' != b'o'\nE     \nE     Full diff:\nE     - (b'operation_chain_test')\nE     + (b'\\xfb\\x00\\xe9\\x02\\xf5\\x04\\xfd\\xfb\\xfe+\\xef\\xf8\\xf5\\xfd\\xfe+\\x04\\xe9\\xff\\x04')\n__________ TestGUIWorkflowIntegration.test_gui_file_loading_workflow ___________\ntests/integration/test_pipeline.py:733: in test_gui_file_loading_workflow\n    analysis_result = main_panel.run_analysis()\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^\ntests/integration/test_pipeline.py:700: in run_analysis\n    \"score\": 0.7 + random.random() * 0.2,\n                   ^^^^^^\nE   NameError: name 'random' is not defined. Did you forget to import 'random'\n- generated xml file: /workspace/cmhqqjany02gxo6iowqscvbid/sdwsdwdwdawdrgrgrg/junit-pipeline.xml -\n=========================== short test summary info ============================\nFAILED tests/integration/test_pipeline.py::TestCompleteAnalysisPipeline::test_pipeline_error_recovery\nFAILED tests/integration/test_pipeline.py::TestCompleteAnalysisPipeline::test_pipeline_configuration_integration\nFAILED tests/integration/test_pipeline.py::TestOperationIntegration::test_operation_chaining\nFAILED tests/integration/test_pipeline.py::TestGUIWorkflowIntegration::test_gui_file_loading_workflow\n========================= 4 failed, 7 passed in 0.28s ==========================\n",
-          "stderr": "",
-          "duration": 1.5101542472839355
-        },
-        "gui_integration": {
-          "success": false,
-          "returncode": 1,
-          "stdout": "============================= test session starts ==============================\nplatform linux -- Python 3.12.12, pytest-8.4.2, pluggy-1.6.0 -- /app/.venv/bin/python\ncachedir: .pytest_cache\nrootdir: /workspace/cmhqqjany02gxo6iowqscvbid/sdwsdwdwdawdrgrgrg\nplugins: anyio-4.11.0\ncollecting ... collected 9 items\n\ntests/integration/test_gui_integration.py::TestGUIIntegration::test_file_loading_integration FAILED [ 11%]\ntests/integration/test_gui_integration.py::TestGUIIntegration::test_analysis_integration PASSED [ 22%]\ntests/integration/test_gui_integration.py::TestGUIIntegration::test_end_to_end_workflow PASSED [ 33%]\ntests/integration/test_gui_integration.py::TestGUIIntegration::test_performance_integration PASSED [ 44%]\ntests/integration/test_gui_integration.py::TestGUIIntegration::test_error_handling_integration FAILED [ 55%]\ntests/integration/test_gui_integration.py::TestGUIIntegration::test_comprehensive_integration_suite FAILED [ 66%]\ntests/integration/test_gui_integration.py::TestRealGUIIntegration::test_real_application_startup SKIPPED [ 77%]\ntests/integration/test_gui_integration.py::TestRealGUIIntegration::test_real_file_dialog_integration SKIPPED [ 88%]\ntests/integration/test_gui_integration.py::TestRealGUIIntegration::test_real_menu_integration SKIPPED [100%]\n\n=================================== FAILURES ===================================\n_______________ TestGUIIntegration.test_file_loading_integration _______________\ntests/integration/test_gui_integration.py:545: in test_file_loading_integration\n    assert result['passed'], f\"File loading integration test failed: {result.get('errors', [])}\"\nE   AssertionError: File loading integration test failed: ['Non-existent file should not load successfully']\nE   assert False\n______________ TestGUIIntegration.test_error_handling_integration ______________\ntests/integration/test_gui_integration.py:565: in test_error_handling_integration\n    assert result['passed'], f\"Error handling integration test failed: {result.get('errors', [])}\"\nE   AssertionError: Error handling integration test failed: ['Invalid file path should fail']\nE   assert False\n___________ TestGUIIntegration.test_comprehensive_integration_suite ____________\ntests/integration/test_gui_integration.py:586: in test_comprehensive_integration_suite\n    assert passed_tests == total_tests, \\\nE   AssertionError: Only 3/5 integration tests passed\nE   assert 3 == 5\n- generated xml file: /workspace/cmhqqjany02gxo6iowqscvbid/sdwsdwdwdawdrgrgrg/junit-gui-integration.xml -\n=========================== short test summary info ============================\nFAILED tests/integration/test_gui_integration.py::TestGUIIntegration::test_file_loading_integration\nFAILED tests/integration/test_gui_integration.py::TestGUIIntegration::test_error_handling_integration\nFAILED tests/integration/test_gui_integration.py::TestGUIIntegration::test_comprehensive_integration_suite\n==================== 3 failed, 3 passed, 3 skipped in 0.15s ====================\n",
-          "stderr": "",
-          "duration": 1.392533540725708
-        }
-      },
-      "overall_success": false,
-      "end_time": 1762638386.085504,
-      "duration": 2.90279221534729
-    },
-    "Performance Tests": {
-      "name": "Performance Tests",
-      "status": "failed",
-      "start_time": 1762638386.0855849,
-      "tests": {
-        "operation_performance": {
-          "success": false,
-          "returncode": 1,
-          "stdout": "",
-          "stderr": "  File \"/workspace/cmhqqjany02gxo6iowqscvbid/sdwsdwdwdawdrgrgrg/tests/performance/test_operation_performance.py\", line 486\n    header = f\"{'Size':12s} {'Avg Time':12s} {'Ops/Sec':12s} {'Memory':12s} {'Success':8s}}\"\n                                                                                          ^\nSyntaxError: f-string: single '}' is not allowed\n",
-          "duration": 0.024503707885742188
-        },
-        "strategy_benchmarks": {
-          "success": false,
-          "returncode": 1,
-          "stdout": "",
-          "stderr": "Traceback (most recent call last):\n  File \"/workspace/cmhqqjany02gxo6iowqscvbid/sdwsdwdwdawdrgrgrg/tests/performance/benchmark_strategies.py\", line 15, in <module>\n    from tests.conftest import TestDataGenerator, performance_test_config\nModuleNotFoundError: No module named 'tests'\n",
-          "duration": 0.9017355442047119
-        }
-      },
-      "overall_success": false,
-      "end_time": 1762638387.0119128,
-      "duration": 0.9263279438018799
-    },
-    "Validation System": {
-      "name": "Validation System",
-      "status": "failed",
-      "start_time": 1762638387.0119863,
-      "tests": {
-        "component_validator": {
-          "success": true,
-          "returncode": 0,
-          "stdout": "",
-          "stderr": "",
-          "duration": 0.2618234157562256
-        },
-        "regression_suite": {
-          "success": false,
-          "returncode": 1,
-          "stdout": "",
-          "stderr": "Traceback (most recent call last):\n  File \"/workspace/cmhqqjany02gxo6iowqscvbid/sdwsdwdwdawdrgrgrg/tests/regression/regression_suite.py\", line 18, in <module>\n    from tests.conftest import TestDataGenerator, TestResultValidator, expected_results_dir\nModuleNotFoundError: No module named 'tests'\n",
-          "duration": 0.8537788391113281
-        }
-      },
-      "overall_success": false,
-      "end_time": 1762638388.1277165,
-      "duration": 1.1157302856445312
-    },
     "Test Data Management": {
       "name": "Test Data Management",
       "status": "failed",
-      "start_time": 1762638388.1277912,
+      "start_time": 1762638470.0251825,
       "tests": {
         "data_generator": {
           "success": false,
           "returncode": 1,
           "stdout": "",
-          "stderr": "  File \"/workspace/cmhqqjany02gxo6iowqscvbid/sdwsdwdwdawdrgrgrg/tests/fixtures/test_data_generator.py\", line 592\n    ))\n    ^\nSyntaxError: positional argument follows keyword argument\n",
-          "duration": 0.02949833869934082
+          "stderr": "  File \"/workspace/cmhqqjany02gxo6iowqscvbid/sdwsdwdwdawdrgrgrg/tests/fixtures/test_data_generator.py\", line 593\n    ))\n    ^\nSyntaxError: positional argument follows keyword argument\n",
+          "duration": 0.03078317642211914
         },
         "file_creation": {
           "success": false,
@@ -125,47 +22,11 @@
         }
       },
       "overall_success": false,
-      "end_time": 1762638388.1576862,
-      "duration": 0.02989506721496582
-    },
-    "CI Pipeline Configuration": {
-      "name": "CI Pipeline Configuration",
-      "status": "failed",
-      "start_time": 1762638388.1577532,
-      "tests": {
-        "ci_file_exists": {
-          "success": true,
-          "file_path": "/workspace/cmhqqjany02gxo6iowqscvbid/sdwsdwdwdawdrgrgrg/ci_pipeline.yml"
-        },
-        "ci_yaml_valid": {
-          "success": false,
-          "error": "PyYAML not available for validation"
-        },
-        "required_jobs": {
-          "success": true,
-          "required_jobs": [
-            "unit-tests",
-            "integration-tests",
-            "performance-tests",
-            "gui-tests",
-            "regression-tests",
-            "build"
-          ],
-          "missing_jobs": []
-        }
-      },
-      "overall_success": false,
-      "end_time": 1762638388.158203,
-      "duration": 0.0004496574401855469
+      "end_time": 1762638470.0563326,
+      "duration": 0.031150102615356445
     }
   },
-  "overall_status": "failed",
+  "overall_status": "running",
   "errors": [],
-  "warnings": [],
-  "summary": {
-    "total_suites": 6,
-    "passed_suites": 0,
-    "failed_suites": 6,
-    "success_rate": 0.0
-  }
+  "warnings": []
 }
