@@ -1,0 +1,364 @@
+# Neural Network Strategy Preset
+# Advanced neural network-based binary structure exploration
+
+name: "Neural Network Analysis"
+description: "Uses deep learning strategies with adaptive cost models for optimal binary transformation"
+version: "1.0"
+author: "BSEE Team"
+
+# Strategy Configuration
+strategy:
+  type: "neural_network"
+  primary: "deep_q_network"
+  fallback: "neural_network"
+
+  # Neural Network Strategy Parameters
+  neural_network:
+    input_size: 200
+    hidden_sizes: [128, 64, 32]
+    output_size: 64
+    learning_rate: 0.001
+    batch_size: 32
+    epochs: 100
+    epsilon: 0.1
+    epsilon_decay: 0.995
+    epsilon_min: 0.01
+    memory_size: 10000
+
+  # Deep Q-Network Parameters
+  deep_q_network:
+    state_size: 200
+    action_size: 64
+    hidden_layers: [256, 128, 64]
+    learning_rate: 0.0001
+    gamma: 0.95
+    epsilon: 1.0
+    epsilon_min: 0.01
+    epsilon_decay: 0.995
+    memory_size: 50000
+    batch_size: 64
+    training_episodes: 1000
+    training_start: 1000
+    target_update_freq: 1000
+
+# Cost Model Configuration
+cost_model:
+  type: "multi_objective"
+  parameters:
+    # Multi-Objective Cost Model
+    computational:
+      weight: 0.3
+      base_costs:
+        xor: 1.0
+        add: 1.0
+        sub: 1.0
+        rotate: 2.0
+        reverse: 3.0
+        substitute: 5.0
+        compress: 15.0
+        decompress: 20.0
+        transpose: 8.0
+        bit_swap: 4.0
+
+    memory:
+      weight: 0.2
+      costs_per_kb:
+        xor: 1.0
+        add: 1.0
+        sub: 1.0
+        rotate: 1.0
+        reverse: 1.0
+        substitute: 1.5
+        compress: 0.3
+        decompress: 2.5
+        transpose: 2.0
+        bit_swap: 1.0
+
+    time:
+      weight: 0.2
+      time_per_kb: 0.01
+      complexity_factors:
+        xor: 1.0
+        add: 1.0
+        sub: 1.0
+        rotate: 1.2
+        reverse: 1.0
+        substitute: 1.5
+        compress: 2.0
+        decompress: 2.5
+        transpose: 1.5
+        bit_swap: 1.3
+
+    quality:
+      weight: 0.2
+      impact_factors:
+        xor: 0.1
+        add: 0.1
+        sub: 0.1
+        rotate: 0.05
+        reverse: 0.02
+        substitute: 0.15
+        compress: -0.5
+        decompress: -0.3
+        transpose: 0.08
+        bit_swap: 0.12
+
+    resource:
+      weight: 0.1
+      cpu_intensities:
+        xor: 0.8
+        add: 0.8
+        sub: 0.8
+        rotate: 1.0
+        reverse: 0.9
+        substitute: 1.2
+        compress: 2.0
+        decompress: 2.5
+        transpose: 1.5
+        bit_swap: 1.3
+
+    optimization_mode: "weighted_sum"
+    pareto_epsilon: 0.01
+    constraint_mode: "soft"
+    adaptive_learning: true
+    learning_rate: 0.05
+
+# Policy Configuration
+policy:
+  type: "multi_objective"
+  mode: "optimization"
+  adaptive_weights: true
+  weight_adaptation_rate: 0.05
+  performance_window: 30
+  exploration_rate: 0.1
+  exploration_decay: 0.995
+  min_exploration_rate: 0.01
+
+  objectives:
+    - type: "score_improvement"
+      weight: 0.4
+      direction: "maximize"
+      priority: 1
+    - type: "cost_efficiency"
+      weight: 0.25
+      direction: "maximize"
+      priority: 2
+    - type: "time_efficiency"
+      weight: 0.15
+      direction: "maximize"
+      priority: 3
+    - type: "memory_efficiency"
+      weight: 0.1
+      direction: "maximize"
+      priority: 4
+    - type: "stability"
+      weight: 0.1
+      direction: "maximize"
+      priority: 5
+
+  constraints:
+    max_cost_per_operation: 100.0
+    max_time_per_operation: 5.0
+    min_improvement_threshold: 0.001
+    max_consecutive_failures: 10
+    memory_limit_mb: 512.0
+  constraint_mode: "soft"
+
+# Metrics Configuration
+metrics:
+  primary:
+    - "file_ideality_score"
+    - "entropy_global"
+    - "lz77_ratio"
+    - "compression_efficiency"
+  secondary:
+    - "bitwise_distribution"
+    - "byte_transition_entropy"
+    - "run_length_encoding_efficiency"
+    - "pattern_density"
+  optimization_direction:
+    file_ideality_score: "max"
+    entropy_global: "min"
+    lz77_ratio: "max"
+    compression_efficiency: "max"
+    bitwise_distribution: "min"
+    byte_transition_entropy: "min"
+    run_length_encoding_efficiency: "max"
+    pattern_density: "max"
+
+# Operation Configuration
+operations:
+  allowed:
+    - "xor"
+    - "add_constant"
+    - "sub_constant"
+    - "rotate"
+    - "reverse"
+    - "substitute"
+    - "compress"
+    - "decompress"
+    - "transpose"
+    - "bit_swap"
+
+  parameter_ranges:
+    xor:
+      key: [0, 255]
+    add_constant:
+      constant: [0, 255]
+    sub_constant:
+      constant: [0, 255]
+    rotate:
+      bits: [1, 7]
+    substitute:
+      pattern_length: [2, 8]
+      replacement_length: [2, 8]
+    compress:
+      level: [1, 9]
+      algorithm: ["lz4", "zstd", "gzip"]
+    decompress:
+      algorithm: ["lz4", "zstd", "gzip"]
+
+# Limits and Constraints
+limits:
+  max_operations: 5000
+  max_cost: 50000
+  max_time: 600  # 10 minutes
+  max_memory_mb: 1024
+  min_improvement: 0.0001
+  convergence_threshold: 0.00001
+  stagnation_limit: 500
+
+# Neural Network Specific Settings
+neural_settings:
+  # Model paths
+  model_save_path: "models/neural_networks/"
+  model_load_path: "models/neural_networks/"
+
+  # Training settings
+  auto_save_interval: 100  # Save model every 100 operations
+  validation_split: 0.2
+  early_stopping_patience: 50
+
+  # Performance tracking
+  track_loss: true
+  track_accuracy: true
+  track_q_values: true
+
+  # Feature engineering
+  feature_normalization: true
+  feature_selection: true
+  data_augmentation: false
+
+# Advanced Features
+advanced_features:
+  # Ensemble learning
+  use_ensemble: true
+  ensemble_methods: ["voting", "averaging"]
+  ensemble_size: 3
+
+  # Transfer learning
+  use_transfer_learning: true
+  pretrained_models_path: "models/pretrained/"
+
+  # Hyperparameter optimization
+  auto_hyperparameter_tuning: false
+  hyperparameter_search_space:
+    learning_rate: [0.0001, 0.001, 0.01]
+    batch_size: [16, 32, 64]
+    hidden_sizes: [[64, 32], [128, 64, 32], [256, 128, 64]]
+
+# Output Configuration
+output:
+  save_models: true
+  save_training_data: true
+  save_performance_metrics: true
+  generate_visualizations: true
+  export_detailed_reports: true
+
+  output_directory: "results/neural_network/"
+  model_directory: "models/neural_networks/"
+  log_directory: "logs/neural_network/"
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  file_logging: true
+  console_logging: true
+  log_performance_metrics: true
+  log_neural_network_stats: true
+  log_training_progress: true
+
+# Platform Optimization
+platform:
+  windows_optimized: true
+  gpu_acceleration: false  # Set to true if CUDA available
+  memory_optimization: true
+  parallel_processing: true
+  num_threads: 0  # 0 = auto-detect
+
+# Validation and Testing
+validation:
+  cross_validation: true
+  test_split: 0.2
+  validation_metrics:
+    - "accuracy"
+    - "precision"
+    - "recall"
+    - "f1_score"
+    - "convergence_rate"
+
+  benchmarking:
+    enabled: true
+    compare_with_strategies:
+      - "mcts"
+      - "genetic"
+      - "heuristic"
+    benchmark_iterations: 10
+
+# Error Handling
+error_handling:
+  neural_network_errors:
+    - "model_initialization_failure"
+    - "training_convergence_failure"
+    - "memory_overflow"
+    - "data_corruption"
+
+  fallback_strategy: "heuristic"
+  auto_recovery: true
+  max_recovery_attempts: 3
+
+# Dependencies
+dependencies:
+  required:
+    - "numpy>=1.21.0"
+    - "scipy>=1.7.0"
+    - "matplotlib>=3.4.0"
+    - "psutil>=5.8.0"
+    - "click>=8.0.0"
+    - "tqdm>=4.62.0"
+    - "pyyaml>=5.4.0"
+    - "pillow>=8.3.0"
+
+  optional:
+    - "torch>=1.9.0"  # For advanced neural networks
+    - "tensorflow>=2.6.0"  # Alternative neural network framework
+    - "scikit-learn>=1.0.0"  # For additional ML algorithms
+    - "seaborn>=0.11.0"  # For enhanced visualizations
+
+# Compatibility
+compatibility:
+  python_version: ">=3.8"
+  platforms: ["windows", "linux", "macos"]
+  architecture: ["x86_64", "arm64"]
+
+# Version Information
+version_info:
+  preset_version: "1.0.0"
+  bsee_version: "2.0.0"
+  last_updated: "2024-01-01"
+  changelog: |
+    - Initial neural network preset implementation
+    - Deep Q-Network strategy integration
+    - Multi-objective cost model optimization
+    - Advanced feature engineering
+    - Comprehensive performance tracking
