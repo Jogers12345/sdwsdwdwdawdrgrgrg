@@ -742,7 +742,7 @@ class TestDataGenerators:
     @staticmethod
     def create_random_high_entropy_data() -> bytes:
         """Create random data with high entropy"""
-        return TestDataGenerator.generate_random_data(4096, seed=98765)
+        return TestDataGenerator.generate_random_data_static(4096, seed=98765)
 
 
 # Test fixtures
