@@ -1,11 +1,18 @@
 """
-Operation history management for BSEE.
+Enhanced History Management for BSEE
+
+Provides comprehensive history tracking for transformation replay functionality.
+Stores complete state snapshots for each operation with timing information
+and metrics evolution for advanced visualization.
 """
 
 import json
-from dataclasses import dataclass
+import time
+import threading
+from dataclasses import dataclass, asdict
 from datetime import datetime
-from typing import Callable, Dict, List, Optional
+from pathlib import Path
+from typing import Callable, Dict, List, Optional, Any, Tuple
 
 
 @dataclass
