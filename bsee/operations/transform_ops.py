@@ -76,8 +76,8 @@ class TransformOperations:
                 'category': 'transform',
                 'description': 'Discrete cosine transform',
                 'required_params': [],
-                'optional_params': {},
-                'reversible': False
+                'optional_params': {'padding': 'auto', 'normalization': 'ortho'},
+                'reversible': True
             },
             'dwt_transform': {
                 'category': 'transform',
