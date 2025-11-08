@@ -120,11 +120,12 @@ class TestMCTSStrategy:
         for config in exploration_configs:
             strategy = Mock("MCTSStrategy")
             strategy.configure_mock(**config)
-            strategy.analyze.return_value = {
+            result_data = {
                 "strategy": "mcts",
                 "score": random.random(),
                 "config": config
             }
+            strategy.analyze = Mock(return_value=result_data)
             results.append(strategy.analyze(b"test", max_iterations=10))
 
         # Verify different configs were used
