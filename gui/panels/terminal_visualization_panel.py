@@ -202,8 +202,8 @@ class TerminalVisualizationPanel:
             is_last = (i == min(len(nodes), 3) - 1)
             print_node(node, 0, "", is_last)
 
-    def show_progress_bar(self, current: int, total: int, width: int = 50,
-                         label: str = "Progress"):
+    def show_progress_bar(self, current: int, total: int, label: str = "Progress",
+                         bar_width: int = 50):
         """
         Show ASCII progress bar.
 
