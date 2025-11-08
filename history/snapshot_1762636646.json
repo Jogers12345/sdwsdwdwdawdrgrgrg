@@ -1,0 +1,58 @@
+{
+  "operation_name": "test_operation",
+  "operation_params": {
+    "param1": "value1"
+  },
+  "before_data": "b'Hello'",
+  "after_data": "b'Hello World!'",
+  "before_hex": "48656c6c6f",
+  "after_hex": "48656c6c6f20576f726c6421",
+  "metrics_before": {
+    "entropy": 1.0
+  },
+  "metrics_after": {
+    "entropy": 2.0
+  },
+  "timing_info": {
+    "execution_time": 0.1
+  },
+  "byte_changes": [
+    [
+      5,
+      -1,
+      32
+    ],
+    [
+      6,
+      -1,
+      87
+    ],
+    [
+      7,
+      -1,
+      111
+    ],
+    [
+      8,
+      -1,
+      114
+    ],
+    [
+      9,
+      -1,
+      108
+    ],
+    [
+      10,
+      -1,
+      100
+    ],
+    [
+      11,
+      -1,
+      33
+    ]
+  ],
+  "metadata": {},
+  "timestamp": 1762636646.4083977
+}
