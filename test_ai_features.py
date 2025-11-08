@@ -123,7 +123,8 @@ class SimpleFeatureExtractor:
         scores['compressed'] = compressed_score
 
         # Encrypted detection
-        encrypted_score = (min(entropy / 7.8, 1.0) + (1.0 - min(pattern_repetition * 10, 1.0))) / 2
+        pattern_rep = self._calculate_pattern_repetition(data)
+        encrypted_score = (min(entropy / 7.8, 1.0) + (1.0 - min(pattern_rep * 10, 1.0))) / 2
         scores['encrypted'] = encrypted_score
 
         # Normalize scores
