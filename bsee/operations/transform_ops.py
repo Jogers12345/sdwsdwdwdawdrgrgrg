@@ -541,7 +541,17 @@ class TransformOperations:
 
     def dwt_transform(self, binary_data: bytes, wavelet: str = 'haar', mode: str = 'symmetric', levels: int = 1) -> Tuple[bytes, Callable, Dict]:
         """Discrete wavelet transform with PyWavelets and Haar fallback."""
-        import numpy as np
+        try:
+            import numpy as np
+        except ImportError:
+            def inverse_no_numpy():
+                raise RuntimeError("numpy is required for DWT transform")
+            return binary_data, inverse_no_numpy, {
+                'operation': 'dwt_transform',
+                'bytes_affected': len(binary_data),
+                'reversible': False,
+                'error': 'numpy not available'
+            }
 
         if len(binary_data) == 0:
             def inverse_empty():
