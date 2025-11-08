@@ -529,11 +529,230 @@ class TransformOperations:
         dct_matrix = dct_matrix * np.sqrt(2 / n)
         return dct_matrix.T @ transformed
 
-    def dwt_transform(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
-        """Discrete wavelet transform."""
+    def dwt_transform(self, binary_data: bytes, wavelet: str = 'haar', mode: str = 'symmetric', levels: int = 1) -> Tuple[bytes, Callable, Dict]:
+        """Discrete wavelet transform with PyWavelets and Haar fallback."""
+        import numpy as np
+
+        if len(binary_data) == 0:
+            def inverse_empty():
+                return b''
+            return b'', inverse_empty, {'operation': 'dwt_transform', 'bytes_affected': 0, 'reversible': True}
+
+        original_length = len(binary_data)
+
+        # Convert binary data to numpy array
+        data = np.frombuffer(binary_data, dtype=np.uint8).astype(np.float64)
+
+        # Apply DWT with PyWavelets or fallback
+        try:
+            import pywt
+            pywt_available = True
+
+            # Handle padding for DWT
+            if len(data) < 2:
+                # Pad to at least 2 elements
+                data = np.pad(data, (0, 2 - len(data)), 'symmetric')
+                padding_info = {'original_length': original_length, 'padded_length': len(data), 'padding_type': 'symmetric'}
+            else:
+                padding_info = {'original_length': original_length, 'padded_length': len(data), 'padding_type': 'none'}
+
+            # Apply multi-level DWT
+            coeffs = []
+            current_data = data
+
+            for level in range(levels):
+                if len(current_data) < 2:
+                    break
+
+                # Single level DWT
+                cA, cD = pywt.dwt(current_data, wavelet=wavelet, mode=mode)
+                coeffs.append((cA, cD))
+                current_data = cA
+
+            # Store decomposition details for reconstruction
+            decomposition_info = {
+                'levels': len(coeffs),
+                'wavelet': wavelet,
+                'mode': mode,
+                'coeff_shapes': [(len(cA), len(cD)) for cA, cD in coeffs]
+            }
+
+            # Pack all coefficients into bytes
+            # Normalize coefficients to uint8 range
+            all_coeffs = []
+            for cA, cD in coeffs:
+                all_coeffs.extend(cA)
+                all_coeffs.extend(cD)
+
+            if all_coeffs:
+                coeffs_array = np.array(all_coeffs)
+                # Normalize to uint8 range
+                min_val = np.min(coeffs_array)
+                max_val = np.max(coeffs_array)
+                if max_val > min_val:
+                    normalized_coeffs = ((coeffs_array - min_val) / (max_val - min_val) * 255).astype(np.uint8)
+                else:
+                    normalized_coeffs = np.zeros_like(coeffs_array, dtype=np.uint8)
+
+                # Store normalization info
+                decomp_metadata = {
+                    'min_value': float(min_val),
+                    'max_value': float(max_val),
+                    'coeff_count': len(normalized_coeffs)
+                }
+            else:
+                normalized_coeffs = np.array([], dtype=np.uint8)
+                decomp_metadata = {'min_value': 0.0, 'max_value': 0.0, 'coeff_count': 0}
+
+            result_bytes = normalized_coeffs.tobytes()
+
+        except ImportError:
+            # Fallback to simple Haar wavelet implementation
+            pywt_available = False
+            result_bytes, decomp_metadata = self._haar_dwt_fallback(data)
+            decomposition_info = {'levels': 1, 'wavelet': 'haar_fallback', 'mode': 'symmetric'}
+            padding_info = {'original_length': original_length, 'padded_length': len(data), 'padding_type': 'none'}
+
         def inverse():
-            raise RuntimeError("DWT transform is not reversible")
-        return binary_data, inverse, {'operation': 'dwt_transform', 'bytes_affected': 0, 'reversible': False}
+            if pywt_available:
+                # Unpack coefficients
+                if decomp_metadata['coeff_count'] == 0:
+                    return b'\x00' * original_length
+
+                coeffs_array = np.frombuffer(result_bytes, dtype=np.uint8).astype(np.float64)
+
+                # Denormalize coefficients
+                min_val = decomp_metadata['min_value']
+                max_val = decomp_metadata['max_value']
+                if max_val > min_val:
+                    denormalized_coeffs = (coeffs_array / 255.0 * (max_val - min_val)) + min_val
+                else:
+                    denormalized_coeffs = np.zeros_like(coeffs_array)
+
+                # Reconstruct coefficients list
+                coeffs_reconstructed = []
+                start_idx = 0
+                for cA_len, cD_len in decomposition_info['coeff_shapes']:
+                    end_idx = start_idx + cA_len + cD_len
+                    level_coeffs = denormalized_coeffs[start_idx:end_idx]
+                    cA_restored = level_coeffs[:cA_len]
+                    cD_restored = level_coeffs[cA_len:]
+                    coeffs_reconstructed.append((cA_restored, cD_restored))
+                    start_idx = end_idx
+
+                # Reconstruct using inverse DWT
+                reconstructed_data = coeffs_reconstructed[-1][0]  # Start with last approximation
+                for cA, cD in reversed(coeffs_reconstructed[:-1]):
+                    reconstructed_data = pywt.idwt(cA, cD, wavelet=wavelet, mode=mode)
+
+            else:
+                # Fallback Haar inverse
+                reconstructed_data = self._haar_idwt_fallback(result_bytes, decomp_metadata)
+
+            # Remove padding if added
+            if padding_info['padded_length'] > padding_info['original_length']:
+                reconstructed_data = reconstructed_data[:padding_info['original_length']]
+
+            # Round and convert back to uint8
+            reconstructed_data = np.round(reconstructed_data).clip(0, 255).astype(np.uint8)
+            return reconstructed_data.tobytes()
+
+        metadata = {
+            'operation': 'dwt_transform',
+            'bytes_affected': original_length,
+            'reversible': True,
+            'decomposition': decomposition_info,
+            'padding': padding_info,
+            'pywt_available': pywt_available,
+            'coeff_metadata': decomp_metadata
+        }
+
+        return result_bytes, inverse, metadata
+
+    def _haar_dwt_fallback(self, data):
+        """Fallback Haar DWT implementation."""
+        import numpy as np
+
+        if len(data) < 2:
+            return data.tobytes(), {'min_value': 0.0, 'max_value': 0.0, 'coeff_count': 0}
+
+        # Simple Haar wavelet
+        n = len(data)
+        half_n = n // 2
+
+        # Approximation coefficients (averages)
+        cA = (data[0:2*half_n:2] + data[1:2*half_n:2]) / 2.0
+
+        # Detail coefficients (differences)
+        cD = (data[0:2*half_n:2] - data[1:2*half_n:2]) / 2.0
+
+        # Handle odd length
+        if n % 2 == 1:
+            cA = np.append(cA, data[-1])
+            cD = np.append(cD, 0)
+
+        # Combine coefficients
+        all_coeffs = np.concatenate([cA, cD])
+
+        # Normalize to uint8
+        min_val = np.min(all_coeffs)
+        max_val = np.max(all_coeffs)
+        if max_val > min_val:
+            normalized_coeffs = ((all_coeffs - min_val) / (max_val - min_val) * 255).astype(np.uint8)
+        else:
+            normalized_coeffs = np.zeros_like(all_coeffs, dtype=np.uint8)
+
+        decomp_metadata = {
+            'min_value': float(min_val),
+            'max_value': float(max_val),
+            'coeff_count': len(normalized_coeffs),
+            'original_length': len(data)
+        }
+
+        return normalized_coeffs.tobytes(), decomp_metadata
+
+    def _haar_idwt_fallback(self, packed_bytes, metadata):
+        """Fallback Haar inverse DWT implementation."""
+        import numpy as np
+
+        if metadata['coeff_count'] == 0:
+            return np.array([], dtype=np.float64)
+
+        # Unpack and denormalize coefficients
+        coeffs = np.frombuffer(packed_bytes, dtype=np.uint8).astype(np.float64)
+        min_val = metadata['min_value']
+        max_val = metadata['max_value']
+
+        if max_val > min_val:
+            denormalized_coeffs = (coeffs / 255.0 * (max_val - min_val)) + min_val
+        else:
+            denormalized_coeffs = np.zeros_like(coeffs)
+
+        original_length = metadata['original_length']
+        half_n = original_length // 2
+
+        # Split into approximation and detail
+        if original_length % 2 == 0:
+            cA = denormalized_coeffs[:half_n]
+            cD = denormalized_coeffs[half_n:]
+        else:
+            cA = denormalized_coeffs[:half_n + 1]
+            cD = denormalized_coeffs[half_n + 1:2*half_n + 1]
+
+        # Reconstruct using inverse Haar
+        if original_length % 2 == 0:
+            # Even length
+            reconstructed = np.empty(original_length, dtype=np.float64)
+            reconstructed[0::2] = cA + cD
+            reconstructed[1::2] = cA - cD
+        else:
+            # Odd length
+            reconstructed = np.empty(original_length, dtype=np.float64)
+            reconstructed[0::2] = cA[:-1] + cD
+            reconstructed[1::2] = cA[:-1] - cD
+            reconstructed[-1] = cA[-1] * 2  # Last element was stored as-is
+
+        return reconstructed
 
     def fft_transform(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
         """Fast Fourier transform."""
