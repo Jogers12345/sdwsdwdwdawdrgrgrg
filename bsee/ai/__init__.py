@@ -11,6 +11,8 @@ from .features import FeatureExtractor
 from .data import DataCollector, DataLoader
 from .homogeneity_predictor import HomogeneityPredictor, HomogeneityPrediction
 from ..scoring.homogeneity_scorer import HomogeneityScorer, HomogeneityMetrics
+from ..strategies.neural.homogeneity_neural_strategy import HomogeneityNeuralStrategy
+from ..strategies.homogeneity_mcts_strategy import HomogeneityMCTSStrategy
 
 __all__ = [
     'OperationSequenceOptimizer',
@@ -22,5 +24,7 @@ __all__ = [
     'DataCollector',
     'DataLoader',
     'HomogeneityMetrics',
-    'HomogeneityPrediction'
+    'HomogeneityPrediction',
+    'HomogeneityNeuralStrategy',
+    'HomogeneityMCTSStrategy'
 ]
