@@ -76,6 +76,13 @@ class TestDataGenerator:
         else:
             return self.generate_random_data(size)
 
+    def generate_pattern_data(self, size: int, pattern: bytes) -> bytes:
+        """Generate pattern-based test data"""
+        if isinstance(pattern, bytes):
+            return (pattern * ((size // len(pattern)) + 1))[:size]
+        else:
+            return self.generate_random_data(size)
+
 
 class TestResultValidator:
     """Test result validator for BSEE tests"""
