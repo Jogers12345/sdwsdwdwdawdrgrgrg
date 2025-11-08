@@ -276,7 +276,7 @@ class TestDataGenerator:
                 data.extend(pattern[:section_size])
             elif section_type == 0x02:
                 # Sequential values
-                data.extend(bytes(range(section_size)))
+                data.extend(bytes(i % 256 for i in range(section_size)))
             elif section_type == 0x03:
                 # Random-like but structured
                 for j in range(section_size):
