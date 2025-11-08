@@ -633,7 +633,7 @@ class TestCompressionOperation:
             # Test with various data types
             test_cases = [
                 b"Highly repetitive data " * 50,
-                TestDataGenerator.generate_random_data(500, seed=456),
+                TestDataGenerator.generate_random_data(size=500, seed=456),
                 TestDataGenerator.generate_pattern_data(300, b"pattern"),
                 b""  # Empty data
             ]
