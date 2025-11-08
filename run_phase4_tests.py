@@ -438,6 +438,11 @@ class Phase4TestRunner:
         if output_file is None:
             output_file = self.project_root / "phase4_test_report.json"
 
+        # Ensure end_time is set
+        if self.results['end_time'] is None:
+            self.results['end_time'] = time.time()
+            self.results['total_duration'] = self.results['end_time'] - self.results['start_time']
+
         # Save detailed results
         with open(output_file, 'w') as f:
             json.dump(self.results, f, indent=2, default=str)
