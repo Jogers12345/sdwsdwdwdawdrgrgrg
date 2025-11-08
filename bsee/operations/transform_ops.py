@@ -1452,59 +1452,53 @@ class TransformOperations:
             offset += 2
 
             # Reconstruct frequency table
-            frequency = {}
+            freq_table = []
             for _ in range(num_symbols):
                 byte_val = result[offset]
                 offset += 1
                 freq = int.from_bytes(result[offset:offset+4], 'big')
                 offset += 4
-                frequency[byte_val] = freq
+                freq_table.append((byte_val, freq))
 
             # Get original length
             original_length = int.from_bytes(result[offset:offset+4], 'big')
             offset += 4
 
-            # Get encoded value
-            value_len = int.from_bytes(result[offset:offset+2], 'big')
-            offset += 2
-            final_value = Decimal(result[offset:offset+value_len].decode('ascii'))
+            # Reconstruct bit-packed indices
+            bits_per_index = (len(freq_table) - 1).bit_length()
+            if bits_per_index == 0:
+                bits_per_index = 1
 
-            # Reconstruct cumulative probabilities
-            total_bytes = sum(frequency.values())
-            cumulative_prob = {}
-            cumulative_sum = 0
-            sorted_bytes = sorted(frequency.keys())
+            # Create index to byte mapping
+            index_to_byte = {i: byte_val for i, (byte_val, _) in enumerate(freq_table)}
 
-            for byte_val in sorted_bytes:
-                prob_start = cumulative_sum / total_bytes
-                cumulative_sum += frequency[byte_val]
-                prob_end = cumulative_sum / total_bytes
-                cumulative_prob[byte_val] = (Decimal(prob_start), Decimal(prob_end))
-
-            # Decode using arithmetic coding
             decoded_data = bytearray()
-            low = Decimal(0)
-            high = Decimal(1)
+            bit_buffer = 0
+            bit_count = 0
+            decoded_bytes = 0
 
-            for _ in range(original_length):
-                # Find which symbol contains the current value
-                range_val = high - low
-                value_scaled = (final_value - low) / range_val if range_val > 0 else Decimal(0)
+            while decoded_bytes < original_length and offset < len(result):
+                # Read next byte and extract bits
+                next_byte = result[offset]
+                offset += 1
 
-                for byte_val in sorted_bytes:
-                    prob_start, prob_end = cumulative_prob[byte_val]
-                    if prob_start <= value_scaled < prob_end:
-                        decoded_data.append(byte_val)
-                        # Update range
-                        high = low + range_val * prob_end
-                        low = low + range_val * prob_start
-                        break
+                for bit_pos in range(8):
+                    bit = (next_byte >> (7 - bit_pos)) & 1
+                    bit_buffer = (bit_buffer << 1) | bit
+                    bit_count += 1
 
-                # Rescale if needed
-                while high - low < Decimal('1e-10'):
-                    low *= Decimal('1e10')
-                    high *= Decimal('1e10')
-                    final_value *= Decimal('1e10')
+                    if bit_count == bits_per_index:
+                        # Extract index and corresponding byte
+                        index = bit_buffer
+                        if index < len(freq_table):
+                            decoded_data.append(index_to_byte[index])
+                            decoded_bytes += 1
+
+                        bit_buffer = 0
+                        bit_count = 0
+
+                        if decoded_bytes >= original_length:
+                            break
 
             return bytes(decoded_data)
 
