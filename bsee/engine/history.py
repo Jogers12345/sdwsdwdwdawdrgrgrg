@@ -280,3 +280,287 @@ class HistoryManager:
             }
 
         return stats
+
+    # Enhanced methods for transformation viewer
+    def start_session(self, session_id: str = None, initial_data: bytes = b"",
+                     metadata: Dict[str, Any] = None) -> str:
+        """
+        Start a new analysis session.
+
+        Args:
+            session_id: Optional session ID (auto-generated if not provided)
+            initial_data: Initial binary data
+            metadata: Session metadata
+
+        Returns:
+            Session ID
+        """
+        with self._lock:
+            if session_id is None:
+                session_id = f"session_{int(time.time())}_{len(self.session_history)}"
+
+            self.session_start_time = time.time()
+
+            self.current_session = AnalysisSession(
+                session_id=session_id,
+                start_time=self.session_start_time,
+                end_time=0.0,
+                initial_data=initial_data,
+                final_data=initial_data,
+                operations=[],
+                session_metadata=metadata or {},
+                total_execution_time=0.0
+            )
+
+            # Clear operation snapshots for new session
+            self.operation_snapshots.clear()
+
+            return session_id
+
+    def add_operation_snapshot(self, operation_name: str, operation_params: Dict[str, Any],
+                             before_data: bytes, after_data: bytes,
+                             metrics_before: Dict[str, float] = None,
+                             metrics_after: Dict[str, float] = None,
+                             timing_info: Dict[str, float] = None,
+                             metadata: Dict[str, Any] = None) -> OperationSnapshot:
+        """
+        Add enhanced operation snapshot for replay.
+
+        Args:
+            operation_name: Name of the operation
+            operation_params: Parameters used for the operation
+            before_data: Data before operation
+            after_data: Data after operation
+            metrics_before: Metrics calculated before operation
+            metrics_after: Metrics calculated after operation
+            timing_info: Timing information for the operation
+            metadata: Additional operation metadata
+
+        Returns:
+            Created operation snapshot
+        """
+        with self._lock:
+            if self.current_session is None:
+                raise ValueError("No active session. Call start_session() first.")
+
+            # Create snapshot
+            snapshot = OperationSnapshot(
+                operation_name=operation_name,
+                operation_params=operation_params or {},
+                before_data=before_data,
+                after_data=after_data,
+                before_hex=before_data.hex(),
+                after_hex=after_data.hex(),
+                metrics_before=metrics_before or {},
+                metrics_after=metrics_after or {},
+                timing_info=timing_info or {},
+                byte_changes=self._analyze_byte_changes(before_data, after_data),
+                metadata=metadata or {},
+                timestamp=time.time()
+            )
+
+            # Add to current session
+            self.current_session.operations.append(snapshot)
+            self.current_session.final_data = after_data
+
+            # Update session execution time
+            if timing_info and 'execution_time' in timing_info:
+                self.current_session.total_execution_time += timing_info['execution_time']
+
+            # Add to snapshots list
+            self.operation_snapshots.append(snapshot)
+
+            # Limit history size
+            if len(self.operation_snapshots) > self.max_history_size:
+                self.operation_snapshots.pop(0)
+
+            # Auto-save if enabled
+            if self.auto_save:
+                self._save_session_snapshot(snapshot)
+
+            # Notify callback
+            if self.on_operation_added:
+                self.on_operation_added(snapshot)
+
+            return snapshot
+
+    def end_session(self, final_metadata: Dict[str, Any] = None) -> AnalysisSession:
+        """
+        End current session and add to history.
+
+        Args:
+            final_metadata: Additional metadata for session completion
+
+        Returns:
+            Completed session
+        """
+        with self._lock:
+            if self.current_session is None:
+                raise ValueError("No active session to end.")
+
+            self.current_session.end_time = time.time()
+            self.current_session.session_metadata.update(final_metadata or {})
+
+            # Add to history
+            self.session_history.append(self.current_session)
+
+            # Auto-save complete session
+            if self.auto_save:
+                self._save_complete_session(self.current_session)
+
+            # Notify callback
+            if self.on_session_completed:
+                self.on_session_completed(self.current_session)
+
+            completed_session = self.current_session
+            self.current_session = None
+            self.session_start_time = None
+
+            return completed_session
+
+    def get_current_session(self) -> Optional[AnalysisSession]:
+        """Get currently active session."""
+        return self.current_session
+
+    def get_session_history(self, limit: int = None) -> List[AnalysisSession]:
+        """
+        Get session history.
+
+        Args:
+            limit: Maximum number of sessions to return
+
+        Returns:
+            List of analysis sessions
+        """
+        with self._lock:
+            history = self.session_history.copy()
+            if limit:
+                return history[-limit:]
+            return history
+
+    def get_session_by_id(self, session_id: str) -> Optional[AnalysisSession]:
+        """Get session by ID."""
+        with self._lock:
+            for session in self.session_history:
+                if session.session_id == session_id:
+                    return session
+            return None
+
+    def get_operation_snapshots(self, session_id: str = None) -> List[OperationSnapshot]:
+        """
+        Get operation snapshots.
+
+        Args:
+            session_id: Optional session ID (uses current session if not provided)
+
+        Returns:
+            List of operation snapshots
+        """
+        with self._lock:
+            if session_id:
+                session = self.get_session_by_id(session_id)
+                return session.operations if session else []
+            elif self.current_session:
+                return self.current_session.operations.copy()
+            else:
+                return self.operation_snapshots.copy()
+
+    def export_session_for_replay(self, session_id: str = None) -> Dict[str, Any]:
+        """
+        Export session data in format suitable for transformation viewer.
+
+        Args:
+            session_id: Optional session ID (uses current session if not provided)
+
+        Returns:
+            Export data dictionary
+        """
+        with self._lock:
+            if session_id:
+                session = self.get_session_by_id(session_id)
+            else:
+                session = self.current_session
+
+            if not session:
+                return {}
+
+            # Convert operations to replay format
+            operations = []
+            for op in session.operations:
+                operation_data = {
+                    'name': op.operation_name,
+                    'params': op.operation_params,
+                    'before_hex': op.before_hex,
+                    'after_hex': op.after_hex,
+                    'metrics_before': op.metrics_before,
+                    'metrics_after': op.metrics_after,
+                    'timing': op.timing,
+                    'byte_changes': op.byte_changes,
+                    'metadata': op.metadata,
+                    'timestamp': op.timestamp
+                }
+                operations.append(operation_data)
+
+            return {
+                'session_id': session.session_id,
+                'start_time': session.start_time,
+                'end_time': session.end_time,
+                'initial_data': session.initial_data.hex(),
+                'final_data': session.final_data.hex(),
+                'operations': operations,
+                'session_metadata': session.session_metadata,
+                'total_execution_time': session.total_execution_time
+            }
+
+    def _analyze_byte_changes(self, before: bytes, after: bytes) -> List[Tuple[int, int, int]]:
+        """Analyze byte changes between before and after data."""
+        changes = []
+        min_len = min(len(before), len(after))
+
+        # Find changed bytes
+        for i in range(min_len):
+            if before[i] != after[i]:
+                changes.append((i, before[i], after[i]))
+
+        # Handle insertions/deletions
+        if len(before) < len(after):
+            # Insertions
+            for i in range(len(before), len(after)):
+                changes.append((i, -1, after[i]))  # -1 indicates insertion
+        elif len(before) > len(after):
+            # Deletions
+            for i in range(len(after), len(before)):
+                changes.append((i, before[i], -1))  # -1 indicates deletion
+
+        return changes
+
+    def _save_session_snapshot(self, snapshot: OperationSnapshot):
+        """Save individual operation snapshot."""
+        try:
+            snapshot_file = self.storage_directory / f"snapshot_{int(snapshot.timestamp)}.json"
+            with open(snapshot_file, 'w') as f:
+                json.dump(asdict(snapshot), f, indent=2, default=str)
+        except Exception as e:
+            # Log error but don't crash
+            print(f"Error saving snapshot: {e}")
+
+    def _save_complete_session(self, session: AnalysisSession):
+        """Save complete session to disk."""
+        try:
+            session_file = self.storage_directory / f"session_{session.session_id}.json"
+            session_data = {
+                'session': asdict(session),
+                'export_timestamp': datetime.now().isoformat()
+            }
+            with open(session_file, 'w') as f:
+                json.dump(session_data, f, indent=2, default=str)
+        except Exception as e:
+            print(f"Error saving session: {e}")
+
+    def set_callbacks(self, on_operation_added: callable = None,
+                     on_session_completed: callable = None):
+        """Set callback functions for events."""
+        if on_operation_added:
+            self.on_operation_added = on_operation_added
+        if on_session_completed:
+            self.on_session_completed = on_session_completed
