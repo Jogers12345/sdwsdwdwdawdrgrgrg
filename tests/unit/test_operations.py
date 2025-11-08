@@ -189,8 +189,8 @@ class TestAddConstantOperation:
         test_cases = [
             b"test data",
             b"\x7F\x80\xFF",
-            TestDataGenerator.generate_random_data(size=500, seed=123),
-            TestDataGenerator.generate_pattern_data(250, b"XYZ")
+            TestDataGenerator.generate_random_data_static(size=500, seed=123),
+            TestDataGenerator.generate_pattern_data_static(250, b"XYZ")
         ]
 
         for test_data in test_cases:
