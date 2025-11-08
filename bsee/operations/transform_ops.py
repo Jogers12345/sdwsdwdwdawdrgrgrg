@@ -111,8 +111,8 @@ class TransformOperations:
                 'category': 'transform',
                 'description': 'Run-length encoding',
                 'required_params': [],
-                'optional_params': {},
-                'reversible': False
+                'optional_params': {'min_run_length': 3, 'max_run_length': 255, 'mode': 'byte'},
+                'reversible': True
             },
             'arithmetic_encode': {
                 'category': 'transform',
