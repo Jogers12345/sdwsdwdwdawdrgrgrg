@@ -60,6 +60,10 @@ class MockBSEEApplication:
     def load_file(self, file_path: Path) -> bool:
         """Load file for analysis"""
         try:
+            # Check if file exists
+            if not file_path.exists():
+                raise FileNotFoundError(f"File not found: {file_path}")
+
             self.current_file = file_path
             self.event_log.append({
                 'event': 'file_loaded',
