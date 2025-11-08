@@ -1029,14 +1029,19 @@ class TransformOperations:
 
         # Extract codes from tree
         codes = {}
-        if heap:
+        if heap and hasattr(self, '_huffman_tree_nodes'):
             root = heap[0]
-            self._extract_huffman_codes(root, '', codes)
+            root_id = root[2]  # Get the ID of the root node
+            self._extract_huffman_codes_from_id(root_id, '', codes)
 
         # Ensure all symbols have codes (handle edge case of single symbol)
         for byte_val in frequency:
             if byte_val not in codes:
                 codes[byte_val] = [0]  # Single bit code for single symbol
+
+        # Clear tree nodes to avoid memory leaks
+        if hasattr(self, '_huffman_tree_nodes'):
+            delattr(self, '_huffman_tree_nodes')
 
         # Convert codes to bit strings for efficient encoding
         if canonical:
