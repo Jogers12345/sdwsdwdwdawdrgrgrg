@@ -754,11 +754,185 @@ class TransformOperations:
 
         return reconstructed
 
-    def fft_transform(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
-        """Fast Fourier transform."""
+    def fft_transform(self, binary_data: bytes, window_function: str = 'none', padding: str = 'optimal') -> Tuple[bytes, Callable, Dict]:
+        """Fast Fourier transform with windowing and optimal padding."""
+        import numpy as np
+
+        if len(binary_data) == 0:
+            def inverse_empty():
+                return b''
+            return b'', inverse_empty, {'operation': 'fft_transform', 'bytes_affected': 0, 'reversible': True}
+
+        original_length = len(binary_data)
+
+        # Convert binary data to float array
+        data = np.frombuffer(binary_data, dtype=np.uint8).astype(np.float64)
+
+        # Apply window function if specified
+        if window_function != 'none':
+            data = self._apply_window_function(data, window_function)
+            window_info = {'function': window_function, 'applied': True}
+        else:
+            window_info = {'function': 'none', 'applied': False}
+
+        # Handle padding for optimal FFT
+        if padding == 'optimal':
+            # Find optimal FFT size (products of small primes)
+            n = len(data)
+            optimal_n = self._find_optimal_fft_size(n)
+            if optimal_n > n:
+                data = np.pad(data, (0, optimal_n - n), 'constant')
+                padding_info = {'original_length': n, 'padded_length': optimal_n, 'padding_type': 'zero', 'strategy': 'optimal'}
+            else:
+                padding_info = {'original_length': n, 'padded_length': n, 'padding_type': 'none', 'strategy': 'optimal'}
+        elif padding == 'power_of_2':
+            # Pad to power of 2
+            n = len(data)
+            padded_length = 1 << (n - 1).bit_length()
+            if padded_length > n:
+                data = np.pad(data, (0, padded_length - n), 'constant')
+                padding_info = {'original_length': n, 'padded_length': padded_length, 'padding_type': 'zero', 'strategy': 'power_of_2'}
+            else:
+                padding_info = {'original_length': n, 'padded_length': n, 'padding_type': 'none', 'strategy': 'power_of_2'}
+        else:  # none
+            padding_info = {'original_length': len(data), 'padded_length': len(data), 'padding_type': 'none', 'strategy': 'none'}
+
+        # Apply FFT
+        try:
+            from scipy.fft import fft, ifft
+            # Use scipy implementation
+            transformed = fft(data)
+            scipy_available = True
+        except ImportError:
+            # Fallback to numpy implementation
+            import numpy.fft
+            transformed = numpy.fft.fft(data)
+            scipy_available = False
+
+        # Convert complex results to real values for binary output
+        # Use magnitude and phase encoding for reversibility
+        magnitude = np.abs(transformed)
+        phase = np.angle(transformed)
+
+        # Normalize and pack
+        max_mag = np.max(magnitude) if np.max(magnitude) > 0 else 1.0
+        normalized_mag = (magnitude / max_mag * 255).astype(np.uint8)
+        normalized_phase = ((phase + np.pi) / (2 * np.pi) * 255).astype(np.uint8)
+
+        # Interleave magnitude and phase
+        packed = np.empty(2 * len(normalized_mag), dtype=np.uint8)
+        packed[0::2] = normalized_mag
+        packed[1::2] = normalized_phase
+
+        result_bytes = packed.tobytes()
+
         def inverse():
-            raise RuntimeError("FFT transform is not reversible")
-        return binary_data, inverse, {'operation': 'fft_transform', 'bytes_affected': 0, 'reversible': False}
+            # Unpack magnitude and phase
+            packed_array = np.frombuffer(result_bytes, dtype=np.uint8)
+            magnitude_restored = packed_array[0::2].astype(np.float64)
+            phase_restored = (packed_array[1::2].astype(np.float64) / 255.0 * 2 * np.pi) - np.pi
+
+            # Restore complex numbers
+            max_mag = np.max(magnitude_restored) if np.max(magnitude_restored) > 0 else 1.0
+            magnitude_restored = magnitude_restored / 255.0 * max_mag
+            transformed_restored = magnitude_restored * np.exp(1j * phase_restored)
+
+            # Apply inverse FFT
+            if scipy_available:
+                from scipy.fft import ifft
+                data_restored = ifft(transformed_restored)
+            else:
+                import numpy.fft
+                data_restored = numpy.fft.ifft(transformed_restored)
+
+            # Take real part (imaginary part should be negligible)
+            data_restored = np.real(data_restored)
+
+            # Remove windowing if applied
+            if window_info['applied']:
+                data_restored = self._remove_window_function(data_restored, window_function, original_length)
+
+            # Remove padding if added
+            if padding_info['padded_length'] > padding_info['original_length']:
+                data_restored = data_restored[:padding_info['original_length']]
+
+            # Round and convert back to uint8
+            data_restored = np.round(data_restored).clip(0, 255).astype(np.uint8)
+            return data_restored.tobytes()
+
+        metadata = {
+            'operation': 'fft_transform',
+            'bytes_affected': original_length,
+            'reversible': True,
+            'window': window_info,
+            'padding': padding_info,
+            'scipy_available': scipy_available,
+            'max_magnitude': float(max_mag),
+            'frequency_bins': len(transformed)
+        }
+
+        return result_bytes, inverse, metadata
+
+    def _apply_window_function(self, data, window_type):
+        """Apply window function to data."""
+        import numpy as np
+        n = len(data)
+
+        if window_type == 'hamming':
+            window = np.hamming(n)
+        elif window_type == 'hanning':
+            window = np.hanning(n)
+        elif window_type == 'blackman':
+            window = np.blackman(n)
+        elif window_type == 'bartlett':
+            window = np.bartlett(n)
+        else:
+            return data
+
+        return data * window
+
+    def _remove_window_function(self, data, window_type, original_length):
+        """Remove window function effects (approximate deconvolution)."""
+        import numpy as np
+        n = original_length
+
+        if window_type == 'hamming':
+            window = np.hamming(n)
+        elif window_type == 'hanning':
+            window = np.hanning(n)
+        elif window_type == 'blackman':
+            window = np.blackman(n)
+        elif window_type == 'bartlett':
+            window = np.bartlett(n)
+        else:
+            return data
+
+        # Avoid division by zero
+        window[window == 0] = 1.0
+        return data[:n] / window
+
+    def _find_optimal_fft_size(self, n):
+        """Find optimal FFT size (products of small primes 2, 3, 5)."""
+        # Start with current size and increase until we find an optimal size
+        candidate = n
+        while True:
+            if self._is_optimal_fft_size(candidate):
+                return candidate
+            candidate += 1
+
+    def _is_optimal_fft_size(self, n):
+        """Check if n is optimal for FFT (factors of 2, 3, 5 only)."""
+        # Remove factors of 2
+        while n % 2 == 0:
+            n //= 2
+        # Remove factors of 3
+        while n % 3 == 0:
+            n //= 3
+        # Remove factors of 5
+        while n % 5 == 0:
+            n //= 5
+        # If remaining is 1, it's optimal
+        return n == 1
 
     def huffman_encode(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
         """Huffman encoding."""
