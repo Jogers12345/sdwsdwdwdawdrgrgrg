@@ -1,0 +1,50 @@
+{
+  "structured_small.bin": {
+    "filename": "structured_small.bin",
+    "expected_patterns": [
+      "custom_header",
+      "data_sections",
+      "footer"
+    ],
+    "expected_entropy_range": [
+      3.0,
+      7.0
+    ],
+    "expected_structure_hints": [
+      "binary_structure",
+      "sectioned_format"
+    ],
+    "analysis_difficulty": "easy",
+    "strategy_rankings": {
+      "MCTS Strategy": 1,
+      "Genetic Algorithm": 2,
+      "Beam Search": 3,
+      "Simulated Annealing": 4,
+      "Heuristic Analysis": 5
+    }
+  },
+  "pe_header_medium.bin": {
+    "filename": "pe_header_medium.bin",
+    "expected_patterns": [
+      "pe_header",
+      "dos_stub",
+      "coff_header"
+    ],
+    "expected_entropy_range": [
+      2.0,
+      5.0
+    ],
+    "expected_structure_hints": [
+      "pe_executable",
+      "windows_format"
+    ],
+    "analysis_difficulty": "medium",
+    "strategy_rankings": {
+      "Heuristic Analysis": 1,
+      "MCTS Strategy": 2,
+      "Genetic Algorithm": 3,
+      "Beam Search": 4,
+      "Simulated Annealing": 5
+    }
+  }
+}
