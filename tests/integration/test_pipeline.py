@@ -477,7 +477,7 @@ class TestOperationIntegration:
             def add_operation(self, operation_func, *args, **kwargs):
                 self.operations.append((operation_func, args, kwargs))
 
-            def apply_chain(self, data: bytes) -> bytes:
+            def apply_chain(self, data: bytes) -> tuple[bytes, list]:
                 current_data = data
                 operation_log = []
 
