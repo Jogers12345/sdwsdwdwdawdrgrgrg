@@ -483,7 +483,7 @@ class OperationPerformanceTester:
         ])
 
         # Create comparison table
-        header = f"{'Size':12s} {'Avg Time':12s} {'Ops/Sec':12s} {'Memory':12s} {'Success':8s}}"
+        header = f"{'Size':12s} {'Avg Time':12s} {'Ops/Sec':12s} {'Memory':12s} {'Success':8s}"
         lines.append(header)
         lines.append("-" * len(header))
 
