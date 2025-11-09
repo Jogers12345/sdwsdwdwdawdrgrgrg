@@ -459,7 +459,7 @@ if exist "tests" (
 
     echo.
     echo    [INFO] Running Phase 4 tests...
-    python run_phase4_tests.py --verbose
+    python tests\run_phase4_tests.py --verbose
 ) else (
     echo    [ERROR] Test suite not found
     echo    Please ensure you have the complete BSEE installation
