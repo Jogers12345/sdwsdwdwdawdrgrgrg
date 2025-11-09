@@ -428,11 +428,11 @@ if errorlevel 3 (
 )
 
 if exist "%PRESET_FILE%" (
-    python main.py --preset "%PRESET_FILE%"
+    python legacy\main.py --preset "%PRESET_FILE%"
 ) else (
     echo    [ERROR] Preset file not found: %PRESET_FILE%
     echo    Using default configuration...
-    python main.py
+    python legacy\main.py
 )
 goto end_script
 
