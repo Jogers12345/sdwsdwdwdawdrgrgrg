@@ -394,15 +394,15 @@ if "%~2"=="" (
     set /p INPUT="Enter file path or command: "
     if "%INPUT%"=="" goto cli_input
     if /i "%INPUT%"=="help" (
-        python main.py --help
+        python legacy\main.py --help
         goto cli_input
     ) else if /i "%INPUT%"=="exit" (
         goto exit_bsee
     ) else (
-        python main.py "%INPUT%" %3 %4 %5 %6 %7 %8 %9
+        python legacy\main.py "%INPUT%" %3 %4 %5 %6 %7 %8 %9
     )
 ) else (
-    python main.py %~2 %~3 %~4 %~5 %~6 %~7 %~8 %~9
+    python legacy\main.py %~2 %~3 %~4 %~5 %~6 %~7 %~8 %~9
 )
 goto end_script
 
