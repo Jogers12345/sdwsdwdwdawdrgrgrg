@@ -374,7 +374,7 @@ echo.
 echo    [INFO] Starting BSEE CLI Interface...
 echo    [INFO] Loading command-line components...
 
-if not exist "main.py" (
+if not exist "legacy\main.py" (
     echo    [ERROR] Main application not found
     timeout /t 3 /nobreak >nul
     goto interactive_mode
