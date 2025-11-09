@@ -359,8 +359,8 @@ except ImportError:
 " >nul 2>&1
 
 :: Start GUI application
-if exist "gui_main.py" (
-    python gui_main.py
+if exist "legacy\gui_main.py" (
+    python legacy\gui_main.py
 ) else (
     echo    [ERROR] GUI application not found
     echo    Falling back to CLI mode...
