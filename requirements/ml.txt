@@ -1,0 +1,32 @@
+# BSEE Machine Learning dependencies
+# Install with: pip install -r requirements/ml.txt
+
+# Core ML libraries
+scikit-learn>=1.0.0
+joblib>=1.1.0
+
+# Neural Networks
+torch>=1.9.0
+torchvision>=0.10.0
+tensorflow>=2.6.0
+
+# Advanced ML
+xgboost>=1.5.0
+lightgbm>=3.3.0
+catboost>=1.0.0
+
+# Statistical analysis
+statsmodels>=0.12.0
+sympy>=1.8.0
+
+# Scientific computing
+numba>=0.54.0
+cython>=0.29.0
+
+# Experiment tracking
+mlflow>=1.20.0
+# wandb>=0.12.0  # Uncomment for Weights & Biases
+
+# Neural network utilities
+transformers>=4.15.0
+datasets>=1.18.0
