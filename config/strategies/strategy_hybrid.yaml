@@ -1,0 +1,171 @@
+name: "Hybrid Strategy"
+description: "Combines multiple optimization strategies for better performance"
+
+# Strategy combination configuration
+strategy_combination:
+  # Primary strategy with highest weight
+  primary_strategy:
+    name: "mcts"
+    weight: 0.7
+    config_file: "strategy_mcts.yaml"
+
+  # Secondary strategy for exploration
+  secondary_strategy:
+    name: "beam_search"
+    weight: 0.2
+    config_file: "strategy_beam.yaml"
+
+  # Tertiary strategy for local optimization
+  tertiary_strategy:
+    name: "annealing"
+    weight: 0.1
+    config_file: "strategy_annealing.yaml"
+
+# Switching criteria
+switching_criteria:
+  # Switch based on problem complexity
+  complexity_based_switching: true
+  complexity_threshold:
+    low: 0.3    # Use simple strategies for low complexity
+    medium: 0.7 # Use hybrid for medium complexity
+    high: 1.0   # Use full hybrid for high complexity
+
+  # Switch based on time elapsed
+  time_based_switching: true
+  time_thresholds:
+    early_phase: 300      # First 5 minutes
+    middle_phase: 1800    # First 30 minutes
+    late_phase: 3600      # First hour
+
+  # Switch based on search progress
+  progress_based_switching: true
+  progress_metrics:
+    improvement_rate: 0.01
+    convergence_rate: 0.001
+    diversity_score: 0.1
+
+# Integration mode
+integration_mode:
+  # How to combine strategy results
+  combination_method: "ensemble"  # Options: "ensemble", "voting", "adaptive", "sequential"
+
+  # Ensemble configuration
+  ensemble:
+    # Weight averaging method
+    averaging_method: "weighted_average"  # Options: "simple_average", "weighted_average", "rank_based"
+
+    # Dynamic weight adjustment
+    dynamic_weights: true
+    weight_adjustment_rate: 0.1
+
+    # Performance tracking window
+    performance_window: 50
+
+  # Sequential execution configuration
+  sequential:
+    # Strategy execution order
+    execution_order: ["mcts", "beam_search", "annealing"]
+
+    # Time allocation per strategy
+    time_allocation:
+      mcts: 0.5        # 50% of time to MCTS
+      beam_search: 0.3 # 30% to beam search
+      annealing: 0.2   # 20% to annealing
+
+    # Handover criteria
+    handover_criteria:
+      min_iterations: 100
+      improvement_threshold: 0.01
+
+# Communication between strategies
+strategy_communication:
+  # Share best solutions between strategies
+  solution_sharing: true
+
+  # Share search statistics
+  statistics_sharing: true
+
+  # Coordinate search spaces
+  search_space_coordination: true
+
+  # Conflict resolution
+  conflict_resolution: "best_wins"  # Options: "best_wins", "majority_vote", "weighted_consensus"
+
+# Adaptive behavior
+adaptation:
+  # Learn strategy performance over time
+  learning_enabled: true
+
+  # Learning rate for weight updates
+  learning_rate: 0.01
+
+  # Exploration vs exploitation in strategy selection
+  strategy_exploration_rate: 0.1
+
+  # Performance history size
+  performance_history_size: 1000
+
+# Quality control
+quality_control:
+  # Minimum solution quality threshold
+  min_quality_threshold: 0.5
+
+  # Diversity requirements
+  min_solution_diversity: 0.1
+
+  # Consensus requirements for high-stakes decisions
+  consensus_threshold: 0.8
+
+  # Fallback strategy if all fail
+  fallback_strategy: "greedy"
+
+# Performance monitoring
+monitoring:
+  # Track individual strategy performance
+  individual_tracking: true
+
+  # Track ensemble performance
+  ensemble_tracking: true
+
+  # Track switching efficiency
+  switching_tracking: true
+
+  # Monitoring update interval
+  update_interval: 10
+
+# Resource management
+resources:
+  # CPU allocation per strategy
+  cpu_allocation:
+    mcts: 0.5
+    beam_search: 0.3
+    annealing: 0.2
+
+  # Memory allocation per strategy
+  memory_allocation:
+    mcts: 0.6
+    beam_search: 0.2
+    annealing: 0.2
+
+  # Shared resource pool
+  shared_pool_size: 0.1
+
+# Termination criteria
+termination:
+  # Global termination conditions
+  global_conditions:
+    max_iterations: 5000
+    max_time_seconds: 7200
+    target_quality: 0.95
+
+  # Strategy-specific termination
+  strategy_specific:
+    terminate_underperforming: true
+    underperformance_threshold: 0.1
+    underperformance_window: 100
+
+  # Ensemble termination
+  ensemble_termination:
+    consensus_threshold: 0.9
+    stability_window: 50
+    quality_threshold: 0.9
