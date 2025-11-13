@@ -253,7 +253,7 @@ output:
 
   output_directory: "results/research/"
   model_directory: "models/research/"
-  data_directory: "data/research/"
+  data_directory: "inputs/research/"
   figures_directory: "figures/research/"
   reports_directory: "reports/research/"
 
