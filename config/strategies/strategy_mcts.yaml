@@ -10,13 +10,25 @@ parameters:
   simulation_count: 100
 
   # Rollout depth for simulations
-  rollout_depth: 10
+  rollout_depth: 50
 
   # Maximum tree depth
   max_tree_depth: 50
 
   # Number of iterations
   max_iterations: 1000
+
+  # New: Exploration bonus weight to encourage new paths
+  exploration_bonus_weight: 0.5
+
+  # New: Selection strategy (Upper Confidence Bound for Trees)
+  selection_strategy: "uct"
+
+  # New: Enable parallel rollouts for improved performance
+  parallel_rollouts: true
+
+  # New: Memory usage limit for MCTS tree (in MB)
+  memory_limit_mb: 512
 
 # Tree management
 tree_management:
