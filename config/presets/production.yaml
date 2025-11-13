@@ -1,0 +1,367 @@
+# Production Deployment Preset
+name: "Production Deployment Preset"
+description: "Production deployment preset with high reliability, monitoring, and security features"
+
+# Production configuration
+production_configuration:
+  reliability:
+    high_availability: true
+    fault_tolerance: true
+    graceful_degradation: true
+    health_checks: true
+    disaster_recovery: true
+    backup_systems: true
+
+  # Comprehensive monitoring
+  monitoring:
+    real_time_metrics: true
+    alerting: true
+    logging_level: "info"
+    performance_tracking: true
+    error_tracking: true
+    resource_monitoring: true
+
+  # Security features
+  security:
+    input_validation: true
+    output_sanitization: true
+    access_control: true
+    audit_logging: true
+    encryption: true
+    secure_communication: true
+
+  # Scalability settings
+  scalability:
+    auto_scaling: true
+    load_balancing: true
+    resource_limits: "enforced"
+    deployment_strategy: "blue_green"
+    horizontal_scaling: true
+    vertical_scaling: false
+
+# Production strategy configuration
+strategy:
+  type: "conservative"
+  primary: "beam_search"
+  fallback: "greedy"
+  safety_mode: true
+
+  # Conservative strategy parameters
+  beam_search:
+    beam_width: 10
+    max_depth: 50
+    pruning_threshold: 0.8
+    early_stopping: true
+    validation_frequency: 10
+
+  # Safe fallback strategy
+  greedy:
+    lookahead_steps: 2
+    convergence_threshold: 0.001
+    backtracking_enabled: true
+    validation_required: true
+
+# Production cost model
+cost_model:
+  type: "business"
+  business_cost_weight: 0.6
+  computational_cost_weight: 0.3
+  accuracy_cost_weight: 0.1
+
+  # Business impact costs
+  business_costs:
+    downtime_cost_per_minute: 100.0
+    error_cost_per_incident: 1000.0
+    performance_impact_cost: 500.0
+    compliance_violation_cost: 10000.0
+
+# Production policy with strict validation
+policy:
+  type: "conservative"
+  safety_policies:
+    resource_limits:
+      max_cpu_usage: 60.0
+      max_memory_usage: 70.0
+      disk_space_reserve: 20.0
+      network_bandwidth_limit: 50.0
+
+    validation_requirements:
+      minimum_confidence: 0.95
+      cross_validation_folds: 10
+      statistical_significance: 0.99
+      outlier_detection: true
+
+    failover_strategy:
+      backup_models: true
+      rollback_threshold: 0.02
+      human_approval_required: false  # Automated in production
+      audit_trail: true
+
+# Production metrics
+metrics:
+  # Essential performance metrics
+  primary:
+    - "file_ideality_score"
+    - "execution_time"
+    - "memory_usage"
+    - "error_rate"
+
+  # Production monitoring metrics
+  production_metrics:
+    - "uptime"
+    - "throughput"
+    - "response_time"
+    - "error_rate"
+    - "resource_utilization"
+
+  # Business metrics
+  business_metrics:
+    - "cost_per_operation"
+    - "success_rate"
+    - "customer_satisfaction"
+    - "revenue_impact"
+
+# Production-safe operations
+operations:
+  allowed:
+    - "xor_constant"
+    - "add_constant"
+    - "sub_constant"
+    - "rotate_left"
+    - "rotate_right"
+    - "move_to_front"
+    - "burrows_wheeler"
+
+  # Restricted parameters for safety
+  parameter_ranges:
+    xor_constant:
+      key: [85, 170]  # Most stable values
+    add_constant:
+      constant: [1, 16, 32, 64]
+    rotate_left:
+      bits: [1, 2, 4]
+
+# Production limits
+limits:
+  max_operations: 500
+  max_cost: 5000
+  max_time: 300  # 5 minutes max
+  max_memory_mb: 1024
+  min_improvement: 0.01
+  convergence_threshold: 0.001
+  stagnation_limit: 100
+
+# Production settings
+production_settings:
+  # Quality assurance
+  quality_assurance:
+    automated_testing: true
+    continuous_integration: true
+    deployment_validation: true
+    performance_benchmarks: true
+
+  # Performance optimization
+  performance_optimization:
+    caching_enabled: true
+    connection_pooling: true
+    resource_optimization: true
+    memory_management: true
+
+  # Error handling
+  error_handling:
+    comprehensive_logging: true
+    error_alerting: true
+    automatic_recovery: true
+    graceful_degradation: true
+
+# Output configuration for production
+output:
+  save_models: true
+  save_performance_metrics: true
+  generate_reports: true
+  export_alerts: true
+
+  output_directory: "results/production/"
+  log_directory: "logs/production/"
+  alert_directory: "alerts/production/"
+
+  # Production outputs
+  generate_health_reports: true
+  generate_performance_reports: true
+  generate_compliance_reports: true
+
+# Production logging
+logging:
+  level: "INFO"
+  file_logging: true
+  console_logging: true
+  structured_logging: true
+  log_performance_metrics: true
+  log_security_events: true
+  log_business_metrics: true
+
+  # Production logging features
+  log_rotation: true
+  log_compression: true
+  log_retention_days: 90
+  log_shipping: true
+
+# Production validation
+validation:
+  automated_validation: true
+  compliance_checks: true
+  security_scans: true
+  performance_tests: true
+  integration_tests: true
+
+  # Validation requirements
+  validation_frequency: "continuous"
+  automated_regression_tests: true
+  load_testing: true
+  security_testing: true
+
+# Production dependencies
+dependencies:
+  required:
+    - "numpy>=1.21.0"
+    - "scipy>=1.7.0"
+    - "psutil>=5.8.0"
+    - "click>=8.0.0"
+    - "tqdm>=4.62.0"
+    - "pyyaml>=5.4.0"
+
+  production_specific:
+    - "prometheus-client>=0.12.0"
+    - "structlog>=21.0.0"
+    - "sentry-sdk>=1.0.0"
+    - "opencensus>=0.11.0"
+
+# Monitoring and alerting
+monitoring:
+  # Prometheus metrics
+  prometheus:
+    enabled: true
+    port: 8000
+    metrics_path: "/metrics"
+    registry: "default"
+
+  # Health checks
+  health_checks:
+    enabled: true
+    endpoint: "/health"
+    check_interval: 30
+    timeout: 5
+
+  # Alerting
+  alerting:
+    enabled: true
+    channels: ["email", "slack", "pagerduty"]
+    severity_levels: ["critical", "warning", "info"]
+
+# Security configuration
+security:
+  # Access control
+  access_control:
+    enabled: true
+    authentication_required: true
+    authorization_required: true
+    role_based_access: true
+
+  # Input validation
+  input_validation:
+    enabled: true
+    max_file_size: "100MB"
+    allowed_file_types: [".bin", ".dat", ".hex"]
+    scan_malware: true
+
+  # Encryption
+  encryption:
+    data_at_rest: true
+    data_in_transit: true
+    key_management: "automatic"
+    encryption_algorithm: "AES-256"
+
+# Deployment configuration
+deployment:
+  # Container support
+  container:
+    enabled: true
+    base_image: "python:3.9-slim"
+    multi_stage_build: true
+    security_scan: true
+
+  # Orchestration
+  orchestration:
+    platform: "kubernetes"
+    auto_scaling: true
+    resource_limits: true
+    health_checks: true
+
+  # CI/CD
+  cicd:
+    automated_testing: true
+    automated_deployment: true
+    rollback_on_failure: true
+    blue_green_deployment: true
+
+# Backup and disaster recovery
+backup:
+  # Automated backups
+  automated_backups:
+    enabled: true
+    frequency: "daily"
+    retention_days: 30
+    offsite_backup: true
+    encryption: true
+
+  # Disaster recovery
+  disaster_recovery:
+    enabled: true
+    recovery_time_objective: 3600  # 1 hour
+    recovery_point_objective: 3600  # 1 hour
+    failover_testing: true
+    recovery_documentation: true
+
+# Configuration metadata
+metadata:
+  version: "2.0.0"
+  created_by: "BSEE Production Team"
+  created_date: "2024-01-01"
+  last_updated: "2024-01-01"
+  compatible_bsee_version: "2.0.0"
+  tags: ["production", "reliability", "security", "monitoring"]
+
+  # Production profile
+  production_profile:
+    complexity: "medium"
+    resource_requirements: "medium"
+    reliability: "very_high"
+    security: "very_high"
+    scalability: "high"
+
+# Usage guidelines
+usage_guidelines:
+  # When to use this preset
+  recommended_for:
+    - Production deployments
+    - Mission-critical applications
+    - High-availability systems
+    - Security-sensitive environments
+
+  # Production checklist
+  production_checklist:
+    - "Configure monitoring and alerting"
+    - "Set up backup and disaster recovery"
+    - "Implement security measures"
+    - "Validate performance benchmarks"
+    - "Test failover procedures"
+    - "Document deployment procedures"
+
+  # Best practices
+  best_practices:
+    - "Monitor system health continuously"
+    - "Implement automated alerts for critical issues"
+    - "Regular security audits and updates"
+    - "Backup data regularly"
+    - "Test disaster recovery procedures"
+    - "Document all configurations and procedures"
