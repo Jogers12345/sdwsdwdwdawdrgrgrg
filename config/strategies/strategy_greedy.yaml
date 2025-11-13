@@ -9,11 +9,14 @@ parameters:
   # Probability of random restart when threshold reached
   random_restart_prob: 0.1
 
-  # How many steps to look ahead (1 for greedy)
-  lookahead_depth: 1
+  # How many steps to look ahead (enhanced from 1 to 3)
+  look_ahead_steps: 3
 
   # Probability of exploring random operations instead of greedy
   exploration_prob: 0.05
+
+  # New: Small random factor for exploration
+  randomization_factor: 0.1
 
   # Maximum number of iterations before forced convergence
   max_iterations: 1000
@@ -23,6 +26,15 @@ parameters:
 
   # Early stopping if score doesn't improve by this amount
   min_improvement_threshold: 0.01
+
+  # New: Neighborhood search size
+  local_search_radius: 5
+
+  # New: Allow backtracking when stuck
+  backtracking_enabled: true
+
+  # New: Stop when improvement < threshold
+  convergence_threshold: 0.001
 
 # Operation selection preferences
 operation_preferences:
