@@ -1,5 +1,31 @@
-name: "Entropy Reduction Focus"
-description: "Primarily focused on reducing entropy in the binary data"
+name: "Enhanced Entropy-Driven Policy"
+description: "Information theory-based exploration policy with comprehensive entropy optimization"
+
+# Enhanced entropy-driven exploration policies
+exploration_policies:
+  # Information gain maximization
+  information_gain:
+    entropy_weight: 1.5
+    mutual_information_threshold: 0.1
+    novelty_bonus: 0.2
+    diversity_penalty: 0.05
+    information_type: "shannon"  # Options: "shannon", "tsallis", "renyi"
+
+  # Advanced sampling strategy
+  sampling_strategy:
+    method: "thompson_sampling"  # Options: "thompson_sampling", "ucb", "epsilon_greedy", "boltzmann"
+    exploration_rate: 0.3
+    decay_rate: 0.995
+    minimum_exploration: 0.05
+    temperature_parameter: 1.0
+
+  # Uncertainty handling mechanisms
+  uncertainty_handling:
+    model_uncertainty_weight: 1.0
+    data_uncertainty_weight: 0.5
+    aleatoric_uncertainty: true
+    epistemic_uncertainty: true
+    uncertainty_aggregation: "weighted_average"
 
 # Metrics to calculate
 metrics_to_calculate:
