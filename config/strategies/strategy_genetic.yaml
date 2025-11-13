@@ -1,0 +1,208 @@
+name: "Genetic Algorithm"
+description: "Evolutionary optimization using genetic operators"
+
+# Population parameters
+population:
+  # Number of individuals in population
+  population_size: 100
+
+  # Initial population generation
+  initialization:
+    method: "random"  # Options: "random", "heuristic", "seeded", "mixed"
+    seed_individuals: 5
+    diversity_factor: 0.8
+
+  # Population diversity maintenance
+  diversity:
+    min_diversity_threshold: 0.1
+    diversity_penalty: 0.5
+    diversity_enforcement: true
+
+# Genetic operators
+operators:
+  # Selection method
+  selection:
+    method: "tournament"  # Options: "roulette_wheel", "tournament", "rank_based", "elitist"
+    tournament_size: 5
+    selection_pressure: 2.0
+    elitism_rate: 0.1
+
+  # Crossover (reproduction)
+  crossover:
+    method: "uniform"  # Options: "single_point", "two_point", "uniform", "arithmetic"
+    crossover_rate: 0.7
+    uniform_crossover_prob: 0.5
+
+  # Mutation
+  mutation:
+    mutation_rate: 0.01
+    mutation_strength: 0.1
+    adaptive_mutation: true
+    mutation_methods: ["bit_flip", "gaussian", "uniform"]
+
+  # Elitism
+  elitism:
+    enabled: true
+    elitism_count: 5
+    preserve_best: true
+    copy_elites: false
+
+# Fitness evaluation
+fitness:
+  # Fitness function type
+  function_type: "multi_objective"  # Options: "single_objective", "multi_objective", "dynamic"
+
+  # Multi-objective configuration
+  multi_objective:
+    objectives:
+      - name: "accuracy"
+        weight: 0.4
+        maximize: true
+      - name: "efficiency"
+        weight: 0.3
+        maximize: true
+      - name: "robustness"
+        weight: 0.2
+        maximize: true
+      - name: "interpretability"
+        weight: 0.1
+        maximize: true
+
+    # Pareto optimization
+    pareto:
+      enabled: true
+      domination_type: "strong"  # Options: "strong", "weak"
+      archive_size: 50
+
+  # Fitness scaling
+  scaling:
+    method: "rank_based"  # Options: "linear", "sigma_truncation", "rank_based"
+    scaling_factor: 2.0
+
+# Evolution parameters
+evolution:
+  # Generation control
+  max_generations: 1000
+  early_stopping: true
+  early_stopping_generations: 50
+  improvement_threshold: 0.001
+
+  # Generation management
+  generation_gap: 0.9  # Fraction of population replaced each generation
+  overlapping_generations: false
+
+  # Convergence detection
+  convergence:
+    criteria: "diversity"  # Options: "diversity", "improvement", "fitness_variance"
+    diversity_threshold: 0.01
+    fitness_variance_threshold: 0.0001
+
+# Advanced genetic features
+advanced_features:
+  # Island model evolution
+  island_model:
+    enabled: false
+    num_islands: 4
+    island_size: 25
+    migration_rate: 0.1
+    migration_interval: 10
+
+  # Co-evolution
+  coevolution:
+    enabled: false
+    competing_species: 2
+    collaborative_species: true
+
+  # Memetic algorithms (local search + GA)
+  memetic:
+    enabled: true
+    local_search_method: "hill_climbing"
+    local_search_rate: 0.1
+    local_search_intensity: 10
+
+# Parallelization
+parallel:
+  # Enable parallel evaluation
+  parallel_evaluation: true
+  num_workers: 4
+
+  # Parallel island evolution
+  parallel_islands: true
+  island_parallelization: "distributed"
+
+  # Load balancing
+  load_balancing: true
+  dynamic_worker_allocation: true
+
+# Adaptation mechanisms
+adaptation:
+  # Adaptive parameter control
+  adaptive_parameters:
+    adaptive_mutation_rate: true
+    adaptive_crossover_rate: true
+    adaptive_population_size: false
+
+  # Learning from search history
+  learning:
+    operator_performance_tracking: true
+    parameter_self_adaptation: true
+    search_pattern_learning: true
+
+# Niching and speciation
+niching:
+  # Enable niching for maintaining diversity
+  enabled: true
+  method: "fitness_sharing"  # Options: "fitness_sharing", "crowding", "speciation"
+
+  # Fitness sharing parameters
+  fitness_sharing:
+    niche_radius: 0.1
+    sharing_function: "power"  # Options: "linear", "power", "exponential"
+    alpha_parameter: 1.0
+
+# Memory and resource management
+resources:
+  # Memory limits
+  max_memory_mb: 1024
+  population_memory_limit: 0.8
+
+  # Time limits
+  max_time_seconds: 3600
+  generation_time_limit: 60
+
+  # Caching
+  fitness_cache_size: 10000
+  enable_fitness_caching: true
+
+# Quality control and validation
+quality_control:
+  # Solution validation
+  solution_validation: true
+  validation_criteria: ["feasibility", "quality", "novelty"]
+
+  # Population health monitoring
+  health_monitoring:
+    diversity_tracking: true
+    fitness_distribution_tracking: true
+    convergence_detection: true
+
+  # Restart mechanisms
+  restart:
+    enabled: true
+    restart_triggers: ["convergence", "stagnation", "diversity_loss"]
+    restart_strategy: "partial"  # Options: "full", "partial", "elitist"
+
+# Logging and monitoring
+logging:
+  # Generation statistics
+  log_generation_stats: true
+  stats_log_interval: 10
+
+  # Population statistics
+  log_population_stats: true
+  population_log_interval: 50
+
+  # Performance tracking
+  performance_tracking: true
+  best_solution_tracking: true
+  convergence_tracking: true
