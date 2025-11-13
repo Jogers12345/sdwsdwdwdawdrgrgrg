@@ -1,0 +1,48 @@
+# BSEE Optional heavy dependencies
+# Install with: pip install -r requirements/optional.txt
+
+# Web framework and API
+fastapi>=0.68.0
+uvicorn[standard]>=0.15.0
+python-multipart>=0.0.5
+aiofiles>=0.7.0
+jinja2>=3.0.0
+
+# Database and caching
+sqlalchemy>=1.4.0
+alembic>=1.7.0
+redis>=3.5.0
+psycopg2-binary>=2.9.0
+
+# Monitoring and metrics
+prometheus-client>=0.11.0
+structlog>=21.1.0
+
+# Async and concurrency
+asyncio-mqtt>=0.10.0
+celery>=5.2.0
+
+# Security and authentication
+passlib[bcrypt]>=1.7.0
+python-jose[cryptography]>=3.3.0
+slowapi>=0.1.4
+limiter>=1.4.0
+
+# Performance optimization
+orjson>=3.6.0
+
+# Deployment
+gunicorn>=20.1.0
+
+# Network and distributed computing
+requests>=2.26.0
+aiohttp>=3.8.0
+distributed>=2021.10.0
+
+# Advanced data processing
+dask[complete]>=2021.10.0
+polars>=0.13.0
+
+# Advanced visualization
+dash>=2.0.0
+streamlit>=1.0.0
