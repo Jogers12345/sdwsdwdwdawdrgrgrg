@@ -4,13 +4,13 @@ description: "Temperature-based search that can accept worse moves"
 # Temperature parameters
 temperature:
   # Starting temperature
-  initial_temperature: 100.0
+  initial_temperature: 1000.0
 
   # Minimum temperature
-  min_temperature: 0.1
+  min_temperature: 0.001
 
   # Temperature cooling schedule
-  cooling_schedule: "geometric"  # Options: "geometric", "linear", "exponential"
+  cooling_schedule: "exponential"  # Options: "geometric", "linear", "exponential"
 
   # Geometric cooling rate
   cooling_rate: 0.95
@@ -21,8 +21,25 @@ temperature:
   # Exponential cooling parameters
   exponential_alpha: 0.99
 
-  # Adaptive temperature adjustment
+  # New: Adaptive temperature adjustment
   adaptive_cooling: true
+
+# Restart strategy enhancements
+restart_strategy:
+  # Enable reheating when stuck
+  enable_reheating: true
+
+  # Reheat when no improvement for N iterations
+  reheat_threshold: 50
+
+  # Reheat temperature multiplier
+  reheat_multiplier: 0.5
+
+  # Maximum number of reheats
+  max_reheats: 5
+
+  # New: Restart threshold if stuck in local optimum
+  restart_threshold: 0.01
 
 # Acceptance criteria
 acceptance:
