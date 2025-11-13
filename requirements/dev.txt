@@ -1,0 +1,49 @@
+# BSEE Development and testing dependencies
+# Install with: pip install -r requirements/dev.txt
+
+# Include base requirements
+-r base.txt
+
+# Testing framework
+pytest>=6.2.0
+pytest-asyncio>=0.15.0
+pytest-cov>=2.12.0
+pytest-mock>=3.6.0
+pytest-xdist>=2.4.0
+pytest-benchmark>=3.4.0
+pytest-html>=3.1.0
+coverage>=6.0.0
+
+# Code quality and formatting
+black>=21.0.0
+flake8>=3.9.0
+isort>=5.9.0
+autopep8>=1.5.0
+mypy>=0.910
+pylint>=2.9.0
+bandit>=1.7.0
+
+# Pre-commit hooks
+pre-commit>=2.13.0
+
+# Debugging tools
+pdb++>=0.10.0
+ipdb>=0.13.0
+memory-profiler>=0.58.0
+line-profiler>=3.3.0
+py-spy>=0.3.0
+
+# Documentation
+sphinx>=4.0.0
+sphinx-rtd-theme>=0.5.0
+mkdocs>=1.4.0
+mkdocs-material>=7.3.0
+
+# Development utilities
+ipython>=7.25.0
+jupyter>=1.0.0
+notebook>=6.4.0
+watchdog>=2.1.0
+
+# Performance profiling
+pytest-profiling>=1.7.0
