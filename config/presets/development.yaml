@@ -1,0 +1,411 @@
+# Development Preset
+name: "Development Preset"
+description: "Development and debugging preset with fast iteration and comprehensive debugging tools"
+
+# Development configuration
+development_configuration:
+  debugging:
+    verbose_logging: true
+    stack_traces: true
+    intermediate_results: true
+    breakpoint_support: true
+    debug_visualizations: true
+
+  # Testing configuration
+  testing:
+    unit_test_integration: true
+    mocking_enabled: true
+    test_data_generation: true
+    coverage_analysis: true
+    automated_testing: true
+
+  # Iteration speed optimization
+  iteration_speed:
+    fast_reload: true
+    incremental_training: true
+    caching: "aggressive"
+    parallel_execution: false
+    rapid_prototyping: true
+
+# Development strategy configuration
+strategy:
+  type: "adaptive"
+  primary: "greedy"
+  fallback: "beam_search"
+  debug_mode: true
+
+  # Fast development strategy
+  greedy:
+    max_iterations: 100
+    lookahead_steps: 2
+    early_stopping: true
+    debug_output: true
+    step_by_step_execution: true
+
+  # Backup strategy
+  beam_search:
+    beam_width: 5
+    max_depth: 20
+    debug_mode: true
+    intermediate_results: true
+
+# Development cost model
+cost_model:
+  type: "computational"
+  optimization_target: "development_speed"
+  iteration_time_weight: 2.0
+  debugging_cost_weight: 1.0
+  feedback_speed_weight: 1.5
+
+# Development policy with debugging features
+policy:
+  type: "enhanced_default"
+  decision_policies:
+    resource_allocation:
+      strategy: "conservative"
+      min_resources: 5
+      max_resources: 50
+      scaling_factor: 1.2
+
+    timeout_handling:
+      default_timeout: 60  # Shorter for development
+      progressive_backoff: false  # Disabled for debugging
+      max_retries: 1
+      debug_timeout_extension: true
+
+    quality_assurance:
+      validation_frequency: 10  # More frequent for development
+      error_threshold: 0.1  # More lenient for development
+      auto_correction: true
+      rollback_on_failure: false  # Disabled for debugging
+      debug_validation: true
+
+# Development metrics
+metrics:
+  # Core metrics
+  primary:
+    - "file_ideality_score"
+    - "entropy_global"
+    - "execution_time"
+    - "memory_usage"
+
+  # Development-specific metrics
+  development_metrics:
+    - "debug_info_count"
+    - "warning_count"
+    - "test_coverage"
+    - "iteration_speed"
+    - "code_quality"
+
+  # Performance metrics for optimization
+  performance_metrics:
+    - "startup_time"
+    - "response_time"
+    - "resource_usage"
+    - "error_rate"
+
+# All operations available for development
+operations:
+  allowed:
+    - "xor_constant"
+    - "add_constant"
+    - "sub_constant"
+    - "rotate_left"
+    - "rotate_right"
+    - "not_bytes"
+    - "move_to_front"
+    - "burrows_wheeler"
+    - "bitplane_extract"
+    - "shuffle_bytes"
+    - "block_reverse"
+    - "delta_encode"
+    - "substitution_ops"
+    - "transform_ops"
+    - "pattern_replacement"
+    - "byte_swap"
+
+  # Wide parameter ranges for experimentation
+  parameter_ranges:
+    xor_constant:
+      key: [0, 255]
+    add_constant:
+      constant: [0, 255]
+    sub_constant:
+      constant: [0, 255]
+    rotate_left:
+      bits: [1, 7]
+    rotate_right:
+      bits: [1, 7]
+    substitution_ops:
+      pattern_length: [1, 16]
+      replacement_length: [1, 16]
+
+# Development limits (relaxed for experimentation)
+limits:
+  max_operations: 2000
+  max_cost: 10000
+  max_time: 600  # 10 minutes
+  max_memory_mb: 2048
+  min_improvement: 0.001
+  convergence_threshold: 0.01
+  stagnation_limit: 500
+
+# Development settings
+development_settings:
+  # Fast iteration features
+  fast_iteration:
+    hot_reload: true
+    incremental_compilation: true
+    cache_dependencies: true
+    skip_validation: false  # Keep validation for safety
+
+  # Debugging features
+  debugging_features:
+    interactive_debugger: true
+    step_execution: true
+    variable_inspection: true
+    breakpoint_management: true
+    call_stack_tracking: true
+
+  # Code quality
+  code_quality:
+    linting: true
+    formatting: true
+    type_checking: true
+    static_analysis: true
+
+# Developer tools
+developer_tools:
+  # Jupyter integration
+  jupyter_integration:
+    enabled: true
+    auto_start_notebook: true
+    kernel_management: true
+    variable_inspection: true
+
+  # Visualization tools
+  visualization:
+    enabled: true
+    real_time_plots: true
+    interactive_charts: true
+    export_formats: ["png", "svg", "html"]
+
+  # Profiling tools
+  profiling:
+    enabled: true
+    cpu_profiling: true
+    memory_profiling: true
+    line_profiling: true
+    performance_bottleneck_detection: true
+
+  # Memory analysis
+  memory_analysis:
+    enabled: true
+    memory_usage_tracking: true
+    leak_detection: true
+    memory_map_analysis: true
+
+# Output configuration for development
+output:
+  save_models: true
+  save_training_data: true
+  save_performance_metrics: true
+  save_debug_info: true
+  generate_visualizations: true
+  export_intermediate_results: true
+
+  output_directory: "results/development/"
+  debug_directory: "debug/development/"
+  notebook_directory: "notebooks/development/"
+
+# Development logging
+logging:
+  level: "DEBUG"
+  file_logging: true
+  console_logging: true
+  structured_logging: false  # Human-readable for development
+  log_performance_metrics: true
+  log_debug_info: true
+  log_intermediate_results: true
+
+  # Development-specific logging
+  development_logging:
+    log_code_changes: true
+    log_parameter_sweeps: true
+    log_experiment_tracking: true
+    log_bug_reports: true
+
+# Testing configuration
+testing:
+  # Unit testing
+  unit_testing:
+    framework: "pytest"
+    coverage_threshold: 0.8
+    parallel_testing: true
+    test_discovery: "automatic"
+
+  # Integration testing
+  integration_testing:
+    enabled: true
+    test_environments: ["staging", "mock_production"]
+    api_testing: true
+    end_to_end_testing: true
+
+  # Test data generation
+  test_data_generation:
+    enabled: true
+    synthetic_data: true
+    edge_cases: true
+    boundary_conditions: true
+    random_data: true
+
+# Development dependencies
+dependencies:
+  required:
+    - "numpy>=1.21.0"
+    - "scipy>=1.7.0"
+    - "matplotlib>=3.4.0"
+    - "psutil>=5.8.0"
+    - "click>=8.0.0"
+    - "tqdm>=4.62.0"
+    - "pyyaml>=5.4.0"
+    - "pillow>=8.3.0"
+    - "pandas>=1.3.0"
+
+  development_specific:
+    - "jupyter>=1.0.0"
+    - "ipywidgets>=7.6.0"
+    - "ipython>=7.0.0"
+    - "pytest>=6.0.0"
+    - "pytest-cov>=2.12.0"
+    - "black>=21.0.0"
+    - "flake8>=3.9.0"
+    - "mypy>=0.910"
+    - "pre-commit>=2.15.0"
+
+  debugging_tools:
+    - "pdb++>=0.10.0"
+    - "ipdb>=0.13.0"
+    - "memory-profiler>=0.60.0"
+    - "line-profiler>=3.3.0"
+    - "py-spy>=0.3.0"
+
+# Development server configuration
+development_server:
+  # Hot reload
+  hot_reload:
+    enabled: true
+    watch_directories: ["src", "config"]
+    ignore_patterns: ["*.pyc", "__pycache__"]
+    reload_delay: 0.5
+
+  # Debug server
+  debug_server:
+    enabled: true
+    port: 5678
+    host: "localhost"
+    wait_for_client: false
+
+# Documentation generation
+documentation:
+  # Auto-documentation
+  auto_documentation:
+    enabled: true
+    format: "html"
+    include_private: false
+    include_inherited: true
+
+  # API documentation
+  api_documentation:
+    enabled: true
+    format: "openapi"
+    include_examples: true
+    interactive_docs: true
+
+# Code quality tools
+code_quality:
+  # Linting
+  linting:
+    enabled: true
+    tool: "flake8"
+    config_file: ".flake8"
+    fail_on_error: false  # Warning only in development
+
+  # Formatting
+  formatting:
+    enabled: true
+    tool: "black"
+    line_length: 88
+    target_version: "py39"
+
+  # Type checking
+  type_checking:
+    enabled: true
+    tool: "mypy"
+    strict_mode: false
+    ignore_missing_imports: true
+
+# Performance profiling
+profiling:
+  # CPU profiling
+  cpu_profiling:
+    enabled: true
+    sampling_rate: 100  # Hz
+    call_stack_depth: 10
+
+  # Memory profiling
+  memory_profiling:
+    enabled: true
+    track_allocations: true
+    track_deallocations: true
+
+  # Performance analysis
+  performance_analysis:
+    bottleneck_detection: true
+    flame_graphs: true
+    call_graphs: true
+
+# Configuration metadata
+metadata:
+  version: "2.0.0"
+  created_by: "BSEE Development Team"
+  created_date: "2024-01-01"
+  last_updated: "2024-01-01"
+  compatible_bsee_version: "2.0.0"
+  tags: ["development", "debugging", "testing", "iteration"]
+
+  # Development profile
+  development_profile:
+    complexity: "medium"
+    resource_requirements: "medium"
+    iteration_speed: "very_fast"
+    debugging_support: "very_high"
+    developer_experience: "very_high"
+
+# Usage guidelines
+usage_guidelines:
+  # When to use this preset
+  recommended_for:
+    - Feature development
+    - Bug hunting and debugging
+    - Algorithm experimentation
+    - Performance optimization
+    - Learning and exploration
+
+  # Development workflow
+  development_workflow:
+    1. "Start with development preset for fast iteration"
+    2. "Use debugging tools to understand behavior"
+    3. "Write tests to validate functionality"
+    4. "Profile performance bottlenecks"
+    5. "Iterate with hot reload and caching"
+    6. "Validate with comprehensive testing"
+
+  # Best practices
+  best_practices:
+    - "Use version control for all changes"
+    - "Write tests for new functionality"
+    - "Profile performance regularly"
+    - "Use debugging tools effectively"
+    - "Document experimental findings"
+    - "Keep code clean and maintainable"
