@@ -1,5 +1,34 @@
-name: "File Ideality Focus"
-description: "Maximize File Ideality above all other metrics"
+name: "Enhanced Ideality-Seeking Policy"
+description: "Ideal solution targeting policy with multi-objective optimization and Pareto efficiency"
+
+# Enhanced ideality-seeking policies
+ideality_policies:
+  # Target optimization with multi-objective weights
+  target_optimization:
+    ideal_solution_distance: 0.01
+    convergence_criterion: "pareto_optimal"  # Options: "pareto_optimal", "weighted_sum", "epsilon_constraint"
+    multi_objective_weights:
+      accuracy: 0.4
+      efficiency: 0.3
+      robustness: 0.2
+      interpretability: 0.1
+    constraint_handling: "penalty_method"
+
+  # Solution space exploration strategies
+  solution_space_exploration:
+    search_intensity: "high"  # Options: "low", "medium", "high", "adaptive"
+    local_search_radius: 0.1
+    global_search_frequency: 0.2
+    solution_diversity: 0.3
+    exploration_budget_ratio: 0.3
+
+  # Quality metrics for Pareto optimization
+  quality_metrics:
+    pareto_dominance: true
+    hypervolume_indicator: 0.8
+    convergence_measure: "igd"  # Inverted Generational Distance
+    spread_metric: 0.1
+    epsilon_indicator: 0.05
 
 # Metrics to calculate
 metrics_to_calculate:
