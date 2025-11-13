@@ -4,7 +4,7 @@ description: "Maintains multiple candidate states in parallel"
 # Strategy parameters
 parameters:
   # Number of states to maintain in beam
-  beam_width: 5
+  beam_width: 10
 
   # Maximum beam width (for dynamic adjustment)
   max_beam_width: 20
@@ -20,6 +20,18 @@ parameters:
 
   # Maximum operations without improvement
   max_no_improvement: 50
+
+  # New: Minimum score to keep candidate
+  pruning_threshold: 0.3
+
+  # New: Encourages diverse solutions
+  diversity_bonus: 0.2
+
+  # New: Enable early stopping if no improvement
+  early_stopping: true
+
+  # New: Maximum iterations without improvement before stopping
+  max_iterations_without_improvement: 100
 
 # Beam management
 beam_management:
