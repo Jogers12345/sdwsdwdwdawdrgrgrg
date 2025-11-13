@@ -1,5 +1,30 @@
-name: "Custom Policy Template"
-description: "User-editable template for custom analysis policies"
+name: "Enhanced Custom Policy Framework"
+description: "Flexible custom policy framework with advanced customization options and rule engine"
+
+# Enhanced customization options
+customization_options:
+  # Policy combination and blending
+  policy_combination:
+    blending_strategy: "weighted_average"  # Options: "weighted_average", "voting", "stacking", "dynamic"
+    base_policies: ["default", "entropy"]
+    custom_weights: true
+    dynamic_adjustment: true
+    weight_learning_rate: 0.01
+
+  # Advanced rule engine configuration
+  rule_engine:
+    condition_language: "python_expression"  # Options: "python_expression", "dsl", "json_logic"
+    action_library: "builtin + custom"
+    priority_system: true
+    conflict_resolution: "last_wins"  # Options: "last_wins", "priority_based", "merge"
+    rule_execution_order: "priority_then_definition"
+
+  # Monitoring and alerting integration
+  monitoring_integration:
+    custom_metrics: true
+    alerting_rules: true
+    dashboard_widgets: true
+    export_formats: ["json", "yaml", "csv", "xml"]
 
 # Metrics to calculate (uncomment and modify as needed)
 metrics_to_calculate:
