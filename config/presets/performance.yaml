@@ -1,0 +1,345 @@
+# Enhanced High-Performance Preset
+name: "Enhanced Performance Preset"
+description: "High-performance preset with aggressive optimization and maximum resource utilization"
+
+# Enhanced performance configuration
+performance_configuration:
+  # System optimization settings
+  system_optimization:
+    thread_pool_size: "auto"
+    memory_mapping: true
+    vectorization: true
+    gpu_acceleration: true
+    distributed_computing: false
+    cpu_affinity: true
+    hyperthreading: true
+    turbo_boost: true
+
+  # Algorithm selection for speed
+  algorithm_selection:
+    primary_strategy: "greedy"
+    fallback_strategy: "beam_search"
+    hybrid_integration: true
+    parallel_execution: true
+    aggressive_pruning: true
+    early_termination: true
+
+  # Resource management optimization
+  resource_management:
+    cpu_affinity: true
+    memory_pinning: true
+    cache_optimization: true
+    io_optimization: true
+    prefetch_strategy: "aggressive"
+    lazy_loading: false
+
+# Enhanced tuning parameters
+tuning_parameters:
+  aggressive_mode: true
+  timeout_optimization: true
+  memory_efficiency: "ultra"
+  latency_priority: "high"
+  throughput_priority: "maximum"
+  parallel_factor: "maximum"
+
+# Strategy configuration
+strategy:
+  type: "aggressive"
+  primary: "greedy"
+  secondary: "beam_search"
+  tertiary: "annealing"
+
+  # Optimized greedy strategy
+  greedy:
+    max_iterations: 500
+    lookahead_steps: 2
+    pruning_threshold: 0.9
+    local_search_radius: 3
+    convergence_threshold: 0.01
+    aggressive_updates: true
+
+  # Fast beam search
+  beam_search:
+    beam_width: 20
+    max_depth: 100
+    pruning_threshold: 0.7
+    diversity_bonus: 0.1
+    early_stopping: true
+    max_iterations_without_improvement: 50
+
+  # Quick annealing
+  annealing:
+    initial_temperature: 100.0
+    cooling_schedule: "exponential"
+    cooling_rate: 0.9
+    min_temperature: 0.1
+    adaptive_cooling: true
+
+# High-performance cost model
+cost_model:
+  type: "computational"
+  optimization_target: "speed"
+  cpu_time_weight: 2.0
+  memory_usage_weight: 1.5
+  disk_io_weight: 0.5
+
+  # Fast cost calculation
+  fast_cost_calculation:
+    precomputed_costs: true
+    cost_cache_size: 10000
+    simplified_formulas: true
+    approximation_tolerance: 0.01
+
+# Performance-first policy
+policy:
+  type: "aggressive"
+  max_cpu_utilization: 95.0
+  max_memory_utilization: 98.0
+  parallel_processing: true
+  prefetch_strategy: "eager"
+
+  # Risk tolerance for performance
+  risk_tolerance: 0.3
+  max_drawdown: 0.4
+  stop_loss: 0.1
+
+# Essential metrics for performance
+metrics:
+  primary:
+    - "file_ideality_score"
+    - "entropy_global"
+    - "execution_time"
+    - "memory_usage"
+
+  # Performance monitoring
+  performance_metrics:
+    - "operations_per_second"
+    - "cache_hit_rate"
+    - "cpu_utilization"
+    - "memory_utilization"
+
+# Fast operations set
+operations:
+  allowed:
+    - "xor_constant"
+    - "add_constant"
+    - "sub_constant"
+    - "rotate_left"
+    - "rotate_right"
+    - "not_bytes"
+    - "move_to_front"
+    - "shuffle_bytes"
+
+  # Optimized parameters
+  parameter_ranges:
+    xor_constant:
+      key: [1, 2, 4, 8, 16, 32, 64, 128, 255]
+    add_constant:
+      constant: [1, 2, 4, 8, 16, 32, 64, 128]
+    rotate_left:
+      bits: [1, 2, 3, 4, 8]
+    rotate_right:
+      bits: [1, 2, 3, 4, 8]
+
+# Performance limits
+limits:
+  max_operations: 2000
+  max_cost: 20000
+  max_time: 300  # 5 minutes
+  max_memory_mb: 1024
+  min_improvement: 0.005
+  convergence_threshold: 0.001
+  stagnation_limit: 200
+
+# Advanced performance settings
+performance_settings:
+  # Aggressive caching
+  caching:
+    enabled: true
+    result_cache_size: "unlimited"
+    computation_cache: true
+    memory_cache: true
+    disk_cache: true
+    cache_hit_threshold: 0.8
+
+  # Maximum parallelization
+  parallelization:
+    max_workers: "auto"
+    worker_type: "thread"
+    work_stealing: true
+    load_balancing: "dynamic"
+    thread_pool_size: 0  # Auto-detect
+
+  # Memory optimization
+  memory_optimization:
+    memory_pooling: true
+    garbage_collection: "aggressive"
+    memory_compression: false  # Too slow for performance mode
+    huge_pages: true
+
+  # I/O optimization
+  io_optimization:
+    async_io: true
+    direct_io: true
+    io_uring: true
+    read_ahead: true
+    write_behind: true
+    buffered_io: true
+
+# Platform-specific optimizations
+platform:
+  # Windows optimization
+  windows_optimized: true
+  priority_class: "HIGH_PRIORITY_CLASS"
+  process_affinity: true
+  large_pages: true
+
+  # CPU optimization
+  cpu_optimization:
+    cpu_instruction_sets: ["SSE2", "AVX", "AVX2"]
+    vectorization: true
+    loop_unrolling: true
+    branch_prediction_hints: true
+
+  # Memory optimization
+  memory_optimization:
+    numa_aware: true
+    memory_prefetch: true
+    cache_line_optimization: true
+    alignment_optimization: true
+
+# Minimal output for performance
+output:
+  save_models: false
+  save_training_data: false
+  save_performance_metrics: true
+  generate_visualizations: false
+  export_detailed_reports: false
+  real_time_feedback: true
+
+  output_directory: "results/performance/"
+  log_level: "ERROR"  # Minimal logging
+
+# Aggressive logging
+logging:
+  level: "ERROR"
+  file_logging: false
+  console_logging: true
+  structured_logging: false  # Too slow
+  log_performance_metrics: false
+
+# Validation (minimal for speed)
+validation:
+  cross_validation: false
+  test_split: 0.0
+  quick_validation: true
+  validation_samples: 5
+  benchmarking: false
+
+# Fast error handling
+error_handling:
+  fast_error_detection: true
+  minimal_error_logging: true
+  auto_recovery: true
+  max_recovery_attempts: 1
+  fail_fast: true
+
+# Performance monitoring
+monitoring:
+  real_time_monitoring: true
+  monitoring_interval: 1
+  alert_thresholds:
+    cpu_usage: 95.0
+    memory_usage: 98.0
+    response_time: 1.0
+
+# Benchmarking
+benchmarks:
+  target_performance:
+    files_per_second: 20
+    operations_per_second: 2000
+    max_memory_usage_mb: 1024
+    target_cpu_usage_percent: 90
+
+# Resource allocation
+resources:
+  # Memory allocation
+  memory_allocation:
+    max_memory_mb: 1024
+    buffer_size: "large"
+    allocation_strategy: "preallocate"
+
+  # CPU allocation
+  cpu_allocation:
+    max_cpu_cores: "all"
+    cpu_affinity: true
+    priority_boost: true
+
+# Hardware acceleration
+hardware_acceleration:
+  # SIMD optimization
+  simd_optimization:
+    enabled: true
+    instruction_sets: ["SSE2", "AVX", "AVX2", "AVX512"]
+    vector_width: 512
+
+  # GPU acceleration (if available)
+  gpu_acceleration:
+    enabled: false  # Set to true if CUDA available
+    device_type: "cuda"
+    memory_fraction: 0.8
+
+# Experimental performance features
+experimental:
+  # Predictive optimization
+  predictive_optimization:
+    enabled: false  # Can be enabled for advanced use cases
+    prediction_model: "linear_regression"
+    look_ahead_steps: 3
+
+  # Self-tuning
+  self_tuning:
+    enabled: false  # Can be enabled for advanced use cases
+    tuning_frequency: 50
+    adaptation_rate: 0.1
+
+# Configuration metadata
+metadata:
+  version: "2.0.0"
+  created_by: "BSEE Team"
+  created_date: "2024-01-01"
+  last_updated: "2024-01-01"
+  compatible_bsee_version: "2.0.0"
+  tags: ["performance", "speed", "optimization", "aggressive"]
+
+  # Performance profile
+  performance_profile:
+    complexity: "low"
+    resource_requirements: "medium"
+    accuracy_potential: "medium"
+    speed_potential: "very_high"
+    memory_usage: "medium"
+
+# Usage guidelines
+usage_guidelines:
+  # When to use this preset
+  recommended_for:
+    - Time-critical applications
+    - Large-scale processing
+    - Batch processing jobs
+    - Resource-constrained environments
+
+  # When to avoid this preset
+  not_recommended_for:
+    - High-accuracy requirements
+    - Complex optimization problems
+    - Research and experimentation
+    - Production systems requiring stability
+
+  # Performance tips
+  performance_tips:
+    - Use solid-state storage for I/O operations
+    - Ensure adequate CPU cooling for sustained performance
+    - Close unnecessary applications to free resources
+    - Use high-performance storage (NVMe if available)
+    - Monitor system resources during operation
