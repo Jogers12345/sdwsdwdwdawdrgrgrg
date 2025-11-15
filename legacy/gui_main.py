@@ -14,6 +14,21 @@ from typing import Dict, List, Tuple, Optional
 project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root))
 
+# Double-check project root is in Python path for BSEE imports
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
+
+# Verify project root is correctly set
+if not (project_root / "bsee" / "__init__.py").exists():
+    print(f"Warning: BSEE module not found at {project_root}/bsee")
+    print("Make sure you're running from the correct directory")
+
+# Additional fix for virtual environment compatibility
+if "VIRTUAL_ENV" in os.environ:
+    venv_site_packages = Path(os.environ["VIRTUAL_ENV"]) / "Lib" / "site-packages"
+    if str(venv_site_packages) not in sys.path:
+        sys.path.insert(0, str(venv_site_packages))
+
 
 def check_dependencies() -> Tuple[List[str], List[Tuple[str, Optional[str]]]]:
     """
