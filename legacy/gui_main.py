@@ -463,7 +463,7 @@ def main():
         for module in missing_required:
             print(f"  - {module}")
         print("\nRequired dependencies must be installed:")
-        print("pip install -r requirements.txt")
+        print("pip install -r requirements/base.txt requirements/gui.txt")
 
         # Check if we can run in terminal mode
         if 'tkinter' in missing_required:
