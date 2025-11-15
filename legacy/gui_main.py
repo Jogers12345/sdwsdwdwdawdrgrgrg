@@ -484,7 +484,7 @@ def main():
         fallback_config = setup_fallback_mode(missing_optional)
         print("\nRunning with reduced functionality.")
         print("For full functionality, install missing dependencies:")
-        print("pip install -r requirements.txt")
+        print("pip install -r requirements/base.txt requirements/gui.txt")
     else:
         fallback_config = {}
         print("All dependencies available!")
