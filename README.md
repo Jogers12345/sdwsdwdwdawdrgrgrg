@@ -70,6 +70,15 @@ bsee/
 
 ## 🛠️ Installation
 
+### Requirements Structure
+
+BSEE uses modular requirements in `requirements/` folder:
+- `base.txt` - Core runtime dependencies
+- `gui.txt` - Graphical interface dependencies
+- `ml.txt` - Machine learning dependencies
+- `dev.txt` - Development and testing dependencies
+- `optional.txt` - Optional performance dependencies
+
 ### Quick Start
 
 ```bash
@@ -82,6 +91,28 @@ pip install -r requirements/base.txt requirements/gui.txt requirements/ml.txt
 
 # Run the application
 python -m bsee
+```
+
+### Windows (Recommended)
+
+Use unified BSEE.bat launcher:
+```batch
+BSEE.bat          # Interactive mode
+BSEE.bat gui       # Direct GUI launch
+BSEE.bat test       # Run tests
+```
+
+### Manual Installation
+
+```bash
+# Basic installation
+pip install -r requirements/base.txt
+
+# Full installation
+pip install -r requirements/base.txt requirements/gui.txt requirements/ml.txt requirements/dev.txt
+
+# Development installation
+pip install -r requirements/dev.txt
 ```
 
 ### Development Setup
