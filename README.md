@@ -78,7 +78,7 @@ git clone <repository-url>
 cd bsee
 
 # Install dependencies
-pip install -r requirements.txt
+pip install -r requirements/base.txt requirements/gui.txt requirements/ml.txt
 
 # Run the application
 python -m bsee
