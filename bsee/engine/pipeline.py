@@ -3,7 +3,20 @@ Main execution pipeline for BSEE analysis.
 """
 
 import logging
-import yaml
+
+# Enhanced YAML import with error handling
+try:
+    import yaml
+    YAML_AVAILABLE = True
+except ImportError:
+    YAML_AVAILABLE = False
+    print("Warning: YAML module not available. Install with: pip install pyyaml")
+    # Basic fallback functionality
+    class yaml:
+        @staticmethod
+        def safe_load(stream):
+            # Basic fallback for YAML loading
+            return {}
 from pathlib import Path
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Set, Any
