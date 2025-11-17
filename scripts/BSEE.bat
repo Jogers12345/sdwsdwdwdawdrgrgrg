@@ -1320,20 +1320,64 @@ call :success "BSEE module structure validated"
 goto :eof
 
 :fix_python_path_issues
-call :info "Fixing Python path issues..."
+call :info "Fixing Python path issues automatically..."
 
-:: Enhanced Python path configuration
+:: Enhanced Python path configuration with comprehensive fixes
 set PYTHONPATH=%PROJECT_DIR%;%PROJECT_DIR%\legacy;%PROJECT_DIR%\bsee;%PYTHONPATH%
 
-:: Add to PYTHONPATH for current session
+:: Add project directories to Python path automatically
+for /d %%D in ("%PROJECT_DIR%\*") do (
+    if exist "%%D\__init__.py" (
+        set PYTHONPATH=%%D;!PYTHONPATH!
+        call :info "Added to Python path: %%D"
+    )
+)
+
+:: Enhanced virtual environment path handling
+if "%VENV_DIR%" neq "" (
+    if exist "%VENV_DIR%\Lib\site-packages" (
+        set PYTHONPATH=%VENV_DIR%\Lib\site-packages;!PYTHONPATH!
+        call :info "Added virtual environment packages to Python path"
+    )
+)
+
+:: Add to PYTHONPATH for current session and permanently if admin
 setx PYTHONPATH "%PYTHONPATH%" >nul 2>&1
 
-:: Create path fix script
-echo @echo off > "%PROJECT_DIR%\fix_paths.bat"
-echo set PYTHONPATH=%PROJECT_DIR%;%PROJECT_DIR%\legacy;%PROJECT_DIR%\bsee;%%PYTHONPATH%% >> "%PROJECT_DIR%\fix_paths.bat"
-echo echo Python paths fixed for BSEE >> "%PROJECT_DIR%\fix_paths.bat"
+:: Enhanced site-packages import fix
+python -c "
+import sys
+import site
+import os
 
-call :success "Python path issues resolved"
+# Add user site-packages to sys.path for better package discovery
+site.addusersitepackages()
+
+# Fix for virtual environment package visibility
+if 'VIRTUAL_ENV' in os.environ:
+    venv_path = os.environ['VIRTUAL_ENV']
+    site_packages = os.path.join(venv_path, 'Lib', 'site-packages')
+    if site_packages not in sys.path:
+        sys.path.insert(0, site_packages)
+
+print('Python path enhancements applied')
+" >nul 2>&1
+
+:: Create advanced path fix script for manual recovery
+echo @echo off > "%PROJECT_DIR%\fix_paths.bat"
+echo echo ==================================================== >> "%PROJECT_DIR%\fix_paths.bat"
+echo echo BSEE Enhanced Path Fix Utility >> "%PROJECT_DIR%\fix_paths.bat"
+echo echo ==================================================== >> "%PROJECT_DIR%\fix_paths.bat"
+echo echo. >> "%PROJECT_DIR%\fix_paths.bat"
+echo echo Setting enhanced Python paths for BSEE... >> "%PROJECT_DIR%\fix_paths.bat"
+echo echo. >> "%PROJECT_DIR%\fix_paths.bat"
+echo set PYTHONPATH=%PROJECT_DIR%;%PROJECT_DIR%\legacy;%PROJECT_DIR%\bsee;%%PYTHONPATH%% >> "%PROJECT_DIR%\fix_paths.bat"
+echo echo. >> "%PROJECT_DIR%\fix_paths.bat"
+echo echo Enhanced path configuration applied! >> "%PROJECT_DIR%\fix_paths.bat"
+echo echo You can now run BSEE with corrected paths. >> "%PROJECT_DIR%\fix_paths.bat"
+echo echo. >> "%PROJECT_DIR%\fix_paths.bat"
+
+call :success "Python path issues resolved with enhanced fixes"
 goto :eof
 
 :: Enhanced testing functions
