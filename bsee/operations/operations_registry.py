@@ -119,8 +119,8 @@ class OperationsRegistry:
     def validate_operation_params(self, operation_name: str, params: Dict[str, Any]) -> bool:
         """Validate parameters for an operation."""""
         metadata = self.get_operation_metadata(operation_name)
-        required_params = metadata.get('required_params', [])''
-        optional_params = metadata.get('optional_params', {})''
+        required_params = metadata.get('required_params', [])
+        optional_params = metadata.get('optional_params', {})
 
         # Check required parameters
         for param in required_params:
