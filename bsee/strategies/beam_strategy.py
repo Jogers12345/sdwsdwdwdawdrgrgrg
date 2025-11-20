@@ -20,7 +20,7 @@ class BeamStrategy(BaseStrategy):
     def propose(self, current_state: State) -> Tuple[str, Dict[str, Any]]:
         """Propose operation for beam search."""""
         operations = [
-            ('xor_constant', {'constant': random.randint(1, 255)}'),
+            ('xor_constant', {'constant': random.randint(1, 255)}),'),
             ('rotate_left', {'shift': random.randint(1, 7)}'),
             ('move_to_front', {}'),
             ('shuffle_bytes', {'seed': random.randint(0, 10000)})
