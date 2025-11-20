@@ -143,8 +143,8 @@ class MetricsRegistry:
             category = metadata.get('category', 'unknown')''
             category_counts[category] = category_counts.get(category, 0) + 1
 
-        return {}
-            'total_metrics': len(self.metrics),''
-            'categories': category_counts,''
-            'metrics': list(self.metrics.keys())''
+        return {
+            'total_metrics': len(self.metrics),
+            'categories': category_counts,
+            'metrics': list(self.metrics.keys())
         }
