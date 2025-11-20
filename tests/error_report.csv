@@ -1097,7 +1097,7 @@ Traceback (most recent call last):
   File ""/tmp/tmpsa7g4xjj.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
 ImportError: Import error: libtk8.6.so: cannot open shared object file: No such file or directory",DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:19:52.800346,,,HIGH
-gui/components/enhanced_binary_viewer.py,SyntaxError,Line 292: invalid syntax,DETECTED,"Fix syntax error in the code (check brackets, indentation, etc.)",2025-11-20T05:19:52.805464,,,HIGH
+gui/components/enhanced_binary_viewer.py,SyntaxError,Line 292: invalid syntax,FIXED,Fixed invalid syntax in line 292 - corrected conditional expression in mixed_line formatting,2025-11-20T05:19:52.805464,2025-11-20T05:21:29.103629,auto,HIGH
 gui/components/binary_display.py,ImportError,"Traceback (most recent call last):
   File ""/tmp/tmph_vkc6w_.py"", line 12, in <module>
     spec.loader.exec_module(module)
