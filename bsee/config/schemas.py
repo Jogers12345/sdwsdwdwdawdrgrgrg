@@ -4,7 +4,7 @@ Defines Pydantic models for configuration validation.
 """
 
 from typing import Dict, List, Any, Optional, Union
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, Field, field_validator
 from enum import Enum
 
 
