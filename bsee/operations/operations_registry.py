@@ -107,7 +107,7 @@ class OperationsRegistry:
         filtered_ops = {}
         for name, func in self.operations.items():
             metadata = self.operation_metadata.get(name, {})
-            if metadata.get('category') == category:''
+            if metadata.get('category') == category:
                 filtered_ops[name] = func
         return filtered_ops
 
