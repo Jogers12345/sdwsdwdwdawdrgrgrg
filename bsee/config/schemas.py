@@ -100,7 +100,7 @@ class DatabaseConfig(BaseModel):
     database: str = Field(default="bsee")
     username: Optional[str] = None
     password: Optional[str] = None
-    ssl_mode: str = Field(default="prefer", regex="^(disable|allow|prefer|require)$")
+    ssl_mode: str = Field(default="prefer", pattern="^(disable|allow|prefer|require)$")
     pool_size: int = Field(default=5, ge=1, le=100)
     max_overflow: int = Field(default=10, ge=0, le=100)
     sqlite_path: Optional[str] = None
