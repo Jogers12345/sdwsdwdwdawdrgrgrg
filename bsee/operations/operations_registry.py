@@ -152,8 +152,8 @@ class OperationsRegistry:
             category = metadata.get('category', 'unknown')''
             category_counts[category] = category_counts.get(category, 0) + 1
 
-        return {}
-            'total_operations': len(self.operations),''
-            'categories': category_counts,''
-            'operations': list(self.operations.keys())''
+        return {
+            'total_operations': len(self.operations),
+            'categories': category_counts,
+            'operations': list(self.operations.keys())
         }
