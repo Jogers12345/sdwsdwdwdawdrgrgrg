@@ -1,6 +1,6 @@
-"""""
+"""
 Central registry for all metrics.
-"""""
+"""
 
 from typing import Callable, Dict, List
 
@@ -17,16 +17,16 @@ from bsee.metrics.file_ideality_metrics import FileIdealityMetrics
 
 
 class MetricsRegistry:
-    """Central registry for all metrics."""""
+    """Central registry for all metrics."""
 
     def __init__(self):
-        """Initialize metrics registry."""""
+        """Initialize metrics registry."""
         self.metrics: Dict[str, Callable] = {}
         self.metric_metadata: Dict[str, Dict[str, any]] = {}
         self._load_all_metrics()
 
     def _load_all_metrics(self) -> None:
-        """Load metrics from all metric modules."""""
+        """Load metrics from all metric modules."""
         # Load entropy metrics
         entropy_metrics = EntropyMetrics()
         for name, func in entropy_metrics.get_metrics().items():
@@ -73,12 +73,12 @@ class MetricsRegistry:
             self.register_metric(name, func, ideality_metrics.get_metadata(name))
 
     def register_metric(self, name: str, function: Callable, metadata: Dict[str, any]) -> None:
-        """Register a metric with the registry."""""
+        """Register a metric with the registry."""
         self.metrics[name] = function
         self.metric_metadata[name] = metadata
 
     def calculate_metric(self, binary_data: bytes, metric_name: str) -> float:
-        """Calculate a single metric."""""
+        """Calculate a single metric."""
         if metric_name not in self.metrics:
             raise ValueError(f"Unknown metric: {metric_name}")
 
@@ -90,7 +90,7 @@ class MetricsRegistry:
             return 0.0
 
     def calculate_metrics(self, binary_data: bytes, metric_names: List[str]) -> Dict[str, float]:
-        """Calculate multiple metrics."""""
+        """Calculate multiple metrics."""
         results = {}
         for metric_name in metric_names:
             if metric_name in self.metrics:
@@ -105,21 +105,21 @@ class MetricsRegistry:
         return results
 
     def calculate_all_metrics(self, binary_data: bytes) -> Dict[str, float]:
-        """Calculate all available metrics."""""
+        """Calculate all available metrics."""
         return self.calculate_metrics(binary_data, list(self.metrics.keys()))
 
     def list_metrics(self) -> List[str]:
-        """List all available metric names."""""
+        """List all available metric names."""
         return list(self.metrics.keys())
 
     def get_metric_metadata(self, metric_name: str) -> Dict[str, any]:
-        """Get metadata for a metric."""""
+        """Get metadata for a metric."""
         if metric_name not in self.metric_metadata:
             raise ValueError(f"Unknown metric: {metric_name}")
         return self.metric_metadata[metric_name]
 
     def get_metrics_by_category(self, category: str) -> Dict[str, Callable]:
-        """Get all metrics in a specific category."""""
+        """Get all metrics in a specific category."""
         filtered_metrics = {}
         for name, func in self.metrics.items():
             metadata = self.metric_metadata.get(name, {})
@@ -128,7 +128,7 @@ class MetricsRegistry:
         return filtered_metrics
 
     def get_metric_categories(self) -> List[str]:
-        """Get all available metric categories."""""
+        """Get all available metric categories."""
         categories = set()
         for metadata in self.metric_metadata.values():
             category = metadata.get('category', 'unknown')
@@ -137,7 +137,7 @@ class MetricsRegistry:
         return list(categories)
 
     def get_registry_summary(self) -> Dict[str, any]:
-        """Get a summary of the metrics registry."""""
+        """Get a summary of the metrics registry."""
         category_counts = {}
         for metadata in self.metric_metadata.values():
             category = metadata.get('category', 'unknown')
