@@ -149,7 +149,7 @@ class OperationsRegistry:
         """Get a summary of the operations registry."""""
         category_counts = {}
         for metadata in self.operation_metadata.values():
-            category = metadata.get('category', 'unknown')''
+            category = metadata.get('category', 'unknown')
             category_counts[category] = category_counts.get(category, 0) + 1
 
         return {
