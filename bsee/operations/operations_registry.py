@@ -1,4 +1,4 @@
-"""""
+"""
 Central registry for all binary operations.
 """""
 
