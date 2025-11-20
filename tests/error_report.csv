@@ -37,7 +37,7 @@ Traceback (most recent call last):
     raise Exception(f""Runtime error: {e}"")
 Exception: Runtime error: `regex` is removed. use `pattern` instead
 
-For further information visit https://errors.pydantic.dev/2.11/u/removed-kwargs",DETECTED,Add bsee module to Python path or check project structure,2025-11-20T05:06:30.369472,,,MEDIUM
+For further information visit https://errors.pydantic.dev/2.11/u/removed-kwargs",FIXED,Fixed Pydantic v2 compatibility - replaced all regex parameters with pattern,2025-11-20T05:06:30.369472,2025-11-20T05:16:19.953246,auto,MEDIUM
 bsee/config/validator.py,ImportError,"Traceback (most recent call last):
   File ""/tmp/tmphw5pfhao.py"", line 12, in <module>
     spec.loader.exec_module(module)
