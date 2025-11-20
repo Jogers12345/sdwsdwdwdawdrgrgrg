@@ -1,0 +1,10 @@
+BSEE Functionality Test Report
+============================================================
+Generated at: 2025-11-20 05:06:44
+
+
+
+ERRORS
+------------------------------
+• Operations registry: No module named 'bsee'
+• Metrics registry: No module named 'bsee'

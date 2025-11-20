@@ -1,6 +1,6 @@
 file_path,error_type,error_message,error_status,fix_description,timestamp,fix_timestamp,verified_by,priority
 bsee/config/manager.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmp8adkur_9.py"", line 12, in <module>
+  File ""/tmp/tmpn0_y58os.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -11,11 +11,11 @@ ImportError: attempted relative import with no known parent package
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmp8adkur_9.py"", line 31, in <module>
+  File ""/tmp/tmpn0_y58os.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: attempted relative import with no known parent package",DETECTED,Add bsee module to Python path or check project structure,2025-11-20T05:04:37.127332,,,HIGH
+ImportError: Import error: attempted relative import with no known parent package",DETECTED,Add bsee module to Python path or check project structure,2025-11-20T05:06:29.720894,,,HIGH
 bsee/config/schemas.py,ExecutionError,"Traceback (most recent call last):
-  File ""/tmp/tmpyf9rc40z.py"", line 12, in <module>
+  File ""/tmp/tmp59l4cvxt.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -33,13 +33,13 @@ For further information visit https://errors.pydantic.dev/2.11/u/removed-kwargs
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpyf9rc40z.py"", line 33, in <module>
+  File ""/tmp/tmp59l4cvxt.py"", line 33, in <module>
     raise Exception(f""Runtime error: {e}"")
 Exception: Runtime error: `regex` is removed. use `pattern` instead
 
-For further information visit https://errors.pydantic.dev/2.11/u/removed-kwargs",DETECTED,Add bsee module to Python path or check project structure,2025-11-20T05:04:37.773227,,,MEDIUM
+For further information visit https://errors.pydantic.dev/2.11/u/removed-kwargs",DETECTED,Add bsee module to Python path or check project structure,2025-11-20T05:06:30.369472,,,MEDIUM
 bsee/config/validator.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpngmiwh7z.py"", line 12, in <module>
+  File ""/tmp/tmphw5pfhao.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -50,11 +50,11 @@ ModuleNotFoundError: No module named 'yaml'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpngmiwh7z.py"", line 31, in <module>
+  File ""/tmp/tmphw5pfhao.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'yaml'",DETECTED,Install missing module: pip install yaml,2025-11-20T05:04:37.808377,,,HIGH
+ImportError: Import error: No module named 'yaml'",DETECTED,Install missing module: pip install yaml,2025-11-20T05:06:30.402804,,,HIGH
 bsee/config/__init__.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpb8wy1vca.py"", line 12, in <module>
+  File ""/tmp/tmp2ltxhpz7.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -65,11 +65,11 @@ ModuleNotFoundError: No module named 'test_module'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpb8wy1vca.py"", line 31, in <module>
+  File ""/tmp/tmp2ltxhpz7.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'test_module'",DETECTED,Install missing module: pip install test_module,2025-11-20T05:04:37.840995,,,HIGH
+ImportError: Import error: No module named 'test_module'",DETECTED,Install missing module: pip install test_module,2025-11-20T05:06:30.435707,,,HIGH
 bsee/operations/operations_registry.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpodnan_2m.py"", line 12, in <module>
+  File ""/tmp/tmphkpze7bu.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -80,11 +80,11 @@ ModuleNotFoundError: No module named 'bsee'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpodnan_2m.py"", line 31, in <module>
+  File ""/tmp/tmphkpze7bu.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:04:38.308291,,,HIGH
+ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:06:30.914318,,,HIGH
 bsee/operations/operation_validator.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmphd2ssbr6.py"", line 12, in <module>
+  File ""/tmp/tmpgk944lks.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -95,11 +95,11 @@ ModuleNotFoundError: No module named 'bsee'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmphd2ssbr6.py"", line 31, in <module>
+  File ""/tmp/tmpgk944lks.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:04:38.853103,,,HIGH
+ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:06:31.457240,,,HIGH
 bsee/scoring/scorer.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpol7c_mfj.py"", line 12, in <module>
+  File ""/tmp/tmphent79hb.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -110,11 +110,11 @@ ModuleNotFoundError: No module named 'bsee'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpol7c_mfj.py"", line 31, in <module>
+  File ""/tmp/tmphent79hb.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:04:38.998752,,,HIGH
+ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:06:31.599172,,,HIGH
 bsee/scoring/homogeneity_scorer.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmp5v6_2xcp.py"", line 12, in <module>
+  File ""/tmp/tmpzixhsh4t.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -125,11 +125,11 @@ ModuleNotFoundError: No module named 'numpy'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmp5v6_2xcp.py"", line 31, in <module>
+  File ""/tmp/tmpzixhsh4t.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:04:39.243569,,,HIGH
+ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:06:31.818948,,,HIGH
 bsee/scoring/__init__.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpum8v_1x7.py"", line 12, in <module>
+  File ""/tmp/tmpf9wolbxs.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -140,11 +140,11 @@ ModuleNotFoundError: No module named 'test_module'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpum8v_1x7.py"", line 31, in <module>
+  File ""/tmp/tmpf9wolbxs.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'test_module'",DETECTED,Install missing module: pip install test_module,2025-11-20T05:04:39.274385,,,HIGH
+ImportError: Import error: No module named 'test_module'",DETECTED,Install missing module: pip install test_module,2025-11-20T05:06:31.848507,,,HIGH
 bsee/strategies/greedy_strategy.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmptdu0a54r.py"", line 12, in <module>
+  File ""/tmp/tmp28f8bsz4.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -155,11 +155,11 @@ ModuleNotFoundError: No module named 'bsee'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmptdu0a54r.py"", line 31, in <module>
+  File ""/tmp/tmp28f8bsz4.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:04:39.400812,,,HIGH
+ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:06:31.966617,,,HIGH
 bsee/strategies/base_strategy.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmppw2r2xfm.py"", line 12, in <module>
+  File ""/tmp/tmpmv_srfvy.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -170,11 +170,11 @@ ModuleNotFoundError: No module named 'bsee'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmppw2r2xfm.py"", line 31, in <module>
+  File ""/tmp/tmpmv_srfvy.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:04:39.513926,,,HIGH
+ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:06:32.083748,,,HIGH
 bsee/strategies/homogeneity_mcts_strategy.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmp8l9547b9.py"", line 12, in <module>
+  File ""/tmp/tmpfx82hren.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -185,11 +185,11 @@ ModuleNotFoundError: No module named 'bsee'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmp8l9547b9.py"", line 31, in <module>
+  File ""/tmp/tmpfx82hren.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:04:39.651226,,,HIGH
+ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:06:32.218687,,,HIGH
 bsee/strategies/annealing_strategy.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpjeug3yv3.py"", line 12, in <module>
+  File ""/tmp/tmphres_i4t.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -200,11 +200,11 @@ ModuleNotFoundError: No module named 'bsee'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpjeug3yv3.py"", line 31, in <module>
+  File ""/tmp/tmphres_i4t.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:04:39.771278,,,HIGH
+ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:06:32.338477,,,HIGH
 bsee/strategies/beam_strategy.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpllbt_p9_.py"", line 12, in <module>
+  File ""/tmp/tmppk3rlx0x.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -215,11 +215,11 @@ ModuleNotFoundError: No module named 'bsee'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpllbt_p9_.py"", line 31, in <module>
+  File ""/tmp/tmppk3rlx0x.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:04:39.889448,,,HIGH
+ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:06:32.457267,,,HIGH
 bsee/strategies/genetic_strategy.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmps3rlbjca.py"", line 12, in <module>
+  File ""/tmp/tmp2pt32yp3.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -230,11 +230,11 @@ ModuleNotFoundError: No module named 'bsee'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmps3rlbjca.py"", line 31, in <module>
+  File ""/tmp/tmp2pt32yp3.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:04:40.006481,,,HIGH
+ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:06:32.575233,,,HIGH
 bsee/strategies/heuristic_strategy.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmp6q09mf0w.py"", line 12, in <module>
+  File ""/tmp/tmpfc2ncbdx.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -245,11 +245,11 @@ ModuleNotFoundError: No module named 'bsee'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmp6q09mf0w.py"", line 31, in <module>
+  File ""/tmp/tmpfc2ncbdx.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:04:40.136312,,,HIGH
+ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:06:32.703625,,,HIGH
 bsee/strategies/mcts_strategy.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmp9_0z3ym4.py"", line 12, in <module>
+  File ""/tmp/tmppfbo257l.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -260,11 +260,11 @@ ModuleNotFoundError: No module named 'bsee'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmp9_0z3ym4.py"", line 31, in <module>
+  File ""/tmp/tmppfbo257l.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:04:40.267163,,,HIGH
+ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:06:32.832666,,,HIGH
 bsee/strategies/neural/neural_strategy.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpcgdr5yix.py"", line 12, in <module>
+  File ""/tmp/tmp05tptjv6.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -275,11 +275,11 @@ ModuleNotFoundError: No module named 'numpy'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpcgdr5yix.py"", line 31, in <module>
+  File ""/tmp/tmp05tptjv6.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:04:40.337118,,,HIGH
+ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:06:32.907583,,,HIGH
 bsee/strategies/neural/homogeneity_neural_strategy.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmp1lneajsi.py"", line 12, in <module>
+  File ""/tmp/tmpz3ufd30m.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -290,11 +290,11 @@ ModuleNotFoundError: No module named 'numpy'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmp1lneajsi.py"", line 31, in <module>
+  File ""/tmp/tmpz3ufd30m.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:04:40.383956,,,HIGH
+ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:06:32.950798,,,HIGH
 bsee/strategies/neural/deep_q_strategy.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpiqd4o6ee.py"", line 12, in <module>
+  File ""/tmp/tmpn9mav2eu.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -305,11 +305,11 @@ ModuleNotFoundError: No module named 'numpy'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpiqd4o6ee.py"", line 31, in <module>
+  File ""/tmp/tmpn9mav2eu.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:04:40.427412,,,HIGH
+ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:06:33.005056,,,HIGH
 bsee/strategies/neural/__init__.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmp5aciusu_.py"", line 12, in <module>
+  File ""/tmp/tmp1cise5b4.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -320,11 +320,11 @@ ModuleNotFoundError: No module named 'test_module'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmp5aciusu_.py"", line 31, in <module>
+  File ""/tmp/tmp1cise5b4.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'test_module'",DETECTED,Install missing module: pip install test_module,2025-11-20T05:04:40.458210,,,HIGH
+ImportError: Import error: No module named 'test_module'",DETECTED,Install missing module: pip install test_module,2025-11-20T05:06:33.040114,,,HIGH
 bsee/caching/metrics_cache.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmp3kgvbqtq.py"", line 12, in <module>
+  File ""/tmp/tmpwvpeqzb9.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -335,11 +335,11 @@ ImportError: attempted relative import with no known parent package
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmp3kgvbqtq.py"", line 31, in <module>
+  File ""/tmp/tmpwvpeqzb9.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: attempted relative import with no known parent package",DETECTED,Add bsee module to Python path or check project structure,2025-11-20T05:04:40.687707,,,HIGH
+ImportError: Import error: attempted relative import with no known parent package",DETECTED,Add bsee module to Python path or check project structure,2025-11-20T05:06:33.267963,,,HIGH
 bsee/benchmarking/benchmark_suite.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmp9t1gg6re.py"", line 12, in <module>
+  File ""/tmp/tmpav9b86gw.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -350,11 +350,11 @@ ImportError: attempted relative import with no known parent package
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmp9t1gg6re.py"", line 31, in <module>
+  File ""/tmp/tmpav9b86gw.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: attempted relative import with no known parent package",DETECTED,Add bsee module to Python path or check project structure,2025-11-20T05:04:41.547882,,,HIGH
+ImportError: Import error: attempted relative import with no known parent package",DETECTED,Add bsee module to Python path or check project structure,2025-11-20T05:06:34.098937,,,HIGH
 bsee/processing/memory_optimizer.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpezn3sns_.py"", line 12, in <module>
+  File ""/tmp/tmpc4ynrjoy.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -365,11 +365,11 @@ ImportError: attempted relative import with no known parent package
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpezn3sns_.py"", line 31, in <module>
+  File ""/tmp/tmpc4ynrjoy.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: attempted relative import with no known parent package",DETECTED,Add bsee module to Python path or check project structure,2025-11-20T05:04:41.876704,,,HIGH
+ImportError: Import error: attempted relative import with no known parent package",DETECTED,Add bsee module to Python path or check project structure,2025-11-20T05:06:34.410912,,,HIGH
 bsee/processing/parallel_processor.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpau7ldcxc.py"", line 12, in <module>
+  File ""/tmp/tmprdsn7d11.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -380,11 +380,11 @@ ImportError: attempted relative import with no known parent package
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpau7ldcxc.py"", line 31, in <module>
+  File ""/tmp/tmprdsn7d11.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: attempted relative import with no known parent package",DETECTED,Add bsee module to Python path or check project structure,2025-11-20T05:04:42.219255,,,HIGH
+ImportError: Import error: attempted relative import with no known parent package",DETECTED,Add bsee module to Python path or check project structure,2025-11-20T05:06:34.739247,,,HIGH
 bsee/policies/custom/multi_objective_policy.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpwhg_k_v5.py"", line 12, in <module>
+  File ""/tmp/tmp9345se75.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -395,11 +395,11 @@ ModuleNotFoundError: No module named 'numpy'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpwhg_k_v5.py"", line 31, in <module>
+  File ""/tmp/tmp9345se75.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:04:42.258838,,,HIGH
+ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:06:34.779904,,,HIGH
 bsee/policies/custom/__init__.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmp0ndwblnn.py"", line 12, in <module>
+  File ""/tmp/tmp4mkrievj.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -410,11 +410,11 @@ ModuleNotFoundError: No module named 'test_module'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmp0ndwblnn.py"", line 31, in <module>
+  File ""/tmp/tmp4mkrievj.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'test_module'",DETECTED,Install missing module: pip install test_module,2025-11-20T05:04:42.290109,,,HIGH
+ImportError: Import error: No module named 'test_module'",DETECTED,Install missing module: pip install test_module,2025-11-20T05:06:34.810367,,,HIGH
 bsee/policies/custom/adaptive_policy.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpnpa8j4i1.py"", line 12, in <module>
+  File ""/tmp/tmps5_gxxy4.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -425,11 +425,11 @@ ModuleNotFoundError: No module named 'numpy'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpnpa8j4i1.py"", line 31, in <module>
+  File ""/tmp/tmps5_gxxy4.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:04:42.329490,,,HIGH
+ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:06:34.849484,,,HIGH
 bsee/cost/cost_model.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpqu3xc_bn.py"", line 12, in <module>
+  File ""/tmp/tmpi95lu0_w.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -440,11 +440,11 @@ ModuleNotFoundError: No module named 'bsee'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpqu3xc_bn.py"", line 31, in <module>
+  File ""/tmp/tmpi95lu0_w.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:04:42.473078,,,HIGH
+ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:06:34.996831,,,HIGH
 bsee/cost/models/adaptive_cost_model.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmp9mbhuq3l.py"", line 12, in <module>
+  File ""/tmp/tmpxgrczxba.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -455,11 +455,11 @@ ModuleNotFoundError: No module named 'numpy'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmp9mbhuq3l.py"", line 31, in <module>
+  File ""/tmp/tmpxgrczxba.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:04:42.511889,,,HIGH
+ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:06:35.035761,,,HIGH
 bsee/cost/models/__init__.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmp1d_1njs3.py"", line 12, in <module>
+  File ""/tmp/tmpc6vtwqat.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -470,11 +470,11 @@ ModuleNotFoundError: No module named 'test_module'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmp1d_1njs3.py"", line 31, in <module>
+  File ""/tmp/tmpc6vtwqat.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'test_module'",DETECTED,Install missing module: pip install test_module,2025-11-20T05:04:42.543890,,,HIGH
+ImportError: Import error: No module named 'test_module'",DETECTED,Install missing module: pip install test_module,2025-11-20T05:06:35.065536,,,HIGH
 bsee/cost/models/multi_objective_cost_model.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpw76bu2lx.py"", line 12, in <module>
+  File ""/tmp/tmp7f_m2kj9.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -485,11 +485,11 @@ ModuleNotFoundError: No module named 'numpy'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpw76bu2lx.py"", line 31, in <module>
+  File ""/tmp/tmp7f_m2kj9.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:04:42.587074,,,HIGH
+ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:06:35.106408,,,HIGH
 bsee/utils/validators.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpgbr3gjc8.py"", line 12, in <module>
+  File ""/tmp/tmp7jwvfp7m.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -500,11 +500,11 @@ ModuleNotFoundError: No module named 'yaml'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpgbr3gjc8.py"", line 31, in <module>
+  File ""/tmp/tmp7jwvfp7m.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'yaml'",DETECTED,Install missing module: pip install yaml,2025-11-20T05:04:42.808942,,,HIGH
+ImportError: Import error: No module named 'yaml'",DETECTED,Install missing module: pip install yaml,2025-11-20T05:06:35.332246,,,HIGH
 bsee/utils/__init__.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmp6yxodski.py"", line 12, in <module>
+  File ""/tmp/tmpll9vzx76.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -515,11 +515,11 @@ ModuleNotFoundError: No module named 'test_module'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmp6yxodski.py"", line 31, in <module>
+  File ""/tmp/tmpll9vzx76.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'test_module'",DETECTED,Install missing module: pip install test_module,2025-11-20T05:04:42.840353,,,HIGH
+ImportError: Import error: No module named 'test_module'",DETECTED,Install missing module: pip install test_module,2025-11-20T05:06:35.361496,,,HIGH
 bsee/engine/ai_gui_pipeline.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpgorgcd2a.py"", line 12, in <module>
+  File ""/tmp/tmpnwms_jtu.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -530,11 +530,11 @@ ModuleNotFoundError: No module named 'yaml'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpgorgcd2a.py"", line 31, in <module>
+  File ""/tmp/tmpnwms_jtu.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'yaml'",DETECTED,Install missing module: pip install yaml,2025-11-20T05:04:43.219129,,,HIGH
+ImportError: Import error: No module named 'yaml'",DETECTED,Install missing module: pip install yaml,2025-11-20T05:06:35.723892,,,HIGH
 bsee/engine/gui_pipeline.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpsnr7744g.py"", line 12, in <module>
+  File ""/tmp/tmplppqaqrv.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -545,11 +545,11 @@ ModuleNotFoundError: No module named 'yaml'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpsnr7744g.py"", line 31, in <module>
+  File ""/tmp/tmplppqaqrv.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'yaml'",DETECTED,Install missing module: pip install yaml,2025-11-20T05:04:43.368236,,,HIGH
+ImportError: Import error: No module named 'yaml'",DETECTED,Install missing module: pip install yaml,2025-11-20T05:06:35.867733,,,HIGH
 bsee/engine/pipeline.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpkqb2mtho.py"", line 12, in <module>
+  File ""/tmp/tmp9bca2bwq.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -560,11 +560,11 @@ ModuleNotFoundError: No module named 'bsee'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpkqb2mtho.py"", line 31, in <module>
+  File ""/tmp/tmp9bca2bwq.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:04:43.825709,,,HIGH
+ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:06:36.310084,,,HIGH
 bsee/monitoring/performance_alerts.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmp5jh_1yf2.py"", line 12, in <module>
+  File ""/tmp/tmpdtnmok80.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -575,11 +575,11 @@ ImportError: cannot import name 'MimeText' from 'email.mime.text' (/usr/local/li
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmp5jh_1yf2.py"", line 31, in <module>
+  File ""/tmp/tmpdtnmok80.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: cannot import name 'MimeText' from 'email.mime.text' (/usr/local/lib/python3.12/email/mime/text.py)",DETECTED,Add bsee module to Python path or check project structure,2025-11-20T05:04:44.762575,,,HIGH
+ImportError: Import error: cannot import name 'MimeText' from 'email.mime.text' (/usr/local/lib/python3.12/email/mime/text.py)",DETECTED,Add bsee module to Python path or check project structure,2025-11-20T05:06:37.222639,,,HIGH
 bsee/results/exporter.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpxdis7p1_.py"", line 12, in <module>
+  File ""/tmp/tmphmt_e8j3.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -590,11 +590,11 @@ ModuleNotFoundError: No module named 'bsee'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpxdis7p1_.py"", line 31, in <module>
+  File ""/tmp/tmphmt_e8j3.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:04:44.929099,,,HIGH
+ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:06:37.381361,,,HIGH
 bsee/results/formatter.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmp1cv2789c.py"", line 12, in <module>
+  File ""/tmp/tmpjqqnfkxq.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -605,11 +605,11 @@ ModuleNotFoundError: No module named 'bsee'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmp1cv2789c.py"", line 31, in <module>
+  File ""/tmp/tmpjqqnfkxq.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:04:45.089885,,,HIGH
+ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:06:37.541834,,,HIGH
 bsee/metrics/statistical_metrics.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpzp_d149d.py"", line 12, in <module>
+  File ""/tmp/tmpeoynmlah.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -620,11 +620,11 @@ ModuleNotFoundError: No module named 'numpy'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpzp_d149d.py"", line 31, in <module>
+  File ""/tmp/tmpeoynmlah.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:04:45.526415,,,HIGH
+ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:06:37.936296,,,HIGH
 bsee/metrics/structure_metrics.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmp3gx1fonn.py"", line 12, in <module>
+  File ""/tmp/tmpkb1p34d2.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -635,11 +635,11 @@ ModuleNotFoundError: No module named 'numpy'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmp3gx1fonn.py"", line 31, in <module>
+  File ""/tmp/tmpkb1p34d2.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:04:45.565908,,,HIGH
+ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:06:37.973554,,,HIGH
 bsee/metrics/pattern_metrics.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmp4_si7jd0.py"", line 12, in <module>
+  File ""/tmp/tmpm8rrf6xu.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -650,11 +650,11 @@ ModuleNotFoundError: No module named 'numpy'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmp4_si7jd0.py"", line 31, in <module>
+  File ""/tmp/tmpm8rrf6xu.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:04:45.732418,,,HIGH
+ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:06:38.123636,,,HIGH
 bsee/metrics/file_ideality_metrics.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpgt9jorfb.py"", line 12, in <module>
+  File ""/tmp/tmpkidksbz5.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -665,11 +665,11 @@ ModuleNotFoundError: No module named 'numpy'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpgt9jorfb.py"", line 31, in <module>
+  File ""/tmp/tmpkidksbz5.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:04:45.768578,,,HIGH
+ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:06:38.159796,,,HIGH
 bsee/metrics/bitwise_metrics.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmp9y3iaqmf.py"", line 12, in <module>
+  File ""/tmp/tmp_mm8koye.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -680,11 +680,11 @@ ModuleNotFoundError: No module named 'numpy'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmp9y3iaqmf.py"", line 31, in <module>
+  File ""/tmp/tmp_mm8koye.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:04:45.805434,,,HIGH
+ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:06:38.195295,,,HIGH
 bsee/metrics/metrics_registry.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpps57pwsn.py"", line 12, in <module>
+  File ""/tmp/tmp2d0726nh.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -695,11 +695,11 @@ ModuleNotFoundError: No module named 'bsee'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpps57pwsn.py"", line 31, in <module>
+  File ""/tmp/tmp2d0726nh.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:04:45.928401,,,HIGH
+ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:06:38.313484,,,HIGH
 bsee/ai/data.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpbiq64j90.py"", line 12, in <module>
+  File ""/tmp/tmph2gkq03o.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -710,11 +710,11 @@ ModuleNotFoundError: No module named 'pandas'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpbiq64j90.py"", line 31, in <module>
+  File ""/tmp/tmph2gkq03o.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'pandas'",DETECTED,Install missing module: pip install pandas,2025-11-20T05:04:46.076434,,,HIGH
+ImportError: Import error: No module named 'pandas'",DETECTED,Install missing module: pip install pandas,2025-11-20T05:06:38.455040,,,HIGH
 bsee/ai/features.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmp8no1mv7o.py"", line 12, in <module>
+  File ""/tmp/tmpr3fl441u.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -725,11 +725,11 @@ ModuleNotFoundError: No module named 'numpy'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmp8no1mv7o.py"", line 31, in <module>
+  File ""/tmp/tmpr3fl441u.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:04:46.117817,,,HIGH
+ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:06:38.495501,,,HIGH
 bsee/ai/predictor.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpf8zdq7p_.py"", line 12, in <module>
+  File ""/tmp/tmp67vuiwkd.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -740,11 +740,11 @@ ModuleNotFoundError: No module named 'numpy'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpf8zdq7p_.py"", line 31, in <module>
+  File ""/tmp/tmp67vuiwkd.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:04:46.289289,,,HIGH
+ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:06:38.660937,,,HIGH
 bsee/ai/trainer.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpy1ekyhvs.py"", line 12, in <module>
+  File ""/tmp/tmpv8zrzw9v.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -755,11 +755,11 @@ ModuleNotFoundError: No module named 'numpy'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpy1ekyhvs.py"", line 31, in <module>
+  File ""/tmp/tmpv8zrzw9v.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:04:46.437895,,,HIGH
+ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:06:38.819603,,,HIGH
 bsee/ai/optimizer.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpg220gs2o.py"", line 12, in <module>
+  File ""/tmp/tmp7tnpil7v.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -770,11 +770,11 @@ ModuleNotFoundError: No module named 'numpy'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpg220gs2o.py"", line 31, in <module>
+  File ""/tmp/tmp7tnpil7v.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:04:46.480085,,,HIGH
+ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:06:38.861726,,,HIGH
 bsee/ai/homogeneity_predictor.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpps4wdf3s.py"", line 12, in <module>
+  File ""/tmp/tmp14h27_hr.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -785,11 +785,11 @@ ImportError: attempted relative import with no known parent package
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpps4wdf3s.py"", line 31, in <module>
+  File ""/tmp/tmp14h27_hr.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: attempted relative import with no known parent package",DETECTED,Add bsee module to Python path or check project structure,2025-11-20T05:04:46.718260,,,HIGH
+ImportError: Import error: attempted relative import with no known parent package",DETECTED,Add bsee module to Python path or check project structure,2025-11-20T05:06:39.087758,,,HIGH
 bsee/ai/__init__.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmp_7sjpag4.py"", line 12, in <module>
+  File ""/tmp/tmp6dp2qes9.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -800,11 +800,11 @@ ModuleNotFoundError: No module named 'test_module'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmp_7sjpag4.py"", line 31, in <module>
+  File ""/tmp/tmp6dp2qes9.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'test_module'",DETECTED,Install missing module: pip install test_module,2025-11-20T05:04:46.750574,,,HIGH
+ImportError: Import error: No module named 'test_module'",DETECTED,Install missing module: pip install test_module,2025-11-20T05:06:39.117872,,,HIGH
 bsee/ai/pipelines/optimization_pipeline.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpptughde6.py"", line 12, in <module>
+  File ""/tmp/tmpe548g7hq.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -815,11 +815,11 @@ ImportError: attempted relative import with no known parent package
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpptughde6.py"", line 31, in <module>
+  File ""/tmp/tmpe548g7hq.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: attempted relative import with no known parent package",DETECTED,Add bsee module to Python path or check project structure,2025-11-20T05:04:46.980320,,,HIGH
+ImportError: Import error: attempted relative import with no known parent package",DETECTED,Add bsee module to Python path or check project structure,2025-11-20T05:06:39.342167,,,HIGH
 bsee/ai/pipelines/learning_pipeline.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmptvhb653q.py"", line 12, in <module>
+  File ""/tmp/tmpsuz3nn26.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -830,11 +830,11 @@ ImportError: attempted relative import with no known parent package
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmptvhb653q.py"", line 31, in <module>
+  File ""/tmp/tmpsuz3nn26.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: attempted relative import with no known parent package",DETECTED,Add bsee module to Python path or check project structure,2025-11-20T05:04:47.200151,,,HIGH
+ImportError: Import error: attempted relative import with no known parent package",DETECTED,Add bsee module to Python path or check project structure,2025-11-20T05:06:39.572193,,,HIGH
 bsee/ai/pipelines/__init__.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpsel69c2z.py"", line 12, in <module>
+  File ""/tmp/tmpwoncdv91.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -845,11 +845,11 @@ ModuleNotFoundError: No module named 'test_module'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpsel69c2z.py"", line 31, in <module>
+  File ""/tmp/tmpwoncdv91.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'test_module'",DETECTED,Install missing module: pip install test_module,2025-11-20T05:04:47.230457,,,HIGH
+ImportError: Import error: No module named 'test_module'",DETECTED,Install missing module: pip install test_module,2025-11-20T05:06:39.601759,,,HIGH
 tests/test_ai_integration.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpfuzkruc9.py"", line 12, in <module>
+  File ""/tmp/tmp_qbkej7p.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -860,11 +860,11 @@ ModuleNotFoundError: No module named 'bsee_ai'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpfuzkruc9.py"", line 31, in <module>
+  File ""/tmp/tmp_qbkej7p.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'bsee_ai'",DETECTED,Install missing module: pip install bsee_ai,2025-11-20T05:04:47.390148,,,HIGH
+ImportError: Import error: No module named 'bsee_ai'",DETECTED,Install missing module: pip install bsee_ai,2025-11-20T05:06:39.763178,,,HIGH
 tests/gui_test_suite.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpoxaf5jnd.py"", line 12, in <module>
+  File ""/tmp/tmpi3n6hrwl.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -878,11 +878,11 @@ ImportError: libtk8.6.so: cannot open shared object file: No such file or direct
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpoxaf5jnd.py"", line 31, in <module>
+  File ""/tmp/tmpi3n6hrwl.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: libtk8.6.so: cannot open shared object file: No such file or directory",DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:04:47.851692,,,HIGH
+ImportError: Import error: libtk8.6.so: cannot open shared object file: No such file or directory",DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:40.205539,,,HIGH
 tests/file_handling_tests.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpzg4l8ea8.py"", line 12, in <module>
+  File ""/tmp/tmpuczsx3y_.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -899,11 +899,11 @@ ModuleNotFoundError: No module named 'numpy'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpzg4l8ea8.py"", line 31, in <module>
+  File ""/tmp/tmpuczsx3y_.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:04:49.497409,,,HIGH
+ImportError: Import error: No module named 'numpy'",DETECTED,Install missing module: pip install numpy,2025-11-20T05:06:41.797624,,,HIGH
 tests/performance/benchmark_strategies.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmp9d4syrx8.py"", line 12, in <module>
+  File ""/tmp/tmpm1g_58ru.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -914,11 +914,11 @@ ModuleNotFoundError: No module named 'tests'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmp9d4syrx8.py"", line 31, in <module>
+  File ""/tmp/tmpm1g_58ru.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'tests'",DETECTED,Install missing module: pip install tests,2025-11-20T05:04:54.906215,,,HIGH
+ImportError: Import error: No module named 'tests'",DETECTED,Install missing module: pip install tests,2025-11-20T05:06:47.445209,,,HIGH
 tests/performance/test_operation_performance.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmp1uov6y9g.py"", line 12, in <module>
+  File ""/tmp/tmp7sk2tbm1.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -929,11 +929,11 @@ ModuleNotFoundError: No module named 'tests'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmp1uov6y9g.py"", line 31, in <module>
+  File ""/tmp/tmp7sk2tbm1.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'tests'",DETECTED,Install missing module: pip install tests,2025-11-20T05:04:55.815205,,,HIGH
+ImportError: Import error: No module named 'tests'",DETECTED,Install missing module: pip install tests,2025-11-20T05:06:48.314295,,,HIGH
 tests/regression/regression_suite.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmplv44z14d.py"", line 12, in <module>
+  File ""/tmp/tmpxm3upm3w.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -944,11 +944,11 @@ ModuleNotFoundError: No module named 'tests'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmplv44z14d.py"", line 31, in <module>
+  File ""/tmp/tmpxm3upm3w.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'tests'",DETECTED,Install missing module: pip install tests,2025-11-20T05:04:56.682527,,,HIGH
+ImportError: Import error: No module named 'tests'",DETECTED,Install missing module: pip install tests,2025-11-20T05:06:49.128131,,,HIGH
 tests/integration/test_pipeline.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpc8v3bir0.py"", line 12, in <module>
+  File ""/tmp/tmpnf_g2lzc.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -959,11 +959,11 @@ ModuleNotFoundError: No module named 'tests'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpc8v3bir0.py"", line 31, in <module>
+  File ""/tmp/tmpnf_g2lzc.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'tests'",DETECTED,Install missing module: pip install tests,2025-11-20T05:04:57.700165,,,HIGH
+ImportError: Import error: No module named 'tests'",DETECTED,Install missing module: pip install tests,2025-11-20T05:06:50.051672,,,HIGH
 tests/unit/test_operations.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpslebb95h.py"", line 12, in <module>
+  File ""/tmp/tmp6m5wffo3.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -974,11 +974,11 @@ ModuleNotFoundError: No module named 'tests'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpslebb95h.py"", line 31, in <module>
+  File ""/tmp/tmp6m5wffo3.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'tests'",DETECTED,Install missing module: pip install tests,2025-11-20T05:05:00.647841,,,HIGH
+ImportError: Import error: No module named 'tests'",DETECTED,Install missing module: pip install tests,2025-11-20T05:06:52.846454,,,HIGH
 tests/unit/test_strategies.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmp6__z23nk.py"", line 12, in <module>
+  File ""/tmp/tmpsjik2zkw.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -989,11 +989,11 @@ ModuleNotFoundError: No module named 'tests'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmp6__z23nk.py"", line 31, in <module>
+  File ""/tmp/tmpsjik2zkw.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'tests'",DETECTED,Install missing module: pip install tests,2025-11-20T05:05:01.642443,,,HIGH
+ImportError: Import error: No module named 'tests'",DETECTED,Install missing module: pip install tests,2025-11-20T05:06:53.777390,,,HIGH
 bsee_ai/__init__.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpewwble4r.py"", line 12, in <module>
+  File ""/tmp/tmpqsvgkjt6.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -1004,11 +1004,11 @@ ModuleNotFoundError: No module named 'test_module'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpewwble4r.py"", line 31, in <module>
+  File ""/tmp/tmpqsvgkjt6.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'test_module'",DETECTED,Install missing module: pip install test_module,2025-11-20T05:05:02.254003,,,HIGH
+ImportError: Import error: No module named 'test_module'",DETECTED,Install missing module: pip install test_module,2025-11-20T05:06:54.326600,,,HIGH
 legacy/setup_windows.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpgfs75pa1.py"", line 12, in <module>
+  File ""/tmp/tmps0pkbcb3.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -1019,11 +1019,11 @@ ModuleNotFoundError: No module named 'winreg'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpgfs75pa1.py"", line 31, in <module>
+  File ""/tmp/tmps0pkbcb3.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'winreg'",DETECTED,Install missing module: pip install winreg,2025-11-20T05:05:02.518113,,,HIGH
+ImportError: Import error: No module named 'winreg'",DETECTED,Install missing module: pip install winreg,2025-11-20T05:06:54.577946,,,HIGH
 legacy/main.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmp_9gbmc5h.py"", line 12, in <module>
+  File ""/tmp/tmp1aj_3540.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -1034,11 +1034,11 @@ ModuleNotFoundError: No module named 'bsee'
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmp_9gbmc5h.py"", line 31, in <module>
+  File ""/tmp/tmp1aj_3540.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:05:02.921769,,,HIGH
+ImportError: Import error: No module named 'bsee'",DETECTED,Install missing module: pip install bsee,2025-11-20T05:06:54.960046,,,HIGH
 gui/main_window.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmp1u9cgptn.py"", line 12, in <module>
+  File ""/tmp/tmpv28qhnfj.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -1052,11 +1052,11 @@ ImportError: libtk8.6.so: cannot open shared object file: No such file or direct
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmp1u9cgptn.py"", line 31, in <module>
+  File ""/tmp/tmpv28qhnfj.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: libtk8.6.so: cannot open shared object file: No such file or directory",DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:05:03.208190,,,HIGH
+ImportError: Import error: libtk8.6.so: cannot open shared object file: No such file or directory",DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:55.228930,,,HIGH
 gui/components/transformation_viewer.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmp33ikm7bm.py"", line 12, in <module>
+  File ""/tmp/tmpmk1l4dlq.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -1070,11 +1070,11 @@ ImportError: libtk8.6.so: cannot open shared object file: No such file or direct
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmp33ikm7bm.py"", line 31, in <module>
+  File ""/tmp/tmpmk1l4dlq.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: libtk8.6.so: cannot open shared object file: No such file or directory",DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:05:03.361714,,,HIGH
+ImportError: Import error: libtk8.6.so: cannot open shared object file: No such file or directory",DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:55.371666,,,HIGH
 gui/components/enhanced_console_panel.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpblicrnfw.py"", line 12, in <module>
+  File ""/tmp/tmpesffmoae.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -1088,12 +1088,12 @@ ImportError: libtk8.6.so: cannot open shared object file: No such file or direct
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpblicrnfw.py"", line 31, in <module>
+  File ""/tmp/tmpesffmoae.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: libtk8.6.so: cannot open shared object file: No such file or directory",DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:05:03.474161,,,HIGH
-gui/components/enhanced_binary_viewer.py,SyntaxError,Line 292: invalid syntax,DETECTED,"Fix syntax error in the code (check brackets, indentation, etc.)",2025-11-20T05:05:03.480898,,,HIGH
+ImportError: Import error: libtk8.6.so: cannot open shared object file: No such file or directory",DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:55.476133,,,HIGH
+gui/components/enhanced_binary_viewer.py,SyntaxError,Line 292: invalid syntax,DETECTED,"Fix syntax error in the code (check brackets, indentation, etc.)",2025-11-20T05:06:55.481157,,,HIGH
 gui/components/binary_display.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpt8lxxbwz.py"", line 12, in <module>
+  File ""/tmp/tmp81dt6k78.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -1107,11 +1107,11 @@ ImportError: libtk8.6.so: cannot open shared object file: No such file or direct
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpt8lxxbwz.py"", line 31, in <module>
+  File ""/tmp/tmp81dt6k78.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: libtk8.6.so: cannot open shared object file: No such file or directory",DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:05:03.609569,,,HIGH
+ImportError: Import error: libtk8.6.so: cannot open shared object file: No such file or directory",DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:55.596823,,,HIGH
 gui/components/enhanced_operation_player.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpfcwn7dx6.py"", line 12, in <module>
+  File ""/tmp/tmpkkhl_ct1.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -1125,11 +1125,11 @@ ImportError: libtk8.6.so: cannot open shared object file: No such file or direct
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpfcwn7dx6.py"", line 31, in <module>
+  File ""/tmp/tmpkkhl_ct1.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: libtk8.6.so: cannot open shared object file: No such file or directory",DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:05:03.727582,,,HIGH
+ImportError: Import error: libtk8.6.so: cannot open shared object file: No such file or directory",DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:55.704367,,,HIGH
 gui/export/transformation_export.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpv4qrspt_.py"", line 12, in <module>
+  File ""/tmp/tmph_gy97d5.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -1143,11 +1143,11 @@ ImportError: libtk8.6.so: cannot open shared object file: No such file or direct
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpv4qrspt_.py"", line 31, in <module>
+  File ""/tmp/tmph_gy97d5.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: libtk8.6.so: cannot open shared object file: No such file or directory",DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:05:03.892357,,,HIGH
+ImportError: Import error: libtk8.6.so: cannot open shared object file: No such file or directory",DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:55.855578,,,HIGH
 gui/panels/file_panel.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmppcda18dg.py"", line 12, in <module>
+  File ""/tmp/tmpftwz2jw7.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -1161,11 +1161,11 @@ ImportError: libtk8.6.so: cannot open shared object file: No such file or direct
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmppcda18dg.py"", line 31, in <module>
+  File ""/tmp/tmpftwz2jw7.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: libtk8.6.so: cannot open shared object file: No such file or directory",DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:05:04.001193,,,HIGH
+ImportError: Import error: libtk8.6.so: cannot open shared object file: No such file or directory",DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:55.960791,,,HIGH
 gui/panels/performance_panel.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpsbhwza_h.py"", line 12, in <module>
+  File ""/tmp/tmp82b9li8n.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -1179,11 +1179,11 @@ ImportError: libtk8.6.so: cannot open shared object file: No such file or direct
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpsbhwza_h.py"", line 31, in <module>
+  File ""/tmp/tmp82b9li8n.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: libtk8.6.so: cannot open shared object file: No such file or directory",DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:05:04.116456,,,HIGH
+ImportError: Import error: libtk8.6.so: cannot open shared object file: No such file or directory",DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.072981,,,HIGH
 gui/panels/metrics_panel.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpktdul0l8.py"", line 12, in <module>
+  File ""/tmp/tmpae0nof79.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -1197,11 +1197,11 @@ ImportError: libtk8.6.so: cannot open shared object file: No such file or direct
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpktdul0l8.py"", line 31, in <module>
+  File ""/tmp/tmpae0nof79.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: libtk8.6.so: cannot open shared object file: No such file or directory",DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:05:04.225472,,,HIGH
+ImportError: Import error: libtk8.6.so: cannot open shared object file: No such file or directory",DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.179631,,,HIGH
 gui/panels/terminal_panel.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpdcnvych7.py"", line 12, in <module>
+  File ""/tmp/tmp8vhvd1hx.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -1215,11 +1215,11 @@ ImportError: libtk8.6.so: cannot open shared object file: No such file or direct
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpdcnvych7.py"", line 31, in <module>
+  File ""/tmp/tmp8vhvd1hx.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: libtk8.6.so: cannot open shared object file: No such file or directory",DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:05:04.466531,,,HIGH
+ImportError: Import error: libtk8.6.so: cannot open shared object file: No such file or directory",DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.401720,,,HIGH
 gui/panels/visualization_panel.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmpgjhxsjiy.py"", line 12, in <module>
+  File ""/tmp/tmpc7vzohuw.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -1233,11 +1233,11 @@ ImportError: libtk8.6.so: cannot open shared object file: No such file or direct
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmpgjhxsjiy.py"", line 31, in <module>
+  File ""/tmp/tmpc7vzohuw.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: libtk8.6.so: cannot open shared object file: No such file or directory",DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:05:04.610325,,,HIGH
+ImportError: Import error: libtk8.6.so: cannot open shared object file: No such file or directory",DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.540312,,,HIGH
 gui/animation/operation_animator.py,ImportError,"Traceback (most recent call last):
-  File ""/tmp/tmptq0y0mui.py"", line 12, in <module>
+  File ""/tmp/tmplnqdl4aw.py"", line 12, in <module>
     spec.loader.exec_module(module)
   File ""<frozen importlib._bootstrap_external>"", line 999, in exec_module
   File ""<frozen importlib._bootstrap>"", line 488, in _call_with_frames_removed
@@ -1251,6 +1251,110 @@ ImportError: libtk8.6.so: cannot open shared object file: No such file or direct
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File ""/tmp/tmptq0y0mui.py"", line 31, in <module>
+  File ""/tmp/tmplnqdl4aw.py"", line 31, in <module>
     raise ImportError(f""Import error: {e}"")
-ImportError: Import error: libtk8.6.so: cannot open shared object file: No such file or directory",DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:05:04.723282,,,HIGH
+ImportError: Import error: libtk8.6.so: cannot open shared object file: No such file or directory",DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.646198,,,HIGH
+bsee/operations/transform_ops.py,PathIssue,Potential PATH issue with command: node,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.771678,,,MEDIUM
+bsee/operations/transform_ops.py,PathIssue,Potential PATH issue with command: make,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.771840,,,MEDIUM
+bsee/scoring/homogeneity_scorer.py,GUIDisplayIssue,Potential GUI display issue with module: matplotlib.pyplot,DETECTED,Install matplotlib: pip install matplotlib,2025-11-20T05:06:56.779267,,,MEDIUM
+bsee/strategies/homogeneity_mcts_strategy.py,PathIssue,Potential PATH issue with command: node,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.781978,,,MEDIUM
+bsee/benchmarking/benchmark_suite.py,PathIssue,Potential PATH issue with command: make,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.799489,,,MEDIUM
+bsee/utils/error_handler.py,PathIssue,Potential PATH issue with command: python,DETECTED,Ensure Python is installed and in system PATH,2025-11-20T05:06:56.814812,,,MEDIUM
+bsee/engine/ai_gui_pipeline.py,PathIssue,Potential PATH issue with command: pip,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.816624,,,MEDIUM
+bsee/engine/gui_pipeline.py,PathIssue,Potential PATH issue with command: pip,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.818789,,,MEDIUM
+bsee/engine/state.py,PathIssue,Potential PATH issue with command: pip,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.820323,,,MEDIUM
+bsee/engine/pipeline.py,PathIssue,Potential PATH issue with command: pip,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.821410,,,MEDIUM
+bsee/monitoring/performance_alerts.py,NetworkIssue,Potential network connectivity issue with module: smtplib,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.827417,,,MEDIUM
+bsee/ai/homogeneity_predictor.py,PathIssue,Potential PATH issue with command: make,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.847964,,,MEDIUM
+bsee/ai/pipelines/optimization_pipeline.py,PathIssue,Potential PATH issue with command: pip,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.849960,,,MEDIUM
+bsee/ai/pipelines/learning_pipeline.py,PathIssue,Potential PATH issue with command: pip,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.851120,,,MEDIUM
+tests/test_advanced_visualization_nogui.py,GUIDisplayIssue,Potential GUI display issue with module: matplotlib.pyplot,DETECTED,Install matplotlib: pip install matplotlib,2025-11-20T05:06:56.854968,,,MEDIUM
+tests/gui_test_suite.py,MissingDLL,Potential missing DLL dependency for module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.855735,,,MEDIUM
+tests/gui_test_suite.py,GUIDisplayIssue,Potential GUI display issue with module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.855987,,,MEDIUM
+tests/conftest.py,PathIssue,Potential PATH issue with command: node,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.856825,,,MEDIUM
+tests/run_phase4_tests.py,PathIssue,Potential PATH issue with command: python,DETECTED,Ensure Python is installed and in system PATH,2025-11-20T05:06:56.858376,,,MEDIUM
+tests/run_phase4_tests.py,PathIssue,Potential PATH issue with command: pip,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.858439,,,MEDIUM
+tests/test_advanced_visualization.py,MissingDLL,Potential missing DLL dependency for module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.864257,,,MEDIUM
+tests/test_advanced_visualization.py,GUIDisplayIssue,Potential GUI display issue with module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.865143,,,MEDIUM
+tests/run_tests.py,PathIssue,Potential PATH issue with command: python,DETECTED,Ensure Python is installed and in system PATH,2025-11-20T05:06:56.870850,,,MEDIUM
+tests/run_error_analysis.py,PathIssue,Potential PATH issue with command: python,DETECTED,Ensure Python is installed and in system PATH,2025-11-20T05:06:56.871948,,,MEDIUM
+tests/run_error_analysis.py,PathIssue,Potential PATH issue with command: pip,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.872008,,,MEDIUM
+tests/test_gui_fallback_system.py,PathIssue,Potential PATH issue with command: python,DETECTED,Ensure Python is installed and in system PATH,2025-11-20T05:06:56.873090,,,MEDIUM
+tests/test_bsee_functionality.py,PathIssue,Potential PATH issue with command: python,DETECTED,Ensure Python is installed and in system PATH,2025-11-20T05:06:56.875479,,,MEDIUM
+tests/test_error_detection.py,MissingDLL,Potential missing DLL dependency for module: cv2,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.876601,,,MEDIUM
+tests/test_error_detection.py,MissingDLL,Potential missing DLL dependency for module: pywin32,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.876716,,,MEDIUM
+tests/test_error_detection.py,MissingDLL,Potential missing DLL dependency for module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.876913,,,MEDIUM
+tests/test_error_detection.py,PathIssue,Potential PATH issue with command: git,DETECTED,Install Git and ensure it's in system PATH,2025-11-20T05:06:56.877040,,,MEDIUM
+tests/test_error_detection.py,PathIssue,Potential PATH issue with command: python,DETECTED,Ensure Python is installed and in system PATH,2025-11-20T05:06:56.877094,,,MEDIUM
+tests/test_error_detection.py,PathIssue,Potential PATH issue with command: pip,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.877147,,,MEDIUM
+tests/test_error_detection.py,GUIDisplayIssue,Potential GUI display issue with module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.877419,,,MEDIUM
+tests/test_error_detection.py,GUIDisplayIssue,Potential GUI display issue with module: PyQt5,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.877480,,,MEDIUM
+tests/test_error_detection.py,GUIDisplayIssue,Potential GUI display issue with module: matplotlib.pyplot,DETECTED,Install matplotlib: pip install matplotlib,2025-11-20T05:06:56.877633,,,MEDIUM
+tests/test_error_detection.py,NetworkIssue,Potential network connectivity issue with module: requests,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.877749,,,MEDIUM
+tests/test_error_detection.py,NetworkIssue,Potential network connectivity issue with module: urllib,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.877809,,,MEDIUM
+tests/test_error_detection.py,NetworkIssue,Potential network connectivity issue with module: socket,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.877888,,,MEDIUM
+tests/test_error_detection.py,NetworkIssue,Potential network connectivity issue with operation: requests.get,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.878042,,,MEDIUM
+tests/test_error_detection.py,NetworkIssue,Potential network connectivity issue with operation: urllib.request,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.878106,,,MEDIUM
+tests/error_tools/windows_simulator.py,PathIssue,Potential PATH issue with command: git,DETECTED,Install Git and ensure it's in system PATH,2025-11-20T05:06:56.878899,,,MEDIUM
+tests/error_tools/windows_simulator.py,PathIssue,Potential PATH issue with command: python,DETECTED,Ensure Python is installed and in system PATH,2025-11-20T05:06:56.878962,,,MEDIUM
+tests/error_tools/windows_simulator.py,PathIssue,Potential PATH issue with command: pip,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.879021,,,MEDIUM
+tests/error_tools/windows_simulator.py,PathIssue,Potential PATH issue with command: node,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.879080,,,MEDIUM
+tests/error_tools/windows_simulator.py,PathIssue,Potential PATH issue with command: npm,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.879137,,,MEDIUM
+tests/error_tools/windows_simulator.py,PathIssue,Potential PATH issue with command: gcc,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.879193,,,MEDIUM
+tests/error_tools/windows_simulator.py,PathIssue,Potential PATH issue with command: g++,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.879249,,,MEDIUM
+tests/error_tools/windows_simulator.py,PathIssue,Potential PATH issue with command: make,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.879305,,,MEDIUM
+tests/error_tools/windows_simulator.py,PathIssue,Potential PATH issue with command: cmake,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.879361,,,MEDIUM
+tests/error_tools/windows_simulator.py,NetworkIssue,Potential network connectivity issue with operation: requests.get,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.880033,,,MEDIUM
+tests/error_tools/windows_simulator.py,NetworkIssue,Potential network connectivity issue with operation: requests.post,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.880102,,,MEDIUM
+tests/error_tools/windows_simulator.py,NetworkIssue,Potential network connectivity issue with operation: urllib.request,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.880164,,,MEDIUM
+tests/error_tools/windows_simulator.py,NetworkIssue,Potential network connectivity issue with operation: socket.connect,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.880223,,,MEDIUM
+tests/error_tools/windows_simulator.py,NetworkIssue,Potential network connectivity issue with operation: http.client,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.880283,,,MEDIUM
+tests/error_tools/windows_simulator.py,NetworkIssue,Potential network connectivity issue with operation: ftplib.FTP,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.880342,,,MEDIUM
+tests/error_tools/windows_simulator.py,DependencyConflict,"Potential dependency conflict between: numpy, numpy.random, numpy.linalg",DETECTED,Install numpy: pip install numpy,2025-11-20T05:06:56.880463,,,MEDIUM
+tests/error_tools/windows_simulator.py,DependencyConflict,"Potential dependency conflict between: tensorflow, tensorflow-gpu",DETECTED,Install TensorFlow: pip install tensorflow,2025-11-20T05:06:56.880536,,,MEDIUM
+tests/error_tools/windows_simulator.py,DependencyConflict,"Potential dependency conflict between: torch, torchvision, torchaudio",DETECTED,Install PyTorch: pip install torch torchvision,2025-11-20T05:06:56.880613,,,MEDIUM
+tests/error_tools/windows_simulator.py,DependencyConflict,"Potential dependency conflict between: opencv-python, opencv-contrib-python",DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.880698,,,MEDIUM
+tests/error_tools/windows_simulator.py,DependencyConflict,"Potential dependency conflict between: Pillow, Pillow-SIMD",DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.880764,,,MEDIUM
+tests/error_tools/windows_simulator.py,DependencyConflict,"Potential dependency conflict between: matplotlib, matplotlib-base",DETECTED,Install matplotlib: pip install matplotlib,2025-11-20T05:06:56.880829,,,MEDIUM
+tests/error_tools/error_detector.py,PathIssue,Potential PATH issue with command: git,DETECTED,Install Git and ensure it's in system PATH,2025-11-20T05:06:56.881328,,,MEDIUM
+tests/error_tools/error_detector.py,PathIssue,Potential PATH issue with command: python,DETECTED,Ensure Python is installed and in system PATH,2025-11-20T05:06:56.881389,,,MEDIUM
+tests/error_tools/error_detector.py,PathIssue,Potential PATH issue with command: node,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.881453,,,MEDIUM
+tests/error_tools/csv_logger.py,DependencyConflict,"Potential dependency conflict between: torch, torchvision",DETECTED,Install PyTorch: pip install torch torchvision,2025-11-20T05:06:56.883171,,,MEDIUM
+tests/regression/regression_suite.py,PathIssue,Potential PATH issue with command: pip,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.892981,,,MEDIUM
+tests/integration/test_pipeline.py,PathIssue,Potential PATH issue with command: pip,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.895460,,,MEDIUM
+tests/integration/test_pipeline.py,PathIssue,Potential PATH issue with command: node,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.895571,,,MEDIUM
+legacy/setup_windows.py,PathIssue,Potential PATH issue with command: python,DETECTED,Ensure Python is installed and in system PATH,2025-11-20T05:06:56.909565,,,MEDIUM
+gui/main_window.py,MissingDLL,Potential missing DLL dependency for module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.913405,,,MEDIUM
+gui/main_window.py,PathIssue,Potential PATH issue with command: pip,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.913643,,,MEDIUM
+gui/main_window.py,GUIDisplayIssue,Potential GUI display issue with module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.913919,,,MEDIUM
+gui/components/transformation_viewer.py,MissingDLL,Potential missing DLL dependency for module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.915246,,,MEDIUM
+gui/components/transformation_viewer.py,GUIDisplayIssue,Potential GUI display issue with module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.916972,,,MEDIUM
+gui/components/enhanced_console_panel.py,MissingDLL,Potential missing DLL dependency for module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.918330,,,MEDIUM
+gui/components/enhanced_console_panel.py,GUIDisplayIssue,Potential GUI display issue with module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.919227,,,MEDIUM
+gui/components/enhanced_binary_viewer.py,MissingDLL,Potential missing DLL dependency for module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.920330,,,MEDIUM
+gui/components/enhanced_binary_viewer.py,GUIDisplayIssue,Potential GUI display issue with module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.921299,,,MEDIUM
+gui/components/binary_display.py,MissingDLL,Potential missing DLL dependency for module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.922510,,,MEDIUM
+gui/components/binary_display.py,GUIDisplayIssue,Potential GUI display issue with module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.923149,,,MEDIUM
+gui/components/binary_display.py,GUIDisplayIssue,Potential GUI display issue with module: matplotlib.pyplot,DETECTED,Install matplotlib: pip install matplotlib,2025-11-20T05:06:56.923456,,,MEDIUM
+gui/components/enhanced_operation_player.py,MissingDLL,Potential missing DLL dependency for module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.924613,,,MEDIUM
+gui/components/enhanced_operation_player.py,GUIDisplayIssue,Potential GUI display issue with module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.925311,,,MEDIUM
+gui/export/transformation_export.py,MissingDLL,Potential missing DLL dependency for module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.926373,,,MEDIUM
+gui/export/transformation_export.py,GUIDisplayIssue,Potential GUI display issue with module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.927073,,,MEDIUM
+gui/export/transformation_export.py,GUIDisplayIssue,Potential GUI display issue with module: matplotlib.pyplot,DETECTED,Install matplotlib: pip install matplotlib,2025-11-20T05:06:56.927426,,,MEDIUM
+gui/panels/file_panel.py,MissingDLL,Potential missing DLL dependency for module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.928622,,,MEDIUM
+gui/panels/file_panel.py,GUIDisplayIssue,Potential GUI display issue with module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.929013,,,MEDIUM
+gui/panels/performance_panel.py,MissingDLL,Potential missing DLL dependency for module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.929993,,,MEDIUM
+gui/panels/performance_panel.py,GUIDisplayIssue,Potential GUI display issue with module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.931188,,,MEDIUM
+gui/panels/performance_panel.py,GUIDisplayIssue,Potential GUI display issue with module: matplotlib.pyplot,DETECTED,Install matplotlib: pip install matplotlib,2025-11-20T05:06:56.931434,,,MEDIUM
+gui/panels/metrics_panel.py,MissingDLL,Potential missing DLL dependency for module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.932451,,,MEDIUM
+gui/panels/metrics_panel.py,GUIDisplayIssue,Potential GUI display issue with module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.933113,,,MEDIUM
+gui/panels/metrics_panel.py,GUIDisplayIssue,Potential GUI display issue with module: matplotlib.pyplot,DETECTED,Install matplotlib: pip install matplotlib,2025-11-20T05:06:56.933272,,,MEDIUM
+gui/panels/terminal_visualization_panel.py,PathIssue,Potential PATH issue with command: node,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.934257,,,MEDIUM
+gui/panels/terminal_panel.py,MissingDLL,Potential missing DLL dependency for module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.935142,,,MEDIUM
+gui/panels/terminal_panel.py,GUIDisplayIssue,Potential GUI display issue with module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.935389,,,MEDIUM
+gui/panels/visualization_panel.py,MissingDLL,Potential missing DLL dependency for module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.936357,,,MEDIUM
+gui/panels/visualization_panel.py,GUIDisplayIssue,Potential GUI display issue with module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.936998,,,MEDIUM
+gui/animation/operation_animator.py,MissingDLL,Potential missing DLL dependency for module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.937935,,,MEDIUM
+gui/animation/operation_animator.py,GUIDisplayIssue,Potential GUI display issue with module: tkinter,DETECTED,"Install tkinter package (usually included with Python, check Python installation)",2025-11-20T05:06:56.938369,,,MEDIUM
+scripts/BSEE.bat,VirtualEnvIssue,BSEE.bat uses virtual environment - may fail if venv creation fails,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.940557,,,MEDIUM
+scripts/BSEE.bat,PackageInstallIssue,BSEE.bat installs packages - may fail without internet or admin rights,DETECTED,Review error details and debug the issue,2025-11-20T05:06:56.940963,,,MEDIUM
