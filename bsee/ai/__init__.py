@@ -1,8 +1,8 @@
-""""
+"""""
 BSEE AI/ML Enhancement Module for Binary Homogeneity Optimization
 Provides machine learning capabilities for discovering operation sequences that
 increase the homogeneity and uniformity of binary data streams.
-""""
+"""""
 
 from .optimizer import OperationSequenceOptimizer
 from .trainer import ModelTrainer
@@ -15,16 +15,16 @@ from ..strategies.neural.homogeneity_neural_strategy import HomogeneityNeuralStr
 from ..strategies.homogeneity_mcts_strategy import HomogeneityMCTSStrategy
 
 __all__ = []
-    'OperationSequenceOptimizer','
-    'ModelTrainer','
-    'SequencePredictor','
-    'HomogeneityPredictor','
-    'FeatureExtractor','
-    'HomogeneityScorer','
-    'DataCollector','
-    'DataLoader','
-    'HomogeneityMetrics','
-    'HomogeneityPrediction','
-    'HomogeneityNeuralStrategy','
-    'HomogeneityMCTSStrategy''
+    'OperationSequenceOptimizer',''
+    'ModelTrainer',''
+    'SequencePredictor',''
+    'HomogeneityPredictor',''
+    'FeatureExtractor',''
+    'HomogeneityScorer',''
+    'DataCollector',''
+    'DataLoader',''
+    'HomogeneityMetrics',''
+    'HomogeneityPrediction',''
+    'HomogeneityNeuralStrategy',''
+    'HomogeneityMCTSStrategy'''
 ]

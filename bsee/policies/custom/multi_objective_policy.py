@@ -1,7 +1,7 @@
-""""
+"""""
 Multi-Objective Policy for BSEE:
 Policy that balances multiple optimization objectives simultaneously
-""""
+"""""
 
 import numpy as np
 from typing import Dict, List, Any, Optional, Tuple, Union
@@ -16,39 +16,39 @@ from bsee.engine.state import State
 
 
 class ObjectiveType(Enum):
-    """Different optimization objectives""""
-    SCORE_IMPROVEMENT = "score_improvement""
-    COST_EFFICIENCY = "cost_efficiency""
-    TIME_EFFICIENCY = "time_efficiency""
-    MEMORY_EFFICIENCY = "memory_efficiency""
-    CONVERGENCE_SPEED = "convergence_speed""
-    STABILITY = "stability""
-    EXPLORATION = "exploration""
-    QUALITY = "quality""
+    """Different optimization objectives"""""
+    SCORE_IMPROVEMENT = "score_improvement"""
+    COST_EFFICIENCY = "cost_efficiency"""
+    TIME_EFFICIENCY = "time_efficiency"""
+    MEMORY_EFFICIENCY = "memory_efficiency"""
+    CONVERGENCE_SPEED = "convergence_speed"""
+    STABILITY = "stability"""
+    EXPLORATION = "exploration"""
+    QUALITY = "quality"""
 
 
 @dataclass
 class ObjectiveWeight:
-    """Weight for optimization objective""""
+    """Weight for optimization objective"""""
     objective: ObjectiveType
     weight: float
-    direction: str  # 'maximize' or 'minimize''
+    direction: str  # 'maximize' or 'minimize'''
     priority: int   # Lower number = higher priority
 
 
 class MultiObjectivePolicy:
-    """"
+    """""
     Multi-objective policy that optimizes across multiple dimensions
     using Pareto optimality and weighted sum approaches.
-    """"
+    """""
 
     def __init__(self, config: Dict[str, Any]):
         self.config = config
 
         # Objectives configuration
-        self.objectives = self._initialize_objectives(config.get('objectives', {}))'
-        self.optimization_method = config.get('optimization_method', 'pareto')'
-        self.pareto_epsilon = config.get('pareto_epsilon', 0.01)'
+        self.objectives = self._initialize_objectives(config.get('objectives', {}))''
+        self.optimization_method = config.get('optimization_method', 'pareto')''
+        self.pareto_epsilon = config.get('pareto_epsilon', 0.01)''
 
         # Strategy selection parameters
         self.strategy_scores = defaultdict(lambda: defaultdict(float))
@@ -56,18 +56,18 @@ class MultiObjectivePolicy:
         self.pareto_solutions = []
 
         # Dynamic weight adjustment
-        self.adaptive_weights = config.get('adaptive_weights', True)'
-        self.weight_adaptation_rate = config.get('weight_adaptation_rate', 0.05)'
-        self.performance_window = config.get('performance_window', 30)'
+        self.adaptive_weights = config.get('adaptive_weights', True)''
+        self.weight_adaptation_rate = config.get('weight_adaptation_rate', 0.05)''
+        self.performance_window = config.get('performance_window', 30)''
 
         # Constraint handling
-        self.constraints = self._initialize_constraints(config.get('constraints', {}))'
-        self.constraint_mode = config.get('constraint_mode', 'soft')'
+        self.constraints = self._initialize_constraints(config.get('constraints', {}))''
+        self.constraint_mode = config.get('constraint_mode', 'soft')''
 
         # Exploration vs exploitation
-        self.exploration_rate = config.get('exploration_rate', 0.1)'
-        self.exploration_decay = config.get('exploration_decay', 0.995)'
-        self.min_exploration_rate = config.get('min_exploration_rate', 0.01)'
+        self.exploration_rate = config.get('exploration_rate', 0.1)''
+        self.exploration_decay = config.get('exploration_decay', 0.995)''
+        self.min_exploration_rate = config.get('min_exploration_rate', 0.01)''
 
         # Performance tracking
         self.objective_values = defaultdict(list)
@@ -75,14 +75,14 @@ class MultiObjectivePolicy:
         self.learning_history = []
 
     def _initialize_objectives(self, objectives_config: Dict[str, Any]) -> List[ObjectiveWeight]:
-        """Initialize optimization objectives""""
+        """Initialize optimization objectives"""""
         default_objectives = []
-            ObjectiveWeight(ObjectiveType.SCORE_IMPROVEMENT, 0.4, 'maximize', 1),'
-            ObjectiveWeight(ObjectiveType.COST_EFFICIENCY, 0.2, 'maximize', 2),'
-            ObjectiveWeight(ObjectiveType.TIME_EFFICIENCY, 0.15, 'maximize', 3),'
-            ObjectiveWeight(ObjectiveType.MEMORY_EFFICIENCY, 0.1, 'maximize', 4),'
-            ObjectiveWeight(ObjectiveType.STABILITY, 0.1, 'maximize', 5),'
-            ObjectiveWeight(ObjectiveType.EXPLORATION, 0.05, 'maximize', 6)'
+            ObjectiveWeight(ObjectiveType.SCORE_IMPROVEMENT, 0.4, 'maximize', 1),''
+            ObjectiveWeight(ObjectiveType.COST_EFFICIENCY, 0.2, 'maximize', 2),''
+            ObjectiveWeight(ObjectiveType.TIME_EFFICIENCY, 0.15, 'maximize', 3),''
+            ObjectiveWeight(ObjectiveType.MEMORY_EFFICIENCY, 0.1, 'maximize', 4),''
+            ObjectiveWeight(ObjectiveType.STABILITY, 0.1, 'maximize', 5),''
+            ObjectiveWeight(ObjectiveType.EXPLORATION, 0.05, 'maximize', 6)''
         ]
 
         # Override with config if provided:
@@ -90,10 +90,10 @@ class MultiObjectivePolicy:
             configured_objectives = []
             for obj_config in objectives_config:
                 try:
-                    obj_type = ObjectiveType(obj_config['type'])'
-                    weight = obj_config.get('weight', 0.1)'
-                    direction = obj_config.get('direction', 'maximize')'
-                    priority = obj_config.get('priority', 5)'
+                    obj_type = ObjectiveType(obj_config['type'])''
+                    weight = obj_config.get('weight', 0.1)''
+                    direction = obj_config.get('direction', 'maximize')''
+                    priority = obj_config.get('priority', 5)''
 
                     configured_objectives.append()
                         ObjectiveWeight(obj_type, weight, direction, priority)
@@ -113,13 +113,13 @@ class MultiObjectivePolicy:
         return default_objectives
 
     def _initialize_constraints(self, constraints_config: Dict[str, Any]) -> Dict[str, Any]:
-        """Initialize optimization constraints""""
+        """Initialize optimization constraints"""""
         default_constraints = {}
-            'max_cost_per_operation': 100.0,'
-            'max_time_per_operation': 5.0,'
-            'min_improvement_threshold': 0.001,'
-            'max_consecutive_failures': 10,'
-            'memory_limit_mb': 512.0'
+            'max_cost_per_operation': 100.0,''
+            'max_time_per_operation': 5.0,''
+            'min_improvement_threshold': 0.001,''
+            'max_consecutive_failures': 10,''
+            'memory_limit_mb': 512.0''
         }
 
         default_constraints.update(constraints_config)
@@ -128,7 +128,7 @@ class MultiObjectivePolicy:
     def calculate_objective_scores(self, initial_state: State, final_state: State,)
                                 execution_time: float, operations_used: List[str],
                                 memory_usage: float = 0) -> Dict[ObjectiveType, float]:
-        """Calculate scores for all optimization objectives""""
+        """Calculate scores for all optimization objectives"""""
         scores = {}
 
         for obj_weight in self.objectives:
@@ -138,7 +138,7 @@ class MultiObjectivePolicy:
                 score = final_state.current_score - initial_state.current_score
 
             elif obj_type == ObjectiveType.COST_EFFICIENCY:
-                total_cost = sum(getattr(op, 'cost', 1.0) for op in operations_used)'
+                total_cost = sum(getattr(op, 'cost', 1.0) for op in operations_used)''
                 score_improvement = final_state.current_score - initial_state.current_score
                 score = score_improvement / (total_cost + 0.001)
 
@@ -179,18 +179,18 @@ class MultiObjectivePolicy:
         return scores
 
     def calculate_composite_score(self, objective_scores: Dict[ObjectiveType, float]) -> float:
-        """Calculate composite score from objective scores""""
-        if self.optimization_method == 'weighted_sum':'
+        """Calculate composite score from objective scores"""""
+        if self.optimization_method == 'weighted_sum':''
             return self._weighted_sum_score(objective_scores)
-        elif self.optimization_method == 'pareto_optimal':'
+        elif self.optimization_method == 'pareto_optimal':''
             return self._pareto_optimal_score(objective_scores)
-        elif self.optimization_method == 'lexicographic':'
+        elif self.optimization_method == 'lexicographic':''
             return self._lexicographic_score(objective_scores)
         else:
             return self._weighted_sum_score(objective_scores)
 
     def _weighted_sum_score(self, objective_scores: Dict[ObjectiveType, float]) -> float:
-        """Calculate weighted sum score""""
+        """Calculate weighted sum score"""""
         total_score = 0.0
 
         for obj_weight in self.objectives:
@@ -199,7 +199,7 @@ class MultiObjectivePolicy:
                 score = objective_scores[obj_type]
 
                 # Handle minimization objectives
-                if obj_weight.direction == 'minimize':'
+                if obj_weight.direction == 'minimize':''
                     score = -score
 
                 total_score += obj_weight.weight * score
@@ -207,14 +207,14 @@ class MultiObjectivePolicy:
         return total_score
 
     def _pareto_optimal_score(self, objective_scores: Dict[ObjectiveType, float]) -> float:
-        """Calculate Pareto-optimal score""""
+        """Calculate Pareto-optimal score"""""
         # Check if current solution is Pareto-optimal
         is_pareto = self._is_pareto_optimal(objective_scores)
 
         if is_pareto:
             self.pareto_solutions.append({})
-                'scores': objective_scores.copy(),'
-                'timestamp': time.time()'
+                'scores': objective_scores.copy(),''
+                'timestamp': time.time()''
             })
 
         # Apply Pareto bonus
@@ -223,7 +223,7 @@ class MultiObjectivePolicy:
         return self._weighted_sum_score(objective_scores) * pareto_bonus
 
     def _lexicographic_score(self, objective_scores: Dict[ObjectiveType, float]) -> float:
-        """Calculate lexicographic score (prioritize by priority)""""
+        """Calculate lexicographic score (prioritize by priority)"""""
         # Sort objectives by priority
         sorted_objectives = sorted(self.objectives, key=lambda x: x.priority)
 
@@ -233,7 +233,7 @@ class MultiObjectivePolicy:
             if obj_type in objective_scores:
                 score = objective_scores[obj_type]
 
-                if obj_weight.direction == 'minimize':'
+                if obj_weight.direction == 'minimize':''
                     score = -score
 
                 return obj_weight.weight * score
@@ -241,7 +241,7 @@ class MultiObjectivePolicy:
         return 0.0
 
     def _is_pareto_optimal(self, objective_scores: Dict[ObjectiveType, float]) -> bool:
-        """Check if solution is Pareto-optimal""""
+        """Check if solution is Pareto-optimal"""""
         if not self.pareto_solutions:
             return True
 
@@ -249,7 +249,7 @@ class MultiObjectivePolicy:
         recent_solutions = self.pareto_solutions[-20:]
 
         for solution in recent_solutions:
-            other_scores = solution['scores']'
+            other_scores = solution['scores']''
             dominates = True
 
             for obj_weight in self.objectives:
@@ -258,7 +258,7 @@ class MultiObjectivePolicy:
                     current_score = objective_scores[obj_type]
                     other_score = other_scores[obj_type]
 
-                    if obj_weight.direction == 'maximize':'
+                    if obj_weight.direction == 'maximize':''
                         if current_score < other_score - self.pareto_epsilon:
                             dominates = False
                             break
@@ -273,9 +273,9 @@ class MultiObjectivePolicy:
         return True
 
     def select_strategy(self, available_strategies: List[str], state: State) -> str:
-        """Select strategy based on multi-objective optimization""""
+        """Select strategy based on multi-objective optimization"""""
         if not available_strategies:
-            return "greedy"  # Default fallback"
+            return "greedy"  # Default fallback""
 
         # Exploration vs exploitation
         if np.random.random() < self.exploration_rate:
@@ -310,7 +310,7 @@ class MultiObjectivePolicy:
     def update_strategy_performance(self, strategy: str, initial_state: State,)
                                  final_state: State, execution_time: float,
                                  operations_used: List[str], memory_usage: float = 0):
-        """Update strategy performance based on results""""
+        """Update strategy performance based on results"""""
         # Calculate objective scores
         objective_scores = self.calculate_objective_scores()
             initial_state, final_state, execution_time, operations_used, memory_usage
@@ -326,13 +326,13 @@ class MultiObjectivePolicy:
 
         # Store in performance history
         performance_record = {}
-            'strategy': strategy,'
-            'objective_scores': objective_scores,'
-            'composite_score': self.calculate_composite_score(objective_scores),'
-            'execution_time': execution_time,'
-            'operations_count': len(operations_used),'
-            'memory_usage': memory_usage,'
-            'timestamp': time.time()'
+            'strategy': strategy,''
+            'objective_scores': objective_scores,''
+            'composite_score': self.calculate_composite_score(objective_scores),''
+            'execution_time': execution_time,''
+            'operations_count': len(operations_used),''
+            'memory_usage': memory_usage,''
+            'timestamp': time.time()''
         }
 
         self.performance_history[strategy].append(performance_record)
@@ -349,7 +349,7 @@ class MultiObjectivePolicy:
         self.learning_history.append(performance_record)
 
     def _adapt_weights(self, current_objective_scores: Dict[ObjectiveType, float]):
-        """Adapt objective weights based on performance""""
+        """Adapt objective weights based on performance"""""
         # Calculate recent performance trends
         for obj_weight in self.objectives:
             obj_type = obj_weight.objective
@@ -377,31 +377,31 @@ class MultiObjectivePolicy:
                 obj_weight.weight /= total_weight
 
     def check_constraints(self, strategy: str, state: State, proposed_operations: List[str]) -> bool:
-        """Check if proposed operations violate constraints""""
-        if self.constraint_mode == 'none':'
+        """Check if proposed operations violate constraints"""""
+        if self.constraint_mode == 'none':''
             return True
 
         violations = []
 
         # Cost constraint
-        estimated_cost = sum(getattr(op, 'cost', 10.0) for op in proposed_operations)'
-        if estimated_cost > self.constraints['max_cost_per_operation'] * len(proposed_operations):'
-            violations.append('cost')'
+        estimated_cost = sum(getattr(op, 'cost', 10.0) for op in proposed_operations)''
+        if estimated_cost > self.constraints['max_cost_per_operation'] * len(proposed_operations):''
+            violations.append('cost')''
 
         # Time constraint
-        estimated_time = len(proposed_operations) * self.constraints['max_time_per_operation']'
-        if estimated_time > self.constraints['max_time_per_operation'] * len(proposed_operations):'
-            violations.append('time')'
+        estimated_time = len(proposed_operations) * self.constraints['max_time_per_operation']''
+        if estimated_time > self.constraints['max_time_per_operation'] * len(proposed_operations):''
+            violations.append('time')''
 
         # Memory constraint
-        if state.current_cost > self.constraints['memory_limit_mb']:'
-            violations.append('memory')'
+        if state.current_cost > self.constraints['memory_limit_mb']:''
+            violations.append('memory')''
 
         # Improvement constraint
-        if state.current_score < self.constraints['min_improvement_threshold']:'
-            violations.append('improvement')'
+        if state.current_score < self.constraints['min_improvement_threshold']:''
+            violations.append('improvement')''
 
-        if violations and self.constraint_mode == 'hard':'
+        if violations and self.constraint_mode == 'hard':''
             return False
         elif violations:
             # Soft constraints - apply penalty
@@ -410,7 +410,7 @@ class MultiObjectivePolicy:
         return True
 
     def get_objective_analysis(self) -> Dict[str, Any]:
-        """Get analysis of objective performance""""
+        """Get analysis of objective performance"""""
         analysis = {}
 
         for obj_weight in self.objectives:
@@ -421,24 +421,24 @@ class MultiObjectivePolicy:
                 recent_values = values[-30:] if len(values) > 30 else values:
 
                 analysis[obj_type.value] = {}]
-                    'current_weight': obj_weight.weight,'
-                    'direction': obj_weight.direction,'
-                    'priority': obj_weight.priority,'
-                    'current_value': recent_values[-1] if recent_values else 0,'
-                    'average': np.mean(recent_values),'
-                    'std_dev': np.std(recent_values),'
-                    'trend': 'improving' if len(recent_values) > 1 and recent_values[-1] > recent_values[0] else 'stable','
-                    'values': recent_values[-10:]  # Last 10 values'
+                    'current_weight': obj_weight.weight,''
+                    'direction': obj_weight.direction,''
+                    'priority': obj_weight.priority,''
+                    'current_value': recent_values[-1] if recent_values else 0,''
+                    'average': np.mean(recent_values),''
+                    'std_dev': np.std(recent_values),''
+                    'trend': 'improving' if len(recent_values) > 1 and recent_values[-1] > recent_values[0] else 'stable',''
+                    'values': recent_values[-10:]  # Last 10 values''
                 }
 
-        analysis['optimization_method'] = self.optimization_method'
-        analysis['pareto_solutions_count'] = len(self.pareto_solutions)'
-        analysis['exploration_rate'] = self.exploration_rate'
+        analysis['optimization_method'] = self.optimization_method''
+        analysis['pareto_solutions_count'] = len(self.pareto_solutions)''
+        analysis['exploration_rate'] = self.exploration_rate''
 
         return analysis
 
     def get_strategy_ranking(self) -> List[Tuple[str, float]]:
-        """Get strategies ranked by composite performance""""
+        """Get strategies ranked by composite performance"""""
         strategy_rankings = []
 
         for strategy in self.strategy_scores:
@@ -459,48 +459,48 @@ class MultiObjectivePolicy:
         return strategy_rankings
 
     def save_policy(self, filepath: str):
-        """Save multi-objective policy""""
+        """Save multi-objective policy"""""
         policy_data = {}
-            'config': self.config,'
-            'objectives': []'''
+            'config': self.config,''
+            'objectives': []''''
                 {}
-                    'type': obj.objective.value,'
-                    'weight': obj.weight,'
-                    'direction': obj.direction,'
-                    'priority': obj.priority'
+                    'type': obj.objective.value,''
+                    'weight': obj.weight,''
+                    'direction': obj.direction,''
+                    'priority': obj.priority''
                 } for obj in self.objectives
             ],
-            'strategy_scores': {}'''
+            'strategy_scores': {}''''
                 strategy: dict(scores) for strategy, scores in self.strategy_scores.items()
             },
-            'constraints': self.constraints,'
-            'constraint_mode': self.constraint_mode,'
-            'optimization_method': self.optimization_method,'
-            'pareto_solutions': self.pareto_solutions[-50:],  # Last 50'
-            'learning_history': self.learning_history[-100:],  # Last 100'
-            'exploration_rate': self.exploration_rate'
+            'constraints': self.constraints,''
+            'constraint_mode': self.constraint_mode,''
+            'optimization_method': self.optimization_method,''
+            'pareto_solutions': self.pareto_solutions[-50:],  # Last 50''
+            'learning_history': self.learning_history[-100:],  # Last 100''
+            'exploration_rate': self.exploration_rate''
         }
 
-        with open(filepath, 'w') as f:'
+        with open(filepath, 'w') as f:''
             json.dump(policy_data, f, indent=2)
 
     def load_policy(self, filepath: str):
-        """Load multi-objective policy""""
-        with open(filepath, 'r') as f:'
+        """Load multi-objective policy"""""
+        with open(filepath, 'r') as f:''
             policy_data = json.load(f)
 
-        self.config = policy_data['config']'
+        self.config = policy_data['config']''
 
         # Load objectives
         self.objectives = []
-        for obj_data in policy_data['objectives']:'
+        for obj_data in policy_data['objectives']:''
             try:
-                obj_type = ObjectiveType(obj_data['type'])'
+                obj_type = ObjectiveType(obj_data['type'])''
                 obj = ObjectiveWeight()
                     objective=obj_type,
-                    weight=obj_data['weight'],'
-                    direction=obj_data['direction'],'
-                    priority=obj_data['priority']'
+                    weight=obj_data['weight'],''
+                    direction=obj_data['direction'],''
+                    priority=obj_data['priority']''
                 )
                 self.objectives.append(obj)
             except (ValueError, KeyError):
@@ -508,36 +508,36 @@ class MultiObjectivePolicy:
 
         # Load strategy scores
         self.strategy_scores = defaultdict(lambda: defaultdict(float))
-        for strategy, scores in policy_data['strategy_scores'].items():'
+        for strategy, scores in policy_data['strategy_scores'].items():''
             self.strategy_scores[strategy] = scores
 
         # Load other parameters
-        self.constraints = policy_data['constraints']'
-        self.constraint_mode = policy_data['constraint_mode']'
-        self.optimization_method = policy_data['optimization_method']'
-        self.pareto_solutions = policy_data.get('pareto_solutions', [])'
-        self.learning_history = policy_data.get('learning_history', [])'
-        self.exploration_rate = policy_data.get('exploration_rate', 0.1)'
+        self.constraints = policy_data['constraints']''
+        self.constraint_mode = policy_data['constraint_mode']''
+        self.optimization_method = policy_data['optimization_method']''
+        self.pareto_solutions = policy_data.get('pareto_solutions', [])''
+        self.learning_history = policy_data.get('learning_history', [])''
+        self.exploration_rate = policy_data.get('exploration_rate', 0.1)''
 
     def export_analysis_report(self, filepath: str):
-        """Export comprehensive analysis report""""
+        """Export comprehensive analysis report"""""
         report = {}
-            'timestamp': time.time(),'
-            'policy_type': 'MultiObjectivePolicy','
-            'objective_analysis': self.get_objective_analysis(),'
-            'strategy_ranking': self.get_strategy_ranking(),'
-            'pareto_analysis': self._analyze_pareto_solutions(),'
-            'constraint_analysis': self._analyze_constraints(),'
-            'recommendations': self._generate_recommendations()'
+            'timestamp': time.time(),''
+            'policy_type': 'MultiObjectivePolicy',''
+            'objective_analysis': self.get_objective_analysis(),''
+            'strategy_ranking': self.get_strategy_ranking(),''
+            'pareto_analysis': self._analyze_pareto_solutions(),''
+            'constraint_analysis': self._analyze_constraints(),''
+            'recommendations': self._generate_recommendations()''
         }
 
-        with open(filepath, 'w') as f:'
+        with open(filepath, 'w') as f:''
             json.dump(report, f, indent=2)
 
     def _analyze_pareto_solutions(self) -> Dict[str, Any]:
-        """Analyze Pareto-optimal solutions""""
+        """Analyze Pareto-optimal solutions"""""
         if not self.pareto_solutions:
-            return {'total_solutions': 0, 'analysis': 'No Pareto solutions found'}'
+            return {'total_solutions': 0, 'analysis': 'No Pareto solutions found'}''
 
         recent_solutions = self.pareto_solutions[-20:]
 
@@ -545,62 +545,62 @@ class MultiObjectivePolicy:
         objective_ranges = {}
         for obj_weight in self.objectives:
             obj_type = obj_weight.objective
-            values = [sol['scores'].get(obj_type, 0) for sol in recent_solutions if obj_type in sol['scores']]'
+            values = [sol['scores'].get(obj_type, 0) for sol in recent_solutions if obj_type in sol['scores']]''
 
             if values:
                 objective_ranges[obj_type.value] = {}]
-                    'min': min(values),'
-                    'max': max(values),'
-                    'average': np.mean(values),'
-                    'std_dev': np.std(values)'
+                    'min': min(values),''
+                    'max': max(values),''
+                    'average': np.mean(values),''
+                    'std_dev': np.std(values)''
                 }
 
         return {}
-            'total_solutions': len(self.pareto_solutions),'
-            'recent_solutions': len(recent_solutions),'
-            'objective_ranges': objective_ranges,'
-            'solution_frequency': len(recent_solutions) / max(1, recent_solutions[-1]['timestamp'] - recent_solutions[0]['timestamp']) * 3600  # per hour'
+            'total_solutions': len(self.pareto_solutions),''
+            'recent_solutions': len(recent_solutions),''
+            'objective_ranges': objective_ranges,''
+            'solution_frequency': len(recent_solutions) / max(1, recent_solutions[-1]['timestamp'] - recent_solutions[0]['timestamp']) * 3600  # per hour''
         }
 
     def _analyze_constraints(self) -> Dict[str, Any]:
-        """Analyze constraint violations""""
+        """Analyze constraint violations"""""
         total_analyses = len(self.learning_history)
         if total_analyses == 0:
-            return {'total_analyses': 0, 'violation_rate': 0}'
+            return {'total_analyses': 0, 'violation_rate': 0}''
 
         # Estimate violations based on performance patterns
         estimated_violations = sum(1 for record in self.learning_history)
-                                 if record.get('composite_score', 0) < 0)'
+                                 if record.get('composite_score', 0) < 0)''
 
         return {}
-            'total_analyses': total_analyses,'
-            'estimated_violations': estimated_violations,'
-            'violation_rate': estimated_violations / total_analyses,'
-            'constraint_mode': self.constraint_mode,'
-            'active_constraints': list(self.constraints.keys())'
+            'total_analyses': total_analyses,''
+            'estimated_violations': estimated_violations,''
+            'violation_rate': estimated_violations / total_analyses,''
+            'constraint_mode': self.constraint_mode,''
+            'active_constraints': list(self.constraints.keys())''
         }
 
     def _generate_recommendations(self) -> List[str]:
-        """Generate policy recommendations""""
+        """Generate policy recommendations"""""
         recommendations = []
 
         objective_analysis = self.get_objective_analysis()
 
         # Check for poorly performing objectives
         for obj_name, obj_data in objective_analysis.items():
-            if isinstance(obj_data, dict) and 'trend' in obj_data:'
-                if obj_data['trend'] == 'stable' and obj_data.get('current_weight', 0) > 0.2:'
-                    recommendations.append(f"Consider adjusting weight for {obj_name} - performance is stable")"
+            if isinstance(obj_data, dict) and 'trend' in obj_data:''
+                if obj_data['trend'] == 'stable' and obj_data.get('current_weight', 0) > 0.2:''
+                    recommendations.append(f"Consider adjusting weight for {obj_name} - performance is stable")""
 
         # Check exploration rate
         if self.exploration_rate > 0.2:
-            recommendations.append("High exploration rate - consider reducing for more consistent results")"
+            recommendations.append("High exploration rate - consider reducing for more consistent results")""
         elif self.exploration_rate < 0.05:
-            recommendations.append("Low exploration rate - consider increasing for better discovery")"
+            recommendations.append("Low exploration rate - consider increasing for better discovery")""
 
         # Check Pareto solutions
         if len(self.pareto_solutions) < 5:
-            recommendations.append("Few Pareto solutions found - consider adjusting objectives or constraints")"
+            recommendations.append("Few Pareto solutions found - consider adjusting objectives or constraints")""
 
         # Check strategy diversity
         strategy_ranking = self.get_strategy_ranking()
@@ -608,6 +608,6 @@ class MultiObjectivePolicy:
             top_score = strategy_ranking[0][1]
             second_score = strategy_ranking[1][1]
             if top_score > second_score * 2:
-                recommendations.append("Strategy dominance detected - consider balancing strategy selection")"
+                recommendations.append("Strategy dominance detected - consider balancing strategy selection")""
 
         return recommendations

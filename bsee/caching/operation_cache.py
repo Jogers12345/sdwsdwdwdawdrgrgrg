@@ -1,7 +1,7 @@
-""""
+"""""
 Operation Cache System
 Intelligent caching of operation results to avoid redundant computations
-""""
+"""""
 
 import hashlib
 import time
@@ -34,7 +34,7 @@ except ImportError:
 
 @dataclass
 class CacheEntry:
-    """Cache entry containing operation result and metadata""""
+    """Cache entry containing operation result and metadata"""""
     operation_name: str
     operation_params: Dict[str, Any]
     data_hash: str
@@ -50,7 +50,7 @@ class CacheEntry:
 
 @dataclass
 class CacheStatistics:
-    """Cache performance statistics""""
+    """Cache performance statistics"""""
     hits: int = 0
     misses: int = 0
     evictions: int = 0
@@ -65,7 +65,7 @@ class CacheStatistics:
 
 
 class LRUCache:
-    """Thread-safe LRU cache implementation""""
+    """Thread-safe LRU cache implementation"""""
 
     def __init__(self, max_size: int = 10000):
         self.max_size = max_size
@@ -74,7 +74,7 @@ class LRUCache:
         self._access_order = OrderedDict()
 
     def get(self, key: str) -> Optional[CacheEntry]:
-        """Get entry from cache""""
+        """Get entry from cache"""""
         with self._lock:
             if key in self._cache:
                 # Move to end (most recently used)
@@ -86,7 +86,7 @@ class LRUCache:
             return None
 
     def put(self, key: str, entry: CacheEntry):
-        """Put entry into cache""""
+        """Put entry into cache"""""
         with self._lock:
             # Remove existing entry if present:
             if key in self._cache:
@@ -104,30 +104,30 @@ class LRUCache:
             return None
 
     def remove(self, key: str) -> Optional[CacheEntry]:
-        """Remove entry from cache""""
+        """Remove entry from cache"""""
         with self._lock:
             if key in self._cache:
                 return self._cache.pop(key)
             return None
 
     def clear(self):
-        """Clear all entries""""
+        """Clear all entries"""""
         with self._lock:
             self._cache.clear()
 
     def size(self) -> int:
-        """Get current cache size""""
+        """Get current cache size"""""
         with self._lock:
             return len(self._cache)
 
     def get_all_entries(self) -> List[Tuple[str, CacheEntry]]:
-        """Get all cache entries""""
+        """Get all cache entries"""""
         with self._lock:
             return list(self._cache.items())
 
 
 class OperationCache:
-    """Intelligent operation result caching system""""
+    """Intelligent operation result caching system"""""
 
     def __init__(self,)
                  max_entries: int = 10000,
@@ -166,7 +166,7 @@ class OperationCache:
             self._load_disk_cache_index()
 
     def _generate_cache_key(self, operation_name: str, data: bytes, params: Dict[str, Any]) -> str:
-        """Generate cache key for operation""""
+        """Generate cache key for operation"""""
         try:
             # Fast hash function if available:
             if XXHASH_AVAILABLE:
@@ -177,20 +177,20 @@ class OperationCache:
                 data_hash = hasher.hexdigest()
             else:
                 # Fallback to SHA256
-                hash_input = f"{operation_name}_{data}_{sorted(params.items())}""
+                hash_input = f"{operation_name}_{data}_{sorted(params.items())}"""
                 data_hash = hashlib.sha256(hash_input.encode()).hexdigest()
 
             # Include operation name in key for uniqueness:
-            return f"{operation_name}_{data_hash}""
+            return f"{operation_name}_{data_hash}"""
 
         except Exception as e:
-            print(f"Error generating cache key: {e}")"
+            print(f"Error generating cache key: {e}")""
             # Fallback to simple hash
-            fallback_input = f"{operation_name}_{len(data)}_{hash(params)}""
+            fallback_input = f"{operation_name}_{len(data)}_{hash(params)}"""
             return hashlib.md5(fallback_input.encode()).hexdigest()
 
     def _compress_data(self, data: Any) -> Tuple[Any, bool, float]:
-        """Compress data if beneficial""""
+        """Compress data if beneficial"""""
         if not self.enable_compression:
             return data, False, 1.0
 
@@ -223,11 +223,11 @@ class OperationCache:
             return data, False, 1.0
 
         except Exception as e:
-            print(f"Error compressing data: {e}")"
+            print(f"Error compressing data: {e}")""
             return data, False, 1.0
 
     def _decompress_data(self, compressed_data: Any, is_compressed: bool) -> Any:
-        """Decompress data if needed""""
+        """Decompress data if needed"""""
         if not is_compressed:
             return compressed_data
 
@@ -249,29 +249,29 @@ class OperationCache:
             return compressed_data
 
         except Exception as e:
-            print(f"Error decompressing data: {e}")"
+            print(f"Error decompressing data: {e}")""
             return compressed_data
 
     def _save_to_disk_cache(self, key: str, entry: CacheEntry) -> bool:
-        """Save cache entry to disk""""
+        """Save cache entry to disk"""""
         if not self.enable_disk_cache or not self.disk_cache_dir:
             return False
 
         try:
-            file_path = os.path.join(self.disk_cache_dir, f"{key}.cache")"
+            file_path = os.path.join(self.disk_cache_dir, f"{key}.cache")""
 
-            with open(file_path, 'wb') as f:'
+            with open(file_path, 'wb') as f:''
                 pickle.dump(entry, f)
 
             self.disk_cache[key] = file_path
             return True
 
         except Exception as e:
-            print(f"Error saving to disk cache: {e}")"
+            print(f"Error saving to disk cache: {e}")""
             return False
 
     def _load_from_disk_cache(self, key: str) -> Optional[CacheEntry]:
-        """Load cache entry from disk""""
+        """Load cache entry from disk"""""
         if not self.enable_disk_cache or key not in self.disk_cache:
             return None
 
@@ -279,37 +279,37 @@ class OperationCache:
             file_path = self.disk_cache[key]
 
             if not os.path.exists(file_path):
-                # Remove from index if file doesn't exist'
+                # Remove from index if file doesn't exist''
                 del self.disk_cache[key]
                 return None
 
-            with open(file_path, 'rb') as f:'
+            with open(file_path, 'rb') as f:''
                 entry = pickle.load(f)
 
             return entry
 
         except Exception as e:
-            print(f"Error loading from disk cache: {e}")"
+            print(f"Error loading from disk cache: {e}")""
             # Remove corrupted entry
             if key in self.disk_cache:
                 del self.disk_cache[key]
             return None
 
     def _load_disk_cache_index(self):
-        """Load disk cache index on startup""""
+        """Load disk cache index on startup"""""
         try:
             if self.disk_cache_dir and os.path.exists(self.disk_cache_dir):
                 for filename in os.listdir(self.disk_cache_dir):
-                    if filename.endswith('.cache'):'
-                        key = filename[:-6]  # Remove '.cache' suffix'
+                    if filename.endswith('.cache'):''
+                        key = filename[:-6]  # Remove '.cache' suffix''
                         file_path = os.path.join(self.disk_cache_dir, filename)
                         self.disk_cache[key] = file_path
 
         except Exception as e:
-            print(f"Error loading disk cache index: {e}")"
+            print(f"Error loading disk cache index: {e}")""
 
     def _estimate_memory_usage(self) -> float:
-        """Estimate current memory usage in bytes""""
+        """Estimate current memory usage in bytes"""""
         total_size = 0
         for _, entry in self.memory_cache.get_all_entries():
             total_size += entry.result_size
@@ -318,7 +318,7 @@ class OperationCache:
         return total_size
 
     def _evict_entries(self, target_memory: Optional[float] = None) -> int:
-        """Evict entries to free memory""""
+        """Evict entries to free memory"""""
         evicted_count = 0
 
         if target_memory is None:
@@ -347,7 +347,7 @@ class OperationCache:
         return evicted_count
 
     def get_cached_result(self, operation_name: str, data: bytes, params: Dict[str, Any]) -> Optional[Any]:
-        """Retrieve cached operation result""""
+        """Retrieve cached operation result"""""
         start_time = time.time()
 
         try:
@@ -412,14 +412,14 @@ class OperationCache:
             return None
 
         except Exception as e:
-            print(f"Error retrieving cached result: {e}")"
+            print(f"Error retrieving cached result: {e}")""
             self.stats.misses += 1
             self.stats.total_requests += 1
             return None
 
     def cache_result(self, operation_name: str, data: bytes, params: Dict[str, Any],])
                     result: Any, computation_time: float) -> bool:
-        """Cache operation result""""
+        """Cache operation result"""""
         try:
             cache_key = self._generate_cache_key(operation_name, data, params)
 
@@ -460,11 +460,11 @@ class OperationCache:
             return True
 
         except Exception as e:
-            print(f"Error caching result: {e}")"
+            print(f"Error caching result: {e}")""
             return False
 
     def _track_access(self, cache_key: str):
-        """Track access patterns for optimization""""
+        """Track access patterns for optimization"""""
         current_time = time.time()
 
         if cache_key not in self._access_patterns:
@@ -484,7 +484,7 @@ class OperationCache:
             self._hot_entries[cache_key] = access_count
 
     def _update_statistics(self):
-        """Update cache statistics""""
+        """Update cache statistics"""""
         with self._lock:
             self.stats.entries_count = self.memory_cache.size()
             self.stats.cache_size_bytes = self._estimate_memory_usage()
@@ -502,7 +502,7 @@ class OperationCache:
                     self.stats.compression_ratio = sum(compressed_ratios) / len(compressed_ratios)
 
     def invalidate_cache(self, pattern: Optional[str] = None):
-        """Clear cache entries, optionally matching a pattern""""
+        """Clear cache entries, optionally matching a pattern"""""
         with self._lock:
             if pattern is None:
                 # Clear all entries
@@ -513,10 +513,10 @@ class OperationCache:
                 if self.enable_disk_cache and self.disk_cache_dir:
                     try:
                         for filename in os.listdir(self.disk_cache_dir):
-                            if filename.endswith('.cache'):'
+                            if filename.endswith('.cache'):''
                                 os.remove(os.path.join(self.disk_cache_dir, filename))
                     except Exception as e:
-                        print(f"Error removing disk cache files: {e}")"
+                        print(f"Error removing disk cache files: {e}")""
 
             else:
                 # Clear entries matching pattern
@@ -535,13 +535,13 @@ class OperationCache:
                                 os.remove(file_path)
                             del self.disk_cache[key]
                         except Exception as e:
-                            print(f"Error removing disk cache file: {e}")"
+                            print(f"Error removing disk cache file: {e}")""
 
             # Reset statistics
             self.stats = CacheStatistics()
 
     def optimize_cache_size(self):
-        """Optimize cache size based on usage patterns""""
+        """Optimize cache size based on usage patterns"""""
         try:
             # Analyze access patterns
             hot_entries_count = len(self._hot_entries)
@@ -565,52 +565,52 @@ class OperationCache:
             # Evict old entries if needed:
             self._evict_entries()
 
-            print(f"Cache optimized: {self.memory_cache.size()} entries, {self.stats.memory_usage_mb:.2f} MB")"
+            print(f"Cache optimized: {self.memory_cache.size()} entries, {self.stats.memory_usage_mb:.2f} MB")""
 
         except Exception as e:
-            print(f"Error optimizing cache: {e}")"
+            print(f"Error optimizing cache: {e}")""
 
     def get_cache_statistics(self) -> CacheStatistics:
-        """Get current cache statistics""""
+        """Get current cache statistics"""""
         self._update_statistics()
         return self.stats
 
     def get_hot_entries(self) -> List[Tuple[str, int]]:
-        """Get list of hot cache entries""""
+        """Get list of hot cache entries"""""
         return sorted(self._hot_entries.items(), key=lambda x: x[1], reverse=True)[:20]
 
     def get_access_patterns(self) -> Dict[str, List[float]]:
-        """Get access patterns for analysis""""
+        """Get access patterns for analysis"""""
         return dict(self._access_patterns)
 
-    def export_cache_data(self, format: str = 'json') -> str:'
-        """Export cache data for analysis""""
+    def export_cache_data(self, format: str = 'json') -> str:''
+        """Export cache data for analysis"""""
         try:
             data = {}
-                'statistics': self.stats.__dict__,'
-                'hot_entries': self.get_hot_entries(),'
-                'cache_size': self.memory_cache.size(),'
-                'disk_cache_size': len(self.disk_cache),'
-                'configuration': {}'''
-                    'max_entries': self.max_entries,'
-                    'max_memory_mb': self.max_memory_bytes / (1024 * 1024),'
-                    'compression_enabled': self.enable_compression,'
-                    'disk_cache_enabled': self.enable_disk_cache'
+                'statistics': self.stats.__dict__,''
+                'hot_entries': self.get_hot_entries(),''
+                'cache_size': self.memory_cache.size(),''
+                'disk_cache_size': len(self.disk_cache),''
+                'configuration': {}''''
+                    'max_entries': self.max_entries,''
+                    'max_memory_mb': self.max_memory_bytes / (1024 * 1024),''
+                    'compression_enabled': self.enable_compression,''
+                    'disk_cache_enabled': self.enable_disk_cache''
                 },
-                'export_timestamp': time.time()'
+                'export_timestamp': time.time()''
             }
 
-            if format.lower() == 'json':'
+            if format.lower() == 'json':''
                 import json
                 return json.dumps(data, indent=2, default=str)
             else:
-                raise ValueError(f"Unsupported export format: {format}")"
+                raise ValueError(f"Unsupported export format: {format}")""
 
         except Exception as e:
-            return f"Error exporting cache data: {e}""
+            return f"Error exporting cache data: {e}"""
 
     def cleanup(self):
-        """Cleanup cache resources""""
+        """Cleanup cache resources"""""
         try:
             # Clear memory cache
             self.memory_cache.clear()
@@ -621,15 +621,15 @@ class OperationCache:
             self._access_times.clear()
             self._computation_times.clear()
 
-            print("Cache cleanup completed")"
+            print("Cache cleanup completed")""
 
         except Exception as e:
-            print(f"Error during cache cleanup: {e}")"
+            print(f"Error during cache cleanup: {e}")""
 
     def __enter__(self):
-        """Context manager entry""""
+        """Context manager entry"""""
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        """Context manager exit""""
+        """Context manager exit"""""
         self.cleanup()
