@@ -1,6 +1,6 @@
 """
 Central registry for all binary operations.
-""""
+"""
 
 import random
 from typing import Callable, Dict, List, Optional, Set, Tuple, Any
