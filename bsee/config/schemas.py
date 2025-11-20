@@ -135,7 +135,7 @@ class MonitoringConfig(BaseModel):
 class APIConfig(BaseModel):
     """API configuration."""
     enabled: bool = True
-    host: str = Field(default="0.0.0.0", regex=r"^[\d\.]+$|^localhost$|^[\w\.-]+$")
+    host: str = Field(default="0.0.0.0", pattern=r"^[\d\.]+$|^localhost$|^[\w\.-]+$")
     port: int = Field(default=8000, ge=1024, le=65535)
     workers: int = Field(default=1, ge=1, le=100)
     reload: bool = False
