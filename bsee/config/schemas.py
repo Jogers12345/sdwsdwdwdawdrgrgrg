@@ -105,17 +105,21 @@ class DatabaseConfig(BaseModel):
     max_overflow: int = Field(default=10, ge=0, le=100)
     sqlite_path: Optional[str] = None
 
-    @validator('port')
-    def validate_port_for_backend(cls, v, values):
-        if v and 'backend' in values:
-            if values['backend'] == DatabaseBackend.SQLITE:
+    @field_validator('port')
+    @classmethod
+    def validate_port_for_backend(cls, v, info):
+        if v and info.data and 'backend' in info.data:
+            if info.data['backend'] == DatabaseBackend.SQLITE:
                 raise ValueError("SQLite doesn't use port")
         return v
 
-    @validator('host', 'username', 'password')
-    def validate_required_for_non_sqlite(cls, v, values, field):
-        if values.get('backend') != DatabaseBackend.SQLITE and not v:
-            raise ValueError(f"{field.name} is required for {values.get('backend')}")
+    @field_validator('host', 'username', 'password')
+    @classmethod
+    def validate_required_for_non_sqlite(cls, v, info):
+        if info.data and info.data.get('backend') != DatabaseBackend.SQLITE and not v:
+            field_name = info.field_name
+            backend = info.data.get('backend')
+            raise ValueError(f"{field_name} is required for {backend}")
         return v
 
 
