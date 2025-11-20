@@ -173,9 +173,9 @@ class EngineConfig(BaseModel):
     temp_directory: str = Field(default="/tmp/bsee")
     log_format: str = Field(default="json", pattern="^(json|text|structured)$")
 
-    @field_validator('temp_directory')
-@classmethod
-def validate_temp_directory(cls, v):
+      @field_validator('temp_directory')
+    @classmethod
+    def validate_temp_directory(cls, v):
     import os
     if not os.path.exists(v):
         try:
