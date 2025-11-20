@@ -289,7 +289,8 @@ class EnhancedBinaryViewer:
     def _format_mixed_line(self, data: bytes, offset: int, show_ascii: bool) -> str:
         """Format line with mixed hex/binary and ASCII."""
         hex_part = " ".join(f"{byte:02X}" for byte in data[:8])
-        binary_part = " ".join(f"{byte:08b}" for byte in data[8:16] if len(data) > 8 else data[:8])
+        binary_data = data[8:16] if len(data) > 8 else data[:8]
+        binary_part = " ".join(f"{byte:08b}" for byte in binary_data)
 
         ascii_part = ""
         if show_ascii:
