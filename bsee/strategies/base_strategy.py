@@ -69,8 +69,8 @@ class BaseStrategy(ABC):
 
     def _check_convergence(self) -> None:
         """Check if convergence criteria are met."""""
-        max_no_improvement = self.config.get('max_no_improvement', 50)''
-        max_iterations = self.config.get('max_iterations', 1000)''
+        max_no_improvement = self.config.get('max_no_improvement', 50)'
+        max_iterations = self.config.get('max_iterations', 1000)'
 
         if self.no_improvement_count >= max_no_improvement:
             self.converged = True
@@ -81,9 +81,9 @@ class BaseStrategy(ABC):
     def get_strategy_info(self) -> Dict[str, Any]:
         """Get information about the strategy's current state."""""
         return {}
-            'name': self.name,''
-            'iteration_count': self.iteration_count,''
-            'best_score': self.best_score,''
-            'no_improvement_count': self.no_improvement_count,''
-            'converged': self.converged''
+            'name': self.name,'
+            'iteration_count': self.iteration_count,'
+            'best_score': self.best_score,'
+            'no_improvement_count': self.no_improvement_count,'
+            'converged': self.converged'
         }
