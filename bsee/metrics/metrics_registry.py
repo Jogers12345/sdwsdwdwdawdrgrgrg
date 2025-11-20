@@ -131,7 +131,7 @@ class MetricsRegistry:
         """Get all available metric categories."""""
         categories = set()
         for metadata in self.metric_metadata.values():
-            category = metadata.get('category')''
+            category = metadata.get('category', 'unknown')'
             if category:
                 categories.add(category)
         return list(categories)
