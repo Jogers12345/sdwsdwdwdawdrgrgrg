@@ -167,7 +167,7 @@ class EngineConfig(BaseModel):
     max_workers: int = Field(default=4, ge=1, le=100)
     memory_limit_mb: int = Field(default=2048, ge=128, le=32768)
     temp_directory: str = Field(default="/tmp/bsee")
-    log_format: str = Field(default="json", regex="^(json|text|structured)$")
+    log_format: str = Field(default="json", pattern="^(json|text|structured)$")
 
     @validator('temp_directory')
     def validate_temp_directory(cls, v):
