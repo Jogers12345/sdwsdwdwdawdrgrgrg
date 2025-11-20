@@ -57,7 +57,7 @@ class GeneticConfig(BaseModel):
     elitism_rate: float = Field(default=0.1, ge=0.0, le=1.0)
     max_generations: int = Field(default=100, ge=1, le=10000)
     selection_strategy: str = Field(default="tournament", pattern="^(tournament|roulette|rank)$")
-    crossover_strategy: str = Field(default="single_point", regex="^(single_point|two_point|uniform)$")
+    crossover_strategy: str = Field(default="single_point", pattern="^(single_point|two_point|uniform)$")
 
 
 class BeamConfig(BaseModel):
