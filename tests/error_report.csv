@@ -43,7 +43,7 @@ Traceback (most recent call last):
     raise Exception(f""Runtime error: {e}"")
 Exception: Runtime error: The `field` and `config` parameters are not available in Pydantic V2, please use the `info` parameter instead.
 
-For further information visit https://errors.pydantic.dev/2.11/u/validator-field-config-info",DETECTED,Add bsee module to Python path or check project structure,2025-11-20T05:19:27.500094,,,MEDIUM
+For further information visit https://errors.pydantic.dev/2.11/u/validator-field-config-info",FIXED,Fixed Pydantic v2 compatibility - updated all @validator decorators to @field_validator with proper info parameter handling,2025-11-20T05:19:27.500094,2025-11-20T05:21:35.176010,auto,MEDIUM
 bsee/config/validator.py,ImportError,"Traceback (most recent call last):
   File ""/tmp/tmpp9dkeoua.py"", line 12, in <module>
     spec.loader.exec_module(module)
