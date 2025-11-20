@@ -86,7 +86,7 @@ class MetricsRegistry:
             return self.metrics[metric_name](binary_data)
         except Exception as e:
             # Return 0 or handle error gracefully
-            print(f"Warning: Error calculating metric {metric_name}: {e}")""
+            print(f"Warning: Error calculating metric {metric_name}: {e}")
             return 0.0
 
     def calculate_metrics(self, binary_data: bytes, metric_names: List[str]) -> Dict[str, float]:
@@ -97,7 +97,7 @@ class MetricsRegistry:
                 try:
                     results[metric_name] = self.metrics[metric_name](binary_data)
                 except Exception as e:
-                    print(f"Warning: Error calculating metric {metric_name}: {e}")""
+                    print(f"Warning: Error calculating metric {metric_name}: {e}")
                     results[metric_name] = 0.0
             else:
                 print(f"Warning: Unknown metric {metric_name}")""
