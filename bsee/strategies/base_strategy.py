@@ -1,4 +1,4 @@
-"""""
+""""
 Base strategy interface for BSEE search strategies.
 """""
 
