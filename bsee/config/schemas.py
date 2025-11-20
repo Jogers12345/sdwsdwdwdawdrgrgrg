@@ -45,7 +45,7 @@ class MCTSConfig(BaseModel):
     exploration_weight: float = Field(default=1.414, ge=0.0, le=10.0)
     max_iterations: int = Field(default=1000, ge=1, le=100000)
     simulation_depth: int = Field(default=10, ge=1, le=1000)
-    rollout_strategy: str = Field(default="random", regex="^(random|greedy|epsilon_greedy)$")
+    rollout_strategy: str = Field(default="random", pattern="^(random|greedy|epsilon_greedy)$")
     ucb_constant: float = Field(default=1.414, ge=0.0, le=10.0)
 
 
