@@ -15,7 +15,7 @@ class BaseStrategy(ABC):
         self.config = config
         self.name = self.__class__.__name__
         self.iteration_count = 0
-        self.best_score = float('-inf')''
+        self.best_score = float('-inf')
         self.no_improvement_count = 0
         self.converged = False
 
@@ -50,7 +50,7 @@ class BaseStrategy(ABC):
     def reset(self) -> None:
         """Reset the strategy state."""""
         self.iteration_count = 0
-        self.best_score = float('-inf')''
+        self.best_score = float('-inf')
         self.no_improvement_count = 0
         self.converged = False
 
