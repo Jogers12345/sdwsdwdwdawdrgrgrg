@@ -80,7 +80,7 @@ class OperationsRegistry:
         """Filter operations to only allow specified ones."""""
         unknown_ops = allowed_operations - set(self.operations.keys())
         if unknown_ops:
-            raise ValueError(f"Unknown operations in filter: {unknown_ops}")""
+            raise ValueError(f"Unknown operations in filter: {unknown_ops}")
 
         # Remove operations not in allowed set
         ops_to_remove = set(self.operations.keys()) - allowed_operations
