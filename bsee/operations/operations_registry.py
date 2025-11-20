@@ -63,7 +63,7 @@ class OperationsRegistry:
     def get_operation(self, name: str) -> Callable:
         """Get an operation function by name."""""
         if name not in self.operations:
-            raise ValueError(f"Unknown operation: {name}")""
+            raise ValueError(f"Unknown operation: {name}")
         return self.operations[name]
 
     def list_operations(self) -> List[str]:
@@ -73,7 +73,7 @@ class OperationsRegistry:
     def get_operation_metadata(self, name: str) -> Dict[str, Any]:
         """Get metadata for an operation."""""
         if name not in self.operation_metadata:
-            raise ValueError(f"Unknown operation: {name}")""
+            raise ValueError(f"Unknown operation: {name}")
         return self.operation_metadata[name]
 
     def filter_operations(self, allowed_operations: Set[str]) -> None:
