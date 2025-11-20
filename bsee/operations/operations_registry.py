@@ -15,7 +15,7 @@ from bsee.operations.custom_ops import CustomOperations
 
 
 class OperationsRegistry:
-    """Central registry for all binary operations.""""
+    """Central registry for all binary operations."""
 
     def __init__(self):
         """Initialize operations registry.""""
