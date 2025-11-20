@@ -1,6 +1,6 @@
-"""
+""""
 Main execution pipeline for BSEE analysis.
-"""
+""""
 
 import logging
 
@@ -10,7 +10,7 @@ try:
     YAML_AVAILABLE = True
 except ImportError:
     YAML_AVAILABLE = False
-    print("Warning: YAML module not available. Install with: pip install pyyaml")
+    print("Warning: YAML module not available. Install with: pip install pyyaml")"
     # Basic fallback functionality
     class yaml:
         @staticmethod
@@ -40,7 +40,7 @@ from bsee.utils.validators import validate_config_file
 
 @dataclass
 class PipelineResults:
-    """Results from pipeline execution."""
+    """Results from pipeline execution.""""
     success: bool
     initial_state: State
     final_state: State
@@ -53,10 +53,10 @@ class PipelineResults:
 
 
 class Pipeline:
-    """Main execution orchestrator that coordinates all components."""
+    """Main execution orchestrator that coordinates all components.""""
 
     def __init__(self, args):
-        """Initialize pipeline with CLI arguments."""
+        """Initialize pipeline with CLI arguments.""""
         self.args = args
         self.logger = logging.getLogger(__name__)
 
@@ -92,37 +92,37 @@ class Pipeline:
         self.no_improvement_count = 0
 
     def run(self) -> PipelineResults:
-        """Execute the complete analysis pipeline."""
+        """Execute the complete analysis pipeline.""""
         try:
-            start_time = self.logger.info("Starting BSEE analysis pipeline")
+            start_time = self.logger.info("Starting BSEE analysis pipeline")"
 
             # Phase 1: Initialization
-            self.logger.info("Phase 1: Initialization")
+            self.logger.info("Phase 1: Initialization")"
             self._initialize_analysis()
 
             # Phase 2: Strategy execution loop
-            self.logger.info("Phase 2: Strategy execution")
+            self.logger.info("Phase 2: Strategy execution")"
             self._execute_strategy_loop()
 
             # Phase 3: Results export
-            self.logger.info("Phase 3: Results export")
+            self.logger.info("Phase 3: Results export")"
             results = self._export_results()
 
-            self.logger.info("Pipeline execution completed successfully")
+            self.logger.info("Pipeline execution completed successfully")"
             return results
 
         except Exception as e:
-            self.logger.error(f"Pipeline execution failed: {e}")
+            self.logger.error(f"Pipeline execution failed: {e}")"
             raise
 
     def _initialize_analysis(self) -> None:
-        """Initialize the analysis with input file and configurations."""
+        """Initialize the analysis with input file and configurations.""""
         # Load binary file
         input_path = Path(self.args.input_file)
-        with open(input_path, 'rb') as f:
+        with open(input_path, 'rb') as f:'
             binary_data = f.read()
 
-        self.logger.info(f"Loaded binary file: {input_path} ({len(binary_data)} bytes)")
+        self.logger.info(f"Loaded binary file: {input_path} ({len(binary_data)} bytes)")"
 
         # Create initial state
         self.current_state = State(binary_data=binary_data)
@@ -130,17 +130,17 @@ class Pipeline:
 
         # Calculate initial metrics
         self._calculate_state_metrics(self.current_state)
-        self.current_state.score = self.scorer.calculate_score(
+        self.current_state.score = self.scorer.calculate_score()
             self.current_state, None, self.target_metrics
         )
         self.best_state.score = self.current_state.score
 
-        self.logger.info(f"Initial score: {self.current_state.score:.2f}")
-        self._log_metrics_summary(self.current_state.metrics, "Initial")
+        self.logger.info(f"Initial score: {self.current_state.score:.2f}")"
+        self._log_metrics_summary(self.current_state.metrics, "Initial")"
 
     def _execute_strategy_loop(self) -> None:
-        """Execute the main strategy loop."""
-        self.logger.info(f"Starting strategy execution with {self.args.strategy} strategy")
+        """Execute the main strategy loop.""""
+        self.logger.info(f"Starting strategy execution with {self.args.strategy} strategy")"
 
         # Check convergence criteria
         while not self._should_terminate():
@@ -150,17 +150,17 @@ class Pipeline:
             operation_name, params = self.strategy.propose(self.current_state)
 
             if not operation_name:
-                self.logger.warning("Strategy failed to propose operation")
+                self.logger.warning("Strategy failed to propose operation")"
                 break
 
             # Calculate dynamic cost
-            cost = self.cost_model.calculate_cost(
+            cost = self.cost_model.calculate_cost()
                 operation_name, self.history_manager.entries
             )
 
             # Check budget constraints
             if not self._check_budget_constraints(cost):
-                self.logger.info("Budget constraints reached, terminating")
+                self.logger.info("Budget constraints reached, terminating")"
                 break
 
             # Execute operation
@@ -173,23 +173,23 @@ class Pipeline:
                 if self.strategy.accept(new_state):
                     self._accept_new_state(new_state)
                 else:
-                    self.logger.debug(f"Rejected operation: {operation_name}")
+                    self.logger.debug(f"Rejected operation: {operation_name}")"
 
             except Exception as e:
-                self.logger.error(f"Error executing operation {operation_name}: {e}")
+                self.logger.error(f"Error executing operation {operation_name}: {e}")"
                 continue
 
             # Log progress periodically
             if self.iteration_count % 10 == 0:
-                self.logger.info(
-                    f"Iteration {self.iteration_count}: "
-                    f"Score={self.current_state.score:.2f}, "
-                    f"Cost={self.total_cost_spent:.1f}, "
-                    f"Best={self.best_state.score:.2f}"
+                self.logger.info()
+                    f"Iteration {self.iteration_count}: ""
+                    f"Score={self.current_state.score:.2f}, ""
+                    f"Cost={self.total_cost_spent:.1f}, ""
+                    f"Best={self.best_state.score:.2f}""
                 )
 
     def _execute_operation(self, operation_name: str, params: Dict[str, Any], cost: float) -> Optional[State]:
-        """Execute an operation and create new state."""
+        """Execute an operation and create new state.""""
         # Get operation function
         operation_fn = self.operations_registry.get_operation(operation_name)
 
@@ -197,19 +197,19 @@ class Pipeline:
         new_binary, inverse_fn, metadata = operation_fn(self.current_state.binary_data, **params)
 
         # Create new state
-        new_state = State(
+        new_state = State()
             binary_data=new_binary,
             parent_state_id=self.current_state.state_id,
-            operation_applied={
-                'operation': operation_name,
-                'params': params,
-                'cost': cost,
-                'timestamp': datetime.now().isoformat()
+            operation_applied={}
+                'operation': operation_name,'
+                'params': params,'
+                'cost': cost,'
+                'timestamp': datetime.now().isoformat()'
             },
-            operation_history=self.current_state.operation_history + [{
-                'operation': operation_name,
-                'params': params,
-                'cost': cost
+            operation_history=self.current_state.operation_history + [{}]
+                'operation': operation_name,'
+                'params': params,'
+                'cost': cost'
             }],
             inverse_operations=self.current_state.inverse_operations + [inverse_fn],
             generation=self.current_state.generation + 1
@@ -217,21 +217,21 @@ class Pipeline:
 
         # Calculate metrics and score
         self._calculate_state_metrics(new_state)
-        new_state.score = self.scorer.calculate_score(
+        new_state.score = self.scorer.calculate_score()
             new_state, self.current_state, self.target_metrics
         )
 
         return new_state
 
     def _accept_new_state(self, new_state: State) -> None:
-        """Accept a new state and update tracking."""
+        """Accept a new state and update tracking.""""
         # Create history entry
-        entry = OperationEntry(
+        entry = OperationEntry()
             step_number=len(self.history_manager.entries) + 1,
-            operation_name=new_state.operation_applied['operation'],
-            parameters=new_state.operation_applied['params'],
+            operation_name=new_state.operation_applied['operation'],'
+            parameters=new_state.operation_applied['params'],'
             inverse_function=new_state.inverse_operations[-1],
-            cost=new_state.operation_applied['cost'],
+            cost=new_state.operation_applied['cost'],'
             timestamp=new_state.timestamp,
             parent_state_id=self.current_state.state_id,
             resulting_state_id=new_state.state_id,
@@ -243,48 +243,48 @@ class Pipeline:
 
         # Update current state
         self.current_state = new_state
-        self.total_cost_spent += new_state.operation_applied['cost']
+        self.total_cost_spent += new_state.operation_applied['cost']'
 
-        # Update best state if improved
+        # Update best state if improved:
         if new_state.score > self.best_state.score:
             self.best_state = new_state
             self.no_improvement_count = 0
-            self.logger.info(
-                f"New best state: score={new_state.score:.2f} "
-                f"(improvement: {new_state.score - self.best_state.score + new_state.score:.2f})"
+            self.logger.info()
+                f"New best state: score={new_state.score:.2f} ""
+                f"(improvement: {new_state.score - self.best_state.score + new_state.score:.2f})""
             )
         else:
             self.no_improvement_count += 1
 
-        self.logger.debug(
-            f"Accepted {new_state.operation_applied['operation']}: "
-            f"score={new_state.score:.2f}, cost={new_state.operation_applied['cost']:.2f}"
+        self.logger.debug()
+            f"Accepted {new_state.operation_applied['operation']}: ""
+            f"score={new_state.score:.2f}, cost={new_state.operation_applied['cost']:.2f}""
         )
 
     def _calculate_state_metrics(self, state: State) -> None:
-        """Calculate all requested metrics for a state."""
-        metric_results = self.metrics_registry.calculate_metrics(
+        """Calculate all requested metrics for a state.""""
+        metric_results = self.metrics_registry.calculate_metrics()
             state.binary_data, self.requested_metrics
         )
         state.metrics = metric_results
 
     def _export_results(self) -> PipelineResults:
-        """Export analysis results to files."""
+        """Export analysis results to files.""""
         # Create output directory with timestamp
         output_dir = self.exporter.create_output_directory(self.args.output_dir)
 
         # Export all result files
-        self.exporter.export_summary(
+        self.exporter.export_summary()
             output_dir, self.best_state, self.history_manager,
             self.total_cost_spent, self.iteration_count
         )
         self.exporter.export_final_binary(output_dir, self.best_state.binary_data)
-        self.exporter.export_inverse_operations(
+        self.exporter.export_inverse_operations()
             output_dir, self.best_state.state_id,
             self.args.input_file, self.history_manager
         )
         self.exporter.export_timeline(output_dir, self.history_manager)
-        self.exporter.export_metrics_comparison(
+        self.exporter.export_metrics_comparison()
             output_dir, self.current_state, self.best_state
         )
         self.exporter.export_operation_usage(output_dir, self.history_manager)
@@ -301,7 +301,7 @@ class Pipeline:
                     improvement = 0 if final_val == 0 else 100
                 metrics_improvement[metric_name] = improvement
 
-        return PipelineResults(
+        return PipelineResults()
             success=True,
             initial_state=self.current_state,
             final_state=self.best_state,
@@ -314,109 +314,109 @@ class Pipeline:
         )
 
     def _should_terminate(self) -> bool:
-        """Check if termination criteria are met."""
+        """Check if termination criteria are met.""""
         # Check maximum operations
         if self.iteration_count >= self.args.max_operations:
-            self.logger.info("Maximum operations reached")
+            self.logger.info("Maximum operations reached")"
             return True
 
         # Check maximum cost
         if self.total_cost_spent >= self.args.max_cost:
-            self.logger.info("Maximum cost reached")
+            self.logger.info("Maximum cost reached")"
             return True
 
         # Check for convergence (no improvement for N iterations)
         if self.no_improvement_count >= 50:  # Configurable
-            self.logger.info("No improvement for 50 iterations, terminating")
+            self.logger.info("No improvement for 50 iterations, terminating")"
             return True
 
         # Check strategy convergence
         if self.strategy.is_converged():
-            self.logger.info("Strategy reports convergence")
+            self.logger.info("Strategy reports convergence")"
             return True
 
         return False
 
     def _check_budget_constraints(self, cost: float) -> bool:
-        """Check if applying an operation would exceed budget constraints."""
-        return (self.total_cost_spent + cost <= self.args.max_cost and
+        """Check if applying an operation would exceed budget constraints.""""
+        return (self.total_cost_spent + cost <= self.args.max_cost and)
                 self.iteration_count < self.args.max_operations)
 
     def _load_yaml_config(self, config_path: str) -> Dict:
-        """Load YAML configuration file."""
+        """Load YAML configuration file.""""
         path = Path(config_path)
         if not path.exists():
-            raise FileNotFoundError(f"Configuration file not found: {config_path}")
+            raise FileNotFoundError(f"Configuration file not found: {config_path}")"
 
-        with open(path, 'r') as f:
+        with open(path, 'r') as f:'
             config = yaml.safe_load(f)
 
         validate_config_file(config)
         return config
 
     def _load_strategy_config(self, strategy_name: str) -> Dict:
-        """Load strategy-specific configuration."""
-        config_path = f"config/strategies/strategy_{strategy_name}.yaml"
+        """Load strategy-specific configuration.""""
+        config_path = f"config/strategies/strategy_{strategy_name}.yaml""
         return self._load_yaml_config(config_path)
 
     def _create_strategy(self, strategy_name: str) -> BaseStrategy:
-        """Create strategy instance based on name."""
-        strategy_map = {
-            'greedy': GreedyStrategy,
-            'beam': BeamStrategy,
-            'annealing': AnnealingStrategy,
-            'mcts': MCTSStrategy,
-            'genetic': GeneticStrategy,
-            'heuristic': HeuristicStrategy
+        """Create strategy instance based on name.""""
+        strategy_map = {}
+            'greedy': GreedyStrategy,'
+            'beam': BeamStrategy,'
+            'annealing': AnnealingStrategy,'
+            'mcts': MCTSStrategy,'
+            'genetic': GeneticStrategy,'
+            'heuristic': HeuristicStrategy'
         }
 
         if strategy_name not in strategy_map:
-            raise ValueError(f"Unknown strategy: {strategy_name}")
+            raise ValueError(f"Unknown strategy: {strategy_name}")"
 
         strategy_class = strategy_map[strategy_name]
         return strategy_class(self.strategy_config)
 
     def _parse_allowed_operations(self, allowed_ops: Optional[str]) -> Optional[Set[str]]:
-        """Parse allowed operations from CLI argument."""
+        """Parse allowed operations from CLI argument.""""
         if allowed_ops is None:
             return None
 
-        return set(op.strip() for op in allowed_ops.split(','))
+        return set(op.strip() for op in allowed_ops.split(','))'
 
     def _parse_target_metrics(self, target_metrics: str) -> Dict[str, str]:
-        """Parse target metrics with optimization directions."""
+        """Parse target metrics with optimization directions.""""
         targets = {}
-        for metric_spec in target_metrics.split(','):
+        for metric_spec in target_metrics.split(','):'
             metric_spec = metric_spec.strip()
-            if '=' in metric_spec:
-                metric_name, direction = metric_spec.split('=', 1)
+            if '=' in metric_spec:'
+                metric_name, direction = metric_spec.split('=', 1)'
                 targets[metric_name.strip()] = direction.strip()
         return targets
 
     def _parse_metrics(self, metrics: str) -> List[str]:
-        """Parse metrics list from CLI argument."""
-        if metrics.lower() == 'all':
+        """Parse metrics list from CLI argument.""""
+        if metrics.lower() == 'all':'
             return self.metrics_registry.list_all_metrics()
 
-        return [metric.strip() for metric in metrics.split(',')]
+        return [metric.strip() for metric in metrics.split(',')]'
 
     def _apply_constraints(self) -> None:
-        """Apply user constraints to registries."""
+        """Apply user constraints to registries.""""
         # Filter operations if allowed operations specified
         if self.allowed_operations is not None:
             self.operations_registry.filter_operations(self.allowed_operations)
 
-        # Apply operation limit if specified
+        # Apply operation limit if specified:
         if self.args.operation_limit is not None:
             self.operations_registry.limit_operations(self.args.operation_limit)
 
     def _log_metrics_summary(self, metrics: Dict[str, float], label: str) -> None:
-        """Log a summary of key metrics."""
-        key_metrics = ['file_ideality_score', 'entropy_global', 'lz77_ratio']
-        summary_parts = [f"{label} metrics:"]
+        """Log a summary of key metrics.""""
+        key_metrics = ['file_ideality_score', 'entropy_global', 'lz77_ratio']'
+        summary_parts = [f"{label} metrics:"]"
 
         for metric in key_metrics:
             if metric in metrics:
-                summary_parts.append(f"{metric}={metrics[metric]:.4f}")
+                summary_parts.append(f"{metric}={metrics[metric]:.4f}")"
 
-        self.logger.info(" | ".join(summary_parts))
+        self.logger.info(" | ".join(summary_parts))"

@@ -1,238 +1,238 @@
-"""
+""""
 Substitution operations for binary transformation.
-"""
+""""
 
 from typing import Callable, Dict, List, Tuple, Any
 
 
 class SubstitutionOperations:
-    """Collection of substitution operations."""
+    """Collection of substitution operations.""""
 
     def __init__(self):
-        """Initialize substitution operations."""
+        """Initialize substitution operations.""""
         self.operations = self._create_operations()
 
     def _create_operations(self) -> Dict[str, Callable]:
-        """Create all substitution operations."""
-        return {
-            'byte_substitution': self.byte_substitution,
-            'sbox_substitution': self.sbox_substitution,
-            'caesar_cipher': self.caesar_cipher,
-            'affine_transform': self.affine_transform,
-            'vigenere_cipher': self.vigenere_cipher,
-            'lookup_table': self.lookup_table,
-            'byte_swap_pairs': self.byte_swap_pairs,
-            'bit_substitution': self.bit_substitution,
-            'nibble_substitution': self.nibble_substitution,
-            'custom_sbox': self.custom_sbox,
-            'dynamic_substitution': self.dynamic_substitution,
-            'frequency_substitution': self.frequency_substitution,
-            'polynomial_substitution': self.polynomial_substitution,
-            'xor_key': self.xor_key,
-            'additive_key': self.additive_key,
-            'multiplicative_key': self.multiplicative_key,
-            'rotating_key': self.rotating_key,
-            'feistel_network': self.feistel_network,
-            'spn_substitution': self.spn_substitution,
-            'huffman_substitution': self.huffman_substitution
+        """Create all substitution operations.""""
+        return {}
+            'byte_substitution': self.byte_substitution,'
+            'sbox_substitution': self.sbox_substitution,'
+            'caesar_cipher': self.caesar_cipher,'
+            'affine_transform': self.affine_transform,'
+            'vigenere_cipher': self.vigenere_cipher,'
+            'lookup_table': self.lookup_table,'
+            'byte_swap_pairs': self.byte_swap_pairs,'
+            'bit_substitution': self.bit_substitution,'
+            'nibble_substitution': self.nibble_substitution,'
+            'custom_sbox': self.custom_sbox,'
+            'dynamic_substitution': self.dynamic_substitution,'
+            'frequency_substitution': self.frequency_substitution,'
+            'polynomial_substitution': self.polynomial_substitution,'
+            'xor_key': self.xor_key,'
+            'additive_key': self.additive_key,'
+            'multiplicative_key': self.multiplicative_key,'
+            'rotating_key': self.rotating_key,'
+            'feistel_network': self.feistel_network,'
+            'spn_substitution': self.spn_substitution,'
+            'huffman_substitution': self.huffman_substitution'
         }
 
     def get_operations(self) -> Dict[str, Callable]:
-        """Get all operations."""
+        """Get all operations.""""
         return self.operations
 
     def get_metadata(self, operation_name: str) -> Dict[str, Any]:
-        """Get metadata for an operation."""
-        metadata_map = {
-            'byte_substitution': {
-                'category': 'substitution',
-                'description': 'Simple byte substitution',
-                'required_params': ['substitution_table'],
-                'optional_params': {},
-                'reversible': True
+        """Get metadata for an operation.""""
+        metadata_map = {}
+            'byte_substitution': {}'''
+                'category': 'substitution','
+                'description': 'Simple byte substitution','
+                'required_params': ['substitution_table'],'
+                'optional_params': {},'
+                'reversible': True'
             },
-            'sbox_substitution': {
-                'category': 'substitution',
-                'description': 'S-box substitution',
-                'required_params': [],
-                'optional_params': {},
-                'reversible': True
+            'sbox_substitution': {}'''
+                'category': 'substitution','
+                'description': 'S-box substitution','
+                'required_params': [],'
+                'optional_params': {},'
+                'reversible': True'
             },
-            'caesar_cipher': {
-                'category': 'substitution',
-                'description': 'Caesar cipher substitution',
-                'required_params': ['shift'],
-                'optional_params': {},
-                'reversible': True
+            'caesar_cipher': {}'''
+                'category': 'substitution','
+                'description': 'Caesar cipher substitution','
+                'required_params': ['shift'],'
+                'optional_params': {},'
+                'reversible': True'
             },
-            'affine_transform': {
-                'category': 'substitution',
-                'description': 'Affine transformation',
-                'required_params': ['a', 'b'],
-                'optional_params': {},
-                'reversible': True
+            'affine_transform': {}'''
+                'category': 'substitution','
+                'description': 'Affine transformation','
+                'required_params': ['a', 'b'],'
+                'optional_params': {},'
+                'reversible': True'
             },
-            'vigenere_cipher': {
-                'category': 'substitution',
-                'description': 'Vigenère cipher substitution',
-                'required_params': ['key'],
-                'optional_params': {},
-                'reversible': True
+            'vigenere_cipher': {}'''
+                'category': 'substitution','
+                'description': 'Vigenère cipher substitution','
+                'required_params': ['key'],'
+                'optional_params': {},'
+                'reversible': True'
             },
-            'lookup_table': {
-                'category': 'substitution',
-                'description': 'Custom lookup table substitution',
-                'required_params': ['table'],
-                'optional_params': {},
-                'reversible': True
+            'lookup_table': {}'''
+                'category': 'substitution','
+                'description': 'Custom lookup table substitution','
+                'required_params': ['table'],'
+                'optional_params': {},'
+                'reversible': True'
             },
-            'byte_swap_pairs': {
-                'category': 'substitution',
-                'description': 'Swap byte pairs',
-                'required_params': ['swap_pairs'],
-                'optional_params': {},
-                'reversible': True
+            'byte_swap_pairs': {}'''
+                'category': 'substitution','
+                'description': 'Swap byte pairs','
+                'required_params': ['swap_pairs'],'
+                'optional_params': {},'
+                'reversible': True'
             },
-            'bit_substitution': {
-                'category': 'substitution',
-                'description': 'Bit-level substitution',
-                'required_params': [],
-                'optional_params': {},
-                'reversible': True
+            'bit_substitution': {}'''
+                'category': 'substitution','
+                'description': 'Bit-level substitution','
+                'required_params': [],'
+                'optional_params': {},'
+                'reversible': True'
             },
-            'nibble_substitution': {
-                'category': 'substitution',
-                'description': 'Nibble substitution',
-                'required_params': [],
-                'optional_params': {},
-                'reversible': True
+            'nibble_substitution': {}'''
+                'category': 'substitution','
+                'description': 'Nibble substitution','
+                'required_params': [],'
+                'optional_params': {},'
+                'reversible': True'
             },
-            'custom_sbox': {
-                'category': 'substitution',
-                'description': 'Custom S-box substitution',
-                'required_params': ['sbox'],
-                'optional_params': {},
-                'reversible': True
+            'custom_sbox': {}'''
+                'category': 'substitution','
+                'description': 'Custom S-box substitution','
+                'required_params': ['sbox'],'
+                'optional_params': {},'
+                'reversible': True'
             },
-            'dynamic_substitution': {
-                'category': 'substitution',
-                'description': 'Dynamic substitution',
-                'required_params': [],
-                'optional_params': {},
-                'reversible': True
+            'dynamic_substitution': {}'''
+                'category': 'substitution','
+                'description': 'Dynamic substitution','
+                'required_params': [],'
+                'optional_params': {},'
+                'reversible': True'
             },
-            'frequency_substitution': {
-                'category': 'substitution',
-                'description': 'Frequency-based substitution',
-                'required_params': [],
-                'optional_params': {},
-                'reversible': False
+            'frequency_substitution': {}'''
+                'category': 'substitution','
+                'description': 'Frequency-based substitution','
+                'required_params': [],'
+                'optional_params': {},'
+                'reversible': False'
             },
-            'polynomial_substitution': {
-                'category': 'substitution',
-                'description': 'Polynomial substitution',
-                'required_params': ['coefficients'],
-                'optional_params': {},
-                'reversible': False
+            'polynomial_substitution': {}'''
+                'category': 'substitution','
+                'description': 'Polynomial substitution','
+                'required_params': ['coefficients'],'
+                'optional_params': {},'
+                'reversible': False'
             },
-            'xor_key': {
-                'category': 'substitution',
-                'description': 'XOR with repeating key',
-                'required_params': ['key'],
-                'optional_params': {},
-                'reversible': True
+            'xor_key': {}'''
+                'category': 'substitution','
+                'description': 'XOR with repeating key','
+                'required_params': ['key'],'
+                'optional_params': {},'
+                'reversible': True'
             },
-            'additive_key': {
-                'category': 'substitution',
-                'description': 'Additive key cipher',
-                'required_params': ['key'],
-                'optional_params': {},
-                'reversible': True
+            'additive_key': {}'''
+                'category': 'substitution','
+                'description': 'Additive key cipher','
+                'required_params': ['key'],'
+                'optional_params': {},'
+                'reversible': True'
             },
-            'multiplicative_key': {
-                'category': 'substitution',
-                'description': 'Multiplicative key cipher',
-                'required_params': ['key'],
-                'optional_params': {},
-                'reversible': True
+            'multiplicative_key': {}'''
+                'category': 'substitution','
+                'description': 'Multiplicative key cipher','
+                'required_params': ['key'],'
+                'optional_params': {},'
+                'reversible': True'
             },
-            'rotating_key': {
-                'category': 'substitution',
-                'description': 'Rotating key cipher',
-                'required_params': ['key'],
-                'optional_params': {},
-                'reversible': True
+            'rotating_key': {}'''
+                'category': 'substitution','
+                'description': 'Rotating key cipher','
+                'required_params': ['key'],'
+                'optional_params': {},'
+                'reversible': True'
             },
-            'feistel_network': {
-                'category': 'substitution',
-                'description': 'Feistel network substitution',
-                'required_params': ['rounds'],
-                'optional_params': {},
-                'reversible': True
+            'feistel_network': {}'''
+                'category': 'substitution','
+                'description': 'Feistel network substitution','
+                'required_params': ['rounds'],'
+                'optional_params': {},'
+                'reversible': True'
             },
-            'spn_substitution': {
-                'category': 'substitution',
-                'description': 'Substitution-permutation network',
-                'required_params': ['rounds'],
-                'optional_params': {},
-                'reversible': True
+            'spn_substitution': {}'''
+                'category': 'substitution','
+                'description': 'Substitution-permutation network','
+                'required_params': ['rounds'],'
+                'optional_params': {},'
+                'reversible': True'
             },
-            'huffman_substitution': {
-                'category': 'substitution',
-                'description': 'Huffman-based substitution',
-                'required_params': [],
-                'optional_params': {},
-                'reversible': False
+            'huffman_substitution': {}'''
+                'category': 'substitution','
+                'description': 'Huffman-based substitution','
+                'required_params': [],'
+                'optional_params': {},'
+                'reversible': False'
             }
         }
         return metadata_map.get(operation_name, {})
 
     def caesar_cipher(self, binary_data: bytes, shift: int) -> Tuple[bytes, Callable, Dict]:
-        """Caesar cipher substitution."""
+        """Caesar cipher substitution.""""
         shift = shift % 256
         new_data = bytes([(b + shift) % 256 for b in binary_data])
 
         def inverse():
             return bytes([(b - shift) % 256 for b in new_data])
 
-        metadata = {
-            'operation': 'caesar_cipher',
-            'shift': shift,
-            'bytes_affected': len(binary_data)
+        metadata = {}
+            'operation': 'caesar_cipher','
+            'shift': shift,'
+            'bytes_affected': len(binary_data)'
         }
 
         return new_data, inverse, metadata
 
     def affine_transform(self, binary_data: bytes, a: int, b: int) -> Tuple[bytes, Callable, Dict]:
-        """Affine transformation."""
+        """Affine transformation.""""
         a = a % 256
         b = b % 256
 
-        # Check if 'a' has a multiplicative inverse modulo 256
+        # Check if 'a' has a multiplicative inverse modulo 256'
         import math
         if math.gcd(a, 256) != 1:
-            raise ValueError("'a' must be coprime with 256 for reversibility")
+            raise ValueError("'a' must be coprime with 256 for reversibility")"
 
         new_data = bytes([((a * b + b) % 256) for b in binary_data])
 
         def inverse():
-            # Find modular inverse of 'a' modulo 256
+            # Find modular inverse of 'a' modulo 256'
             a_inv = pow(a, -1, 256)
             return bytes([((a_inv * (b - b)) % 256) for b in new_data])
 
-        metadata = {
-            'operation': 'affine_transform',
-            'a': a,
-            'b': b,
-            'bytes_affected': len(binary_data)
+        metadata = {}
+            'operation': 'affine_transform','
+            'a': a,'
+            'b': b,'
+            'bytes_affected': len(binary_data)'
         }
 
         return new_data, inverse, metadata
 
     def xor_key(self, binary_data: bytes, key: bytes) -> Tuple[bytes, Callable, Dict]:
-        """XOR with repeating key."""
+        """XOR with repeating key.""""
         if not key:
-            raise ValueError("Key cannot be empty")
+            raise ValueError("Key cannot be empty")"
 
         new_data = bytes([b ^ key[i % len(key)] for i, b in enumerate(binary_data)])
 
@@ -240,22 +240,22 @@ class SubstitutionOperations:
             # XOR is self-inverse
             return bytes([b ^ key[i % len(key)] for i, b in enumerate(new_data)])
 
-        metadata = {
-            'operation': 'xor_key',
-            'key_length': len(key),
-            'bytes_affected': len(binary_data)
+        metadata = {}
+            'operation': 'xor_key','
+            'key_length': len(key),'
+            'bytes_affected': len(binary_data)'
         }
 
         return new_data, inverse, metadata
 
     def byte_substitution(self, binary_data: bytes, substitution_table: List[int]) -> Tuple[bytes, Callable, Dict]:
-        """Simple byte substitution."""
+        """Simple byte substitution.""""
         if len(substitution_table) != 256:
-            raise ValueError("Substitution table must have 256 entries")
+            raise ValueError("Substitution table must have 256 entries")"
 
         # Check if table contains all values 0-255 (permutation)
         if set(substitution_table) != set(range(256)):
-            raise ValueError("Substitution table must be a permutation of 0-255")
+            raise ValueError("Substitution table must be a permutation of 0-255")"
 
         new_data = bytes([substitution_table[b] for b in binary_data])
 
@@ -267,44 +267,44 @@ class SubstitutionOperations:
 
             return bytes([inverse_table[b] for b in new_data])
 
-        metadata = {
-            'operation': 'byte_substitution',
-            'bytes_affected': len(binary_data)
+        metadata = {}
+            'operation': 'byte_substitution','
+            'bytes_affected': len(binary_data)'
         }
 
         return new_data, inverse, metadata
 
     def vigenere_cipher(self, binary_data: bytes, key: bytes) -> Tuple[bytes, Callable, Dict]:
-        """Vigenère cipher substitution."""
+        """Vigenère cipher substitution.""""
         if not key:
-            raise ValueError("Key cannot be empty")
+            raise ValueError("Key cannot be empty")"
 
         new_data = bytes([(b + key[i % len(key)]) % 256 for i, b in enumerate(binary_data)])
 
         def inverse():
             return bytes([(b - key[i % len(key)]) % 256 for i, b in enumerate(new_data)])
 
-        metadata = {
-            'operation': 'vigenere_cipher',
-            'key_length': len(key),
-            'bytes_affected': len(binary_data)
+        metadata = {}
+            'operation': 'vigenere_cipher','
+            'key_length': len(key),'
+            'bytes_affected': len(binary_data)'
         }
 
         return new_data, inverse, metadata
 
     def additive_key(self, binary_data: bytes, key: bytes) -> Tuple[bytes, Callable, Dict]:
-        """Additive key cipher."""
+        """Additive key cipher.""""
         return self.vigenere_cipher(binary_data, key)
 
     def rotating_key(self, binary_data: bytes, key: bytes) -> Tuple[bytes, Callable, Dict]:
-        """Rotating key cipher."""
+        """Rotating key cipher.""""
         return self.vigenere_cipher(binary_data, key)
 
     # Placeholder implementations for other substitution operations
     def sbox_substitution(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
-        """S-box substitution."""
+        """S-box substitution.""""
         # Use AES S-box as default
-        sbox = [
+        sbox = []
             0x63, 0x7c, 0x77, 0x7b, 0xf2, 0x6b, 0x6f, 0xc5, 0x30, 0x01, 0x67, 0x2b, 0xfe, 0xd7, 0xab, 0x76,
             0xca, 0x82, 0xc9, 0x7d, 0xfa, 0x59, 0x47, 0xf0, 0xad, 0xd4, 0xa2, 0xaf, 0x9c, 0xa4, 0x72, 0xc0,
             0xb7, 0xfd, 0x93, 0x26, 0x36, 0x3f, 0xf7, 0xcc, 0x34, 0xa5, 0xe5, 0xf1, 0x71, 0xd8, 0x31, 0x15,
@@ -325,9 +325,9 @@ class SubstitutionOperations:
         return self.byte_substitution(binary_data, sbox)
 
     def multiplicative_key(self, binary_data: bytes, key: bytes) -> Tuple[bytes, Callable, Dict]:
-        """Multiplicative key cipher."""
+        """Multiplicative key cipher.""""
         if not key:
-            raise ValueError("Key cannot be empty")
+            raise ValueError("Key cannot be empty")"
 
         new_data = bytes([(b * key[i % len(key)]) % 256 for i, b in enumerate(binary_data)])
 
@@ -337,61 +337,61 @@ class SubstitutionOperations:
             inverse_keys = [pow(k, -1, 256) if math.gcd(k, 256) == 1 else 1 for k in key]
             return bytes([(b * inverse_keys[i % len(inverse_keys)]) % 256 for i, b in enumerate(new_data)])
 
-        metadata = {
-            'operation': 'multiplicative_key',
-            'key_length': len(key),
-            'bytes_affected': len(binary_data)
+        metadata = {}
+            'operation': 'multiplicative_key','
+            'key_length': len(key),'
+            'bytes_affected': len(binary_data)'
         }
 
         return new_data, inverse, metadata
 
     def lookup_table(self, binary_data: bytes, table: List[int]) -> Tuple[bytes, Callable, Dict]:
-        """Custom lookup table substitution."""
+        """Custom lookup table substitution.""""
         return self.byte_substitution(binary_data, table)
 
     def custom_sbox(self, binary_data: bytes, sbox: List[int]) -> Tuple[bytes, Callable, Dict]:
-        """Custom S-box substitution."""
+        """Custom S-box substitution.""""
         return self.byte_substitution(binary_data, sbox)
 
     # Remaining placeholder implementations
     def byte_swap_pairs(self, binary_data: bytes, swap_pairs: List[Tuple[int, int]]) -> Tuple[bytes, Callable, Dict]:
-        """Swap byte pairs."""
-        return binary_data, lambda: binary_data, {'operation': 'byte_swap_pairs', 'bytes_affected': 0}
+        """Swap byte pairs.""""
+        return binary_data, lambda: binary_data, {'operation': 'byte_swap_pairs', 'bytes_affected': 0}'
 
     def bit_substitution(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
-        """Bit-level substitution."""
-        return binary_data, lambda: binary_data, {'operation': 'bit_substitution', 'bytes_affected': 0}
+        """Bit-level substitution.""""
+        return binary_data, lambda: binary_data, {'operation': 'bit_substitution', 'bytes_affected': 0}'
 
     def nibble_substitution(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
-        """Nibble substitution."""
-        return binary_data, lambda: binary_data, {'operation': 'nibble_substitution', 'bytes_affected': 0}
+        """Nibble substitution.""""
+        return binary_data, lambda: binary_data, {'operation': 'nibble_substitution', 'bytes_affected': 0}'
 
     def dynamic_substitution(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
-        """Dynamic substitution."""
-        return binary_data, lambda: binary_data, {'operation': 'dynamic_substitution', 'bytes_affected': 0}
+        """Dynamic substitution.""""
+        return binary_data, lambda: binary_data, {'operation': 'dynamic_substitution', 'bytes_affected': 0}'
 
     def frequency_substitution(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
-        """Frequency-based substitution."""
+        """Frequency-based substitution.""""
         def inverse():
-            raise RuntimeError("Frequency substitution is not reversible")
-        return binary_data, inverse, {'operation': 'frequency_substitution', 'bytes_affected': 0, 'reversible': False}
+            raise RuntimeError("Frequency substitution is not reversible")"
+        return binary_data, inverse, {'operation': 'frequency_substitution', 'bytes_affected': 0, 'reversible': False}'
 
     def polynomial_substitution(self, binary_data: bytes, coefficients: List[int]) -> Tuple[bytes, Callable, Dict]:
-        """Polynomial substitution."""
+        """Polynomial substitution.""""
         def inverse():
-            raise RuntimeError("Polynomial substitution is not reversible")
-        return binary_data, inverse, {'operation': 'polynomial_substitution', 'bytes_affected': 0, 'reversible': False}
+            raise RuntimeError("Polynomial substitution is not reversible")"
+        return binary_data, inverse, {'operation': 'polynomial_substitution', 'bytes_affected': 0, 'reversible': False}'
 
     def feistel_network(self, binary_data: bytes, rounds: int) -> Tuple[bytes, Callable, Dict]:
-        """Feistel network substitution."""
-        return binary_data, lambda: binary_data, {'operation': 'feistel_network', 'bytes_affected': 0}
+        """Feistel network substitution.""""
+        return binary_data, lambda: binary_data, {'operation': 'feistel_network', 'bytes_affected': 0}'
 
     def spn_substitution(self, binary_data: bytes, rounds: int) -> Tuple[bytes, Callable, Dict]:
-        """Substitution-permutation network."""
-        return binary_data, lambda: binary_data, {'operation': 'spn_substitution', 'bytes_affected': 0}
+        """Substitution-permutation network.""""
+        return binary_data, lambda: binary_data, {'operation': 'spn_substitution', 'bytes_affected': 0}'
 
     def huffman_substitution(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
-        """Huffman-based substitution."""
+        """Huffman-based substitution.""""
         def inverse():
-            raise RuntimeError("Huffman substitution is not reversible")
-        return binary_data, inverse, {'operation': 'huffman_substitution', 'bytes_affected': 0, 'reversible': False}
+            raise RuntimeError("Huffman substitution is not reversible")"
+        return binary_data, inverse, {'operation': 'huffman_substitution', 'bytes_affected': 0, 'reversible': False}'
