@@ -123,7 +123,7 @@ class MetricsRegistry:
         filtered_metrics = {}
         for name, func in self.metrics.items():
             metadata = self.metric_metadata.get(name, {})
-            if metadata.get('category') == category:''
+            if metadata.get('category') == category:
                 filtered_metrics[name] = func
         return filtered_metrics
 
