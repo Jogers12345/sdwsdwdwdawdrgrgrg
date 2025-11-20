@@ -100,7 +100,7 @@ class MetricsRegistry:
                     print(f"Warning: Error calculating metric {metric_name}: {e}")
                     results[metric_name] = 0.0
             else:
-                print(f"Warning: Unknown metric {metric_name}")""
+                print(f"Warning: Unknown metric {metric_name}")
                 results[metric_name] = 0.0
         return results
 
