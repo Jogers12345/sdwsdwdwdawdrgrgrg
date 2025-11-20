@@ -80,7 +80,7 @@ class MetricsRegistry:
     def calculate_metric(self, binary_data: bytes, metric_name: str) -> float:
         """Calculate a single metric."""""
         if metric_name not in self.metrics:
-            raise ValueError(f"Unknown metric: {metric_name}")""
+            raise ValueError(f"Unknown metric: {metric_name}")
 
         try:
             return self.metrics[metric_name](binary_data)
@@ -115,7 +115,7 @@ class MetricsRegistry:
     def get_metric_metadata(self, metric_name: str) -> Dict[str, any]:
         """Get metadata for a metric."""""
         if metric_name not in self.metric_metadata:
-            raise ValueError(f"Unknown metric: {metric_name}")""
+            raise ValueError(f"Unknown metric: {metric_name}")
         return self.metric_metadata[metric_name]
 
     def get_metrics_by_category(self, category: str) -> Dict[str, Callable]:
