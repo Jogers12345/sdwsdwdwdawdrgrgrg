@@ -64,7 +64,7 @@ class BeamConfig(BaseModel):
     """Beam Search configuration."""
     beam_width: int = Field(default=10, ge=1, le=1000)
     max_depth: int = Field(default=50, ge=1, le=1000)
-    pruning_strategy: str = Field(default="threshold", regex="^(threshold|top_k|diversity)$")
+    pruning_strategy: str = Field(default="threshold", pattern="^(threshold|top_k|diversity)$")
     diversity_weight: float = Field(default=0.1, ge=0.0, le=1.0)
 
 
