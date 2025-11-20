@@ -21,14 +21,14 @@ class BaseStrategy(ABC):
 
     @abstractmethod
     def propose(self, current_state: State) -> Tuple[str, Dict[str, Any]]:
-        """Propose next operation to apply.""
+        """Propose next operation to apply.
 
         Args:
             current_state: Current state of the binary data
 
         Returns:
             Tuple of (operation_name, operation_parameters)
-        """""
+        """"
         pass
 
     @abstractmethod
