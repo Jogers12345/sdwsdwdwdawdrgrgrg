@@ -26,7 +26,7 @@ def apply_bracket_fixes(file_path):
         content = re.sub(r'(\w+)\s*\(\s*[^)]*$', r'\1()', content, flags=re.MULTILINE)
 
         # Fix docstring issues
-        content = content.replace('""""', '"""')  # Fix """" -> """
+        content = content.replace('""""', '"""')  # Fix extra quotes
 
         # Fix common quote issues in dictionaries
         content = re.sub(r""'\['''\s*,\s*'''""', "'", content)
