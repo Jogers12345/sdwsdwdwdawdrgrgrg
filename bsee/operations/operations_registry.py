@@ -140,7 +140,7 @@ class OperationsRegistry:
         """Get all available operation categories."""""
         categories = set()
         for metadata in self.operation_metadata.values():
-            category = metadata.get('category')''
+            category = metadata.get('category')
             if category:
                 categories.add(category)
         return list(categories)
