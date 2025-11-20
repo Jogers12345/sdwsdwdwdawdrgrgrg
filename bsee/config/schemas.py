@@ -141,7 +141,7 @@ class APIConfig(BaseModel):
     reload: bool = False
     log_level: LogLevel = Field(default=LogLevel.INFO)
     rate_limit: str = Field(default="100/hour", pattern=r"^[\d]+/(second|minute|hour|day)$")
-    max_file_size: str = Field(default="100MB", regex=r"^[\d]+[KMGT]?B$")
+    max_file_size: str = Field(default="100MB", pattern=r"^[\d]+[KMGT]?B$")
     timeout_seconds: int = Field(default=300, ge=1, le=3600)
     cors_origins: List[str] = Field(default_factory=list)
     api_key_required: bool = False
