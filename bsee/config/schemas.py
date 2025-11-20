@@ -152,7 +152,7 @@ class SecurityConfig(BaseModel):
     """Security configuration."""
     api_key: Optional[str] = None
     jwt_secret_key: Optional[str] = None
-    jwt_algorithm: str = Field(default="HS256", regex=r"^(HS|RS)\d+$")
+    jwt_algorithm: str = Field(default="HS256", pattern=r"^(HS|RS)\d+$")
     jwt_expiration_hours: int = Field(default=24, ge=1, le=8760)
     bcrypt_rounds: int = Field(default=12, ge=4, le=31)
     max_login_attempts: int = Field(default=5, ge=1, le=100)
